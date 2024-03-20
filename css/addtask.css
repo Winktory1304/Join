@@ -1,0 +1,44 @@
+
+.addtask_html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3b3b3b;
+    font-family: 'inter', sans-serif;
+}
+
+/* Header und Sidebar, sollten im Template kommen */
+.addtask_sidebar {
+    position: fixed;
+    top: 8px;
+    width: 232px;
+    height: 1024px;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+.addtask_header {
+    position: fixed;
+    top: 8px;
+    width: 1440px !important;
+    height: 96px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.addtask_body {
+    position: fixed;
+    top: 0px;
+    width: 1440px;
+    height: 1024px;
+    background-color: #F6F7F8;
+}
+
+.addtask_content {
+    position: fixed;
+    top: 104px;
+    width: 1209px;
+    height: 928px;
+    margin-left: 232px;
+    background-color: #0080ff;
+}
