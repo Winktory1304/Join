@@ -39,7 +39,6 @@
     width: 1209px;
     height: 928px;
     margin-left: 232px;
-    background-color: #0080ff;
 }
 
 .board_top {
@@ -48,7 +47,6 @@
     align-items: center;
     flex-direction: column;
     height: 232px;
-    background-color: red;
     margin: 0;
 }
 
@@ -57,7 +55,6 @@
     justify-content: space-between;
     align-items: center;
     margin-left: 64px;
-    background-color: green;
     width: 1056px;
     height: 73px;
     margin-top: 50px;
@@ -133,11 +130,11 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 64px;
-    background-color: green;
+
     width: 1056px;
     height: 24px;
     background-color: #F6F7F8;
+    gap: 25px;
 }
 
 h4 {
@@ -153,7 +150,6 @@ h4 {
     align-items: center;
     width: 25%;
     justify-content: space-between;
-    margin-right: 10px;
 }
 
 .board_plus {
@@ -167,7 +163,26 @@ h4 {
     cursor: pointer;
 }
 
-.board_card {
+.board_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+.board_tasks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 1056px;
+    height: 928px;
+    gap: 10px;
+
+}
+
+.board_task {
     /* Cards */
 
     /* Auto layout */
@@ -175,7 +190,6 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 16px;
     gap: 10px;
 
     width: 252px;
@@ -191,5 +205,80 @@ h4 {
     flex: none;
     order: 0;
     flex-grow: 0;
+    cursor: pointer;
+
+}
+
+.board_cardcontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 232px;
+    height: 192px;
+}
+
+.board_cardtag {
+    /* Labels Board card label  */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px 16px;
+    gap: 10px;
+
+    width: 113px;
+    height: 27px;
+
+    background: #0038FF;
+    border-radius: 8px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #FFFFFF;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 700;
+    justify-content: center;
+
+}
+
+.board_cardcontacts {
+    /* Frame 139 */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 83px;
+
+    width: 220px;
+    height: 32px;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+
+}
+
+
+.board_cardbar{
+    /* Progress */
+
+width: 200px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
 
 }
