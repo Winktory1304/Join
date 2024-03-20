@@ -30,7 +30,7 @@
     top: 0px;
     width: 1440px;
     height: 1024px;
-    background-color: #F6F7F8;
+    background-color: #F5F5F5;
 }
 
 .board_content {
@@ -130,10 +130,8 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     width: 1056px;
     height: 24px;
-    background-color: #F6F7F8;
     gap: 25px;
 }
 
@@ -205,10 +203,16 @@ h4 {
     flex: none;
     order: 0;
     flex-grow: 0;
-    cursor: pointer;
 
 }
+.board_cardcolumn{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 252px;
+    height: 526px;
 
+}
 .board_cardcontent {
     display: flex;
     flex-direction: column;
@@ -218,9 +222,6 @@ h4 {
 }
 
 .board_cardtag {
-    /* Labels Board card label  */
-
-    /* Auto layout */
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -233,10 +234,6 @@ h4 {
     background: #0038FF;
     border-radius: 8px;
 
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
     color: #FFFFFF;
     align-items: center;
     font-size: 21px;
@@ -260,25 +257,14 @@ h4 {
     height: 32px;
 
 
-    /* Inside auto layout */
-    flex: none;
-    order: 3;
-    align-self: stretch;
-    flex-grow: 0;
-
 }
 
-
-.board_cardbar{
-    /* Progress */
-
-width: 200px;
-height: 16px;
-
-
-/* Inside auto layout */
-flex: none;
-order: 2;
-flex-grow: 0;
-
+.board_cardbottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
