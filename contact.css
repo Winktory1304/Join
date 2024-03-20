@@ -1,9 +1,10 @@
 .contacts-content {
-    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08); 
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     width: 456px;
     height: 1024px;
-    overflow: auto;
-    
+    overflow: scroll;
+    font-size: 48px;
+
 
 }
 
@@ -18,4 +19,24 @@
     height: 1024px;
 
 
+}
+
+.contacts-content::-webkit-scrollbar {
+    width: 24px;
+    /* width of the entire scrollbar */
+}
+
+.contacts-content::-webkit-scrollbar-track {
+    background: white;
+    /* color of the tracking area */
+}
+
+.contacts-content::-webkit-scrollbar-thumb {
+    background-color: rgba(168, 168, 168, 1);
+    /* color of the scroll thumb */
+    border-radius: 8px;
+    /* roundness of the scroll thumb */
+    border: 8px solid rgba(168, 168, 168, 1);
+    /* creates padding around scroll thumb */
+    min-height: 1px;
 }
