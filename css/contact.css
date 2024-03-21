@@ -13,13 +13,7 @@
     margin-left: 232px;
 }
 
-.contacts-placeholder {
-    /* border: 2px solid red; */
-    width: 752px;
-    height: 1024px;
 
-
-}
 
 .contacts-content::-webkit-scrollbar {
     width: 24px;
@@ -39,4 +33,37 @@
     border: 8px solid rgba(168, 168, 168, 1);
     /* creates padding around scroll thumb */
     min-height: 1px;
+}
+.contacts-overview{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.contacts-placeholder {
+    display: flex;
+    height: 73px;
+    width: 589px;
+    align-items: center;
+    gap: 30px;
+    margin-top: 110px;
+    margin-left: 55px;
+    
+
+
+}
+
+.contacts-placeholder-font1{
+    font-weight: 700;
+    font-size: 61px;
+}
+.contacts-placeholder-seperator{
+    background-color: #29ABE2;
+    width: 3px;
+    height: 59px;
+    border-radius: 3px;
+
+}
+.contacts-placeholder-text{
+    font-size: 27px;
 }
