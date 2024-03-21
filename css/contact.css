@@ -1,16 +1,47 @@
+body {
+    box-sizing: border-box;
+    max-width: 1440px;
+    margin: 0;
+    
+}
+
+.header {
+    height: 96px;
+    background-color: limegreen;
+
+}
+
+.main {
+    display: flex;
+    max-width: 1440px;
+    
+}
+
+.sidebar {
+    width: 232px;
+    background-color: aqua;
+    max-height: 1024px;
+}
+
+
 .contacts-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
-    width: 456px;
+    min-width: 456px;
     height: 1024px;
-    overflow: scroll;
+    overflow: auto;
     font-size: 48px;
+    width: 456px;
 
 
 }
 
 .content-container {
     display: flex;
-    margin-left: 232px;
+    width: calc(1440px - 232px);
+
 }
 
 
@@ -34,36 +65,62 @@
     /* creates padding around scroll thumb */
     min-height: 1px;
 }
-.contacts-overview{
+
+.contacts-overview {
     display: flex;
     justify-content: center;
-    
-    
+    flex: 1;
 }
+
 .contacts-placeholder {
     display: flex;
-    height: 73px;
-    width: 589px;
+    height: 73px;    
     align-items: center;
-    gap: 30px;
-    margin-top: 110px;
-    margin-left: 55px;
-    
-
-
+    gap: 30px;   
+    justify-content: center;
+    margin-top: calc(206px - 96px);
 }
 
-.contacts-placeholder-font1{
+.contacts-placeholder-font1 {
     font-weight: 700;
     font-size: 61px;
 }
-.contacts-placeholder-seperator{
+
+.contacts-placeholder-seperator {
     background-color: #29ABE2;
     width: 3px;
     height: 59px;
     border-radius: 3px;
 
 }
-.contacts-placeholder-text{
+
+.contacts-placeholder-text {
     font-size: 27px;
+}
+.scroll-area-and-button{
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts-add-new-contact-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#2A3647;
+    color: white;
+    width: 352px;
+    border: 1px;
+    border-radius: 10px;
+    font-size: 21px;
+    font-weight: 700;
+    gap: 16px;
+    padding: 12px 0px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    
+}
+.render-contacts-container{
+    margin: 0 28px;
+    margin-right: 4px;
 }
