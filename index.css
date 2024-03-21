@@ -291,7 +291,7 @@ input[type="checkbox"]+label::before {
 }
 
 input[type="checkbox"]:checked+label::before {
-    background-image: url("./assets/img/checkbox_checked.svg");
+    background-image: url("./assets/img/checkbox_confirmed.svg");
 }
 
 .button-container {
