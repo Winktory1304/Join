@@ -4,7 +4,7 @@ let span = document.getElementsByClassName('close')[0];
 // When the user clicks anywhere outside of the modal, close it
 function addContactModal() {
     
-    modal.style.display = "block";
+    modal.style.display = "flex";
 
 }
 
