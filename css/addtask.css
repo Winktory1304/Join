@@ -58,6 +58,7 @@
     font-size: 20px;
     font-weight: 400px;
 }
+
 .addtask-h2 span {
     color: #FFA800;
 }
@@ -66,41 +67,32 @@
     color: #FFA800;
 }
 
-.addtask-content{
+.addtask-content {
     display: flex;
     /* background-color: rgb(255, 0, 204); */
     padding-top: 43px;
-
 }
 
 .addtask-left-content {
     height: 376px;
     width: 440px;
-  padding-left: 96px;
-    
-
+    padding-left: 96px;
     left: 328px;
     /* background-color: rgb(255, 251, 0); */
 }
+
 .addtask-middle-content {
     height: 424px;
     width: 1px;
-  
-  
-    
     top: 327px;
     left: 816.25px;
-
-    background-color:#D1D1D1;
+    background-color: #D1D1D1;
     border: 1px;
 }
 
 .addtask-right-content {
     height: 416px;
     width: 440px;
-  
-  
-    
     top: 327px;
     left: 864.25px;
     /* background-color: rgb(0, 255, 4); */
