@@ -18,7 +18,7 @@
         </div>
         <div class="addtask-content">
             <div class="addtask-left-content">
-                <div class="addtask-h2">Title</div>
+                <div class="addtask-h2">Title<span>*</span></div>
                 <input placeholder="Enter a title">
 
                 <div class="addtask_h2">Description</div>
@@ -33,14 +33,14 @@
             </div>
 
             <div class="addtask-right-content">
-                <div class="addtask-h2">Due date</div>
-                <h2 class="yellow-star">*</h2>
+                <div class="addtask-h2">Due date<span>*</span></div>
+                
                 <input placeholder="dd/mm/yyyy">
                 <div class="addtask-h2">Prio</div>
                 Urgent
                 Medium
                 Low
-                <div class="addtask-h2">Category*</div>
+                <div class="addtask-h2">Category<span>*</span></div>
                 <input placeholder="Select task category">
                 <div class="addtask-h2">Subtasks</div>
                 <input placeholder="Add new subtask">
@@ -49,8 +49,8 @@
             </div>
         </div>
         <div>
-            <div>
-                * This field is required
+            <div class="addtask-footer">
+                <span>*</span>This field is required
             </div>
             <div>
                 <Button>Cancel x</Button>
