@@ -241,6 +241,59 @@ border-radius: 0px 30px 30px 0px;
     height: 120px;
     
 }
+.contact-modal-form{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 137px;
+    margin-right: 48px;
+}
+.contact-modal-input{
+    height: 50px;
+    width: 422px;
+    gap: 10px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    padding: 13px, 21px, 13px, 21px;
+    border-radius: 10px;
+}
+.modal-part-3-buttons-container{
+    
+    height: 57px;
+    margin-top: 48px;
+   
+}
+.modal-part-3-cancel-button{
+    height: 100%;
+    width: 126px;
+    margin-right: 24px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    border: 1px solid rgba(42, 54, 71, 1);
+    background-color: white;
+
+}
+.modal-part-3-create-button{
+    height: 100%;
+    width: 214px;
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border: 1px ;
+   
+
+}
+.modal-part-3-create-button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+.modal-part-3-cancel-button:hover {
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-color: #29ABE2;
+}
 
 
 /* Add Animation */
