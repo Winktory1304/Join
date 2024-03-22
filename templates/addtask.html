@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>addtask</title>
+    <title>Aufgabe hinzufügen</title>
     <link rel="stylesheet" href="../css/addtask.css">
 </head>
 
@@ -12,10 +12,52 @@
     <div class="addtask_header"></div>
     <div class="addtask_sidebar"></div>
     <div class="addtask_content">
-<!-- hier kommt mein Code für addTask -->
+        <!-- hier kommt mein Code für addTask -->
+        <div class="addtask_h1">
+            Add Task
+        </div>
+        <div class="addtask-content">
+            <div class="addtask-left-content">
+                <div class="addtask-h2">Title</div>
+                <input placeholder="Enter a title">
 
-test
-</div>
+                <div class="addtask_h2">Description</div>
+
+
+                <input placeholder="Enter a Description">
+                <div class="addtask-h2">Assigned to</div>
+                <input placeholder="Select contacts to assign">
+            </div>
+            <div class="addtask-middle-content">
+            
+            </div>
+
+            <div class="addtask-right-content">
+                <div class="addtask-h2">Due date</div>
+                <h2 class="yellow-star">*</h2>
+                <input placeholder="dd/mm/yyyy">
+                <div class="addtask-h2">Prio</div>
+                Urgent
+                Medium
+                Low
+                <div class="addtask-h2">Category*</div>
+                <input placeholder="Select task category">
+                <div class="addtask-h2">Subtasks</div>
+                <input placeholder="Add new subtask">
+
+
+            </div>
+        </div>
+        <div>
+            <div>
+                * This field is required
+            </div>
+            <div>
+                <Button>Cancel x</Button>
+                <Button>Create Task </Button>
+            </div>
+        </div>
+    </div>
 
 </body>
 
