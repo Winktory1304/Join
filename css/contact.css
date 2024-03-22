@@ -117,8 +117,11 @@ body {
     padding: 12px 0px;
     margin-top: 24px;
     margin-bottom: 24px;
-
     
+}
+.contacts-add-new-contact-button:hover{
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 .render-contacts-container{
     margin: 0 28px;
