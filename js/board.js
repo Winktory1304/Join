@@ -3,17 +3,17 @@ let todos = [{
     'tag': 'User Story',
     'title': 'Hier steht der Titel',
     'task': 'Hier wird der Taskname stehen',
-    'subtasksdone':[],
-    'subtasks':[],
+    'subtasksdone': [],
+    'subtasks': [],
     'priority': 0,
     'category': 'open'
 }, {
     'id': 1,
-    'tag': 'User Story',
+    'tag': 'Technical Task',
     'title': 'Test ID 1',
     'task': 'Task 1',
-    'subtasksdone':[0],
-    'subtasks':['Sub1'],
+    'subtasksdone': [1, 0],
+    'subtasks': ['Sub1_1', 'Sub2_1'],
     'priority': 1,
     'category': 'progress'
 }, {
@@ -21,8 +21,8 @@ let todos = [{
     'tag': 'Technical Task',
     'title': 'Test ID 2',
     'task': 'Task 2',
-    'subtasksdone':[1,0],
-    'subtasks':['Sub1','Sub2'],
+    'subtasksdone': [1, 0],
+    'subtasks': ['Sub1_2', 'Sub2_2'],
     'priority': 2,
     'category': 'feedback'
 }, {
@@ -30,8 +30,8 @@ let todos = [{
     'tag': 'User Story',
     'title': 'Test ID 3',
     'task': 'Task 3',
-    'subtasksdone':[1,1],
-    'subtasks':['Sub1','Sub2'],
+    'subtasksdone': [1, 1, 1, 0, 0, 0],
+    'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3','Sub4_3', 'Sub5_3', 'Sub6_3'],
     'priority': 3,
     'category': 'done'
 },]
@@ -106,12 +106,30 @@ function prioritySelector(element) {
     }
 }
 
-function subTasks(element){
+function subTasks(element) {
 
-    if (element > 0)
-        return  `<progress style="width: 120px;" max="${element}" min="0" value="1"></progress> ${element} Subtasks`;
+    let length = element.subtasks.length;
+
+    if (length > 0)
+        return `<progress style="width: 120px;" max="${length}" min="0" value="${subTaskscomplete(element.id)}"></progress> ${subTaskscomplete(element.id)}/${length} Subtasks`;
     else
         return ''
+}
+
+
+function subTaskscomplete(id) {
+
+    let subtasksdone = todos[id].subtasksdone;
+
+    let count = 0;
+    for (let i = 0; i < subtasksdone.length; i++) {
+        if (subtasksdone[i] === 1) {
+            count++;
+        }
+    }
+    return count;
+
+
 }
 
 function generateTodoHTML(element) {
@@ -120,7 +138,7 @@ function generateTodoHTML(element) {
                     <div class="board_cardtag">${element['tag']}</div>
                     <h3 class="board_task_headline">${element['title']}</h3>
                     <p class="board_tasktext">${element['task']}</p>
-                    <div class="board_cardbar"> ${subTasks(element.subtasks.length)}</div>
+                    <div class="board_cardbar"> ${subTasks(element)}</div>
                     <div class="board_cardbottom">
                         <div class="board_cardcontacts">Kontakte</div>
                         <div class="board prio">${prioritySelector(element)}</div>
