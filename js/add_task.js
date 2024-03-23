@@ -4,6 +4,7 @@ let todos = [
     tag: "User Story",
     title: "Titel aus task",
     subtasksdone: [],
+    date: "",
     subtasks: [],
     priority: 0,
     contacts: [],
@@ -14,6 +15,7 @@ let todos = [
     tag: "User Story",
     title: "Titel aus task",
     subtasksdone: [],
+    date: "",
     subtasks: [],
     priority: 0,
     contacts: [],
@@ -23,3 +25,6 @@ let todos = [
 
 // let todos = [];
 
+function getItems(){
+  todos.push(getItems(todos))
+}
