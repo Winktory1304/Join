@@ -16,6 +16,7 @@ let todos = [{
     'subtasksdone': [0, 0],
     'subtasks': ['Sub1_1', 'Sub2_1'],
     'priority': 2,
+    'contacts': [],
     'category': 'progress'
 }, {
     'id': 2,
@@ -25,6 +26,7 @@ let todos = [{
     'subtasksdone': [1, 0],
     'subtasks': ['Sub1_2', 'Sub2_2'],
     'priority': 2,
+    'contacts': [],
     'category': 'feedback'
 }, {
     'id': 3,
@@ -34,8 +36,9 @@ let todos = [{
     'subtasksdone': [1, 1, 1, 0, 0, 0],
     'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3', 'Sub4_3', 'Sub5_3', 'Sub6_3'],
     'priority': 3,
+    'contacts': [],
     'category': 'done'
-},{
+}, {
     'id': 4,
     'tag': 'Technical Task',
     'title': 'Test ID 1',
@@ -43,16 +46,12 @@ let todos = [{
     'subtasksdone': [0, 0],
     'subtasks': ['Sub1_1', 'Sub2_1'],
     'priority': 2,
+    'contacts': [],
     'category': 'progress'
 }
 ]
 
-function getItems(){
-    
-}
-
 let currentDraggedElement;
-
 
 function updateHTML() {
     let open = todos.filter(t => t['category'] == 'open');
@@ -192,23 +191,23 @@ function generateTodoHTML(element) {
 
 
 
-function init(){
-    openCard(todos)
+function init() {
+    openCard(todos , 1)
 }
 
 
-function openCard(element){
+function openCard(element, id) {
 
     document.getElementById('board_openCard').innerHTML += /*html*/`
-    <div class="board_task" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
+    <div class="todo">
                 <div class="board_cardcontent">
-                    <div class="board_cardtag" ${setTag(element)}>${element['tag']}</div>
-                    <h3 class="board_task_headline">${element['title']}</h3>
-                    <p class="board_tasktext">${element['task']}</p>
-                    <div class="board_cardbar"> ${subTasks(element)}</div>
+                    <div class="board_cardtag" ${setTag(element[id])}>${element[id].tag}</div>
+                    <h3 class="board_task_headline">${element[id].title}</h3>
+                    <p class="board_tasktext">${element[id].task}</p>
+                    <div class="board_cardbar"> ${subTasks(element[id])}</div>
                     <div class="board_cardbottom">
                         <div class="board_cardcontacts">Kontakte</div>
-                        <div class="board prio">${prioritySelector(element)}</div>
+                        <div class="board prio">${prioritySelector(element[id])}</div>
                     </div>
                 </div>
             </div>
