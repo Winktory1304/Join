@@ -255,15 +255,15 @@ body {
 }
 
 .log-in-checkbox {
-    display: flex;    
+    display: flex;
     padding-top: 6px;
     padding-right: 195px;
 }
 
-input[type="checkbox"]+label {    
+input[type="checkbox"]+label {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     width: 440px;
     height: 32px;
 }
@@ -309,7 +309,7 @@ input[type="checkbox"]:checked+label::before {
 .sign-up-button-container {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
@@ -366,4 +366,43 @@ input[type="checkbox"]:checked+label::before {
 
 .sign-up-link:hover {
     text-decoration: underline;
+}
+
+.sigend-up-successfuly-container {
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sigend-up-successfuly-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 312px;
+    height: 74px;
+    border-radius: 20px;
+    color: white;
+    background-color: #2a3647;
+    font-size: 20px;
+    font-weight: 400;
+    position: relative;
+    animation: moveUp 1.25s ease forwards;
+}
+
+@keyframes moveUp {
+    from {
+        bottom: -500px;
+        opacity: 0;
+    }
+
+    to { bottom: 0;
+        opacity: 1;
+    }
 }
