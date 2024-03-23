@@ -6,7 +6,7 @@ function register() {
 
 
 function logInGuest() {
-    window.location.href = 'summary.html';
+    window.location.href = 'html/summary.html';
 }
 
 
