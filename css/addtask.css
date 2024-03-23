@@ -206,6 +206,14 @@
 }
 
 /* style buttons */
+.addtask-button {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    gap: 8px;
+  }
+
 .addtask-button-create-task {
     width: 183px;
     height: 56px;
