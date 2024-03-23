@@ -203,6 +203,7 @@ h4 {
     flex: none;
     order: 0;
     flex-grow: 0;
+    cursor: pointer;
 
 }
 .board_cardcolumn{
@@ -228,7 +229,7 @@ h4 {
     padding: 4px 16px;
     gap: 10px;
 
-    width: 113px;
+    width: 150px;
     height: 27px;
 
     background: #0038FF;
@@ -267,4 +268,28 @@ h4 {
     gap: 10px;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+
+
+
+.drag-area {
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px dashed black;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.drag-area-highlight {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.todo {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
 }
