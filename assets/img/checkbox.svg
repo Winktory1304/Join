@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 18 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <g id="Check-button" serif:id="Check button" transform="matrix(1,0,0,1.00214,-3,-2.04272)">
+        <path id="Rectangle-5" serif:id="Rectangle 5" d="M20,6.994C20,5.341 18.656,4 17,4L7,4C5.344,4 4,5.341 4,6.994L4,17.006C4,18.659 5.344,20 7,20L17,20C18.656,20 20,18.659 20,17.006L20,6.994Z" style="fill:none;stroke:rgb(42,54,71);stroke-width:2px;"/>
+    </g>
+</svg>
