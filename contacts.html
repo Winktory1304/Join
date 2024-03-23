@@ -4,64 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="summary.css">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="css/contact.css">
 
     <title>contacts</title>
 </head>
 
-<body class="unset-body">
-    <div class="sidebar-container">
-        <nav class="sidebar">
-            <img class="join-logo-sidebar" src="assets/img/join-logo.svg">
-            <section" class="menu-sidebar">
-                <a class="menu-sidebar-button" href="summary.html">
-                    <img src="assets/img/summary.svg">
-                    <div>Summary</div>
-                </a>
-
-                <a class="menu-sidebar-button" href="add_task.html">
-                    <img src="assets/img/addtask.svg">
-                    <div>Add Task</div>
-                </a>
-
-                <a class="menu-sidebar-button" href="board.html">
-                    <img src="assets/img/board.svg">
-                    <div>Board</div>
-                </a>
-
-                <a class="menu-sidebar-button" href="contacts.html">
-                    <img src="assets/img/contacts.svg">
-                    <div>Contacts</div>
-                </a>
-                </section>
-                <section class="footer-sidebar">
-                    <a class="footer-sidebar-link" href="">Privacy Policy</a>
-                    <a class="footer-sidebar-link" href="">Legal notice</a>
-                </section>
-        </nav>
-        <main class="main-content-summary">
-            <div class="header-container">
-                <header class="header">
-                    <div class="header-title">Kanban Project Management Tool</div>
-                    <div class="help-user-container">
-                        <a href="help.html"><img class="help-link" src="assets/img/help.svg"></a>
-                        <div class="logged-user-icon" onclick="hierkommteinefuntion()">G</div>
-                    </div>
-                </header>
-            </div>
-            <div class="content-container">
-                <div class="contacts-content"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam commodi labore, nesciunt, corporis illo iste nisi tempore excepturi, fuga doloremque suscipit et delectus quas! Aperiam at distinctio neque exercitationem officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero cumque, impedit veniam totam, ad animi temporibus corporis officia consequatur illum repudiandae culpa voluptas? Vero facere cupiditate aliquam quo cum? Pariatur. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla, ut fugit aperiam temporibus voluptatem voluptate saepe. Similique facere alias laboriosam suscipit odio minima commodi ipsa, recusandae porro sed molestias provident. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident consequatur enim eos quaerat ex beatae reiciendis aliquid illo inventore laborum animi repellendus eum, perspiciatis, nam vel fuga aperiam saepe veritatis!</div>
-                <div class="contacts-overview">
-                    <div class="contacts-placeholder">
-
-                    </div>
+<body>
+    <header class="header"></header>
+    <div class="main">
+        <div class="sidebar"></div>
+        <div class="content-container">
+            <div id="addContactBtn" class="contacts-content">
+                <button onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
+                    <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_154458_4951" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                            width="33" height="33">
+                            <rect x="0.5" y="0.5" width="32" height="32" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_154458_4951)">
+                            <path
+                                d="M25.8294 19.1667C25.5134 19.1667 25.2499 19.0602 25.0388 18.8473C24.8277 18.6343 24.7222 18.3704 24.7222 18.0556V14.9445H21.611C21.2962 14.9445 21.0323 14.8376 20.8194 14.6239C20.6064 14.4102 20.4999 14.1454 20.4999 13.8295C20.4999 13.5136 20.6064 13.2501 20.8194 13.0389C21.0323 12.8278 21.2962 12.7223 21.611 12.7223H24.7222V9.61115C24.7222 9.29635 24.829 9.03246 25.0427 8.81948C25.2564 8.60653 25.5212 8.50005 25.8372 8.50005C26.1531 8.50005 26.4166 8.60653 26.6277 8.81948C26.8388 9.03246 26.9444 9.29635 26.9444 9.61115V12.7223H30.0555C30.3703 12.7223 30.6342 12.8291 30.8472 13.0428C31.0601 13.2566 31.1666 13.5214 31.1666 13.8373C31.1666 14.1532 31.0601 14.4167 30.8472 14.6278C30.6342 14.8389 30.3703 14.9445 30.0555 14.9445H26.9444V18.0556C26.9444 18.3704 26.8375 18.6343 26.6238 18.8473C26.4101 19.0602 26.1453 19.1667 25.8294 19.1667ZM12.4999 16.4778C11.0333 16.4778 9.81473 15.9926 8.84435 15.0223C7.874 14.0519 7.38882 12.8334 7.38882 11.3667C7.38882 9.90005 7.874 8.68154 8.84435 7.71118C9.81473 6.7408 11.0333 6.25562 12.4999 6.25562C13.9666 6.25562 15.1851 6.7408 16.1555 7.71118C17.1258 8.68154 17.611 9.90005 17.611 11.3667C17.611 12.8334 17.1258 14.0519 16.1555 15.0223C15.1851 15.9926 13.9666 16.4778 12.4999 16.4778ZM2.94435 27.1667C2.62955 27.1667 2.36566 27.0602 2.15269 26.8473C1.93973 26.6343 1.83325 26.3704 1.83325 26.0556V23.8334C1.83325 23.063 2.0314 22.3612 2.42769 21.7279C2.824 21.0945 3.3666 20.6186 4.05549 20.3C5.62586 19.5815 7.08022 19.0649 8.41855 18.75C9.75691 18.4352 11.1162 18.2779 12.4963 18.2779C13.8765 18.2779 15.237 18.4352 16.5777 18.75C17.9184 19.0649 19.3666 19.5815 20.9222 20.3C21.611 20.6334 22.1573 21.113 22.561 21.7389C22.9647 22.3649 23.1666 23.063 23.1666 23.8334V26.0556C23.1666 26.3704 23.0601 26.6343 22.8472 26.8473C22.6342 27.0602 22.3703 27.1667 22.0555 27.1667H2.94435ZM4.05545 24.9445H20.9444V23.8334C20.9444 23.5149 20.8648 23.2149 20.7055 22.9334C20.5462 22.6519 20.3073 22.4408 19.9888 22.3C18.5518 21.5963 17.2629 21.1204 16.1222 20.8723C14.9814 20.6241 13.774 20.5 12.4999 20.5C11.2259 20.5 10.0184 20.6278 8.87769 20.8834C7.73695 21.1389 6.44066 21.6112 4.98882 22.3C4.69991 22.4408 4.47212 22.6519 4.30545 22.9334C4.13879 23.2149 4.05545 23.5149 4.05545 23.8334V24.9445ZM12.4999 14.2556C13.3221 14.2556 14.0092 13.9797 14.561 13.4278C15.1129 12.876 15.3888 12.1889 15.3888 11.3667C15.3888 10.5445 15.1129 9.85746 14.561 9.30562C14.0092 8.75375 13.3221 8.47782 12.4999 8.47782C11.6777 8.47782 10.9907 8.75375 10.4388 9.30562C9.88695 9.85746 9.61102 10.5445 9.61102 11.3667C9.61102 12.1889 9.88695 12.876 10.4388 13.4278C10.9907 13.9797 11.6777 14.2556 12.4999 14.2556Z"
+                                fill="white" />
+                        </g>
+                    </svg>
+                </button>
+                <div class="render-contacts-container">labore,
+                    nesciunt, corporis illo iste nisi tempore excepturi, fuga doloremque suscipit et delectus quas!
+                    Aperiam at
+                    distinctio neque exercitationem officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Vero
+                    cumque, impedit veniam totam, ad animi temporibus corporis officia consequatur illum repudiandae
+                    culpa
+                    voluptas? Vero facere cupiditate aliquam quo cum? Pariatur. Lorem ipsum dolor sit, amet consectetur
+                    adipisicing elit. Nulla, ut fugit aperiam temporibus voluptatem voluptate saepe. Similique facere
+                    alias
+                    laboriosam suscipit odio minima commodi ipsa, recusandae porro sed molestias provident. Lorem ipsum,
+                    dolor
+                    sit amet consectetur adipisicing elit. Provident consequatur enim eos quaerat ex beatae reiciendis
+                    aliquid
+                    illo inventore laborum animi rep
                 </div>
             </div>
-        </main>
+            <div class="contacts-overview">
+                <div class="contacts-placeholder">
+                    <div class="contacts-placeholder-font1">Contacts</div>
+                    <div class="contacts-placeholder-seperator"></div>
+                    <div class="contacts-placeholder-text">Better with a team</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <div id="contactModal" class="modal">
+        <!-- Modal content -->
+        <div id="modalContent" class="modal-content">
+            <div class="modal-part-1">
+                <svg class="modalLogo" width="55px" height="66px" viewBox="0 0 102 122" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                    xmlns:serif="http://www.serif.com/"
+                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                    <g id="Summary-user" serif:id="Summary user">
+                        <g id="join-logo">
+                            <rect id="Vector" x="50.497" y="0" width="22.158" height="25.492"
+                                style="fill:white;fill-rule:nonzero;" />
+                            <path id="Vector_2"
+                                d="M50.497,46.225l22.158,0l0,35.953c0.101,8.651 -2.361,17.137 -7.073,24.379c-4.654,7.037 -13.636,15.409 -30.254,15.409c-18.102,-0 -28.652,-8.56 -34.345,-13.251l13.976,-17.241c5.557,4.537 10.909,8.269 20.454,8.269c7.227,0 10.107,-2.944 11.795,-5.512c2.294,-3.567 3.48,-7.739 3.409,-11.985l-0.12,-36.021Z"
+                                style="fill:white;fill-rule:nonzero;" />
+                            <rect id="Vector_3" x="17.039" y="30.132" width="22.158" height="22.257"
+                                style="fill:rgb(41,171,226);fill-rule:nonzero;" />
+                            <path id="Vector_4"
+                                d="M84.262,111.522c0,4.743 -2.403,7.293 -5.761,7.293c-3.358,-0 -5.556,-3.03 -5.556,-7.053c-0,-4.023 2.267,-7.208 5.744,-7.208c3.477,-0 5.573,3.133 5.573,6.968Zm-8.744,0.189c0,2.859 1.142,4.964 3.103,4.964c1.96,-0 3.068,-2.225 3.068,-5.136c-0,-2.551 -1.023,-4.947 -3.068,-4.947c-2.046,-0 -3.103,2.311 -3.103,5.119Z"
+                                style="fill:white;fill-rule:nonzero;" />
+                            <rect id="Vector_5" x="86.205" y="104.76" width="2.454" height="13.833"
+                                style="fill:white;fill-rule:nonzero;" />
+                            <path id="Vector_6"
+                                d="M91.319,118.593l-0,-13.833l2.727,0l2.931,5.701c0.755,1.491 1.427,3.022 2.012,4.588c-0.154,-1.712 -0.222,-3.681 -0.222,-5.872l0,-4.417l2.25,0l-0,13.833l-2.54,0l-2.965,-5.821c-0.785,-1.529 -1.485,-3.101 -2.097,-4.708c0,1.712 0.119,3.647 0.119,6.026l0,4.486l-2.215,0.017Z"
+                                style="fill:white;fill-rule:nonzero;" />
+                        </g>
+                    </g>
+                </svg>
+                <h1>Add contact</h1>
+                <div class="modalTaskteam">Task are better with a team!</div>
+                <div class="modal-seperator"></div>
+            </div>
+            <div class="modal-part-2">
+                <svg class="profil-picture-modal" viewBox="0 0 134 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_576_4834)">
+                        <rect x="7" y="7" width="120" height="120" rx="60" fill="white" />
+                        <rect x="5.5" y="5.5" width="123" height="123" rx="61.5" stroke="white" stroke-width="3" />
+                        <circle cx="67" cy="67" r="60" fill="#D1D1D1" />
+                        <mask id="mask0_576_4834" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="35" y="35"
+                            width="64" height="64">
+                            <rect x="35" y="35" width="64" height="64" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_576_4834)">
+                            <path
+                                d="M67.0001 67.0001C64.0667 67.0001 61.5556 65.9556 59.4667 63.8667C57.3779 61.7779 56.3334 59.2667 56.3334 56.3334C56.3334 53.4001 57.3779 50.889 59.4667 48.8001C61.5556 46.7112 64.0667 45.6667 67.0001 45.6667C69.9334 45.6667 72.4445 46.7112 74.5334 48.8001C76.6223 50.889 77.6667 53.4001 77.6667 56.3334C77.6667 59.2667 76.6223 61.7779 74.5334 63.8667C72.4445 65.9556 69.9334 67.0001 67.0001 67.0001ZM83.0001 88.3334H51.0001C49.5334 88.3334 48.2779 87.8112 47.2334 86.7668C46.189 85.7223 45.6667 84.4668 45.6667 83.0001V80.8667C45.6667 79.3556 46.0556 77.9667 46.8334 76.7001C47.6112 75.4334 48.6445 74.4667 49.9334 73.8001C52.689 72.4223 55.489 71.389 58.3334 70.7001C61.1779 70.0112 64.0667 69.6667 67.0001 69.6667C69.9334 69.6667 72.8223 70.0112 75.6667 70.7001C78.5112 71.389 81.3112 72.4223 84.0667 73.8001C85.3556 74.4667 86.389 75.4334 87.1667 76.7001C87.9445 77.9667 88.3334 79.3556 88.3334 80.8667V83.0001C88.3334 84.4668 87.8112 85.7223 86.7668 86.7668C85.7223 87.8112 84.4668 88.3334 83.0001 88.3334ZM51.0001 83.0001H83.0001V80.8667C83.0001 80.3779 82.8779 79.9334 82.6334 79.5334C82.389 79.1334 82.0667 78.8223 81.6667 78.6001C79.2668 77.4001 76.8445 76.5001 74.4001 75.9001C71.9556 75.3001 69.489 75.0001 67.0001 75.0001C64.5112 75.0001 62.0445 75.3001 59.6001 75.9001C57.1556 76.5001 54.7334 77.4001 52.3334 78.6001C51.9334 78.8223 51.6112 79.1334 51.3667 79.5334C51.1223 79.9334 51.0001 80.3779 51.0001 80.8667V83.0001ZM67.0001 61.6667C68.4667 61.6667 69.7223 61.1445 70.7668 60.1001C71.8112 59.0556 72.3334 57.8001 72.3334 56.3334C72.3334 54.8667 71.8112 53.6112 70.7668 52.5667C69.7223 51.5223 68.4667 51.0001 67.0001 51.0001C65.5334 51.0001 64.2779 51.5223 63.2334 52.5667C62.189 53.6112 61.6667 54.8667 61.6667 56.3334C61.6667 57.8001 62.189 59.0556 63.2334 60.1001C64.2779 61.1445 65.5334 61.6667 67.0001 61.6667Z"
+                                fill="white" />
+                        </g>
+                    </g>
+                    <defs>
+                        <filter id="filter0_d_576_4834" x="0" y="0" width="134" height="134"
+                            filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feColorMatrix in="SourceAlpha" type="matrix"
+                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="2" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_576_4834" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_576_4834"
+                                result="shape" />
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="modal-part-3">
+                <span onclick="closeModal()" class="close">&times;</span>
+                <form class="contact-modal-form">
+                    <input class="contact-modal-input input-name-img" type="text" placeholder="Name">
+                    <input class="contact-modal-input input-email-img" required type="email" placeholder="Email">
+                    <input class="contact-modal-input input-phone-img" required type="number" placeholder="Phone">
+                </form>
+                <div class="modal-part-3-buttons-container">
+                    <button class="modal-part-3-cancel-button">
+                        Cancel
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z"
+                                stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></button>
+                    <button class="modal-part-3-create-button">
+                        Create contact
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="mask0_155331_3981" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                                width="24" height="25">
+                                <rect y="0.5" width="24" height="24" fill="#D9D9D9" />
+                            </mask>
+                            <g mask="url(#mask0_155331_3981)">
+                                <path
+                                    d="M9.55057 15.65L18.0256 7.175C18.2256 6.975 18.4631 6.875 18.7381 6.875C19.0131 6.875 19.2506 6.975 19.4506 7.175C19.6506 7.375 19.7506 7.6125 19.7506 7.8875C19.7506 8.1625 19.6506 8.4 19.4506 8.6L10.2506 17.8C10.0506 18 9.81724 18.1 9.55057 18.1C9.28391 18.1 9.05057 18 8.85057 17.8L4.55057 13.5C4.35057 13.3 4.25474 13.0625 4.26307 12.7875C4.27141 12.5125 4.37557 12.275 4.57557 12.075C4.77557 11.875 5.01307 11.775 5.28807 11.775C5.56307 11.775 5.80057 11.875 6.00057 12.075L9.55057 15.65Z"
+                                    fill="white" />
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
 
+
+
+
 </body>
+<script src="/js/contacts.js"></script>
 
 </html>
