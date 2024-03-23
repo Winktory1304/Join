@@ -6,15 +6,16 @@ let todos = [{
     'subtasksdone': [],
     'subtasks': [],
     'priority': 0,
+    'contacts': [],
     'category': 'open'
 }, {
     'id': 1,
     'tag': 'Technical Task',
     'title': 'Test ID 1',
     'task': 'Task 1',
-    'subtasksdone': [1, 0],
+    'subtasksdone': [0, 0],
     'subtasks': ['Sub1_1', 'Sub2_1'],
-    'priority': 1,
+    'priority': 2,
     'category': 'progress'
 }, {
     'id': 2,
@@ -31,12 +32,27 @@ let todos = [{
     'title': 'Test ID 3',
     'task': 'Task 3',
     'subtasksdone': [1, 1, 1, 0, 0, 0],
-    'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3','Sub4_3', 'Sub5_3', 'Sub6_3'],
+    'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3', 'Sub4_3', 'Sub5_3', 'Sub6_3'],
     'priority': 3,
     'category': 'done'
-},]
+},{
+    'id': 4,
+    'tag': 'Technical Task',
+    'title': 'Test ID 1',
+    'task': 'Task 1',
+    'subtasksdone': [0, 0],
+    'subtasks': ['Sub1_1', 'Sub2_1'],
+    'priority': 2,
+    'category': 'progress'
+}
+]
+
+function getItems(){
+    
+}
 
 let currentDraggedElement;
+
 
 function updateHTML() {
     let open = todos.filter(t => t['category'] == 'open');
@@ -78,6 +94,23 @@ function updateHTML() {
 
 function startDragging(id) {
     currentDraggedElement = id;
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function moveTo(category) {
+    todos[currentDraggedElement]['category'] = category;
+    updateHTML();
+}
+
+function highlight(id) {
+    document.getElementById(id).classList.add('drag-area-highlight');
+}
+
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
 
@@ -128,14 +161,24 @@ function subTaskscomplete(id) {
         }
     }
     return count;
+}
 
-
+function setTag(element) {
+    if (element.tag === 'User Story') {
+        return 'style="background-color: #0038FF;"';
+    }
+    else if (element.tag === 'Technical Task') {
+        return 'style="background-color: #1FD7C1;"';
+    }
+    else {
+        return '';
+    }
 }
 
 function generateTodoHTML(element) {
     return `<div class="board_task" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
                 <div class="board_cardcontent">
-                    <div class="board_cardtag">${element['tag']}</div>
+                    <div class="board_cardtag" ${setTag(element)}>${element['tag']}</div>
                     <h3 class="board_task_headline">${element['title']}</h3>
                     <p class="board_tasktext">${element['task']}</p>
                     <div class="board_cardbar"> ${subTasks(element)}</div>
@@ -147,20 +190,30 @@ function generateTodoHTML(element) {
             </div>`;
 }
 
-function allowDrop(ev) {
-    ev.preventDefault();
+
+
+function init(){
+    openCard(todos)
 }
 
-function moveTo(category) {
-    todos[currentDraggedElement]['category'] = category;
-    updateHTML();
-}
 
-function highlight(id) {
-    document.getElementById(id).classList.add('drag-area-highlight');
-}
+function openCard(element){
 
-function removeHighlight(id) {
-    document.getElementById(id).classList.remove('drag-area-highlight');
-}
+    document.getElementById('board_openCard').innerHTML += /*html*/`
+    <div class="board_task" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">
+                <div class="board_cardcontent">
+                    <div class="board_cardtag" ${setTag(element)}>${element['tag']}</div>
+                    <h3 class="board_task_headline">${element['title']}</h3>
+                    <p class="board_tasktext">${element['task']}</p>
+                    <div class="board_cardbar"> ${subTasks(element)}</div>
+                    <div class="board_cardbottom">
+                        <div class="board_cardcontacts">Kontakte</div>
+                        <div class="board prio">${prioritySelector(element)}</div>
+                    </div>
+                </div>
+            </div>
+        
+    `;
 
+
+}
