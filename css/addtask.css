@@ -190,6 +190,7 @@
 .addtask-input-category:hover {
     cursor: pointer;
 }
+
 .addtask-input-subtasks {
     width: 309px;
     height: 48px;
@@ -212,7 +213,11 @@
     border-radius: 10px;
     padding: 16px 10px 16px 10px;
     gap: 8px;
-  }
+}
+
+.addtask-button:hover {
+    cursor: pointer;
+}
 
 .addtask-button-create-task {
     width: 183px;
