@@ -1,12 +1,13 @@
 let todos = [{
     'id': 0,
     'tag': 'User Story',
-    'title': 'Hier steht der Titel',
-    'task': 'Hier wird der Taskname stehen',
-    'subtasksdone': [],
-    'subtasks': [],
-    'priority': 0,
-    'contacts': [],
+    'title': 'Dies ist meine erste Aufgabe',
+    'task': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A iste qui modi? Dicta labore dolores eaque ipsa omnis quia facere, quos porro minus eligendi? Dolor consequatur illo dolorum. Natus, ipsam.',
+    'subtasksdone': [0, 1],
+    'subtasks': ['subtask1', 'subtask2'],
+    'date': '08/08/2024',
+    'priority': 3,
+    'contacts': ['Max Mustermann'],
     'category': 'open'
 }, {
     'id': 1,
@@ -15,6 +16,7 @@ let todos = [{
     'task': 'Task 1',
     'subtasksdone': [0, 0],
     'subtasks': ['Sub1_1', 'Sub2_1'],
+    'date': '08/08/2024',
     'priority': 2,
     'contacts': [],
     'category': 'progress'
@@ -25,6 +27,7 @@ let todos = [{
     'task': 'Task 2',
     'subtasksdone': [1, 0],
     'subtasks': ['Sub1_2', 'Sub2_2'],
+    'date': '08/08/2024',
     'priority': 2,
     'contacts': [],
     'category': 'feedback'
@@ -35,6 +38,7 @@ let todos = [{
     'task': 'Task 3',
     'subtasksdone': [1, 1, 1, 0, 0, 0],
     'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3', 'Sub4_3', 'Sub5_3', 'Sub6_3'],
+    'date': '08/08/2024',
     'priority': 3,
     'contacts': [],
     'category': 'done'
@@ -45,11 +49,14 @@ let todos = [{
     'task': 'Task 1',
     'subtasksdone': [0, 0],
     'subtasks': ['Sub1_1', 'Sub2_1'],
+    'date': '08/08/2024',
     'priority': 2,
     'contacts': [],
     'category': 'progress'
 }
 ]
+
+
 
 let currentDraggedElement;
 
@@ -192,27 +199,50 @@ function generateTodoHTML(element) {
 
 
 function init() {
-    openCard(todos , 1)
+    openCard(todos, 0)
 }
 
 
 function openCard(element, id) {
 
     document.getElementById('board_openCard').innerHTML += /*html*/`
-    <div class="todo">
-                <div class="board_cardcontent">
-                    <div class="board_cardtag" ${setTag(element[id])}>${element[id].tag}</div>
-                    <h3 class="board_task_headline">${element[id].title}</h3>
-                    <p class="board_tasktext">${element[id].task}</p>
-                    <div class="board_cardbar"> ${subTasks(element[id])}</div>
-                    <div class="board_cardbottom">
-                        <div class="board_cardcontacts">Kontakte</div>
-                        <div class="board prio">${prioritySelector(element[id])}</div>
-                    </div>
-                </div>
-            </div>
-        
+    <div class="board_taskcard">
+    <div class="board_cardtag" ${setTag(element[id])}><p>${element[id].tag}</p> <p class="board_cardexit">X</p></div>
+        <div class="board_cardheadline">${element[id].title}</div>
+        <div class="board_cardtask board_text">${element[id].task}</div>
+        <div class="board_carddate board_text">Due date: ${element[id].date}</div>
+        <div class="board_cardprio board_text">Priority: ${prioritySelector(element[id])}</div>
+        <div class="board_assigned board_text">
+            <h4>Assigned to:</h4>
+            <!-- Hier kommen die Sachen aus der Funktion contactsLoad die noch erstellt werden muss -->
+            <li class="board_assigneditem"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="21" r="20" fill="#1FD7C1" stroke="white" stroke-width="2"/>
+                </svg>
+                Dominik Knezovic</li>
+            <!-- <li class="board_assigneditem"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="21" r="20" fill="#1FD7C1" stroke="white" stroke-width="2"/>
+                </svg>
+                Dominik Knezovic</li>
+            <li class="board_assigneditem"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="21" r="20" fill="#1FD7C1" stroke="white" stroke-width="2"/>
+                </svg>
+                Dominik Knezovic</li> -->
+        </div>
+        <div class="board_subtasks board_text">
+            <h4>Subtasks</h4>
+            <!-- Diese Karte ist noch nicht ganz fertig. Es fehlen noch Variablen und eine fertige Verbindung zum Array -->
+            <li class="board_subitem"><input class="checkbox" type="checkbox" id="subtask2" name="subtask2" ${checkSubtask(element, 0, 0)}>${element[id].subtasks[0]}</li>
+            <li class="board_subitem"><input class="checkbox" type="checkbox" id="subtask2" name="subtask2" ${checkSubtask(element, 0, 1)}>${element[id].subtasks[1]}</li>
+        </div>
+        <div class="board_deledit">Delete/Edit</div>
+        </div>
     `;
 
 
+}
+
+
+function checkSubtask(element, id, stask) {
+    if (element[id].subtasksdone[stask])
+        return 'Checked'
 }
