@@ -218,6 +218,27 @@ function closeDialog() {
     updateHTML();
 }
 
+
+function openTaskDialog() {
+    document.getElementById('board_addTask').classList.remove('d-none');
+    addTask();
+}
+
+function closeTaskDialog() {
+    document.getElementById('board_addTask').classList.add('d-none');
+}
+
+function addTask() {
+    document.getElementById('board_addTask').innerHTML = `
+    <div class="board_addtaskcard">
+        <p onclick="closeTaskDialog()">X</p>
+    </div>
+    `;
+
+}
+
+
+
 function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">

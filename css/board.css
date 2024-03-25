@@ -305,7 +305,6 @@ h4 {
     margin: 10px;
 }
 
-
 .board_taskcard {
 
     font-family: 'Inter', sans-serif;
@@ -329,9 +328,8 @@ h4 {
     animation: slide-in 0.3s ease-in-out;
 
     
-    transform: translateX(0); /* Add missing property */
-    animation-fill-mode: forwards; /* Add missing property */
-
+    transform: translateX(0);
+    animation-fill-mode: forwards;
 
 }
 @keyframes slide-in {
@@ -450,4 +448,41 @@ h4 {
 .board_subitem{
     display: flex;
     gap: 10px;
+}
+
+
+
+
+.board_addTask {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.603);
+    
+}
+
+.board_addtaskcard{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 48px 40px;
+    width: 1116px;
+    height: 870px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    margin-left: 22%;
+    margin-top: 35px;
+    z-index: 2;
+
+    
+    transition: transform 0.3s ease-in-out;
+    animation: slide-in 0.3s ease-in-out;
+
+    
+    transform: translateX(0);
+    animation-fill-mode: forwards;
 }

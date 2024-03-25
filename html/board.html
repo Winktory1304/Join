@@ -13,18 +13,20 @@
 <body class="board_body" onload="updateHTML()">
     
     <div class="board_openCard d-none" id="board_openCard" ></div>
+    <div class="board_addTask d-none" id="board_addTask" onclick="closeTaskDialog()"></div>
+
     <div class="board_header"></div>
     <div class="board_sidebar"></div>
     <div class="board_content">
 
-        <div class="board_addTask" id="board_addTask"></div>
+        
 
         <div class="board_top">
             <div class="board_head">
                 <h1 class="board_headline">Board</h1>
                 <div class="board_findTask">
                     <input type="text" class="board_findTask_input" placeholder="Find Task">
-                    <button class="addTask">Add Task
+                    <button class="addTask" onclick="openTaskDialog()">Add Task
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_154243_3931" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                                 width="32" height="32">
