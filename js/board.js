@@ -7,7 +7,7 @@ let todos = [{
     'subtasks': ['subtask1', 'subtask2'],
     'date': '08/08/2024',
     'priority': 3,
-    'contacts': ['Max Mustermann', 'Kai Ziemann'],
+    'contacts': ['Max Mustermann'],
     'category': 'open'
 }, {
     'id': 1,
@@ -231,6 +231,7 @@ function closeTaskDialog() {
 function addTask() {
     document.getElementById('board_addTask').innerHTML = `
     <div class="board_addtaskcard">
+        <!-- Hier kommt der Code von Christina rein -->
         <p onclick="closeTaskDialog()">X</p>
     </div>
     `;

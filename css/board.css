@@ -438,7 +438,6 @@ h4 {
     border-radius: 3px 0px 0px 0px;
     border: 2px 0px 0px 0px;
     opacity: 0px;
-
 }
 
 .board_cardexit{
@@ -449,9 +448,6 @@ h4 {
     display: flex;
     gap: 10px;
 }
-
-
-
 
 .board_addTask {
     width: 100vw;
