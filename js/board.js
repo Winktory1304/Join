@@ -287,7 +287,7 @@ function getInitials(name) {
 }
 
 function randomColor() {
-    const colors = ['Red', 'Green', 'Blue', 'Orange', 'Magenta', 'Cyan', 'Purple', 'Pink', 'Brown', 'Grey'];
+    const colors = ["rgb(147,39,255)","rgb(110,82,255)","rgb(252,113,255)","rgb(255,195,69)","rgb(31,215,193)","rgb(31,215,193)","rgb(31,215,193)","rgb(255,70,70)","rgb(255,122,0)","rgb(255,122,0)"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
