@@ -155,9 +155,6 @@ h4 {
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
-
-.board_plus {
     cursor: pointer;
 }
 
