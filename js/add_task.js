@@ -25,8 +25,8 @@ let todos = [
   },
 ];
 
-// let todos = [];
 
+<<<<<<< HEAD
 function getItems() {
   todos.push(getItems(todos));
 }
@@ -63,3 +63,5 @@ function validateDate(dateString) {
   // Check the range of the day
   return day > 0 && day <= monthLength[month - 1];
 }
+=======
+>>>>>>> 05da5d93f4111858ecb799ca49e957a96674e38e
