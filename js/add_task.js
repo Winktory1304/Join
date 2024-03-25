@@ -25,27 +25,4 @@ let todos = [
   },
 ];
 
-// let todos = [];
 
-function getItems() {
-  todos.push(getItems(todos))
-}
-/**
- * This function is used to validate the date
- * 
- */
-function validateDate(date) {
-  const regex = /^\d{4}-\d{2}-\d{2}$/; // Regex pattern for YYYY-MM-DD format
-  if (!regex.test(date)) {
-    console.log("Invalid date format. Please enter a date in the format YYYY-MM-DD.");
-    return false;
-  }
-
-  const inputDate = new Date(date);
-  if (isNaN(inputDate.getTime())) {
-    console.log("Invalid date. Please enter a valid date.");
-    return false;
-  }
-
-  return true;
-}
