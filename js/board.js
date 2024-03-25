@@ -8,7 +8,7 @@ let todos = [{
     'date': '08/08/2024',
     'priority': 3,
     'contacts': ['Max Mustermann'],
-    'category': 'open'
+    'status': 'open'
 }, {
     'id': 1,
     'tag': 'Technical Task',
@@ -19,7 +19,7 @@ let todos = [{
     'date': '08/08/2024',
     'priority': 2,
     'contacts': ['Max Mustermann'],
-    'category': 'progress'
+    'status': 'progress'
 }, {
     'id': 2,
     'tag': 'Technical Task',
@@ -30,7 +30,7 @@ let todos = [{
     'date': '08/08/2024',
     'priority': 2,
     'contacts': ['Max Mustermann'],
-    'category': 'feedback'
+    'status': 'feedback'
 }, {
     'id': 3,
     'tag': 'User Story',
@@ -41,7 +41,7 @@ let todos = [{
     'date': '08/08/2024',
     'priority': 3,
     'contacts': ['John Doe', 'Jane Smith', 'Michael Johnson'],
-    'category': 'done'
+    'status': 'done'
 }, {
     'id': 4,
     'tag': 'Technical Task',
@@ -52,7 +52,7 @@ let todos = [{
     'date': '08/08/2024',
     'priority': 2,
     'contacts': ['Max Mustermann'],
-    'category': 'progress'
+    'status': 'progress'
 }]
 
 
@@ -60,7 +60,7 @@ let todos = [{
 let currentDraggedElement;
 
 function updateHTML() {
-    let open = todos.filter(t => t['category'] == 'open');
+    let open = todos.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
 
@@ -68,7 +68,7 @@ function updateHTML() {
         const element = open[index];
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
     }
-    let inProgress = todos.filter(t => t['category'] == 'progress');
+    let inProgress = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
 
@@ -76,7 +76,7 @@ function updateHTML() {
         const element = inProgress[index];
         document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
-    let inFeedback = todos.filter(t => t['category'] == 'feedback');
+    let inFeedback = todos.filter(t => t['status'] == 'feedback');
 
     document.getElementById('board_feedback').innerHTML = '';
 
@@ -84,7 +84,7 @@ function updateHTML() {
         const element = inFeedback[index];
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
-    let closed = todos.filter(t => t['category'] == 'done');
+    let closed = todos.filter(t => t['status'] == 'done');
 
     document.getElementById('board_done').innerHTML = '';
 
@@ -103,7 +103,7 @@ function allowDrop(ev) {
 }
 
 function moveTo(category) {
-    todos[currentDraggedElement]['category'] = category;
+    todos[currentDraggedElement]['status'] = category;
     updateHTML();
 }
 
