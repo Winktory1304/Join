@@ -119,3 +119,30 @@
 .help-link:hover {
     height: 26px;
 }
+
+
+
+
+.footer-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 350px;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.footer-sidebar-link {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    padding: 8px 60px;
+    gap: 8px;
+    color: rgb(168, 168, 168);
+    text-decoration: none;
+}
+
+.footer-sidebar-link:hover {
+    color: rgb(41, 171, 226);
+}
