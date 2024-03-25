@@ -97,7 +97,6 @@ function allowDrop(ev) {
 
 /**
  * Moves the current dragged element to the specified category.
- * 
  * @param {string} category - The category to move the element to.
  */
 function moveTo(category) {
@@ -115,7 +114,6 @@ function highlight(id) {
 
 /**
  * Removes the 'drag-area-highlight' class from the element with the specified id.
- *
  * @param {string} id - The id of the element to remove the highlight from.
  */
 function removeHighlight(id) {
@@ -165,7 +163,6 @@ function subTasks(element) {
 
 /**
  * Calculates the number of completed subtasks for a given task ID.
- * 
  * @param {number} id - The ID of the task.
  * @returns {number} The count of completed subtasks.
  */
@@ -331,7 +328,7 @@ function openCard(id) {
 
 /**
  * Generates contact cards for a given ID.
- * @param {string} id - The ID of the contact.
+ * @param {string} id - The ID of the Task for contact.
  */
 function generateContacts(id) {
     todos[id].contacts.forEach(contact => {
@@ -348,7 +345,6 @@ function generateContacts(id) {
 
 /**
  * Returns the initials of a given name.
- *
  * @param {string} name - The name to extract initials from.
  * @returns {string} The initials of the name.
  */
@@ -367,7 +363,6 @@ function randomColor() {
 
 /**
  * Generates subtasks for a given task ID.
- * 
  * @param {number} id - The ID of the task.
  */
 function generateSubtasks(id) {
