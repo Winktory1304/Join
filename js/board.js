@@ -5,9 +5,9 @@ let todos = [{
     'task': 'Hier wird der Taskname stehen',
     'subtasksdone': [],
     'subtasks': [],
-    'priority': 0,
+    'priority': 3,
     'contacts': [],
-    'category': 'open'
+    'category': 'feedback'
 }, {
     'id': 1,
     'tag': 'Technical Task',

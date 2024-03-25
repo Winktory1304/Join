@@ -7,7 +7,23 @@ async function initRegister() {
 
 async function loadUsers() {
     try {
-        users = JSON.parse(await getItem('users'));
+
+        /**
+         * Hier wird die Funktion getItem() aufgerufen, die in der Datei storage.js definiert ist.
+         * getItem() gibt ein Promise zurück, das mit await aufgelöst wird.
+         * Das Ergebnis wird in der Variable x gespeichert.
+         * Danach wird auf die Ebene gecastet, die wir haben wollen.
+         */
+        let x = await getItem('users');
+        let y = JSON.parse(x.data.value);
+        
+        console.log('E-Mail:', y['0'].email);
+        console.log('Passwort:', y['0'].password);
+
+
+
+        // users = JSON.parse(await getItem('users'));
+        // console.log('Users:', users);
     } catch (e) {
         console.error('Loading error:', e);
     }
@@ -23,7 +39,7 @@ async function registerUser() {
         email: email.value,
         password: password.value,
     });
-    await setItem('users', JSON.stringify(users));
+    await setItem('users', users);
     resetForm();
 }
 
