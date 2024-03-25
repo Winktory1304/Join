@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" class="addtask_html">
+<html lang="de" class="addtask_html">
 
 <head>
+    <!-- Basic -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
     <title>Add Task</title>
-    <link rel="stylesheet" href="../css/addtask.css">
-    <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
+    <!-- Css and js -->
     <script src="../js/add_task.js"></script>
+    <link rel="stylesheet" href="../css/addtask.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
+    <!-- Fonts -->
     <link rel="stylesheet" href="../css/fonts.css">
+     <!-- Template -->
+    <link rel="stylesheet" href="../css/navbar_sidebar.css">
+    <script src="../js/include.js"></script>
 </head>
 
 <body class="addtask_body">
-    <div class="addtask_header"></div>
-    <div class="addtask_sidebar"></div>
+    <!-- Add template -->
+    <div w3-include-html="./template/sidebar.html"></div> 
+    <div w3-include-html="./template/navbar.html"></div> 
     <div class="addtask_content">
         <!-- since here - content addtask -->
         <div class="addtask_h1">
