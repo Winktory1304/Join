@@ -196,6 +196,14 @@ body {
     height: 40px;
 }
 
+.arrow-left-line:hover {
+    background-color:#b7c9db;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    scale: 1.1;
+}
+
 .sing-up-content {
     display: flex;
     flex-direction: column;
@@ -280,7 +288,7 @@ input[type="checkbox"]+label::before {
     position: relative;
     width: 22px;
     height: 19px;
-    background-image: url("./assets/img/checkbox.svg");
+    background-image: url("../assets/img/checkbox.svg");
     background-repeat: no-repeat;
     background-size: contain;
     display: block;
@@ -291,7 +299,7 @@ input[type="checkbox"]+label::before {
 }
 
 input[type="checkbox"]:checked+label::before {
-    background-image: url("./assets/img/checkbox_confirmed.svg");
+    background-image: url("../assets/img/checkbox_confirmed.svg");
 }
 
 .button-container {
@@ -402,7 +410,8 @@ input[type="checkbox"]:checked+label::before {
         opacity: 0;
     }
 
-    to { bottom: 0;
+    to {
+        bottom: 0;
         opacity: 1;
     }
 }

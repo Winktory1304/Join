@@ -6,59 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
 
+    <script src="../js/index.js"></script>
+    <script src="../js/sidebar_navbar_template.js"></script>
+    <script src="../js/summary.js"></script>
+    <script src="../js/board.js"></script>
     <link rel="stylesheet" href="../css/summary.css">
     <link rel="stylesheet" href="../css/fonts.css">
+    
 </head>
 
-<body class="unset-body">
-    <div class="sidebar-container">
-        <nav class="sidebar">
-            <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
-            <section" class="menu-sidebar">
-                <a class="menu-sidebar-button" href="summary.html">
-                    <img src="../assets/img/summary.svg">
-                    <div>Summary</div>
-                </a>
+<body class="unset-body" onload="importiereHTMLSidebar(); importiereHTMLHeader(); showAllNumbers()">
+ 
+<div id="generate_sidebar" ></div>
 
-                <a class="menu-sidebar-button" href="addtask.html">
-                    <img src="../assets/img/addtask.svg">
-                    <div>Add Task</div>
-                </a>
+<div id="generate_header" class="header-container">
 
-                <a class="menu-sidebar-button" href="board.html">
-                    <img src="../assets/img/board.svg">
-                    <div>Board</div>
-                </a>
-
-                <a class="menu-sidebar-button" href="contacts.html">
-                    <img src="../assets/img/contacts.svg">
-                    <div>Contacts</div>
-                </a>
-                </section>
-                <section class="footer-sidebar">
-                    <a class="footer-sidebar-link" href="">Privacy Policy</a>
-                    <a class="footer-sidebar-link" href="">Legal notice</a>
-                </section>
-        </nav>
-    </div>
-
+    
+</div>
 
     <main class="main-content-summary">
-
-
-        <div class="header-container">
-
-            <header class="header">
-
-                <div class="header-title">Kanban Project Management Tool</div>
-                <div class="help-user-container">
-                    <a href="help.html"><img class="help-link" src="../assets/img/help.svg"></a>
-                    <div class="logged-user-icon" onclick="hierkommteinefuntion()">G</div>
-                </div>
-            </header>
-        </div>
-
-
 
         <div class="summary-content">
             
@@ -92,7 +58,7 @@
                                 </g>
                             </svg>
                             <div class="summary-amount-of-to-do">
-                                <span class="summary-amount-of-to-do-number">1</span>
+                                <span id="number_of_to_do" class="summary-amount-of-to-do-number">1</span>
                                 <span class="summary-text">To-do</span>
                             </div>
                         </div>
@@ -109,7 +75,7 @@
                             </svg>
 
                             <div class="summary-amount-of-to-do">
-                                <span class="summary-amount-of-done-number">1</span>
+                                <span id="number_of_done"class="summary-amount-of-done-number">1</span>
                                 <span class="summary-text">Done</span>
                             </div>
                         </div>
@@ -122,7 +88,7 @@
                                 <img class="urgent-icon-top" src="./../assets/img/Prio alta.svg">
                             </div>
                             <div class="summary-urgent-right-box">
-                                <span class="summary-amount-of-done-number">1</span>
+                                <span id="number_of_urgent" class="summary-amount-of-done-number">1</span>
                                 <span class="summary-done-text">Urgent</span>
                             </div>
                         </div>
@@ -137,15 +103,15 @@
                     </div>
                     <div class="summary-overview">
                         <div class="summary-overview-box">
-                            <span class="summ-overlay-numb">5</span>
+                            <span id="number_of_tasks_in_boards" class="summ-overlay-numb">5</span>
                             <h2 class="summary-text">Tasks in <br> Board</h2>
                         </div>
                         <div class="summary-overview-box">
-                            <span class="summ-overlay-numb">2</span>
+                            <span id="number_of_tasks_in_progress" class="summ-overlay-numb">2</span>
                             <h2 class="summary-text"> Tasks in <br> Progress</h2>
                         </div>
                         <div class="summary-overview-box">
-                            <span class="summ-overlay-numb">2</span>
+                            <span id="number_of_awaiting_feedback" class="summ-overlay-numb">2</span>
                             <h2 class="summary-text">Awaiting <br> Feedback</h2>
                         </div>
                     </div>        
