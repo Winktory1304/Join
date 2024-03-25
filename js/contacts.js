@@ -141,7 +141,7 @@ function init() {
             `<div class ="contact-box">
                 <div class="first-letters-of-names">${contact.firstLetterofNames}</div>
                 <div class="first-and-last-name-box">${contact.firstName} , ${contact.lastName} <br>
-                ${contact.email}
+                <p class="conatct-box-mail">${contact.email}</p>
                 </div>        
             </div>
         `
