@@ -6,7 +6,7 @@ let todos = [{
     'subtasksdone': [0, 1],
     'subtasks': ['subtask1', 'subtask2'],
     'date': '08/08/2024',
-    'priority': 3,
+    'priority': 1,
     'contacts': ['Max Mustermann'],
     'status': 'open'
 }, {
@@ -22,43 +22,28 @@ let todos = [{
     'status': 'progress'
 }, {
     'id': 2,
-    'tag': 'Technical Task',
-    'title': 'Test ID 2',
-    'task': 'Task 2',
-    'subtasksdone': [1, 0],
-    'subtasks': ['Sub1_2', 'Sub2_2'],
-    'date': '08/08/2024',
-    'priority': 2,
-    'contacts': ['Max Mustermann'],
-    'status': 'feedback'
-}, {
-    'id': 3,
     'tag': 'User Story',
     'title': 'Die erste Richtige Task',
-    'task': 'Testtask mit der ID 3 und der Kategorie `done` und der Prio 3',
+    'task': 'Testtask mit der ID 2 und der Kategorie `done` und der Prio 3',
     'subtasksdone': [1, 1, 1, 0, 0, 0],
     'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3', 'Sub4_3', 'Sub5_3', 'Sub6_3'],
     'date': '08/08/2024',
     'priority': 3,
     'contacts': ['John Doe', 'Jane Smith', 'Michael Johnson'],
     'status': 'done'
-}, {
-    'id': 4,
-    'tag': 'Technical Task',
-    'title': 'Test ID 1',
-    'task': 'Task 1',
-    'subtasksdone': [0, 0],
-    'subtasks': ['Sub1_1', 'Sub2_1'],
-    'date': '08/08/2024',
-    'priority': 2,
-    'contacts': ['Max Mustermann'],
-    'status': 'progress'
 }]
 
 
 
+/**
+ * The currently dragged element.
+ * @type {HTMLElement}
+ */
 let currentDraggedElement;
 
+/**
+ * Updates the HTML elements on the board based on the todos array.
+ */
 function updateHTML() {
     let open = todos.filter(t => t['status'] == 'open');
 
@@ -94,27 +79,54 @@ function updateHTML() {
     }
 }
 
+/**
+ * Starts dragging the specified element.
+ * @param {string} id - The ID of the element to be dragged.
+ */
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+/**
+ * Prevents the default behavior of the dragover event.
+ * @param {Event} ev - The dragover event object.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
+/**
+ * Moves the current dragged element to the specified category.
+ * 
+ * @param {string} category - The category to move the element to.
+ */
 function moveTo(category) {
     todos[currentDraggedElement]['status'] = category;
     updateHTML();
 }
 
+/**
+ * Highlights the element with the specified id by adding the 'drag-area-highlight' class.
+ * @param {string} id - The id of the element to highlight.
+ */
 function highlight(id) {
     document.getElementById(id).classList.add('drag-area-highlight');
 }
 
+/**
+ * Removes the 'drag-area-highlight' class from the element with the specified id.
+ *
+ * @param {string} id - The id of the element to remove the highlight from.
+ */
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
+/**
+ * Returns an SVG icon based on the priority of the element.
+ * @param {Object} element - The element with a priority property.
+ * @returns {string} - The SVG icon as a string.
+ */
 function prioritySelector(element) {
     if (element.priority == 0) {
         return ``;
@@ -136,6 +148,11 @@ function prioritySelector(element) {
     }
 }
 
+/**
+ * Generates a progress bar and displays the number of completed subtasks out of the total number of subtasks.
+ * @param {Object} element - The element containing subtasks.
+ * @returns {string} - The HTML representation of the progress bar and subtask count.
+ */
 function subTasks(element) {
 
     let length = element.subtasks.length;
@@ -146,6 +163,12 @@ function subTasks(element) {
         return ''
 }
 
+/**
+ * Calculates the number of completed subtasks for a given task ID.
+ * 
+ * @param {number} id - The ID of the task.
+ * @returns {number} The count of completed subtasks.
+ */
 function subTaskscomplete(id) {
 
     let subtasksdone = todos[id].subtasksdone;
@@ -159,6 +182,11 @@ function subTaskscomplete(id) {
     return count;
 }
 
+/**
+ * Generates HTML markup for a todo task card.
+ * @param {Object} element - The todo task object.
+ * @returns {string} - The HTML markup for the todo task card.
+ */
 function generateTodoHTML(element) {
     return `<div class="board_task" draggable="true" ondragstart="startDragging(${element.id})" class="todo" onclick="openDialog(${element.id})">
                     <div class="board_cardcontent">
@@ -175,6 +203,12 @@ function generateTodoHTML(element) {
                     `;
 }
 
+/**
+ * Limits the task text to a maximum of 50 characters.
+ * If the task text exceeds 50 characters, it will be truncated and '...' will be appended.
+ * @param {Object} element - The element containing the task text.
+ * @returns {string} - The limited task text.
+ */
 function limitTaskText(element) {
     if (element.task.length > 50) {
         return element.task.substring(0, 50) + '...';
@@ -183,6 +217,11 @@ function limitTaskText(element) {
     }
 }
 
+/**
+ * Sets the tag style based on the element's tag.
+ * @param {Object} element - The element containing the tag information.
+ * @returns {string} - The style attribute for the tag.
+ */
 function setTag(element) {
     if (element.tag === 'User Story') {
         return 'style="background-color: #0038FF;"';
@@ -193,6 +232,11 @@ function setTag(element) {
     }
 }
 
+/**
+ * Returns the priority level of an element as a string.
+ * @param {Object} element - The element to get the priority level from.
+ * @returns {string} - The priority level of the element.
+ */
 function setPriority(element) {
     if (element.priority === 0) {
         return 'None';
@@ -207,27 +251,42 @@ function setPriority(element) {
     }
 }
 
+/**
+ * Opens a dialog with the specified ID and calls the openCard function.
+ * @param {string} id - The ID of the dialog to open.
+ */
 function openDialog(id) {
     document.getElementById('board_openCard').classList.remove('d-none')
 
     openCard(id);
 }
 
+/**
+ * Closes the dialog and updates the HTML.
+ */
 function closeDialog() {
     document.getElementById('board_openCard').classList.add('d-none');
     updateHTML();
 }
 
-
+/**
+ * Opens the task dialog and calls the addTask function.
+ */
 function openTaskDialog() {
     document.getElementById('board_addTask').classList.remove('d-none');
     addTask();
 }
 
+/**
+ * Closes the task dialog by adding the 'd-none' class to the 'board_addTask' element.
+ */
 function closeTaskDialog() {
     document.getElementById('board_addTask').classList.add('d-none');
 }
 
+/**
+ * Adds a task to the board.
+ */
 function addTask() {
     document.getElementById('board_addTask').innerHTML = `
     <div class="board_addtaskcard">
@@ -238,8 +297,10 @@ function addTask() {
 
 }
 
-
-
+/**
+ * Opens a card and displays its details on the board.
+ * @param {number} id - The ID of the card to be opened.
+ */
 function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">
@@ -268,7 +329,10 @@ function openCard(id) {
     generateContacts(id);
 }
 
-
+/**
+ * Generates contact cards for a given ID.
+ * @param {string} id - The ID of the contact.
+ */
 function generateContacts(id) {
     todos[id].contacts.forEach(contact => {
         document.getElementById('board_cardcontacts').innerHTML += `<li class="board_assigneditem">
@@ -282,15 +346,30 @@ function generateContacts(id) {
 
 }
 
+/**
+ * Returns the initials of a given name.
+ *
+ * @param {string} name - The name to extract initials from.
+ * @returns {string} The initials of the name.
+ */
 function getInitials(name) {
     return name.split(' ').map(n => n[0]).join('');
 }
 
+/**
+ * Generates a random color from a predefined list of colors.
+ * @returns {string} A randomly selected color in the format "rgb(r, g, b)".
+ */
 function randomColor() {
     const colors = ["rgb(147,39,255)","rgb(110,82,255)","rgb(252,113,255)","rgb(255,195,69)","rgb(31,215,193)","rgb(31,215,193)","rgb(31,215,193)","rgb(255,70,70)","rgb(255,122,0)","rgb(255,122,0)"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+/**
+ * Generates subtasks for a given task ID.
+ * 
+ * @param {number} id - The ID of the task.
+ */
 function generateSubtasks(id) {
     todos[id].subtasks.forEach((subtask, index) => {
         const checkbox = document.createElement('input');
