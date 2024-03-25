@@ -121,12 +121,11 @@
 /* style inputfields */
 
 .addtask-input-title {
-    width: 426px;
+    width: 424px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     padding-left: 12px;
-    color: #d1d1d1;
     font-size: 20px;
     font-style: normal;
     font-size: 20px;
@@ -139,15 +138,22 @@
     border: 1px solid #29ABE2;
 }
 
+.addtask-input-title::placeholder {
+    color: #d1d1d1;
+  }
+  
+.addtask-input-title[value="Black"] {
+    color: black;
+  }
+
 .addtask-input-description {
-    width: 426px;
+    width: 424px;
     min-height: 80px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     padding-left: 12px;
     padding-top: 12px;
     gap: 10px;
-    color: #d1d1d1;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
@@ -159,14 +165,21 @@
     border: 1px solid #29ABE2;
 }
 
+.addtask-input-description::placeholder {
+    color: #d1d1d1;
+  }
+  
+.addtask-input-description[value="Black"] {
+    color: black;
+  }
+
 .addtask-input-assigned {
-    width: 426px;
+    width: 424px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
     padding-left: 12px;
-    color: #d1d1d1;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
@@ -179,22 +192,26 @@
     border: 1px solid #29ABE2;
 }
 
+.addtask-input-description::placeholder {
+    color: #d1d1d1;
+  }
+  
+.addtask-input-description[value="Black"] {
+    color: black;
+  }
+
 .addtask-input-date {
     width: 440px;
     height: 48px;
-    /* left: 12px; */
-    /* padding-right: 12px; */
     gap: 0;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
-    color: #d1d1d1;
     font-size: 20px;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-    padding: 0;
 }
 
 .addtask-input-date:hover {
@@ -202,8 +219,16 @@
     border: 1px solid #29ABE2;
 }
 
+.addtask-input-date::placeholder {
+    color: #d1d1d1;
+  }
+  
+.addtask-input-date[value="Black"] {
+    color: black;
+  }
+
 .addtask-input-category {
-    width: 440px;
+    width: 4px;
     height: 48px;
     padding-left: 12px;
     gap: 0;
@@ -215,7 +240,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-    padding: 0;
+
 }
 
 .addtask-input-category:hover {
@@ -224,26 +249,41 @@
 
 }
 
+.addtask-input-category::placeholder {
+    color: #d1d1d1;
+  }
+  
+.addtask-input-category[value="Black"] {
+    color: black;
+  }
+
 .addtask-input-subtasks {
-    width: 440px;
+    width: 424px;
     height: 48px;
-    /* padding-left: 12px; */
+    padding-left: 12px;
     gap: 0;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
-    color: #d1d1d1;
-    font-style: normal;
+       font-style: normal;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-    padding: 0;
+   
 }
 
 .addtask-input-subtasks:hover {
     cursor: pointer;
     border: 1px solid #29ABE2;
 }
+
+.addtask-input-subtasks::placeholder {
+    color: #d1d1d1;
+  }
+  
+.addtask-input-subtasks[value="Black"] {
+    color: black;
+  }
 
 /* style buttons */
 
@@ -336,4 +376,8 @@
     cursor: pointer;
     background-color: #29ABE2;
     border: 1px solid #29abe2;
+}
+
+.messagedatevalidation {
+    color: red;
 }

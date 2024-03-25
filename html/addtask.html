@@ -23,7 +23,7 @@
             <div class="addtask-left-content">
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Title<span>*</span></div>
-                    <input class="addtask-input-title" placeholder="Enter a title">
+                    <input type="text" class="addtask-input-title" id="addtask-input-title" placeholder="Enter a title">
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Description<span>*</span></div>
@@ -42,8 +42,13 @@
             <div class="addtask-right-content">
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Due date<span>*</span></div>
-                    <input type="date" class="addtask-input-date" id="addtask-input-date" placeholder="dd/mm/yyyy" min="1999-01-01" max="2035-01-01" value="2022-10-15" onchange="validateDate(value)">
-                    <p id="validation-result" max="31/12/2100"></p>
+                    <input type="date" name="begin" class="addtask-input-date" id="addtask-input-date"
+        placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31"> 
+                    <!-- <input type="date" lang="en" class="addtask-input-date" id="addtask-input-date" 
+                    placeholder="dd/mm/yyyy" min="2024-01-01" max="2025-12-31" onchange="validateDate(value)">
+                    <p id="validation-result" max="31/12/2100"></p> -->
+                    <!-- value="2022-10-15"  -->
+                    <div class="messagedatevalidation">bitte Datum</div>
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Prio</div>
@@ -65,7 +70,7 @@
                     <div class="addtask-h2">Category<span>*</span></div>
 
 
-                    <select class="addtask-input-category" id="task-list">
+                    <select class="addtask-input-category" id="addtask-input-category">
                         <option disabled selected>Select task category</option>
                         <option value="tech">Technical Task</option>
                         <option value="user">User Story</option>
