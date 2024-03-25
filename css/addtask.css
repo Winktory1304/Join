@@ -213,6 +213,7 @@
     font-weight: 400;
     font-family: "Inter";
     padding-left: 12px;
+    color: #d1d1d1;
 }
 
 .addtask-input-date:hover {
