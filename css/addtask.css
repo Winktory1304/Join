@@ -79,7 +79,7 @@
 /* addtask content main, left, middle, right, footer */
 .addtask-content-main {
     display: flex;
-    border: 1px solid rgb(8, 0, 255);
+    /* border: 1px solid rgb(8, 0, 255); */
     padding-top: 43px;
 }
 
@@ -89,7 +89,7 @@
     margin-left: 96px;
     margin-right: 48.25px;
     left: 328px;
-    border: 1px solid rgb(255, 106, 0);
+    /* border: 1px solid rgb(255, 106, 0); */
 }
 
 .addtask-middle-content {
@@ -98,7 +98,7 @@
     top: 327px;
     left: 816.25px;
     background-color: #D1D1D1;
-    border: 1px solid rgb(255, 0, 0);
+    /* border: 1px solid rgb(255, 0, 0); */
 }
 
 .addtask-right-content {
@@ -106,7 +106,7 @@
     width: 440px;
     top: 327px;
     left: 864.25px;
-    border: 1px solid rgb(0, 255, 55);
+    /* border: 1px solid rgb(0, 255, 55); */
     margin-left: 48px;
 }
 
@@ -247,7 +247,7 @@
 
 .addtask-input-category:hover {
     cursor: pointer;
-    border: 1px solid #29ABE2;
+    /* border: 1px solid #29ABE2; */
 
 }
 
@@ -382,4 +382,5 @@
 
 .messagedatevalidation {
     color: red;
+    font-size: 12px;
 }
