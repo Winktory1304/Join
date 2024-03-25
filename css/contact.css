@@ -7,11 +7,7 @@ body {
 
 }
 
-.header {
-    height: 96px;
-    background-color: limegreen;
 
-}
 
 .main {
     display: flex;
@@ -19,11 +15,7 @@ body {
 
 }
 
-.sidebar {
-    width: 232px;
-    background-color: aqua;
-    max-height: 1024px;
-}
+
 
 
 .contacts-content {
