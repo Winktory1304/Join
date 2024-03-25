@@ -24,3 +24,19 @@ let todos = [{
 ];
 
 
+/**
+ * Function to clear inputfields
+ * 
+ */
+
+function clearInputs() {
+  console.log('clear');
+  document.getElementById('addtask-input-title').value = '';
+  document.getElementById('addtask-input-description').value = '';
+  document.getElementById('addtask-input-subtasks').value = '';
+  var categoryInput = document.getElementById('addtask-input-category');
+  categoryInput.selectedIndex = 0;
+  categoryInput.disabled = false;
+  var dateInput = document.getElementById('addtask-input-date');
+  dateInput.value = '';
+}

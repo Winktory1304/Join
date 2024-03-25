@@ -36,7 +36,7 @@
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Description<span>*</span></div>
-                    <textarea class="addtask-input-description" placeholder="Enter a Description" rows="4"
+                    <textarea class="addtask-input-description" id="addtask-input-description" placeholder="Enter a Description" rows="4"
                         oninput="changeTextColor()"></textarea>
                 </div>
                 <div class="addtask-gap16">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Subtasks</div>
-                    <input class="addtask-input-subtasks" placeholder="Add new subtask">
+                    <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
                 </div>
             </div>
         </div>
@@ -94,7 +94,8 @@
                 <span>*</span>This field is required
             </div>
             <div class="addtaskbutton">
-                <Button class="addtask-button-cancel" id="addtask-button-cancel">Clear x</Button>
+                <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
+                    x</Button>
                 <Button class="addtask-button-create-task">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
                     </image></Button>
             </div>
@@ -105,7 +106,7 @@
 
 <script>
     includeHTML();
-    </script>
+</script>
 
 </html>
 
