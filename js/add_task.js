@@ -1,54 +1,51 @@
 let todos = [
   {
-    id: 0,
-    tag: "User Story",
-    title: "Titel aus task",
-    subtasksdone: [],
-    date: "",
-    subtasks: [],
-    priority: 0,
-    contacts: [],
-    category: "open",
+    'id': 0,
+    'tag': 'User Story',
+    'title': 'Hier steht der Titel',
+    'task': 'Hier wird die Task stehen',
+    'subtasksdone': [0, 1],
+    'subtasks': ['subtask1', 'subtask2'],
+    'date': '08/08/2024',
+    'priority': 0,
+    'contacts': ['Max Mustermann'],
+    'category': 'open'
   },
   {
-    id: 0,
-    tag: "User Story",
-    title: "Titel aus task",
-    subtasksdone: [],
-    date: "",
-    subtasks: [],
-    priority: 0,
-    contacts: [],
-    category: "open",
+    'id': 1,
+    'tag': 'User Story',
+    'title': 'Hier steht der Titel',
+    'task': 'Hier wird die Task stehen',
+    'subtasksdone': [0, 1],
+    'subtasks': ['subtask1', 'subtask2'],
+    'date': '08/08/2024',
+    'priority': 0,
+    'contacts': ['Max Mustermann'],
+    'category': 'open'
   },
 ];
 
 // let todos = [];
 
-function getItems(){
+function getItems() {
   todos.push(getItems(todos))
 }
 /**
  * This function is used to validate the date
  * 
  */
-function validateDate() {
-  var dateInput = document.getElementById('addtask-input-date').value;
-  var dateParts = dateInput.split("-");
-  var day = parseInt(dateParts[2], 10);
-  var month = parseInt(dateParts[1], 10);
-  var year = parseInt(dateParts[0], 10);
-
-  if (isNaN(day) || isNaN(month) || isNaN(year)) {
-    document.getElementById('validation-result').innerText = 'Ungültiges Datum.';
-  } else {
-    var dateString = day + '/' + month + '/' + year;
-    var datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
-
-    if (!datePattern.test(dateString)) {
-      document.getElementById('validation-result').innerText = 'Ungültiges Datum.';
-    } else {
-      document.getElementById('validation-result').innerText = 'Gültiges Datum.';
-    }
+function validateDate(date) {
+  const regex = /^\d{4}-\d{2}-\d{2}$/; // Regex pattern for YYYY-MM-DD format
+  if (!regex.test(date)) {
+    console.log("Invalid date format. Please enter a date in the format YYYY-MM-DD.");
+    return false;
   }
+
+  const inputDate = new Date(date);
+  if (isNaN(inputDate.getTime())) {
+    console.log("Invalid date. Please enter a valid date.");
+    return false;
+  }
+
+  return true;
 }
