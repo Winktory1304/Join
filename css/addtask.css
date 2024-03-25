@@ -201,7 +201,7 @@
   }
 
 .addtask-input-date {
-    width: 440px;
+    width: 424px;
     height: 48px;
     gap: 0;
     border-radius: 10px;
@@ -212,6 +212,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    padding-left: 12px;
 }
 
 .addtask-input-date:hover {
@@ -228,7 +229,7 @@
   }
 
 .addtask-input-category {
-    width: 4px;
+    width: 424px;
     height: 48px;
     padding-left: 12px;
     gap: 0;
