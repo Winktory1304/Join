@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/contact.css">
     <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/navbar_sidebar.css">
+    <script src="../js/include.js"></script>
 
     <title>contacts</title>
 </head>
 
 <body onload="init()">
-    <header class="header"></header>
+    <div w3-include-html="./template/navbar.html"></div>
     <div class="main">
-        <div class="sidebar"></div>
+        <div w3-include-html="./template/sidebar.html"></div>
         <div class="content-container">
             <div id="addContactBtn" class="contacts-content">
                 <button onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
@@ -160,5 +162,9 @@
 
 </body>
 <script src="/js/contacts.js"></script>
+<script>
+    includeHTML();
+</script>
+
 
 </html>
