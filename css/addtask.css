@@ -60,7 +60,7 @@
 
 .addtask-h2 {
     font-size: 20px;
-    font-weight: 400px;
+    font-weight: 400;
     padding-bottom: 8px;
 }
 
@@ -121,21 +121,17 @@
 /* style inputfields */
 
 .addtask-input-title {
-    width: 440px;
+    width: 426px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
-    /* padding-left: 12px; */
-    /* gap: 10px; */
+    padding-left: 12px;
     color: #d1d1d1;
     font-size: 20px;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-    padding-left: 12px;
-
-
 }
 
 .addtask-input-title:hover {
@@ -144,11 +140,11 @@
 }
 
 .addtask-input-description {
-    width: 440px;
+    width: 426px;
     min-height: 80px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
-    /* padding-left: 12px; */
+    padding-left: 12px;
     padding-top: 12px;
     gap: 10px;
     color: #d1d1d1;
@@ -156,7 +152,6 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-
 }
 
 .addtask-input-description:hover {
@@ -165,17 +160,18 @@
 }
 
 .addtask-input-assigned {
-    width: 440px;
+    width: 426px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
-    /* padding-left: 12px; */
+    padding-left: 12px;
     color: #d1d1d1;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+
 }
 
 .addtask-input-assigned:hover {
@@ -198,6 +194,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    padding: 0;
 }
 
 .addtask-input-date:hover {
@@ -218,6 +215,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    padding: 0;
 }
 
 .addtask-input-category:hover {
@@ -239,6 +237,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    padding: 0;
 }
 
 .addtask-input-subtasks:hover {
@@ -258,6 +257,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    padding: 0;
 }
 
 
