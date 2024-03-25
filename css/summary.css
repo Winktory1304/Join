@@ -15,31 +15,6 @@ body {
 
 
 
-.footer-sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 350px 0px 0px 0px;
-    gap: 4px;
-    align-self: stretch;
-}
-
-.footer-sidebar-link {
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    width: 232px;
-    padding: 8px 60px;
-    gap: 8px;
-    color: rgb(168, 168, 168);
-    text-decoration: none;
-}
-
-.footer-sidebar-link:hover {
-    color: rgb(41, 171, 226);
-}
-
 .main-content-summary {
     display: flex;
     flex-direction: column;
