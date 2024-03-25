@@ -1,3 +1,8 @@
+function importTemplate() {
+    importiereHTMLSidebar();
+    importiereHTMLHeader();
+}
+
 function importiereHTMLSidebar() {
 
     let importiereSidebar = document.getElementById('generate_sidebar');
