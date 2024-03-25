@@ -32,13 +32,24 @@ body {
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     min-width: 456px;
     height: 1024px;
-    overflow: auto;
-    font-size: 48px;
+    overflow: auto;    
     width: 456px;
 
 
 }
-
+.contact-box{
+    display: flex;
+    align-items: center;
+}
+.first-letters-of-names{
+    margin-right: 35px;
+}
+.first-and-last-name-box{
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 .content-container {
     display: flex;
     width: calc(1440px - 232px);
