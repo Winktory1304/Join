@@ -7,19 +7,7 @@ let todos = [{
   'subtasks': [],
   'priority': 0,
   'contacts': [],
-  'category': 'open'
-  },
-  {
-    id: 1,
-    tag: "User Story",
-    title: "Hier steht der Titel",
-    task: "Hier wird die Task stehen",
-    subtasksdone: [0, 1],
-    subtasks: ["subtask1", "subtask2"],
-    date: "08/08/2024",
-    priority: 0,
-    contacts: ["Max Mustermann"],
-    category: "open",
+  'status': 'open',
   },
 ];
 
@@ -39,4 +27,19 @@ function clearInputs() {
   categoryInput.disabled = false;
   var dateInput = document.getElementById('addtask-input-date');
   dateInput.value = '';
+}
+
+function logInputValue() {
+  var titleInput = document.getElementById('addtask-input-title');
+  var descriptionInput = document.getElementById('addtask-input-description');
+  var subtasksInput = document.getElementById('addtask-input-subtasks');
+  var dateInput = document.getElementById('addtask-input-date');
+  var categorySelect = document.getElementById('addtask-input-category');
+
+  console.log("title: " + titleInput.value);
+  console.log("description: " + descriptionInput.value);
+  console.log("subtasks: " + subtasksInput.value);
+  console.log("date: " + dateInput.value);
+  console.log("tag: " + categorySelect.value);
+  console.log("status: " + 'open');
 }
