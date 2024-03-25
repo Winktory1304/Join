@@ -205,7 +205,7 @@ function init() {
 
 function openCard(element, id) {
 
-    document.getElementById('board_openCard').innerHTML += /*html*/`
+    document.getElementById('board_openCard').innerHTML += `
     <div class="board_taskcard">
     <div class="board_cardtag" ${setTag(element[id])}><p>${element[id].tag}</p> <p class="board_cardexit">X</p></div>
         <div class="board_cardheadline">${element[id].title}</div>
