@@ -1,13 +1,13 @@
 let todos = [{
     'id': 0,
     'tag': 'User Story',
-    'title': 'Dies ist meine erste Aufgabe',
+    'title': 'Dies ist meine Aufgabe',
     'task': 'Testtask',
     'subtasksdone': [0, 1],
     'subtasks': ['subtask1', 'subtask2'],
     'date': '08/08/2024',
     'priority': 3,
-    'contacts': ['Max Mustermann'],
+    'contacts': ['Max Mustermann', 'Kai Ziemann'],
     'category': 'open'
 }, {
     'id': 1,
@@ -18,7 +18,7 @@ let todos = [{
     'subtasks': ['Sub1_1', 'Sub2_1'],
     'date': '08/08/2024',
     'priority': 2,
-    'contacts': [],
+    'contacts': ['Max Mustermann'],
     'category': 'progress'
 }, {
     'id': 2,
@@ -29,18 +29,18 @@ let todos = [{
     'subtasks': ['Sub1_2', 'Sub2_2'],
     'date': '08/08/2024',
     'priority': 2,
-    'contacts': [],
+    'contacts': ['Max Mustermann'],
     'category': 'feedback'
 }, {
     'id': 3,
     'tag': 'User Story',
-    'title': 'Test ID 3',
-    'task': 'Task 3',
+    'title': 'Die erste Richtige Task',
+    'task': 'Testtask mit der ID 3 und der Kategorie `done` und der Prio 3',
     'subtasksdone': [1, 1, 1, 0, 0, 0],
     'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3', 'Sub4_3', 'Sub5_3', 'Sub6_3'],
     'date': '08/08/2024',
     'priority': 3,
-    'contacts': [],
+    'contacts': ['John Doe', 'Jane Smith', 'Michael Johnson'],
     'category': 'done'
 }, {
     'id': 4,
@@ -51,7 +51,7 @@ let todos = [{
     'subtasks': ['Sub1_1', 'Sub2_1'],
     'date': '08/08/2024',
     'priority': 2,
-    'contacts': [],
+    'contacts': ['Max Mustermann'],
     'category': 'progress'
 }]
 
@@ -146,7 +146,6 @@ function subTasks(element) {
         return ''
 }
 
-
 function subTaskscomplete(id) {
 
     let subtasksdone = todos[id].subtasksdone;
@@ -161,11 +160,11 @@ function subTaskscomplete(id) {
 }
 
 function generateTodoHTML(element) {
-    return /*html*/ `<div class="board_task" draggable="true" ondragstart="startDragging(${element.id})" class="todo" onclick="openDialog(${element.id})">
+    return `<div class="board_task" draggable="true" ondragstart="startDragging(${element.id})" class="todo" onclick="openDialog(${element.id})">
                     <div class="board_cardcontent">
                         <div class="board_cardtag" ${setTag(element)}>${element.tag}</div>
                         <h3 class="board_task_headline">${element.title}</h3>
-                        <p class="board_tasktext">${element.task}</p>
+                        <p class="board_tasktext">${limitTaskText(element)}</p>
                         <div class="board_cardbar"> ${subTasks(element)}</div>
                         <div class="board_cardbottom">
                             <div class="board_cardcontacts">Kontakte</div>
@@ -176,8 +175,13 @@ function generateTodoHTML(element) {
                     `;
 }
 
-
-
+function limitTaskText(element) {
+    if (element.task.length > 50) {
+        return element.task.substring(0, 50) + '...';
+    } else {
+        return element.task;
+    }
+}
 
 function setTag(element) {
     if (element.tag === 'User Story') {
@@ -205,6 +209,7 @@ function setPriority(element) {
 
 function openDialog(id) {
     document.getElementById('board_openCard').classList.remove('d-none')
+
     openCard(id);
 }
 
@@ -216,31 +221,21 @@ function closeDialog() {
 function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">
-                        <div class="board_opencardtag" ${setTag(todos[id])}>
-                            <p>${todos[id].tag}</p>
-                            <p class="board_cardexit" onclick="closeDialog()">X</p>
+                        <div class="board_cardnav">
+                            <div class="board_opencardtag" ${setTag(todos[id])}>
+                                <p>${todos[id].tag}</p>
+                            </div>
+                            <div class="board_cardclosed"><p class="board_cardexit" onclick="closeDialog()">X</p>
+                            </div>
                         </div>
                         <div class="board_cardheadline">${todos[id].title}</div>
                         <div class="board_cardtask board_text">${todos[id].task}</div>
                         <div class="board_carddate board_text">Due date: ${todos[id].date}</div>
                         <div class="board_cardprio board_text">Priority: ${setPriority(todos[id])} ${prioritySelector(todos[id])}</div>
-                        <div class="board_assigned board_text">
+                        <div class="board_assigned board_text" id="board_cardcontacts">
                             <h4>Assigned to:</h4>
                             <!-- Hier kommen die Sachen aus der Funktion contactsLoad die noch erstellt werden muss -->
-                            <li class="board_assigneditem">
-                                <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="21" cy="21" r="20" fill="#1FD7C1" stroke="white" stroke-width="2" />
-                                </svg>
-                                Dominik Knezovic
-                            </li>
-                            <li class="board_assigneditem"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="21" cy="21" r="20" fill="#1FD7C1" stroke="white" stroke-width="2"/>
-                </svg>
-                Dominik Knezovic</li>
-                <li class="board_assigneditem"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="21" cy="21" r="20" fill="#1FD7C1" stroke="white" stroke-width="2"/>
-                </svg>
-                Dominik Knezovic</li>
+                            
                         </div>
                         <div class="board_subtasks board_text" id="board_cardsubtasks">
                             <h4>Subtasks</h4></div>
@@ -248,9 +243,31 @@ function openCard(id) {
                     </div>
                     `;
     generateSubtasks(id);
+    generateContacts(id);
 }
 
 
+function generateContacts(id) {
+    todos[id].contacts.forEach(contact => {
+        document.getElementById('board_cardcontacts').innerHTML += `<li class="board_assigneditem">
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${getInitials(contact)}</text>
+            </svg>
+            ${contact}
+        </li>`;
+    });
+
+}
+
+function getInitials(name) {
+    return name.split(' ').map(n => n[0]).join('');
+}
+
+function randomColor() {
+    const colors = ['Red', 'Green', 'Blue', 'Orange', 'Magenta', 'Cyan', 'Purple', 'Pink', 'Brown', 'Grey'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
 
 function generateSubtasks(id) {
     todos[id].subtasks.forEach((subtask, index) => {

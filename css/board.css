@@ -207,6 +207,15 @@ h4 {
 
 }
 
+.board_tasktext{
+    margin-block-start: 0em;
+    margin-block-end: 3em;
+    min-height: 35.56px;
+}
+
+.board_task_headline{
+    margin-block-end: 0.5em;
+}
 .board_cardcolumn {
     display: flex;
     flex-direction: column;
@@ -307,7 +316,7 @@ h4 {
 
     position: relative;
     width: 525px;
-    height: 800px;
+    height: 900px;
 
     background: #FFFFFF;
 
@@ -316,8 +325,23 @@ h4 {
     margin-left: 35%;
     z-index: 2;
 
-}
+    transition: transform 0.3s ease-in-out;
+    animation: slide-in 0.3s ease-in-out;
 
+    
+    transform: translateX(0); /* Add missing property */
+    animation-fill-mode: forwards; /* Add missing property */
+
+
+}
+@keyframes slide-in {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 .board_openCard {
     display: flex;
     justify-content: center;
@@ -331,18 +355,45 @@ h4 {
     left: 0;
     
     background-color: rgba(0, 0, 0, 0.603);
+
+    
 }
 
 .d-none{
     display: none;
 }
 
+.board_cardnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
 .board_opencardtag {
-    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4px 16px;
+    gap: 10px;
+
+    width: 150px;
+    height: 27px;
+
+    /* background: #0038FF; */
+    border-radius: 8px;
+
+    color: #FFFFFF;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 700;
+    justify-content: center;
 }
+.board_cardclosed {
+    font-size: 21px;
+    cursor: pointer;
+}
+
 
 .board_cardheadline {
     width: 100%;
