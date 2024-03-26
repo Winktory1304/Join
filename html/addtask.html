@@ -35,12 +35,12 @@
             <div class="addtask-left-content">
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Title<span>*</span></div>
-                    <input value="Test" onfocus="checkFieldEmpty()" onchange="validateInput()" type="text" class="addtask-input-title" id="addtask-input-title" placeholder="Enter a title" required>
+                    <input value="" onfocus="checkFieldEmpty('addtask-input-title', 'messagedatevalidationTitel')" onchange="validateInput()" type="text" class="addtask-input-title" id="addtask-input-title" placeholder="Enter a title" required>
                     <div class="messagedatevalidation d-none" id="messagedatevalidationTitel">This field is required</div>
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Description</div>
-                    <textarea  class="addtask-input-description" id="addtask-input-description" placeholder="Enter a Description" rows="4">Test</textarea>
+                    <textarea  class="addtask-input-description" id="addtask-input-description" placeholder="Enter a Description" rows="4"></textarea>
                        
                 </div>
                 <div class="addtask-gap16">
@@ -55,8 +55,8 @@
             <div class="addtask-right-content">
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Due date<span>*</span></div>
-                    <input style="color: black;" onfocus="checkFieldEmpty()" onchange="validateInput()" type="date" name="begin" class="addtask-input-date" id="addtask-input-date"
-                        placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" value="2024-12-31">
+                    <input style="color: black;" onfocus="checkFieldEmpty('addtask-input-date', 'messagedatevalidationDate')" onchange="validateInput()" type="date" name="begin" class="addtask-input-date" id="addtask-input-date"
+                        placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" value="">
                     <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required</div>
 
                 </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Category<span>*</span></div>
-                    <select onfocus="checkFieldEmpty()"  onchange="validateInput()" class="addtask-input-category" id="addtask-input-category">
+                    <select onchange="validateInput()" class="addtask-input-category" id="addtask-input-category">
                         <option value="" disabled selected>Select task category</option>
                         <option value="Technical Task" >Technical Task</option>
                         <option value="User Story" >User Story</option>
@@ -98,8 +98,9 @@
             <div class="addtaskbutton">
                 <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
                     x</Button>
-                <Button disabled="true" class="addtask-button-create-task" id="addtask-button-create-task" onclick="addTask()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
+                <Button type="button" class="addtask-button-create-task" id="addtask-button-create-task" onclick="addTask()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
                     </image></Button>
+                    <button type="button" id="test">test</button>
             </div>
         </div>
     </div>
