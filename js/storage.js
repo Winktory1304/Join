@@ -38,7 +38,7 @@ async function getItem(key) {
  * @param {Array} array - The array containing the JSON data to write.
  * @returns {void}
  */
-async function writeJSON(key, array) {
+async function readJSON(key, array) {
     let Data = await getItem(key);
     let data = JSON.parse(Data.data.value);
     

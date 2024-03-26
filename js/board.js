@@ -3,6 +3,70 @@
  * @type {Array}
  */
 let todos = [];
+let updatedArray = [];
+
+let todos2 = [
+    {
+        "id": 0,
+        "tag": "User Story",
+        "title": "Dies ist meine Aufgabe 0",
+        "task": "Testtask",
+        "subtasksdone": [0, 1],
+        "subtasks": ["subtask1", "subtask2"],
+        "date": "08/08/2024",
+        "priority": 3,
+        "contacts": ["Max Mustermann"],
+        "status": "open"
+    },
+    {
+        "id": 1,
+        "tag": "User Story",
+        "title": "Fix the login issue 1",
+        "task": "Investigate and fix the login issue on the website",
+        "subtasksdone": [0,0,0],
+        "subtasks": ["Investigate the issue", "Identify the root cause", "Implement the fix"],
+        "date": "08/10/2024",
+        "priority": 2,
+        "contacts": ["John Doe", "Jane Smith"],
+        "status": "open"
+    },
+    {
+        "id": 2,
+        "tag": "Technical Task",
+        "title": "Add search functionality 2",
+        "task": "Implement search functionality on the website",
+        "subtasksdone": [0, 0, 0, 0],
+        "subtasks": ["Design the search UI", "Implement the search algorithm", "Test the search functionality", "Deploy the changes"],
+        "date": "08/12/2024",
+        "priority": 1,
+        "contacts": ["Alice Johnson"],
+        "status": "progress"
+    },
+    {
+        "id": 3,
+        "tag": "Technical Task",
+        "title": "Update documentation 3",
+        "task": "Update the project documentation with the latest changes",
+        "subtasksdone": [],
+        "subtasks": [],
+        "date": "08/15/2024",
+        "priority": 2,
+        "contacts": ["Bob Smith"],
+        "status": "feedback"
+    },
+    {
+        "id": 4,
+        "tag": "User Story",
+        "title": "Create user profile page",
+        "task": "Design and implement the user profile page",
+        "subtasksdone": [0, 0, 0],
+        "subtasks": ["Design the UI", "Implement the functionality", "Test the user profile page"],
+        "date": "08/18/2024",
+        "priority": 3,
+        "contacts": ["Emily Brown", "Michael Johnson"],
+        "status": "done"
+    }
+];
 
 /**
  * The key used for storing the todos in the server.
@@ -14,8 +78,9 @@ let key = 'todos';
  * Writes the todos array to the server.
  */
 function writeServer() {
-    setItem('todos', todos);
+    setItem(key, todos);
     console.log('Daten aktualisiert!');
+    init();
 }
 
 /**
@@ -30,7 +95,7 @@ function init() {
  */
 function readServer() {
     try {
-        writeJSON(key, todos).then (() => {;updateHTML();});
+        readJSON(key, todos).then (() => {;updateHTML();});
     } catch (error) {
         console.error('Error:', error);
     }
@@ -79,9 +144,6 @@ function updateHTML() {
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
     }
 
-
-    writeServer();
-
 }
 
 
@@ -108,6 +170,7 @@ function allowDrop(ev) {
 function moveTo(category) {
     todos[currentDraggedElement]['status'] = category;
     updateHTML();
+    writeServer(key, todos);
 }
 
 /**
@@ -300,9 +363,16 @@ function addTask() {
 
 }
 
-function deleteTask(id) {
-    todos.splice(id);
-    updateHTML();
+/**
+ * Deletes a task from the todos array based on the given title.
+ * @param {string} title - The title of the task to be deleted.
+ * @returns {Promise<void>} - A promise that resolves when the task is deleted.
+ */
+function deleteTask(title) {
+    
+    updatedArray = todos.filter(item => item.title !== title);
+    todos = [];
+    setItem(key, updatedArray).then(() => {;init();});
 }
 
 /**
@@ -330,7 +400,7 @@ function openCard(id) {
                         </div>
                         <div class="board_subtasks board_text" id="board_cardsubtasks">
                             <h4>Subtasks</h4></div>
-                        <div class="board_deledit">Delete/Edit</div>
+                        <div class="board_deledit" onclick="deleteTask('${todos[id].title}'), closeDialog()">Delete</div>
                     </div>
                     `;
     generateSubtasks(id);

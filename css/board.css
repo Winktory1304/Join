@@ -479,3 +479,13 @@ h4 {
     transform: translateX(0);
     animation-fill-mode: forwards;
 }
+
+
+.board_deledit{
+
+    cursor: pointer;
+}
+
+.board_deledit:hover{
+    color: #FF0000;
+}
