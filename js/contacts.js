@@ -172,17 +172,35 @@ function init() {
 }
 
 function addNewContact() {
-    let name = document.getElementById('create-contact-name-input').value;
     let email = document.getElementById('create-contact-email-input').value;
-    let phone = document.getElementById('create-contact-phone-input').value;
     let emailIndex = findEmailIndex(email);
-    console.log(emailIndex);
-    if (emailIndex === -1) {
+    let fullName = document.getElementById('create-contact-name-input').value.trim(); // Hole den Namen und entferne führende/abschließende Leerzeichen
+    let names = fullName.split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
+    // Validiere, dass der Name aus mindestens zwei Teilen besteht
+    if (names.length < 2) {
+        alert('Bitte geben Sie Vor- und Nachnamen ein.');
+        return; // Beendet die Funktion, falls die Validierung fehlschlägt
+    }
+    // Erstelle den neuen Kontakt
+    let newContact = {
+        "firstName": names[0],
+        "lastName": names.slice(1).join(' '), // Für den Fall, dass es einen Mittelnamen gibt
+        "email": document.getElementById('create-contact-email-input').value,
+        "phoneNumber": document.getElementById('create-contact-phone-input').value,
+        "firstLetterofNames": names[0][0] + names[1][0], // Erste Buchstaben von Vor- und Nachname
+        "color": getRandomColor() // Funktion, um eine zufällige Farbe zu generieren
+    };
 
+    console.log(contacts);
+    if (emailIndex === -1) {
+        contacts.push(newContact);
+        document.getElementById('create-contact-name-input').value = '';
+        document.getElementById('create-contact-email-input').value = '';
+        document.getElementById('create-contact-phone-input').value = '';
+        init();
     } else {
         window.alert("Dieser Kontakt ist schon vorhanden")
     }
-
 }
 
 function findEmailIndex(email) {
@@ -193,4 +211,8 @@ function findEmailIndex(email) {
         }
     }
     return -1; // Gibt -1 zurück, wenn die E-Mail nicht gefunden wurde
+}
+
+function getRandomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
 }
