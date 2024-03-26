@@ -210,7 +210,7 @@ function openCard(element){
                         <div class="board_cardcontacts">Kontakte</div>
                         <div class="board prio">${prioritySelector(element)}</div>
                     </div>
-                </div>
+                </diav>
             </div>
         
     `;
