@@ -12,6 +12,7 @@ body {
 .main {
     display: flex;
     max-width: 1440px;
+    margin-left: 232px;
 
 }
 
@@ -24,10 +25,9 @@ body {
     align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     min-width: 456px;
-    height: 1024px;
+    height: calc(1024px - 96px);
     overflow: auto;    
-    width: 456px;
-
+    width: 456px;   
 
 }
 .contact-box{
@@ -95,6 +95,7 @@ body {
 .contacts-placeholder-font1 {
     font-weight: 700;
     font-size: 61px;
+    
 }
 
 .contacts-placeholder-seperator {
