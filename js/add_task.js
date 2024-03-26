@@ -1,15 +1,27 @@
-let todos = [{
-  'id': 0,
-  'tag': 'User Story',
-  'title': 'Hier steht der Titel',
-  'task': 'Hier wird der Taskname stehen',
-  'subtasksdone': [],
-  'subtasks': [],
-  'priority': 0,
-  'contacts': [],
-  'status': 'open',
-  },
-];
+let todos = [];
+
+let key = 'todos';
+
+let subtask = [];
+let subtaskdone = [];
+let contacts = [];
+
+
+
+function readServerData() {
+  readJSON(key, todos);
+  console.log(todos);
+}
+
+function addTask() {
+  try {
+    
+    setItem(key, todos);
+  } catch (error) {
+    console.error('Error adding task', error);
+  }
+}
+
 
 
 /**
@@ -56,24 +68,61 @@ function logInputValue() {
   var dateInput = document.getElementById('addtask-input-date');
   var categorySelect = document.getElementById('addtask-input-category');
 
-  var titleValue = titleInput.value.trim();
-  var descriptionValue = descriptionInput.value.trim();
-  var subtasksValue = subtasksInput.value.trim();
-  var dateValue = dateInput.value.trim();
-  var categoryValue = categorySelect.value.trim();
+  var titleValue = titleInput.value
+  var descriptionValue = descriptionInput.value
+  var subtasksValue = subtasksInput.value
+  var dateValue = dateInput.value
+  var categoryValue = categorySelect.value
 
   consoleLog(titleValue, descriptionValue, subtasksValue, dateValue, categoryValue);
 }
 
 function consoleLog(titleValue, descriptionValue, subtasksValue, dateValue, categoryValue){
-  console.log('title: ' + titleValue);
-  console.log('description: ' + descriptionValue);
-  console.log('subtasks: ' + subtasksValue);
-  console.log('date: ' + dateValue);
-  console.log('tag: ' + categoryValue);
-  console.log('status: open');
+  
+  if (subtasksValue !== '') {
+    subtask.push(subtasksValue);
+  
+    subtaskdone.push(0);
+  }
+
+
+  todos.push({
+    'id': checkId(),
+    'title': checkTitle(),
+    'task': descriptionValue,
+    'subtasks': subtask,
+    'subtasksdone': subtaskdone,
+    'date': dateValue,
+    'tag': categoryValue,
+    'priority': 1,
+    'contacts': contacts,
+    'status': 'open'
+  });
+
+  console.log(todos);
+
+
 }
 
+
+function checkTitle() {
+  let titleValue = document.getElementById('addtask-input-title').value;
+  let count = 1;
+  todos.forEach((element) => {
+    if (element.title === titleValue) {
+      titleValue = titleValue + count;
+      count++;
+    }
+  });
+  return titleValue;
+}
+
+function checkId() {
+  if (todos.length === 0) {
+    return 0;
+  }
+  return todos.length;
+}
 /**
  *  Function validate form - response true oder false
  *  False = Required field is empty
@@ -88,7 +137,6 @@ function validateForm(){
     return false;
   if (document.getElementById("addtask-input-category").value === '')
     return false; 
-  console.log('perfekt');
   return true;
   }
 

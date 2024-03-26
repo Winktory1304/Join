@@ -74,13 +74,19 @@ let todos2 = [
  */
 let key = 'todos';
 
+
+function deleteALL() {
+    todos = [];
+    writeServer();
+    updateHTML();
+}
+
 /**
  * Writes the todos array to the server.
  */
 function writeServer() {
     setItem(key, todos);
     console.log('Daten aktualisiert!');
-    init();
 }
 
 /**
