@@ -33,16 +33,19 @@ async function getItem(key) {
 }
 
 /**
- * Retrieves a specific JSON property from an item in the storage using the specified key and property ID.
- * @param {string} key - The key of the item to retrieve.
- * @param {string} id - The ID of the property to retrieve.
- * @returns {Promise<any>} - A promise that resolves to the retrieved JSON property.
+ * Writes JSON data to an existing item in the storage.
+ * @param {string} key - The key of the item to write JSON data to.
+ * @param {Array} array - The array containing the JSON data to write.
+ * @returns {void}
  */
-async function getJSON(key, id) {
+async function writeJSON(key, array) {
     let Data = await getItem(key);
     let data = JSON.parse(Data.data.value);
-    let newdata = data;
-    return newdata[id];
+    
+    data.forEach((element, index) => {
+        array.push(element);
+        array[index].id = index;
+    });
 }
 
 

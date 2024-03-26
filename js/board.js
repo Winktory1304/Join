@@ -1,21 +1,10 @@
 
 
 
-let todos = [{
-    'id': 0,
-    'tag': 'User Story',
-    'title': 'Dies ist meine Aufgabe',
-    'task': 'Testtask',
-    'subtasksdone': [0, 1],
-    'subtasks': ['subtask1', 'subtask2'],
-    'date': '08/08/2024',
-    'priority': 1,
-    'contacts': ['Max Mustermann'],
-    'status': 'open'
-}]
+let todos = []
 
 
-let testtodos = [];
+let key = 'todos';
 
 
 
@@ -23,6 +12,19 @@ function writeTodos() {
     setItem('todos', todos);
 }
 
+function init() {
+    readTodos();
+}
+
+
+function readTodos() {
+    try {
+        writeJSON(key, todos).then (() => {;updateHTML();});
+    } catch (error) {
+        console.error('Error:', error);
+    }
+    
+}
 
 /**
  * The currently dragged element.
@@ -346,7 +348,7 @@ function getInitials(name) {
  * @returns {string} A randomly selected color in the format "rgb(r, g, b)".
  */
 function randomColor() {
-    const colors = ["rgb(147,39,255)","rgb(110,82,255)","rgb(252,113,255)","rgb(255,195,69)","rgb(31,215,193)","rgb(31,215,193)","rgb(31,215,193)","rgb(255,70,70)","rgb(255,122,0)","rgb(255,122,0)"];
+    const colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
