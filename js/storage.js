@@ -10,7 +10,6 @@ const STORAGE_TOKEN = '8STE96HUTZL9YKNUBSW9RNRPEO8TPI1FQYJ3XUBI';
  */
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
-
 /**
  * Sets an item in the storage.
  * @param {string} key - The key of the item.
@@ -32,3 +31,17 @@ async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     return fetch(url).then(res => res.json());
 }
+
+/**
+ * Retrieves a specific JSON property from an item in the storage using the specified key and property ID.
+ * @param {string} key - The key of the item to retrieve.
+ * @param {string} id - The ID of the property to retrieve.
+ * @returns {Promise<any>} - A promise that resolves to the retrieved JSON property.
+ */
+async function getJSON(key, id, statement) {
+    let Data = await getItem(key);
+    let data = JSON.parse(Data.data.value);
+    return data[id][statement];
+}
+
+
