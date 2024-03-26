@@ -224,6 +224,10 @@
 .addtask-input-date::placeholder {
     color: #d1d1d1;
   }
+
+  .addtaskBlack {
+color: black !important;
+  }
   
 .addtask-input-date[value="Black"] {
     color: black;
@@ -351,6 +355,20 @@
     font-weight: 400;
     font-family: "Inter";
 }
+
+.addtask-button-create-task[disabled='false'] {
+    background-color: blue;
+  }
+  
+
+  .addtask-button-create-task[disabled="true"] {
+    background-color: rgb(255, 0, 0);
+  }
+  
+
+
+  
+  
 
 .addtask-button-cancel {
     width: 110px;

@@ -33,7 +33,7 @@
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Title<span>*</span></div>
                     <input onfocus="checkFieldEmpty()" onchange="validateInput()" type="text" class="addtask-input-title" id="addtask-input-title" placeholder="Enter a title" required>
-                    <div class="messagedatevalidation d-none">This field is required</div>
+                    <div class="messagedatevalidation d-none" id="messagedatevalidationTitel">This field is required</div>
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Description</div>
@@ -52,9 +52,9 @@
             <div class="addtask-right-content">
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Due date<span>*</span></div>
-                    <input onchange="validateInput()" type="date" name="begin" class="addtask-input-date" id="addtask-input-date"
+                    <input onfocus="checkFieldEmpty()" onchange="validateInput()" type="date" name="begin" class="addtask-input-date" id="addtask-input-date"
                         placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31">
-                    <div class="messagedatevalidation d-none">This field is required</div>
+                    <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required</div>
 
                 </div>
                 <div class="addtask-gap16">
@@ -75,12 +75,12 @@
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Category<span>*</span></div>
-                    <select  onchange="validateInput()" class="addtask-input-category" id="addtask-input-category">
+                    <select onfocus="checkFieldEmpty()"  onchange="validateInput()" class="addtask-input-category" id="addtask-input-category">
                         <option value="" disabled selected>Select task category</option>
                         <option value="tech">Technical Task</option>
                         <option value="user">User Story</option>
                     </select>
-                    <div class="messagedatevalidation d-none">This field is required</div>
+                    <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required</div>
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Subtasks</div>
@@ -95,7 +95,7 @@
             <div class="addtaskbutton">
                 <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
                     x</Button>
-                <Button disabled class="addtask-button-create-task" id="addtask-button-create-task" onclick="logInputValue()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
+                <Button disabled="true" class="addtask-button-create-task" id="addtask-button-create-task" onclick="logInputValue()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
                     </image></Button>
             </div>
         </div>

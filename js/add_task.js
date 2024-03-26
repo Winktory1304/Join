@@ -29,21 +29,6 @@ function clearInputs() {
   dateInput.value = '';
 }
 
-// function logInputValue() {
-//   var titleInput = document.getElementById('addtask-input-title');
-//   var descriptionInput = document.getElementById('addtask-input-description');
-//   var subtasksInput = document.getElementById('addtask-input-subtasks');
-//   var dateInput = document.getElementById('addtask-input-date');
-//   var categorySelect = document.getElementById('addtask-input-category');
-
-//   console.log("title: " + titleInput.value);
-//   console.log("description: " + descriptionInput.value);
-//   console.log("subtasks: " + subtasksInput.value);
-//   console.log("date: " + dateInput.value);
-//   console.log("tag: " + categorySelect.value);
-//   console.log("status: " + 'open');
-// }
-
 /**
  * check inputfields * 
  * 
@@ -60,8 +45,10 @@ document.getElementById("addtask-button-create-task").disabled = false;
   }
 }
 
-
-
+/**
+ * 
+ * 
+ */
 function logInputValue() {
   var titleInput = document.getElementById('addtask-input-title');
   var descriptionInput = document.getElementById('addtask-input-description');
@@ -87,7 +74,12 @@ function consoleLog(titleValue, descriptionValue, subtasksValue, dateValue, cate
   console.log('status: open');
 }
 
-// Methode validate Form - gibt true oder false zurück
+/**
+ *  Function validate form - response true oder false
+ *  False = Required field is empty
+ *  True = Required field are totally filled
+ * 
+ */
 
 function validateForm(){ 
   if (document.getElementById("addtask-input-title").value === '')
@@ -102,9 +94,19 @@ function validateForm(){
 
 function checkFieldEmpty(){
   if (document.getElementById("addtask-input-title").value === '')
-   {document.getElementById("addtask-input-title");
-   element.classList.remove("d-none");  
-   }}
+   {document.getElementById("messagedatevalidationTitel").classList.remove("d-none");
+   }
+   if (document.getElementById("addtask-input-date").value === '')
+   {document.getElementById("messagedatevalidationDate").classList.remove("d-none");
+   }
+   if (document.getElementById("addtask-input-date").value === '')
+   {document.getElementById("messagedatevalidationCategory").classList.remove("d-none");
+   }
+if (document.getElementById("addtask-input-date").value !== '')
+   document.getElementById("addtask-input-date").classList.add("addtaskBlack");
+  }
+
+  
 
 
 
