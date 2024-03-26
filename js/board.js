@@ -4,8 +4,6 @@
  */
 let todos = [];
 
-
-
 /**
  * The key used for storing the todos in the server.
  * @type {string}
@@ -86,6 +84,7 @@ function updateHTML() {
 
 }
 
+
 /**
  * Starts dragging the specified element.
  * @param {string} id - The ID of the element to be dragged.
@@ -165,7 +164,7 @@ function subTasks(element) {
     if (length > 0)
         return `<progress style="width: 120px;" max="${length}" min="0" value="${subTaskscomplete(element.id)}"></progress> ${subTaskscomplete(element.id)}/${length} Subtasks`;
     else
-        return ''
+        return 'Keine Subtasks';
 }
 
 /**
@@ -299,6 +298,11 @@ function addTask() {
     </div>
     `;
 
+}
+
+function deleteTask(id) {
+    todos.splice(id);
+    updateHTML();
 }
 
 /**
