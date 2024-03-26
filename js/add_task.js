@@ -1,34 +1,56 @@
+/**
+ * An array to store the todo tasks.
+ * @type {Array}
+ */
 let todos = [];
 
+/**
+ * The key used to store the todos in local storage.
+ * @type {string}
+ */
 let key = 'todos';
 
+/**
+ * An array to store the subtasks of a task.
+ * @type {Array}
+ */
 let subtask = [];
+
+/**
+ * An array to store the completion status of subtasks.
+ * @type {Array}
+ */
 let subtaskdone = [];
+
+/**
+ * An array to store the contacts related to a task.
+ * @type {Array}
+ */
 let contacts = [];
 
-
-
+/**
+ * Reads the todo tasks from the server.
+ */
 function readServerData() {
   readJSON(key, todos);
   console.log(todos);
 }
 
+/**
+ * Adds a task to the todo list.
+ */
 function addTask() {
+  pushJSON();
   try {
-    
     setItem(key, todos);
   } catch (error) {
     console.error('Error adding task', error);
   }
 }
 
-
-
 /**
- * Function to clear inputfields
- * 
+ * Clears the input fields.
  */
-
 function clearInputs() {
   console.log('clear');
   document.getElementById('addtask-input-title').value = '';
@@ -42,49 +64,31 @@ function clearInputs() {
 }
 
 /**
- * check inputfields * 
- * 
+ * Validates the input fields and enables/disables the create task button accordingly.
  */
-
-function validateInput(){
+function validateInput() {
   var resultValidation = validateForm();
   if (resultValidation == false) {
     document.getElementById("addtask-button-create-task").disabled = true;
-    // alert('Bitte Pflichtfelder');
   } else {
-    // document.getElementById("Button").disabled = true;
-document.getElementById("addtask-button-create-task").disabled = false;
+    document.getElementById("addtask-button-create-task").disabled = false;
   }
 }
 
 /**
- * 
- * 
+ * Logs the input values and adds a new task to the todo list.
  */
-function logInputValue() {
-  var titleInput = document.getElementById('addtask-input-title');
-  var descriptionInput = document.getElementById('addtask-input-description');
-  var subtasksInput = document.getElementById('addtask-input-subtasks');
-  var dateInput = document.getElementById('addtask-input-date');
-  var categorySelect = document.getElementById('addtask-input-category');
+function pushJSON() {
+  var descriptionValue = document.getElementById('addtask-input-description').value;
+  var subtasksValue = document.getElementById('addtask-input-subtasks').value;
+  var dateValue = document.getElementById('addtask-input-date').value;
+  var categoryValue = document.getElementById('addtask-input-category').value;
 
-  var titleValue = titleInput.value
-  var descriptionValue = descriptionInput.value
-  var subtasksValue = subtasksInput.value
-  var dateValue = dateInput.value
-  var categoryValue = categorySelect.value
 
-  consoleLog(titleValue, descriptionValue, subtasksValue, dateValue, categoryValue);
-}
-
-function consoleLog(titleValue, descriptionValue, subtasksValue, dateValue, categoryValue){
-  
   if (subtasksValue !== '') {
     subtask.push(subtasksValue);
-  
     subtaskdone.push(0);
   }
-
 
   todos.push({
     'id': checkId(),
@@ -100,11 +104,12 @@ function consoleLog(titleValue, descriptionValue, subtasksValue, dateValue, cate
   });
 
   console.log(todos);
-
-
 }
 
-
+/**
+ * Checks if the title of the task already exists in the todo list and appends a number if necessary.
+ * @returns {string} - The checked title value.
+ */
 function checkTitle() {
   let titleValue = document.getElementById('addtask-input-title').value;
   let count = 1;
@@ -117,44 +122,53 @@ function checkTitle() {
   return titleValue;
 }
 
+/**
+ * Checks the id of the task to be added.
+ * @returns {number} - The id of the task.
+ */
 function checkId() {
   if (todos.length === 0) {
     return 0;
   }
   return todos.length;
 }
+
 /**
- *  Function validate form - response true oder false
- *  False = Required field is empty
- *  True = Required field are totally filled
- * 
+ * Validates the form and returns true if all required fields are filled, false otherwise.
+ * @returns {boolean} - The validation result.
  */
-
-function validateForm(){ 
-  if (document.getElementById("addtask-input-title").value === '')
+function validateForm() {
+  if (document.getElementById("addtask-input-title").value === '') {
     return false;
-  if (document.getElementById("addtask-input-date").value === '') 
+  }
+  if (document.getElementById("addtask-input-date").value === '') {
     return false;
-  if (document.getElementById("addtask-input-category").value === '')
-    return false; 
+  }
+  if (document.getElementById("addtask-input-category").value === '') {
+    return false;
+  }
   return true;
-  }
+}
 
-function checkFieldEmpty(){
-  if (document.getElementById("addtask-input-title").value === '')
-   {document.getElementById("messagedatevalidationTitel").classList.remove("d-none");
-   }
-   if (document.getElementById("addtask-input-date").value === '')
-   {document.getElementById("messagedatevalidationDate").classList.remove("d-none");
-   }
-   if (document.getElementById("addtask-input-date").value === '')
-   {document.getElementById("messagedatevalidationCategory").classList.remove("d-none");
-   }
-if (document.getElementById("addtask-input-date").value !== '')
-   document.getElementById("addtask-input-date").classList.add("addtaskBlack");
+/**
+ * Checks if any of the required fields are empty and shows error messages accordingly.
+ */
+function checkFieldEmpty() {
+  if (document.getElementById("addtask-input-title").value === '') {
+    document.getElementById("messagedatevalidationTitel").classList.remove("d-none");
   }
+  if (document.getElementById("addtask-input-date").value === '') {
+    document.getElementById("messagedatevalidationDate").classList.remove("d-none");
+  }
+  if (document.getElementById("addtask-input-date").value === '') {
+    document.getElementById("messagedatevalidationCategory").classList.remove("d-none");
+  }
+  if (document.getElementById("addtask-input-date").value !== '') {
+    document.getElementById("addtask-input-date").classList.add("addtaskBlack");
+  }
+}
 
-  
+
 
 
 
