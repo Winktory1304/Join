@@ -339,7 +339,7 @@ color: black !important;
 
 }
 
-.addtask-button-create-task {
+.addtask-button-create-task{
     width: 183px;
     height: 56px;
     border-radius: 10px;
@@ -356,16 +356,11 @@ color: black !important;
     font-family: "Inter";
 }
 
-.addtask-button-create-task[disabled='false'] {
-    background-color: blue;
-  }
-  
-
-  .addtask-button-create-task[disabled="true"] {
-    background-color: rgb(255, 0, 0);
-  }
-  
-
+.addtask-button-create-task:disabled{
+    background-color: #d1d1d1;
+    color: #000000;
+    cursor: not-allowed;
+}
 
   
   
@@ -392,7 +387,7 @@ color: black !important;
 
 }
 
-.addtask-button-create-task:hover {
+.addtask-button-create-task:hover:enabled {
     cursor: pointer;
     background-color: #29ABE2;
     border: 1px solid #29abe2;
