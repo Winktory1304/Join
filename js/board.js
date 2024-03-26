@@ -1,25 +1,39 @@
-let todos = []
+/**
+ * The array that stores the todo tasks.
+ * @type {Array}
+ */
+let todos = [];
 
+/**
+ * The key used for storing the todos in the server.
+ * @type {string}
+ */
 let key = 'todos';
 
-
-
+/**
+ * Writes the todos array to the server.
+ */
 function writeServer() {
     setItem('todos', todos);
     console.log('Daten aktualisiert!');
 }
 
+/**
+ * Initializes the board by reading the todos from the server.
+ */
 function init() {
     readServer();
 }
 
+/**
+ * Reads the todos from the server and updates the HTML elements on the board.
+ */
 function readServer() {
     try {
         writeJSON(key, todos).then (() => {;updateHTML();});
     } catch (error) {
         console.error('Error:', error);
     }
-    
 }
 
 /**
