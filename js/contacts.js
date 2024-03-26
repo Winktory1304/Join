@@ -171,38 +171,56 @@ function init() {
     }
 }
 
-function addNewContact() {
-    let email = document.getElementById('create-contact-email-input').value;
-    let emailIndex = findEmailIndex(email);
-    let fullName = document.getElementById('create-contact-name-input').value.trim(); // Hole den Namen und entferne führende/abschließende Leerzeichen
-    let names = fullName.split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
-    // Validiere, dass der Name aus mindestens zwei Teilen besteht
-    if (names.length < 2) {
-        alert('Bitte geben Sie Vor- und Nachnamen ein.');
-        return; // Beendet die Funktion, falls die Validierung fehlschlägt
-    }
-    // Erstelle den neuen Kontakt
-    let newContact = {
+function createNewContact(names, email, phone) {
+    return {
         "firstName": names[0],
-        "lastName": names.slice(1).join(' '), // Für den Fall, dass es einen Mittelnamen gibt
-        "email": document.getElementById('create-contact-email-input').value,
-        "phoneNumber": document.getElementById('create-contact-phone-input').value,
-        "firstLetterofNames": names[0][0] + names[1][0], // Erste Buchstaben von Vor- und Nachname
-        "color": getRandomColor() // Funktion, um eine zufällige Farbe zu generieren
+        "lastName": names.slice(1).join(' '),
+        "email": email,
+        "phoneNumber": phone,
+        "firstLetterofNames": names[0][0] + names[1][0],
+        "color": getRandomColor()
     };
+}
 
-    console.log(contacts);
+function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
-        document.getElementById('create-contact-name-input').value = '';
-        document.getElementById('create-contact-email-input').value = '';
-        document.getElementById('create-contact-phone-input').value = '';
-        init();
+        clearInputFields();
+        init(); 
     } else {
-        window.alert("Dieser Kontakt ist schon vorhanden")
+        alert("Dieser Kontakt ist schon vorhanden");
     }
 }
 
+
+function clearInputFields() {
+    document.getElementById('create-contact-name-input').value = '';
+    document.getElementById('create-contact-email-input').value = '';
+    document.getElementById('create-contact-phone-input').value = '';
+}
+
+
+function addNewContact() {
+    let email = document.getElementById('create-contact-email-input').value;
+    let emailIndex = findEmailIndex(email);
+    let fullName = document.getElementById('create-contact-name-input').value;
+    let names = validateFullName(fullName);
+    if (!names) return; //"Wenn nicht names wahr ist" (also, wenn names leer oder null ist), dann mache, was danach kommt (in diesem Fall, stoppe die Funktion mit return;).
+    let newContact = createNewContact(names, email, document.getElementById('create-contact-phone-input').value);
+    addContactOrWarn(emailIndex, newContact);
+}
+
+
+function validateFullName(fullName) {
+    let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
+    if (names.length < 2) {
+        alert('Bitte geben Sie Vor- und Nachnamen ein.');
+        return null;
+    }
+    return names;
+}
+
+//Check if email already exists
 function findEmailIndex(email) {
     // Iteriert durch das contacts-Array und sucht nach der E-Mail-Adresse
     for (let i = 0; i < contacts.length; i++) {
@@ -212,6 +230,7 @@ function findEmailIndex(email) {
     }
     return -1; // Gibt -1 zurück, wenn die E-Mail nicht gefunden wurde
 }
+
 
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
