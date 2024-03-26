@@ -1,23 +1,19 @@
-
-
-
 let todos = []
-
 
 let key = 'todos';
 
 
 
-function writeTodos() {
+function writeServer() {
     setItem('todos', todos);
+    console.log('Daten aktualisiert!');
 }
 
 function init() {
-    readTodos();
+    readServer();
 }
 
-
-function readTodos() {
+function readServer() {
     try {
         writeJSON(key, todos).then (() => {;updateHTML();});
     } catch (error) {
@@ -68,6 +64,10 @@ function updateHTML() {
         const element = closed[index];
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
     }
+
+
+    writeServer();
+
 }
 
 /**
