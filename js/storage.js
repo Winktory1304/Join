@@ -38,10 +38,11 @@ async function getItem(key) {
  * @param {string} id - The ID of the property to retrieve.
  * @returns {Promise<any>} - A promise that resolves to the retrieved JSON property.
  */
-async function getJSON(key, id, statement) {
+async function getJSON(key, id) {
     let Data = await getItem(key);
     let data = JSON.parse(Data.data.value);
-    return data[id][statement];
+    let newdata = data;
+    return newdata[id];
 }
 
 

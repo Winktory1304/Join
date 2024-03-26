@@ -1,3 +1,6 @@
+
+
+
 let todos = [{
     'id': 0,
     'tag': 'User Story',
@@ -9,30 +12,16 @@ let todos = [{
     'priority': 1,
     'contacts': ['Max Mustermann'],
     'status': 'open'
-}, {
-    'id': 1,
-    'tag': 'Technical Task',
-    'title': 'Test ID 1',
-    'task': 'Task 1',
-    'subtasksdone': [0, 0],
-    'subtasks': ['Sub1_1', 'Sub2_1'],
-    'date': '08/08/2024',
-    'priority': 2,
-    'contacts': ['Max Mustermann'],
-    'status': 'progress'
-}, {
-    'id': 2,
-    'tag': 'User Story',
-    'title': 'Die erste Richtige Task',
-    'task': 'Testtask mit der ID 2 und der Kategorie `done` und der Prio 3',
-    'subtasksdone': [1, 1, 1, 0, 0, 0],
-    'subtasks': ['Sub1_3', 'Sub2_3', 'Sub3_3', 'Sub4_3', 'Sub5_3', 'Sub6_3'],
-    'date': '08/08/2024',
-    'priority': 3,
-    'contacts': ['John Doe', 'Jane Smith', 'Michael Johnson'],
-    'status': 'done'
 }]
 
+
+let testtodos = [];
+
+
+
+function writeTodos() {
+    setItem('todos', todos);
+}
 
 
 /**
