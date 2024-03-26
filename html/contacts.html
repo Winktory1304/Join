@@ -10,7 +10,7 @@
     <script src="../js/include.js"></script>
 
     <title>contacts</title>
-    
+
 </head>
 
 <body onload="init()">
@@ -124,9 +124,12 @@
                         </g>
                     </svg></span>
                 <form class="contact-modal-form">
-                    <input class="contact-modal-input input-name-img" type="text" placeholder="Name">
-                    <input class="contact-modal-input input-email-img" required type="email" placeholder="Email">
-                    <input class="contact-modal-input input-phone-img" required type="number" placeholder="Phone">
+                    <input class="contact-modal-input input-name-img" id="create-contact-name-input" type="text"
+                        placeholder="Name">
+                    <input class="contact-modal-input input-email-img" id="create-contact-email-input" required
+                        type="email" placeholder="Email">
+                    <input class="contact-modal-input input-phone-img" id="create-contact-phone-input" required
+                        type="number" placeholder="Phone">
                 </form>
                 <div class="modal-part-3-buttons-container">
                     <button class="modal-part-3-cancel-button">
@@ -136,7 +139,7 @@
                                 d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z"
                                 stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg></button>
-                    <button class="modal-part-3-create-button">
+                    <button class="modal-part-3-create-button" onclick="addNewContact()">
                         Create contact
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_155331_3981" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -162,10 +165,10 @@
 
 
 </body>
-<script src="/js/contacts.js"></script>
 <script>
     includeHTML();
 </script>
+<script src="/js/contacts.js"></script>
 
 
 </html>

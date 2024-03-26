@@ -170,3 +170,27 @@ function init() {
         `
     }
 }
+
+function addNewContact() {
+    let name = document.getElementById('create-contact-name-input').value;
+    let email = document.getElementById('create-contact-email-input').value;
+    let phone = document.getElementById('create-contact-phone-input').value;
+    let emailIndex = findEmailIndex(email);
+    console.log(emailIndex);
+    if (emailIndex === -1) {
+
+    } else {
+        window.alert("Dieser Kontakt ist schon vorhanden")
+    }
+
+}
+
+function findEmailIndex(email) {
+    // Iteriert durch das contacts-Array und sucht nach der E-Mail-Adresse
+    for (let i = 0; i < contacts.length; i++) {
+        if (contacts[i].email === email) {
+            return i; // Gibt den Index zurück, wenn die E-Mail gefunden wurde
+        }
+    }
+    return -1; // Gibt -1 zurück, wenn die E-Mail nicht gefunden wurde
+}
