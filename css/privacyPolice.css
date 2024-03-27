@@ -1,6 +1,6 @@
 /* style contend add task */
 
-.addtask_html {
+.privacy-html {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 /* Header and sidebar */
-.addtask_sidebar {
+.privacy-sidebar {
     position: fixed;
     top: 8px;
     width: 232px;
@@ -18,7 +18,7 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
-.addtask_header {
+.privacy-header {
     position: fixed;
     top: 8px;
     width: 1440px !important;
@@ -28,7 +28,7 @@
 }
 
 /* addtask body */
-.addtask_body {
+.privacy-body {
     position: fixed;
     top: 0px;
     width: 1440px;
@@ -37,16 +37,16 @@
 }
 
 /* addtask content */
-.addtask_content {
+.privacy-content {
     position: fixed;
     top: 104px;
     width: 1209px;
     height: 928px;
-    margin-left: 232px;
+    margin-left: 260px;
 }
 
 /* addtask fonts */
-.addtask_h1 {
+.privacy-h1 {
     font-size: 61px;
     font-weight: 700;
     width: 466px;
@@ -58,20 +58,8 @@
     padding-left: 96px;
 }
 
-.addtask-h2 {
+.privacy-h2 {
     font-size: 20px;
     font-weight: 400;
     padding-bottom: 8px;
-}
-
-.addtask-h2 span {
-    color: #FFA800;
-}
-
-.addtask-footer span {
-    color: #FFA800;
-}
-
-.addtask-gap16 {
-    padding-bottom: 16px;
 }
