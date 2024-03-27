@@ -124,6 +124,22 @@ let contacts =
         }
     ]
 
+    function orderContatctsByFirstName(){
+    contacts.sort((person1, person2) => {
+        // Convert names to lowercase for case-insensitive sorting
+        const lowercaseName1 = person1.firstName.toLowerCase();
+        const lowercaseName2 = person2.firstName.toLowerCase();
+      
+        // Compare the lowercase versions of names in descending order
+        if (lowercaseName1 > lowercaseName2) {
+          return -1; // Return a negative value if person1 should come before person2
+        } else if (lowercaseName1 < lowercaseName2) {
+          return 1;  // Return a positive value if person1 should come after person2
+        } else {
+          return 0;  // Return 0 if names are equal
+        }
+      });
+    }
 
 
 
@@ -150,6 +166,7 @@ window.onclick = function (event) {
 }
 
 function init() {
+    orderContatctsByFirstName();
     let content = document.getElementById('contactsRenderContent');
     content.innerHTML = '';
     for (let contactsIndex = 0; contactsIndex < contacts.length; contactsIndex++) {
