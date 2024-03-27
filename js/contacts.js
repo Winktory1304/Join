@@ -124,22 +124,50 @@ let contacts =
         }
     ]
 
-    function orderContatctsByFirstName(){
-    contacts.sort((person1, person2) => {
-        // Convert names to lowercase for case-insensitive sorting
-        const lowercaseName1 = person1.firstName.toLowerCase();
-        const lowercaseName2 = person2.firstName.toLowerCase();
-      
-        // Compare the lowercase versions of names in descending order
-        if (lowercaseName1 > lowercaseName2) {
-          return -1; // Return a negative value if person1 should come before person2
-        } else if (lowercaseName1 < lowercaseName2) {
-          return 1;  // Return a positive value if person1 should come after person2
-        } else {
-          return 0;  // Return 0 if names are equal
+
+function init() {
+    let groupedContacts = groupContactsByInitial();
+    console.log(groupedContacts);
+    let content = document.getElementById('contactsRenderContent');
+    content.innerHTML = '';
+    Object.keys(groupedContacts).sort().forEach(initial => {
+        content.innerHTML += `<div class="letter-group">
+                                <div class="letter-group-first-name">${initial}</div>
+                                <div>
+                                <div class="letter-seperator"></div>`;
+        groupedContacts[initial].forEach(contact => {
+            content.innerHTML += /*html*/`
+                <div class="contact-box">
+                    <div class="first-letters-of-names">
+                        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="42" height="42" rx="21" fill="white"/>
+                            <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2"/>
+                            <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
+                        </svg>
+                    </div>
+                    <div class="first-and-last-name-box">${contact.firstName} ${contact.lastName}<br>
+                    <div class="contact-box-email">${contact.email}</div>
+                    </div>        
+                </div>
+            `;
+        });
+        content.innerHTML += `</div></div>`;
+    });
+}
+
+//Order contacts
+function groupContactsByInitial() {
+    let groupedContacts = {};
+    contacts.forEach(contact => {
+        let initial = contact.firstName[0].toUpperCase();
+        if (!groupedContacts[initial]) {
+            groupedContacts[initial] = [];
         }
-      });
-    }
+        groupedContacts[initial].push(contact);
+    });
+    return groupedContacts;
+}
+
 
 
 
@@ -165,28 +193,6 @@ window.onclick = function (event) {
     }
 }
 
-function init() {
-    orderContatctsByFirstName();
-    let content = document.getElementById('contactsRenderContent');
-    content.innerHTML = '';
-    for (let contactsIndex = 0; contactsIndex < contacts.length; contactsIndex++) {
-        const contact = contacts[contactsIndex];
-        content.innerHTML += /*html*/`
-                <div class ="contact-box">
-                <div class="first-letters-of-names">
-                    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="42" height="42" rx="21" fill="white"/>
-                        <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2"/>
-                        <text x="21" class="profil-badage" y="21" text-anchor="middle" dominant-baseline="middle" id="" fill="white">${contact.firstLetterofNames}</text>
-                    </svg>
-                </div>
-                <div class="first-and-last-name-box">${contact.firstName} , ${contact.lastName} <br>
-                <p class="conatct-box-mail">${contact.email}</p>
-                </div>        
-            </div>
-        `
-    }
-}
 
 function createNewContact(names, email, phone) {
     return {
@@ -203,7 +209,7 @@ function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
         clearInputFields();
-        init(); 
+        init();
     } else {
         alert("Dieser Kontakt ist schon vorhanden");
     }

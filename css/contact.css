@@ -53,6 +53,8 @@ body {
 .first-and-last-name-box {
     font-size: 20px;
     font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 5px;
 
 
 }
@@ -153,12 +155,24 @@ body {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
 }
+.letter-group{
+    font-size: 20px;
+    font-weight: 400;
+    
+}
+.letter-group-first-name{
+    padding: 17px 36px 17px 36px;
+}
+.contact-box-email{
+    color: blue;
+}
 
 .render-contacts-container {
-    margin: 0 28px;
+    margin: 0 28px;    
     margin-right: 4px;
     overflow: auto;
     padding-right: 32px;
+    
 }
 
 /* ***********  Modal ************/
@@ -256,6 +270,11 @@ body {
     border-radius: 3px;
     margin-left: 48px;
     margin-top: 16px;
+}
+.letter-seperator{
+    width: 352px;
+    border: 1px solid #D1D1D1;
+    margin-top: 8px;
 }
 
 .modal-part-2 {
