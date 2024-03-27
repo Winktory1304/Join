@@ -130,14 +130,17 @@ function init() {
     console.log(groupedContacts);
     let content = document.getElementById('contactsRenderContent');
     content.innerHTML = '';
+    let counter = 0;
     Object.keys(groupedContacts).sort().forEach(initial => {
         content.innerHTML += `<div class="letter-group">
                                 <div class="letter-group-first-name">${initial}</div>
                                 <div>
                                 <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
+            let contactId = 'contact-' + counter;
+            counter++;
             content.innerHTML += /*html*/`
-                <div class="contact-box">
+                <div class="contact-box" id='${contactId}' onclick='openDetailedContactsView("${contactId}")'>
                     <div class="first-letters-of-names">
                         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="42" height="42" rx="21" fill="white"/>
@@ -169,11 +172,17 @@ function groupContactsByInitial() {
 }
 
 
+function openDetailedContactsView(contactId){
+    console.log(contactId);
+
+}
+
 
 
 let modal = document.getElementById('contactModal');
 let btn = document.getElementById('addContactBtn');
 let span = document.getElementsByClassName('close')[0];
+
 
 // When the user clicks anywhere outside of the modal, close it
 function addContactModal() {
@@ -258,3 +267,4 @@ function findEmailIndex(email) {
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
+

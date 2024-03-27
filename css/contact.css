@@ -40,11 +40,17 @@ body {
     padding-bottom: 15px;
     padding-left: 15px;
     border-radius: 20px;
+    margin-top: 5px;
 }
 .contact-box:hover{
     background-color: rgba(0, 0, 0, 0.1);
     
+    
 } 
+.contact-box:active{
+    background-color: #2A3647;
+    color: white;
+}
 
 .first-letters-of-names {
     margin-right: 35px;
@@ -172,6 +178,8 @@ body {
     margin-right: 4px;
     overflow: auto;
     padding-right: 32px;
+    display: flex;
+    flex-direction: column;
     
 }
 
@@ -209,6 +217,13 @@ body {
     /* Dauer der Animation */
     animation-timing-function: ease-out;
     /* Timing-Funktion der Animation */
+}
+.detail-view-modal{
+    display: flex;
+    background-color: #F6F7F8;
+    width: 461px;
+    height: 364px;
+
 }
 
 /* The Close Button */
@@ -272,9 +287,10 @@ body {
     margin-top: 16px;
 }
 .letter-seperator{
-    width: 352px;
+    width: 100%;
     border: 1px solid #D1D1D1;
     margin-top: 8px;
+   
 }
 
 .modal-part-2 {
