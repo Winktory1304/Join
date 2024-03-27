@@ -105,6 +105,7 @@ body {
     display: flex;
     justify-content: center;
     flex: 1;
+    background-color:  #F6F7F8;
 }
 
 .contacts-placeholder {
