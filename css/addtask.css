@@ -1,5 +1,4 @@
 /* style contend add task */
-
 .addtask_html {
     display: flex;
     justify-content: center;
@@ -72,10 +71,6 @@
     color: #FFA800;
 }
 
-.addtask-gap16 {
-    padding-bottom: 16px;
-}
-
 /* addtask content main, left, middle, right, footer */
 .addtask-content-main {
     display: flex;
@@ -119,7 +114,6 @@
 }
 
 /* style inputfields */
-
 .addtask-input-title {
     width: 424px;
     height: 48px;
@@ -131,6 +125,10 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+}
+
+.addtask-gap16 {
+    padding-bottom: 16px;
 }
 
 .addtask-input-title:hover {
@@ -184,7 +182,6 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-
 }
 
 .addtask-input-assigned:hover {
@@ -251,9 +248,7 @@ color: black !important;
 
 .addtask-input-category:hover {
     cursor: pointer;
-    /* border: 1px solid #29ABE2; */
-
-}
+   }
 
 .addtask-input-category::placeholder {
     color: #d1d1d1;
@@ -275,8 +270,7 @@ color: black !important;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-   
-}
+   }
 
 .addtask-input-subtasks:hover {
     cursor: pointer;
@@ -292,7 +286,6 @@ color: black !important;
   }
 
 /* style buttons */
-
 .addtask-prio-buttons {
     width: 440px;
     display: flex;
@@ -305,7 +298,6 @@ color: black !important;
     font-family: "Inter";
     padding: 0;
 }
-
 
 .addtask-button {
     width: 136px;
@@ -336,15 +328,12 @@ color: black !important;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-
 }
 
 .addtask-button-create-task {
     width: 183px;
     height: 56px;
     border-radius: 10px;
-    /* padding: 16px; */
-    /* gap: 4px; */
     background-color: #243647;
     color: #Ffffff;
     display: flex;
@@ -356,19 +345,14 @@ color: black !important;
     font-family: "Inter";
 }
 
-.addtask-button-create-task[disabled='false'] {
+/* .addtask-button-create-task[disabled='false'] {
     background-color: blue;
   }
   
-
   .addtask-button-create-task[disabled="true"] {
     background-color: rgb(255, 0, 0);
-  }
-  
-
-
-  
-  
+  } */
+   
 
 .addtask-button-cancel {
     width: 110px;
@@ -407,4 +391,18 @@ color: black !important;
 display: none;
 
 }
+/* Style Popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px;
+    border: 1px solid #243647;
+    background-color: #243647;
+    border-radius: 10px;
+    border: 1px solid;
+    color: white;
+  }
 

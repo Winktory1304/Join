@@ -40,6 +40,7 @@ function readServerData() {
  * Adds a task to the todo list.
  */
 function addTask() {
+  addTaskPopup()
   pushJSON();
   try {
     setItem(key, todos);
@@ -47,6 +48,20 @@ function addTask() {
     console.error('Error adding task', error);
   }
 }
+
+
+
+
+
+  // Popup erstellen
+function addTaskPopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'block';
+  
+    setTimeout(function() {
+      popup.style.display = 'none';
+    }, 1000);
+  }
 
 /**
  * Clears the input fields.
@@ -61,6 +76,23 @@ function clearInputs() {
   categoryInput.disabled = false;
   var dateInput = document.getElementById('addtask-input-date');
   dateInput.value = '';
+}
+
+function addSubtask() {
+  var input = document.getElementById("addtask-input-subtasks");
+  var container = document.getElementById("subtaskListContainer");
+  
+  var subtaskText = input.value;
+  subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
+  
+  var subtaskElement = document.createElement("li");
+  subtaskElement.textContent = subtaskText;
+  subtaskElement.style.paddingLeft = "16px";
+  subtaskElement.style.fontSize = "18px";
+  
+  container.parentNode.appendChild(subtaskElement);
+  
+  input.value = ""; // Optional: Clear the input field after adding the subtask
 }
 
 /**
