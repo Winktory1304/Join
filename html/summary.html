@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="summary-html">
 
 <head>
     <meta charset="UTF-8">
@@ -7,27 +7,30 @@
     <title>Summary</title>
 
     <script src="../js/index.js"></script>
-    <script src="../js/sidebar_navbar_template.js"></script>
     <script src="../js/summary.js"></script>
     <script src="../js/board.js"></script>
     <link rel="stylesheet" href="../css/summary.css">
     <link rel="stylesheet" href="../css/fonts.css">
-    
+
+    <!-- Template -->
+    <link rel="stylesheet" href="../css/navbar_sidebar.css">
+    <script src="../js/include.js"></script>
+
+
 </head>
 
-<body class="unset-body" onload="importiereHTMLSidebar(); importiereHTMLHeader(); showAllNumbers()">
- 
-<div id="generate_sidebar" ></div>
+<body onload="showAllNumbers()" class="unset-body" class="summary-body">
 
-<div id="generate_header" class="header-container">
+    <div w3-include-html="./template/sidebar.html"></div>
 
-    
-</div>
+    <div w3-include-html="./template/navbar.html" class="header-container"></div>
+
+
 
     <main class="main-content-summary">
 
         <div class="summary-content">
-            
+
             <div class="summary-header-container">
                 <h1>Join 360</h1>
                 <div class="summary-header-seperation-bar"></div>
@@ -75,7 +78,7 @@
                             </svg>
 
                             <div class="summary-amount-of-to-do">
-                                <span id="number_of_done"class="summary-amount-of-done-number">1</span>
+                                <span id="number_of_done" class="summary-amount-of-done-number">1</span>
                                 <span class="summary-text">Done</span>
                             </div>
                         </div>
@@ -114,7 +117,7 @@
                             <span id="number_of_awaiting_feedback" class="summ-overlay-numb">2</span>
                             <h2 class="summary-text">Awaiting <br> Feedback</h2>
                         </div>
-                    </div>        
+                    </div>
                 </a>
 
 
@@ -129,5 +132,9 @@
     </div>
 
 </body>
+
+<script>
+    includeHTML();
+</script>
 
 </html>

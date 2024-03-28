@@ -21,7 +21,6 @@ async function loadUsers() {
         console.log('Passwort:', users[0].password);
 
 
-
         // users = JSON.parse(await getItem('users'));
         // console.log('Users:', users);
     } catch (e) {
@@ -29,22 +28,137 @@ async function loadUsers() {
     }
 }
 
-
 async function registerUser() {
+
+    let email = document.getElementById('sign_up_email').value;
+    checkPrivacyPolicy();
+
+    if (checkIfEmailExists(email)) {
+        warningEmailExists();
+    } else {
+        pushTheUserToStorage();
+
+        document.getElementById('sigend-up-successfuly-container').classList.remove('d-none');
+
+        setTimeout(function () {
+            document.getElementById(`sigend-up-successfuly-container`).classList.add('d-none');
+        }, 2000);
+
+        setTimeout(function () {
+            goBackToLogIn();
+        }, 2000);
+    }
+}
+
+
+function checkIfEmailExists(email) {
+    return users.some((user) => user.email === email);
+}
+
+
+function warningEmailExists() {
+    let warning = document.getElementById('password_match');
+    warning.innerHTML = 'The email already exists';
+    warning.style.color = 'red';
+}
+
+
+async function pushTheUserToStorage() {
+    let name = document.getElementById('sign_up_name');
     let email = document.getElementById('sign_up_email');
     let password = document.getElementById('sign_up_password');
-    sign_up_button.disabled = true;
 
     users.push({
+        name: name.value,
         email: email.value,
         password: password.value,
     });
-    await setItem('users', users);
+    await setItem('users', JSON.stringify(users));
     resetForm();
 }
 
+
 function resetForm() {
+    document.getElementById('sign_up_name').value = '';
     document.getElementById('sign_up_email').value = '';
     document.getElementById('sign_up_password').value = '';
-    sign_up_button.disabled = false;
+    document.getElementById('sign_up_confirm_password').value = '';
+    document.getElementById('sign_up_button').disabled = true;
+}
+
+
+function checkPassword() {
+    if (document.getElementById('sign_up_password').value == document.getElementById('sign_up_confirm_password').value) {
+        document.getElementById('sign_up_button').disabled = false;
+        document.getElementById('password_match').style.color = 'green';
+        document.getElementById('password_match').innerHTML = 'matching';
+        document.getElementById('input_area_red').classList.remove('input_area_red');
+    } else {
+        document.getElementById('sign_up_button').disabled = true;
+        document.getElementById('password_match').style.color = 'red';
+        document.getElementById('password_match').innerHTML = "Ups! your password don't match";
+        document.getElementById('input_area_red').classList.add('input_area_red');
+    }
+}
+
+
+function checkPrivacyPolicy() {
+    let checkPrivacyPolicyTrue = document.getElementById('privacy_policy_check');
+    let signUpButton = document.getElementById('sign_up_button');
+
+    if (checkPrivacyPolicyTrue.checked) {
+
+        signUpButton.disabled = true;
+        signUpButton.classList.add('disable-button'); //* Set background color to gray       
+
+    } else {
+        signUpButton.disabled = false;
+        signUpButton.classList.remove('disable-button');  //* Reset background color/
+    }
+}
+
+
+function logIn() {
+    let email = document.getElementById('log_in_email').value;
+    let password = document.getElementById('log_in_password').value;
+    let message = document.getElementById('email_or_password_not_found');
+    let user = userValidation(email, password);
+    if (user) {
+        indexOfUsers(email);
+        
+        setTimeout(function () {
+            document.getElementById(`logged_in_successfuly_container`).classList.add('d-none');
+        }, 2000);
+        window.location.href = './html/summary.html';
+    }
+    else {
+        message.innerText = 'Ups! Email or password not found !';  //*muss noch gemacht werden !!!        
+    }
+}
+
+
+function userValidation(email, password) {
+    let user = users.find(u => u.email == email && u.password == password);
+    return user;
+}
+
+
+function indexOfUsers(email) {
+    let userIndex = users.findIndex(user => user.email === email);
+    localStorage.setItem('currentUserIndex', userIndex);
+}
+
+
+
+
+
+function logInGuest() {
+    window.location.href = 'html/summary.html';
+}
+
+
+function goBackToLogIn() {
+    document.getElementById('log_in_container').classList.remove('d-none');
+    document.getElementById('sing_up_container').classList.add('d-none');
+    document.getElementById('log_container').classList.remove('height-sing-up');
 }

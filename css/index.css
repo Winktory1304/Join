@@ -167,7 +167,7 @@ body {
 .log-in-index-container {
     display: flex;
     flex-direction: column;
-    width: 422px;
+    width: 422px;    
     gap: 32px;
 }
 
@@ -197,7 +197,7 @@ body {
 }
 
 .arrow-left-line:hover {
-    background-color:#b7c9db;
+    background-color: #b7c9db;
     height: 32px;
     width: 32px;
     border-radius: 50%;
@@ -255,17 +255,36 @@ body {
     color: #d1d1d1;
 }
 
+.input_area_red {
+    border-color: red !important;
+}
+
+.password-match {
+    width: 416px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.email-or-password-not-found {
+    width: 416px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: red;
+}
+
 .sing-up-check-box {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 8px;
+    margin-bottom: 24px;
 }
 
 .log-in-checkbox {
     display: flex;
     padding-top: 6px;
     padding-right: 195px;
+    padding-bottom: 37px;
 }
 
 input[type="checkbox"]+label {
@@ -285,21 +304,22 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]+label::before {
+    content: "";
     position: relative;
     width: 22px;
     height: 19px;
-    background-image: url("../assets/img/checkbox.svg");
+    background-image: url("../assets/img/checkbox_confirmed.svg");
     background-repeat: no-repeat;
     background-size: contain;
     display: block;
-    content: "";
     float: left;
     margin-right: 6px;
     z-index: 5;
 }
 
+
 input[type="checkbox"]:checked+label::before {
-    background-image: url("../assets/img/checkbox_confirmed.svg");
+    background-image: url("../assets/img/checkbox.svg");
 }
 
 .button-container {
@@ -340,6 +360,11 @@ input[type="checkbox"]:checked+label::before {
     -webkit-box-shadow: 0px 6px 15px -4px rgba(0, 0, 0, 0.58);
     -moz-box-shadow: 0px 6px 15px -4px rgba(0, 0, 0, 0.58);
 }
+
+.disable-button {
+    background-color: #A8A8A8 !important;
+}
+
 
 .footer-container {
     display: flex;

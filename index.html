@@ -10,7 +10,7 @@
   <script src="js/storage.js"></script>
   <script src="js/register.js"></script>
   <title>Join</title>
-  </head>
+</head>
 
 <body onload="initRegister()">
   <div class="join-logo-container">
@@ -35,7 +35,7 @@
 
   <div class="header-container">
     <h2>Not a Join user?</h2>
-    <button class="log-button" onclick="register()">Sign up</button>
+    <button class="log-button" onclick="registerWindow()">Sign up</button>
   </div>
 
   <div id="log_container" class="log-container">
@@ -48,8 +48,11 @@
           <input id="log_in_email" type="email" placeholder="Email" required /><img src="./assets/img/mail.svg" />
         </div>
         <div class="input-area">
-          <input id="log_in_password" type="password" placeholder="Password" required /><img src="./assets/img/lock.svg" />
+          <input id="log_in_password" type="password" placeholder="Password" required /><img
+            src="./assets/img/lock.svg" />
         </div>
+      </form>
+        <span id='email_or_password_not_found' class="email-or-password-not-found"></span>
         <div class="log-in-checkbox">
           <input id="confirm" type="checkbox" checked required />
           <label for="confirm">Remember me</label>
@@ -58,8 +61,17 @@
           <button class="log-button" onclick="logIn()">Log in</button>
           <button class="guest-button" onclick="logInGuest()">Guest Log in</button>
         </div>
-      </form>
+      
     </div>
+
+    <div id="logged_in_successfuly_container" class="sigend-up-successfuly-container d-none">
+      <div class="sigend-up-successfuly-box">
+        You logged in successfully
+      </div>
+    </div>
+
+
+
 
     <div id="sing_up_container" class="sing-up-container d-none">
       <div class="arrow-left-line" onclick="goBackToLogIn()">
@@ -72,7 +84,7 @@
         <form class="sing-up-index-container">
 
           <div class="input-area">
-            <input id="sign_up_name"type="text" placeholder="Name" required />
+            <input id="sign_up_name" type="text" placeholder="Name" required />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6058" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -100,7 +112,8 @@
             </svg>
           </div>
           <div class="input-area">
-            <input id="sign_up_password" type="password" minlength="5" placeholder="Password" required />
+            <input onkeyup="checkPassword()" id="sign_up_password" type="password" minlength="5" placeholder="Password"
+              required />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -114,8 +127,9 @@
             </svg>
           </div>
 
-          <div class="input-area">
-            <input id="sign_up_confirm_password" type="password" minlength="5" placeholder="Confirm Password" required />
+          <div class="input-area" id="input_area_red">
+            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" minlength="5"
+              placeholder="Confirm Password" required />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -129,18 +143,26 @@
             </svg>
           </div>
 
-          <div class="sing-up-check-box">
-            <input style="margin-right: 8px; color: black" type="checkbox" id="sing-up-check" name="sing-up-check" checked required />
-            <label style="font-size: 18px; color: #A8A8A8" for="sing-up-check">I accept the<a style="padding-left: 6px"
-                class="sign-up-link" href="" target="_blank">Privacy policy</a></label>
-          </div>
-
-
-          <div class="sign-up-button-container">
-            <button id="sign_up_button" class="sign-up-button" onclick="simulationSignedUp()">Sign up</button>
-          </div>
-          
         </form>
+
+
+        <span id='password_match' class="password-match"></span>
+
+
+        <div class="sing-up-check-box">
+          <input onclick="checkPrivacyPolicy()" style="margin-right: 8px; color: black" type="checkbox"
+            id="privacy_policy_check" name="privacy_policy_check" checked required />
+          <label style="font-size: 18px; color: #A8A8A8" for="privacy_policy_check">I accept the<a
+              style="padding-left: 6px" class="sign-up-link" href="" target="_blank">Privacy policy</a></label>
+        </div>
+
+
+        <div class="sign-up-button-container">
+          <button disabled id="sign_up_button" class="sign-up-button disable-button" onclick="registerUser()">Sign
+            up</button>
+        </div>
+
+
     </div>
   </div>
 
@@ -154,6 +176,9 @@
       Your Signed Up successfully
     </div>
   </div>
+
+
+
 
 </body>
 

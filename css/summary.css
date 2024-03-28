@@ -1,7 +1,25 @@
+.summary-html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3b3b3b;
+    font-family: 'inter', sans-serif;
+}
+
+.summary-body {
+    position: fixed;
+    top: 0px;
+    width: 1440px;
+    height: 1024px;
+    background-color: #F5F5F5;
+    overflow: hidden;
+}
+
 body {
     max-width: 1440px;
+    max-height: 1024px;
     margin: 0;
-    overflow: hidden;
+    
     background-color: #F6F7F8;
     display: flex;
     justify-content: center;
@@ -13,7 +31,16 @@ body {
     display: unset;
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    font-family: "Inter";
+    border: unset;
+}
 
+*:focus {
+    outline: none;
+}
 
 .main-content-summary {
     display: flex;
@@ -38,9 +65,6 @@ body {
     font-weight: 700;
 }
 
-
-
-
 .summary-content {
     flex-direction: column;
     display: flex;
@@ -50,21 +74,6 @@ body {
     padding-left: 96px;
 }
 
-.summary-header-container {
-    display: flex;
-    align-items: center;
-    margin-top: 110px;
-    width: 730px;
-    height: 73px;
-}
-
-.summary-header-container h1 {
-    font-style: normal;
-    width: 294px;
-    height: auto;
-    font-size: 68px;
-    font-weight: 700;
-}
 
 .summary-header-seperation-bar {
     background-color: rgb(41, 171, 226);
@@ -141,13 +150,6 @@ body {
     align-items: center;
 }
 
-.summary-amount-of-to-do-number {
-    font-family: Inter;
-    text-align: center;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 600;
-}
 
 .summary-amount-of-to-do-number {
     font-family: Inter;

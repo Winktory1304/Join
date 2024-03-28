@@ -71,6 +71,45 @@
     margin-left: 100px;
 }
 
+
+.header-menu {
+	display: inline-flex;
+	position: absolute;
+	top: 100px;
+	right: 20px;
+	padding: 10px;
+	flex-direction: column;
+	align-items: flex-start;
+	border-radius: 20px 0px 20px 2px;
+	background-color: #2A3647;
+	box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
+	transform: translateY(0px);
+	z-index: 2;
+	transition: transform 125ms ease-in-out, z-index 125ms ease-in-out;
+}
+
+.hide-header-menu {
+	display: none;
+}
+
+
+.header-menu-button {
+	text-decoration: none;
+	color: rgb(205,205,205);
+	display: flex;
+	width: 140px;
+	height: 46px;
+	padding: 8px 16px;
+	align-items: center;
+	gap: 8px;
+	border-radius: 8px;
+}
+
+.header-menu-button:hover {
+	background-color: rgb(45, 61, 89);
+}
+
+
 .logged-user-icon {
     display: flex;
     align-items: center;
@@ -102,8 +141,6 @@
             rgba(255, 255, 255, 1) 100%);
 }
 
-
-
 .help-user-container {
     display: flex;
     justify-content: flex-end;
@@ -119,9 +156,6 @@
 .help-link:hover {
     height: 26px;
 }
-
-
-
 
 .footer-sidebar {
     display: flex;
