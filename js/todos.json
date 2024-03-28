@@ -1,0 +1,62 @@
+[
+    {
+        "id": 0,
+        "tag": "User Story",
+        "title": "Dies ist meine Aufgabe",
+        "task": "Testtask",
+        "subtasksdone": [0, 1],
+        "subtasks": ["subtask1", "subtask2"],
+        "date": "08/08/2024",
+        "priority": 3,
+        "contacts": ["Max Mustermann"],
+        "status": "open"
+    },
+    {
+        "id": 1,
+        "tag": "User Story",
+        "title": "Fix the login issue",
+        "task": "Investigate and fix the login issue on the website",
+        "subtasksdone": [0,0,0],
+        "subtasks": ["Investigate the issue", "Identify the root cause", "Implement the fix"],
+        "date": "08/10/2024",
+        "priority": 2,
+        "contacts": ["John Doe", "Jane Smith"],
+        "status": "open"
+    },
+    {
+        "id": 2,
+        "tag": "Technical Task",
+        "title": "Add search functionality",
+        "task": "Implement search functionality on the website",
+        "subtasksdone": [0, 0, 0, 0],
+        "subtasks": ["Design the search UI", "Implement the search algorithm", "Test the search functionality", "Deploy the changes"],
+        "date": "08/12/2024",
+        "priority": 1,
+        "contacts": ["Alice Johnson"],
+        "status": "progress"
+    },
+    {
+        "id": 3,
+        "tag": "Technical Task",
+        "title": "Update documentation",
+        "task": "Update the project documentation with the latest changes",
+        "subtasksdone": [],
+        "subtasks": [],
+        "date": "08/15/2024",
+        "priority": 2,
+        "contacts": ["Bob Smith"],
+        "status": "feedback"
+    },
+    {
+        "id": 4,
+        "tag": "User Story",
+        "title": "Create user profile page",
+        "task": "Design and implement the user profile page",
+        "subtasksdone": [0, 0, 0],
+        "subtasks": ["Design the UI", "Implement the functionality", "Test the user profile page"],
+        "date": "08/18/2024",
+        "priority": 3,
+        "contacts": ["Emily Brown", "Michael Johnson"],
+        "status": "done"
+    }
+]

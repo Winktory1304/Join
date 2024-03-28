@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/navbar_sidebar.css">
+    <script src="../js/include.js"></script>
 
     <title>contacts</title>
+
 </head>
 
-<body>
-    <header class="header"></header>
+<body onload="init()">
+    <div w3-include-html="./template/sidebar.html"></div>
+    <div w3-include-html="./template/navbar.html"></div>
     <div class="main">
-        <div class="sidebar"></div>
         <div class="content-container">
             <div id="addContactBtn" class="contacts-content">
                 <button onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
@@ -28,21 +32,7 @@
                         </g>
                     </svg>
                 </button>
-                <div class="render-contacts-container">labore,
-                    nesciunt, corporis illo iste nisi tempore excepturi, fuga doloremque suscipit et delectus quas!
-                    Aperiam at
-                    distinctio neque exercitationem officiis. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Vero
-                    cumque, impedit veniam totam, ad animi temporibus corporis officia consequatur illum repudiandae
-                    culpa
-                    voluptas? Vero facere cupiditate aliquam quo cum? Pariatur. Lorem ipsum dolor sit, amet consectetur
-                    adipisicing elit. Nulla, ut fugit aperiam temporibus voluptatem voluptate saepe. Similique facere
-                    alias
-                    laboriosam suscipit odio minima commodi ipsa, recusandae porro sed molestias provident. Lorem ipsum,
-                    dolor
-                    sit amet consectetur adipisicing elit. Provident consequatur enim eos quaerat ex beatae reiciendis
-                    aliquid
-                    illo inventore laborum animi rep
+                <div id="contactsRenderContent" class="render-contacts-container">
                 </div>
             </div>
             <div class="contacts-overview">
@@ -51,10 +41,34 @@
                     <div class="contacts-placeholder-seperator"></div>
                     <div class="contacts-placeholder-text">Better with a team</div>
                 </div>
+                <div class="detail-view">
+                    <div class="detail-view-child1">
+                        <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="42" height="42" rx="21" fill="white" />
+                            <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2" />
+                            <path
+                                d="M13.0222 25H11.9142L15.1188 16.2727H16.2097L19.4142 25H18.3063L15.6983 17.6534H15.6301L13.0222 25ZM13.4313 21.5909H17.8972V22.5284H13.4313V21.5909ZM20.7736 16.2727H22.035L25.0009 23.517H25.1032L28.0691 16.2727H29.3304V25H28.3418V18.3693H28.2566L25.5293 25H24.5748L21.8475 18.3693H21.7623V25H20.7736V16.2727Z"
+                                fill="white" />
+                        </svg>
+                        <div class="detail-view-box">
+                            <div class="detail-view-name">
+                                First LastName
+                            </div>
+                            <div class="detail-view-symbols">
+                                Edit Delete
+                            </div>
+                        </div>
+                    </div>
+                    <div>Contact Information</div>
+
+                </div>
             </div>
         </div>
     </div>
+
     <!--Modal-->
+
     <div id="contactModal" class="modal">
         <!-- Modal content -->
         <div id="modalContent" class="modal-content">
@@ -121,21 +135,35 @@
             </div>
 
             <div class="modal-part-3">
-                <span onclick="closeModal()" class="close">&times;</span>
+                <span onclick="closeModal()" class="close">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_156275_4110" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                            width="24" height="24">
+                            <rect width="24" height="24" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_156275_4110)">
+                            <path
+                                d="M12 13.4L7.10005 18.3C6.91672 18.4834 6.68338 18.575 6.40005 18.575C6.11672 18.575 5.88338 18.4834 5.70005 18.3C5.51672 18.1167 5.42505 17.8834 5.42505 17.6C5.42505 17.3167 5.51672 17.0834 5.70005 16.9L10.6 12L5.70005 7.10005C5.51672 6.91672 5.42505 6.68338 5.42505 6.40005C5.42505 6.11672 5.51672 5.88338 5.70005 5.70005C5.88338 5.51672 6.11672 5.42505 6.40005 5.42505C6.68338 5.42505 6.91672 5.51672 7.10005 5.70005L12 10.6L16.9 5.70005C17.0834 5.51672 17.3167 5.42505 17.6 5.42505C17.8834 5.42505 18.1167 5.51672 18.3 5.70005C18.4834 5.88338 18.575 6.11672 18.575 6.40005C18.575 6.68338 18.4834 6.91672 18.3 7.10005L13.4 12L18.3 16.9C18.4834 17.0834 18.575 17.3167 18.575 17.6C18.575 17.8834 18.4834 18.1167 18.3 18.3C18.1167 18.4834 17.8834 18.575 17.6 18.575C17.3167 18.575 17.0834 18.4834 16.9 18.3L12 13.4Z"
+                                fill="#2A3647" />
+                        </g>
+                    </svg></span>
                 <form class="contact-modal-form">
-                    <input class="contact-modal-input input-name-img" type="text" placeholder="Name">
-                    <input class="contact-modal-input input-email-img" required type="email" placeholder="Email">
-                    <input class="contact-modal-input input-phone-img" required type="number" placeholder="Phone">
+                    <input class="contact-modal-input input-name-img" id="create-contact-name-input" type="text"
+                        placeholder="Name">
+                    <input class="contact-modal-input input-email-img" id="create-contact-email-input" required
+                        type="email" placeholder="Email">
+                    <input class="contact-modal-input input-phone-img" id="create-contact-phone-input" required
+                        type="number" placeholder="Phone">
                 </form>
                 <div class="modal-part-3-buttons-container">
-                    <button class="modal-part-3-cancel-button">
+                    <button class="modal-part-3-cancel-button" onclick="closeModal()">
                         Cancel
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z"
                                 stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg></button>
-                    <button class="modal-part-3-create-button">
+                    <button class="modal-part-3-create-button" onclick="addNewContact()">
                         Create contact
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_155331_3981" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -160,7 +188,12 @@
 
 
 
+
 </body>
+<script>
+    includeHTML();
+</script>
 <script src="/js/contacts.js"></script>
+
 
 </html>

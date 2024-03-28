@@ -155,9 +155,6 @@ h4 {
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
-
-.board_plus {
     cursor: pointer;
 }
 
@@ -292,4 +289,192 @@ h4 {
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
+}
+
+.board_taskcard {
+
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 40px;
+    gap: 24px;
+
+    position: relative;
+    width: 525px;
+    height: 900px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    margin-left: 35%;
+    z-index: 2;
+
+    transition: transform 0.3s ease-in-out;
+    animation: slide-in 0.3s ease-in-out;
+
+    
+    transform: translateX(0);
+    animation-fill-mode: forwards;
+
+}
+@keyframes slide-in {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.board_openCard {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    background-color: rgba(0, 0, 0, 0.603);
+
+    
+}
+
+.d-none{
+    display: none;
+}
+
+.board_cardnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.board_opencardtag {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px 16px;
+    gap: 10px;
+
+    width: 150px;
+    height: 27px;
+
+    /* background: #0038FF; */
+    border-radius: 8px;
+
+    color: #FFFFFF;
+    align-items: center;
+    font-size: 21px;
+    font-weight: 700;
+    justify-content: center;
+}
+.board_cardclosed {
+    font-size: 21px;
+    cursor: pointer;
+}
+
+
+.board_cardheadline {
+    width: 100%;
+    font-size: 61px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.board_text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+
+}
+
+.board_deledit {
+    align-self: self-end;
+}
+
+.board_subtasks {
+    list-style: none;
+}
+
+.board_assigned {
+    list-style: none;
+}
+
+.board_assigneditem {
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    top: 4px;
+    left: 4px;
+    gap: 0px;
+    border-radius: 3px 0px 0px 0px;
+    border: 2px 0px 0px 0px;
+    opacity: 0px;
+}
+
+.board_cardexit{
+    cursor: pointer;
+}
+
+.board_subitem{
+    display: flex;
+    gap: 10px;
+}
+
+.board_addTask {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.603);
+    
+}
+
+.board_addtaskcard{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 48px 40px;
+    width: 1116px;
+    height: 870px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    margin-left: 22%;
+    margin-top: 35px;
+    z-index: 2;
+
+    
+    transition: transform 0.3s ease-in-out;
+    animation: slide-in 0.3s ease-in-out;
+
+    
+    transform: translateX(0);
+    animation-fill-mode: forwards;
+}
+
+
+.board_deledit{
+
+    cursor: pointer;
+}
+
+.board_deledit:hover{
+    color: #FF0000;
 }
