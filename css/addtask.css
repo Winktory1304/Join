@@ -330,7 +330,7 @@ color: black !important;
     font-family: "Inter";
 }
 
-.addtask-button-create-task {
+.addtask-button-create-task{
     width: 183px;
     height: 56px;
     border-radius: 10px;
@@ -376,7 +376,7 @@ color: black !important;
 
 }
 
-.addtask-button-create-task:hover {
+.addtask-button-create-task:hover:enabled {
     cursor: pointer;
     background-color: #29ABE2;
     border: 1px solid #29abe2;

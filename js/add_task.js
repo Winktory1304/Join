@@ -28,6 +28,10 @@ let subtaskdone = [];
  */
 let contacts = [];
 
+
+let resultValidation = false;
+
+
 /**
  * Reads the todo tasks from the server.
  */
@@ -35,6 +39,17 @@ function readServerData() {
   readJSON(key, todos);
   console.log(todos);
 }
+
+let title = document.getElementById('addtask-input-title');
+let date = document.getElementById('addtask-input-date');
+let category = document.getElementById('addtask-input-category');
+let createTaskButton = document.getElementById('addtask-button-create-task');
+
+function initTask() {
+  readServerData();
+  validateInput();
+}
+
 
 /**
  * Adds a task to the todo list.
@@ -99,11 +114,15 @@ function addSubtask() {
  * Validates the input fields and enables/disables the create task button accordingly.
  */
 function validateInput() {
-  var resultValidation = validateForm();
-  if (resultValidation == false) {
-    document.getElementById("addtask-button-create-task").disabled = true;
-  } else {
-    document.getElementById("addtask-button-create-task").disabled = false;
+  
+  resultValidation = validateForm();
+  const button =  document.getElementById("addtask-button-create-task");
+  if (resultValidation) {
+    button.disabled = false;
+    
+  }
+  else {
+    button.disabled = true;
   }
 }
 
@@ -170,34 +189,39 @@ function checkId() {
  * @returns {boolean} - The validation result.
  */
 function validateForm() {
-  if (document.getElementById("addtask-input-title").value === '') {
+  if (document.getElementById("addtask-input-title").value !== '' && document.getElementById("addtask-input-date").value !== '' && document.getElementById("addtask-input-category").value !== '') {
+    return true;
+    
+  } else {
+    
     return false;
   }
-  if (document.getElementById("addtask-input-date").value === '') {
-    return false;
-  }
-  if (document.getElementById("addtask-input-category").value === '') {
-    return false;
-  }
-  return true;
 }
 
 /**
  * Checks if any of the required fields are empty and shows error messages accordingly.
  */
-function checkFieldEmpty() {
-  if (document.getElementById("addtask-input-title").value === '') {
-    document.getElementById("messagedatevalidationTitel").classList.remove("d-none");
+function checkFieldEmpty(name, blub) {
+  if (document.getElementById(name).value === '') {
+    document.getElementById(blub).classList.remove("d-none");
   }
-  if (document.getElementById("addtask-input-date").value === '') {
-    document.getElementById("messagedatevalidationDate").classList.remove("d-none");
+  else {
+    document.getElementById(blub).classList.add("d-none");
   }
-  if (document.getElementById("addtask-input-date").value === '') {
-    document.getElementById("messagedatevalidationCategory").classList.remove("d-none");
+  // if ( !== '') {
+  //   document.getElementById("addtask-input-date").classList.add("addtaskBlack");
+  // }
+}
+
+function checkFieldEmpty2(name, blub) {
+  if (document.getElementById(name).value === '') {
+    document.getElementById(blub).classList.remove("d-none");
   }
-  if (document.getElementById("addtask-input-date").value !== '') {
-    document.getElementById("addtask-input-date").classList.add("addtaskBlack");
-  }
+  else 
+    document.getElementById(blub).classList.add("d-none");
+  // if ( !== '') {
+  //   document.getElementById("addtask-input-date").classList.add("addtaskBlack");
+  // }
 }
 
 
