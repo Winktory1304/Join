@@ -351,6 +351,20 @@ function addTask() {
     `;
 
 }
+function searchTask() {
+    document.getElementById('board_findTask_input').onkeydown = function () {
+        var search = document.getElementById('board_findTask_input').value;
+        var searchArray = todos.filter(t => t.title.includes(search));
+        document.getElementById('board_open').innerHTML = '';
+        for (let index = 0; index < searchArray.length; index++) {
+            const element = searchArray[index];
+            document.getElementById('board_open').innerHTML += generateTodoHTML(element);
+        }
+    }
+    
+}
+
+
 
 /**
  * Deletes a task from the todos array based on the given title.
