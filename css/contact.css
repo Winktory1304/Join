@@ -103,7 +103,7 @@ body {
 
 .contacts-overview {
     display: flex;
-    justify-content: center;
+    flex-direction: column;   
     flex: 1;
     background-color:  #F6F7F8;
 }
@@ -112,9 +112,10 @@ body {
     display: flex;
     height: 73px;
     align-items: center;
-    gap: 30px;
-    justify-content: center;
+    gap: 30px;    
     margin-top: calc(206px - 96px);
+    margin-bottom: 32px;
+    margin-left: 58px;
 }
 
 .contacts-placeholder-font1 {
@@ -219,13 +220,13 @@ body {
     animation-timing-function: ease-out;
     /* Timing-Funktion der Animation */
 }
-.detail-view-modal{
+/* .detail-view-modal{
     display: flex;
     background-color: #F6F7F8;
     width: 461px;
     height: 364px;
 
-}
+} */
 
 /* The Close Button */
 .close {
@@ -427,6 +428,35 @@ body {
 .profil-badage {
     font-size: 12px;
     font-weight: 400;
+}
+
+.detail-view{
+    display: flex;
+    border: 1px solid blue;
+    
+    height: 364px;
+    margin-left: 65px;
+    
+
+}
+.detail-view-child1{
+    display: flex;
+    width: 100%;
+    border: 1px solid green;
+    height: 120px;
+}
+.detail-view-box{
+    margin-left: 54px;
+}
+.detail-view-name{
+    margin-top: 16px;
+    font-size: 47px;
+    gap:5px;
+    font-weight: 500px;
+}
+.detail-view-symbols{
+    font-size: 16px;
+    gap: 8px;
 }
 
 
