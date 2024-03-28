@@ -14,11 +14,8 @@ async function loadUsers() {
          * Das Ergebnis wird in der Variable x gespeichert.
          * Danach wird auf die Ebene gecastet, die wir haben wollen.
          */
-        let usersData = await getItem('users');
-        let users = JSON.parse(usersData.data.value);
-
-        console.log('E-Mail:', users[0].email);
-        console.log('Passwort:', users[0].password);
+        
+        readJSON('users', users);
 
 
         // users = JSON.parse(await getItem('users'));

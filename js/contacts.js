@@ -1,6 +1,13 @@
 let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"
 ]
-let contacts =
+
+let contacts = [];
+let contactupdated = [];
+
+let users = [];
+
+//Array zum pushen into the storage with the key 'contacts'
+let contactstopush =
     [
         {
             "firstName": "Anna",
@@ -124,10 +131,82 @@ let contacts =
         }
     ]
 
+function deleteContact(email) {
+    
+    contactupdated = contacts.filter(item => item.email !== email);
+    contacts = [];
+    try {
+        setItem('contacts', contactupdated).then(() => {;readServerData();;renderContacts();});
+        console.log('Daten aktualisiert');
+    } catch (error) {
+        console.error('Error deleting contact', error);
+    }
+    
+    
+}
+
+// function getUsersintoContacts() {
+//     users = [];
+//     try {
+//         readJSON('users', users);
+//     } catch (error) {
+//         console.error('Loading error:', error);
+//     }
+//     users.forEach(user => {
+//         // Check if user already exists in contacts
+//         if (!contacts.some(contact => contact.email === user.email)) {
+//             contactupdated.push({
+//                 "firstName": user.name.split(' ')[0],
+//                 "lastName": user.name.split(' ')[1],
+//                 "email": user.email,
+//                 "phoneNumber": "",
+//                 "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
+//                 "color": getRandomColor()
+//             });
+
+//         }
+//     });
+
+//     setItem('contacts', contactupdated).then (() => {;readServerData();;renderContacts();})
+    
+// }
+
+
+function resetContacts() {
+    contacts= [];
+    try {
+        setItem('contacts', contactstopush).then(() => {;readServerData();renderContacts();});
+    } catch (error) {
+        console.error('Error deleting contacts', error);
+    }
+}
+
+
+
+function readServerData() {
+    
+    try {
+        
+        readJSON('contacts', contacts).then(() => { renderContacts() });
+        console.log('Daten geladen');
+    } catch (error) {
+        console.error('Loading error:', error);
+    }
+    
+
+}
 
 function init() {
+    readServerData();
+    // getUsersintoContacts();
+    renderContacts();
+}
+
+
+
+function renderContacts() {
     let groupedContacts = groupContactsByInitial();
-    console.log(groupedContacts);
+    // console.log(groupedContacts);
     let content = document.getElementById('contactsRenderContent');
     content.innerHTML = '';
     let counter = 0;
@@ -172,7 +251,7 @@ function groupContactsByInitial() {
 }
 
 
-function openDetailedContactsView(contactId){
+function openDetailedContactsView(contactId) {
     console.log(contactId);
 
 }
@@ -217,12 +296,21 @@ function createNewContact(names, email, phone) {
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
+        try {
+            setItem('contacts', contacts);
+            console.log('Daten aktualisiert');
+        } catch (error) {
+            console.error('Error adding contact', error);
+        }
         clearInputFields();
-        init();
+        renderContacts();
     } else {
         alert("Dieser Kontakt ist schon vorhanden");
     }
 }
+
+
+
 
 
 function clearInputFields() {

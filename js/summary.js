@@ -24,7 +24,7 @@ function showAllNumbers() {
 
 
 function showNumberOfToDo() {
-    let amount = todos.filter(t => t['category'] == 'open');
+    let amount = todos.filter(t => t['status'] == 'open');
 
     document.getElementById('number_of_to_do').innerHTML = '';
     document.getElementById('number_of_to_do').innerHTML = amount.length;
@@ -32,7 +32,7 @@ function showNumberOfToDo() {
 
 
 function showNumberOfDone() {
-    let amount = todos.filter(t => t['category'] == 'done');
+    let amount = todos.filter(t => t['status'] == 'done');
 
     document.getElementById('number_of_done').innerHTML = '';
     document.getElementById('number_of_done').innerHTML = amount.length;
@@ -54,14 +54,14 @@ function showNumberOfTasksInBoard() {
 
 
 function showNumberOfTaskaInProgress() {
-    let amount = todos.filter(t => t['category'] == 'progress');
+    let amount = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('number_of_tasks_in_progress').innerHTML = '';
     document.getElementById('number_of_tasks_in_progress').innerHTML = amount.length;
 }
 
 function showNumberOfAwaitingFeedback() {
-    let amount = todos.filter(t => t['category'] == 'feedback');
+    let amount = todos.filter(t => t['status'] == 'feedback');
 
     document.getElementById('number_of_awaiting_feedback').innerHTML = '';
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;

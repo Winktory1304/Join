@@ -34,7 +34,7 @@ async function getItem(key) {
 
 /**
  * Writes JSON data to an existing item in the storage.
- * @param {string} key - The key of the item to write JSON data to.
+ * @param {string} key - The key of the item to retrieve.
  * @param {Array} array - The array containing the JSON data to write.
  * @returns {void}
  */
