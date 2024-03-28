@@ -153,7 +153,12 @@ function indexOfUsers(email) {
 
 
 function logInGuest() {
+    guest = document.getElementById('user_name');
     window.location.href = 'html/summary.html';
+    userIndex = -1;
+    localStorage.setItem('currentUserIndex', userIndex);
+    guest.innerHTML = '';
+    guest.innerHTML = 'Guest';
 }
 
 

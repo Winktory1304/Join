@@ -3,9 +3,3 @@ function registerWindow() {
     document.getElementById('sing_up_container').classList.remove('d-none');
     document.getElementById('log_container').classList.add('height-sing-up');
 }
-
-
-
-
-
-
