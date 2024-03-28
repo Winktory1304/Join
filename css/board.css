@@ -28,18 +28,21 @@
 .board_body {
     position: fixed;
     top: 0px;
-    width: 1440px;
-    height: 1024px;
+    width: 100vw;
+    height: 100vh;
     background-color: #F5F5F5;
 }
 
 .board_content {
     position: fixed;
     top: 104px;
-    width: 1209px;
-    height: 928px;
+    width: 100%;
+    height: 100%;
     margin-left: 232px;
+    scrollbar-width: thin;
+    overflow-y: auto;
 }
+
 
 .board_top {
     display: flex;
@@ -54,10 +57,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 64px;
-    width: 1056px;
+    width: 1500px;
     height: 73px;
     margin-top: 50px;
+    margin-right: 100px;
 }
 
 .board_headline {
@@ -65,6 +68,8 @@
     margin-block-end: 0em;
     font-size: 61px;
     font-weight: 700;
+    text-align: left;  
+    margin-left: -20%;
 }
 
 .board_findTask {
@@ -72,6 +77,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-right: -10%;
 }
 
 input {
@@ -128,9 +134,10 @@ input {
 
 .board_kanbanheadline {
     display: flex;
-    justify-content: space-between;
+    justify-content: row;
     align-items: center;
-    width: 1056px;
+    min-width: 100vw;
+    margin-left: 116px;
     height: 24px;
     gap: 25px;
 }
@@ -138,16 +145,22 @@ input {
 h4 {
     margin-block-start: 0em;
     margin-block-end: 0em;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
     text-align: left;
 }
 
 .row {
     display: flex;
-    align-items: center;
-    width: 25%;
     justify-content: space-between;
+    align-items: center;
+    justify-content: row;
+    width: 430px;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+.row img {
+    margin-left: 10px;
 }
 
 .board_plus {
@@ -168,12 +181,12 @@ h4 {
 
 .board_tasks {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     margin-top: 10px;
-    width: 1056px;
+    min-width: 85%;
+    margin-left: -10%;
     height: 928px;
-    gap: 10px;
+    gap: 110px;
+    
 
 }
 
@@ -187,8 +200,10 @@ h4 {
     align-items: center;
     gap: 10px;
 
-    width: 252px;
-    height: 263px;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 15px;
+
 
     /* white */
     background: #FFFFFF;
@@ -203,20 +218,75 @@ h4 {
     cursor: pointer;
 
 }
+
+.board_task h3 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: left;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-top: 10px;
+}
+
+.board_notask {
+    /* Cards */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    height: 40px;
+    padding: 24px;
+
+
+
+    /* white */
+    background: #747474;
+    border-radius: 24px;
+    border: #000000 5px dashed;
+    opacity: 0.5;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    cursor: pointer;
+
+}
+
+.board_nocardcontent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    height: 232px;
+    gap: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 25px;
+
+}
+
+
 .board_cardcolumn{
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 252px;
-    height: 526px;
+    gap: 0px;
+    width: 20%;
+    min-height: 1500px;
 
 }
 .board_cardcontent {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 232px;
-    height: 192px;
+    gap: 15px;
+    width: 400px;
+    margin-top: 0px;
 }
 
 .board_cardtag {
@@ -226,8 +296,8 @@ h4 {
     padding: 4px 16px;
     gap: 10px;
 
-    width: 150px;
-    height: 27px;
+    width: 160px;
+    height: 40px;
 
     /* background: #0038FF; */
     border-radius: 8px;
@@ -267,20 +337,15 @@ h4 {
     margin-right: 10px;
 }
 
-
-
-
-.drag-area {
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.1);
+.drag-area-highlight {
+    background-color: rgba(0, 0, 0, 0.3);
     border: 1px dashed black;
     margin-bottom: 50px;
     display: flex;
     align-items: flex-start;
-}
-
-.drag-area-highlight {
-    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    padding-right: 80px !important;
 }
 
 .todo {

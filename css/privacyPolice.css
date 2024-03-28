@@ -40,9 +40,12 @@
 .privacy-content {
     position: fixed;
     top: 104px;
-    width: 1209px;
-    height: 928px;
+    width: 1180px;
+    height: 918px;
     margin-left: 260px;
+    scrollbar-width: thin;
+    scrollbar-color: #e0e0e0 #F6F7F8;
+    overflow-y: auto;
 }
 
 /* addtask fonts */
