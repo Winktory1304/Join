@@ -5,6 +5,7 @@
 let todos = [];
 let updatedArray = [];
 let usersdome = [];
+let contacts = [];
 
 /**
  * The key used for storing the todos in the server.
@@ -39,11 +40,18 @@ function init() {
  */
 function readServer() {
     try {
+        readJSON('contacts', contacts);
         readJSON(key, todos).then (() => {;updateHTML();});
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
+function gotoContact(){
+    todos[0].contacts[0]
+}
+
+
 
 /**
  * The currently dragged element.

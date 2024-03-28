@@ -27,6 +27,7 @@ let subtaskdone = [];
  * @type {Array}
  */
 let contacts = [];
+let selectedContacts = [];
 
 
 let resultValidation = false;
@@ -36,9 +37,29 @@ let resultValidation = false;
  * Reads the todo tasks from the server.
  */
 function readServerData() {
+  readJSON('contacts', contacts);
   readJSON(key, todos);
-  console.log(todos);
 }
+
+
+function test() {
+  document.getElementById('addtask-input-assigned').innerHTML = '';
+  contacts.forEach((element) => {
+    document.getElementById('addtask-input-assigned').innerHTML += `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">${element.firstName} ${element.lastName}</option>`;
+  });
+
+  if (contacts.length === 0) {
+    document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
+  }
+
+  document.getElementById('addtask-input-assigned').addEventListener('change', function () {
+
+  });
+
+
+}
+
+
 
 let title = document.getElementById('addtask-input-title');
 let date = document.getElementById('addtask-input-date');
@@ -48,6 +69,10 @@ let createTaskButton = document.getElementById('addtask-button-create-task');
 function initTask() {
   readServerData();
   validateInput();
+
+  readServerData()
+
+
 }
 
 
@@ -68,15 +93,15 @@ function addTask() {
 
 
 
-  // Popup erstellen
+// Popup erstellen
 function addTaskPopup() {
-    var popup = document.getElementById('popup');
-    popup.style.display = 'block';
-  
-    setTimeout(function() {
-      popup.style.display = 'none';
-    }, 1000);
-  }
+  var popup = document.getElementById('popup');
+  popup.style.display = 'block';
+
+  setTimeout(function () {
+    popup.style.display = 'none';
+  }, 1000);
+}
 
 /**
  * Clears the input fields.
@@ -96,17 +121,17 @@ function clearInputs() {
 function addSubtask() {
   var input = document.getElementById("addtask-input-subtasks");
   var container = document.getElementById("subtaskListContainer");
-  
+
   var subtaskText = input.value;
   subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
-  
+
   var subtaskElement = document.createElement("li");
   subtaskElement.textContent = subtaskText;
   subtaskElement.style.paddingLeft = "16px";
   subtaskElement.style.fontSize = "18px";
-  
+
   container.parentNode.appendChild(subtaskElement);
-  
+
   input.value = ""; // Optional: Clear the input field after adding the subtask
 }
 
@@ -114,12 +139,12 @@ function addSubtask() {
  * Validates the input fields and enables/disables the create task button accordingly.
  */
 function validateInput() {
-  
+
   resultValidation = validateForm();
-  const button =  document.getElementById("addtask-button-create-task");
+  const button = document.getElementById("addtask-button-create-task");
   if (resultValidation) {
     button.disabled = false;
-    
+
   }
   else {
     button.disabled = true;
@@ -134,7 +159,9 @@ function pushJSON() {
   var subtasksValue = document.getElementById('addtask-input-subtasks').value;
   var dateValue = document.getElementById('addtask-input-date').value;
   var categoryValue = document.getElementById('addtask-input-category').value;
+  var contactsValue = document.getElementById('addtask-input-assigned').value;
 
+  let x = [contactsValue];
 
   if (subtasksValue !== '') {
     subtask.push(subtasksValue);
@@ -150,9 +177,11 @@ function pushJSON() {
     'date': dateValue,
     'tag': categoryValue,
     'priority': 1,
-    'contacts': contacts,
+    'contacts': x,
     'status': 'open'
   });
+
+  setItem(key, todos);
 
   console.log(todos);
 }
@@ -191,38 +220,13 @@ function checkId() {
 function validateForm() {
   if (document.getElementById("addtask-input-title").value !== '' && document.getElementById("addtask-input-date").value !== '' && document.getElementById("addtask-input-category").value !== '') {
     return true;
-    
+
   } else {
-    
+
     return false;
   }
 }
 
-/**
- * Checks if any of the required fields are empty and shows error messages accordingly.
- */
-function checkFieldEmpty(name, blub) {
-  if (document.getElementById(name).value === '') {
-    document.getElementById(blub).classList.remove("d-none");
-  }
-  else {
-    document.getElementById(blub).classList.add("d-none");
-  }
-  // if ( !== '') {
-  //   document.getElementById("addtask-input-date").classList.add("addtaskBlack");
-  // }
-}
-
-function checkFieldEmpty2(name, blub) {
-  if (document.getElementById(name).value === '') {
-    document.getElementById(blub).classList.remove("d-none");
-  }
-  else 
-    document.getElementById(blub).classList.add("d-none");
-  // if ( !== '') {
-  //   document.getElementById("addtask-input-date").classList.add("addtaskBlack");
-  // }
-}
 
 
 
