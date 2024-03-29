@@ -127,27 +127,27 @@ let contactstopush =
             "color": "rgb(31,215,193)"
         }
     ]
-    
-    function init() {
-        readServerData();
-        removeDuplicateContacts()
-        // getUsersintoContacts();
-        renderContacts();
-    }
-    
-    function deleteContact(email) {
-        contactupdated = contacts.filter(item => item.email !== email);
-        contacts = [];
-        try {
-            setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
-            console.log('Daten aktualisiert');
-        } catch (error) {
-            console.error('Error deleting contact', error);
+
+async function init() {
+    await readServerData();
+    removeDuplicateContacts()
+    await getUsersintoContacts();
+    renderContacts();
+}
+
+function deleteContact(email) {
+    contactupdated = contacts.filter(item => item.email !== email);
+    contacts = [];
+    try {
+        setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
+        console.log('Daten aktualisiert');
+    } catch (error) {
+        console.error('Error deleting contact', error);
     }
 }
 
 async function getUsersintoContacts() {
-    
+
     try {
         let users = [];
         await readJSON('users', users);
@@ -207,10 +207,11 @@ function resetContacts() {
 }
 
 
-function readServerData() {
+async function readServerData() {
     try {
-        readJSON('contacts', contacts).then(() => { renderContacts() });
-        console.log('Daten geladen');
+        await readJSON('contacts', contacts); // Warte auf das Laden der Daten
+        console.log('Daten geladen:', contacts);
+        renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
         console.error('Loading error:', error);
     }
