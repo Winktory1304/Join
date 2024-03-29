@@ -41,14 +41,20 @@ function readServerData() {
   readJSON(key, todos);
 }
 
+function getReady() {
+  test(contacts);
+}
 
-function test() {
+
+function test(array) {
+
+
   document.getElementById('addtask-input-assigned').innerHTML = '';
-  contacts.forEach((element) => {
+  array.forEach((element) => {
     document.getElementById('addtask-input-assigned').innerHTML += `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">${element.firstName} ${element.lastName}</option>`;
   });
 
-  if (contacts.length === 0) {
+  if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
 

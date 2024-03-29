@@ -2,53 +2,55 @@
  * The array that stores the todo tasks.
  * @type {Array}
  */
-let todos = [];
+let todosdome = [];
 let updatedArray = [];
 let usersdome = [];
-let contacts = [];
+let contactsdome = [];
 
 /**
- * The key used for storing the todos in the server.
+ * The keydome used for storing the todosdome in the server.
  * @type {string}
  */
-let key = 'todos';
+let keydome = 'todos';
 
 
 function deleteALL() {
-    todos = [];
+    todosdome = [];
     writeServer();
     updateHTML();
 }
 
 /**
- * Writes the todos array to the server.
+ * Writes the todosdome array to the server.
  */
 function writeServer() {
-    setItem(key, todos);
+    setItem(keydome, todosdome);
     console.log('Daten aktualisiert!');
 }
 
 /**
- * Initializes the board by reading the todos from the server.
+ * Initializes the board by reading the todosdome from the server.
  */
 function init() {
     readServer();
 }
 
 /**
- * Reads the todos from the server and updates the HTML elements on the board.
+ * Reads the todosdome from the server and updates the HTML elements on the board.
  */
 function readServer() {
+    contactsdome = [];
+    todosdome = [];
     try {
-        readJSON('contacts', contacts);
-        readJSON(key, todos).then (() => {;updateHTML();});
+        readJSON('contacts', contactsdome);
+        readJSON(keydome, todosdome).then (() => {;updateHTML();});
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
 function gotoContact(){
-    todos[0].contacts[0]
+    todosdome[0].contactsdome[0]
 }
 
 
@@ -60,10 +62,10 @@ function gotoContact(){
 let currentDraggedElement;
 
 /**
- * Updates the HTML elements on the board based on the todos array.
+ * Updates the HTML elements on the board based on the todosdome array.
  */
 function updateHTML() {
-    let open = todos.filter(t => t['status'] == 'open');
+    let open = todosdome.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
     if (open.length === 0) {
@@ -79,7 +81,7 @@ function updateHTML() {
 
 
 
-    let inProgress = todos.filter(t => t['status'] == 'progress');
+    let inProgress = todosdome.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
     if (inProgress.length === 0) {
@@ -94,7 +96,7 @@ function updateHTML() {
 
 
 
-    let inFeedback = todos.filter(t => t['status'] == 'feedback');
+    let inFeedback = todosdome.filter(t => t['status'] == 'feedback');
 
     document.getElementById('board_feedback').innerHTML = '';
     if (inFeedback.length === 0) {
@@ -109,7 +111,7 @@ function updateHTML() {
 
 
 
-    let closed = todos.filter(t => t['status'] == 'done');
+    let closed = todosdome.filter(t => t['status'] == 'done');
     
 
     document.getElementById('board_done').innerHTML = '';
@@ -154,9 +156,9 @@ function allowDrop(ev) {
  * @param {string} category - The category to move the element to.
  */
 function moveTo(category) {
-    todos[currentDraggedElement]['status'] = category;
+    todosdome[currentDraggedElement]['status'] = category;
     updateHTML();
-    writeServer(key, todos);
+    writeServer(keydome, todosdome);
 }
 
 /**
@@ -226,7 +228,7 @@ function subTasks(element) {
  */
 function subTaskscomplete(id) {
 
-    let subtasksdone = todos[id].subtasksdone;
+    let subtasksdone = todosdome[id].subtasksdone;
 
     let count = 0;
     for (let i = 0; i < subtasksdone.length; i++) {
@@ -250,7 +252,7 @@ function generateTodoHTML(element) {
                         <p class="board_tasktext">${limitTaskText(element)}</p>
                         <div class="board_cardbar"> ${subTasks(element)}</div>
                         <div class="board_cardbottom">
-                            <div class="board_cardcontacts">Kontakte</div>
+                            <div class="board_cardcontactsdome">Kontakte</div>
                             <div class="board prio">${prioritySelector(element)}</div>
                         </div>
                     </div>
@@ -352,9 +354,9 @@ function addTask() {
 
 }
 function searchTask() {
-    document.getElementById('board_findTask_input').onkeydown = function () {
+    document.getElementById('board_findTask_input').onkeydomedown = function () {
         var search = document.getElementById('board_findTask_input').value;
-        var searchArray = todos.filter(t => t.title.includes(search));
+        var searchArray = todosdome.filter(t => t.title.includes(search));
         document.getElementById('board_open').innerHTML = '';
         for (let index = 0; index < searchArray.length; index++) {
             const element = searchArray[index];
@@ -367,15 +369,15 @@ function searchTask() {
 
 
 /**
- * Deletes a task from the todos array based on the given title.
+ * Deletes a task from the todosdome array based on the given title.
  * @param {string} title - The title of the task to be deleted.
  * @returns {Promise<void>} - A promise that resolves when the task is deleted.
  */
 function deleteTask(title) {
     
-    updatedArray = todos.filter(item => item.title !== title);
-    todos = [];
-    setItem(key, updatedArray).then(() => {;init();});
+    updatedArray = todosdome.filter(item => item.title !== title);
+    todosdome = [];
+    setItem(keydome, updatedArray).then(() => {;init();});
 }
 
 /**
@@ -386,37 +388,38 @@ function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">
                         <div class="board_cardnav">
-                            <div class="board_opencardtag" ${setTag(todos[id])}>
-                                <p>${todos[id].tag}</p>
+                            <div class="board_opencardtag" ${setTag(todosdome[id])}>
+                                <p>${todosdome[id].tag}</p>
                             </div>
                             <div class="board_cardclosed"><p class="board_cardexit" onclick="closeDialog()">X</p>
                             </div>
                         </div>
-                        <div class="board_cardheadline">${todos[id].title}</div>
-                        <div class="board_cardtask board_text">${todos[id].task}</div>
-                        <div class="board_carddate board_text">Due date: ${todos[id].date}</div>
-                        <div class="board_cardprio board_text">Priority: ${setPriority(todos[id])} ${prioritySelector(todos[id])}</div>
-                        <div class="board_assigned board_text" id="board_cardcontacts">
+                        <div class="board_cardheadline">${todosdome[id].title}</div>
+                        <div class="board_cardtask board_text">${todosdome[id].task}</div>
+                        <div class="board_carddate board_text">Due date: ${todosdome[id].date}</div>
+                        <div class="board_cardprio board_text">Priority: ${setPriority(todosdome[id])} ${prioritySelector(todosdome[id])}</div>
+                        <div class="board_assigned board_text" id="board_cardcontactsdome">
                             <h4>Assigned to:</h4>
-                            <!-- Hier kommen die Sachen aus der Funktion contactsLoad die noch erstellt werden muss -->
+                            <!-- Hier kommen die Sachen aus der Funktion contactsdomeLoad die noch erstellt werden muss -->
                             
                         </div>
                         <div class="board_subtasks board_text" id="board_cardsubtasks">
                             <h4>Subtasks</h4></div>
-                        <div class="board_deledit" onclick="deleteTask('${todos[id].title}'), closeDialog()">Delete</div>
+                            <div class="board_deledit" onclick="editTask('${todosdome[id].id}')">Edit</div>
+                        <div class="board_deledit" onclick="deleteTask('${todosdome[id].title}'), closeDialog()">Delete</div>
                     </div>
                     `;
     generateSubtasks(id);
-    generateContacts(id);
+    generatecontactsdome(id);
 }
 
 /**
  * Generates contact cards for a given ID.
  * @param {string} id - The ID of the Task for contact.
  */
-function generateContacts(id) {
-    todos[id].contacts.forEach(contact => {
-        document.getElementById('board_cardcontacts').innerHTML += `<li class="board_assigneditem">
+function generatecontactsdome(id) {
+    todosdome[id].contactsdome.forEach(contact => {
+        document.getElementById('board_cardcontactsdome').innerHTML += `<li class="board_assigneditem">
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
                 <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${getInitials(contact)}</text>
@@ -427,6 +430,37 @@ function generateContacts(id) {
 
 }
 
+
+function editTask(id) {
+    document.getElementById('board_openCard').classList.remove('d-none');
+    document.getElementById('board_openCard').innerHTML = `
+    <div class="board_taskcard">
+        <p onclick="closeTaskDialog()">X</p>
+        <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
+        <input type="text" id="addtask-input-description" value="${todosdome[id].task}" required>
+        <input type="text" id="addtask-input-subtasks" value="${todosdome[id].title}">
+        <input type="date" id="addtask-input-date" value="${todosdome[id].date}" required>
+        <select id="addtask-input-category" required>
+            <option default value="${todosdome[id].tag}">${todosdome[id].tag}</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+        </select>
+        <select class="addtask-input-category"
+                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getarray()"  aria-multiselectable="true">
+                        <option value="" disabled selected>Select user</option>
+                        </select>
+                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="pushJSON(), closeDialog(), readServer()">Update Task</button>
+    </div>
+    `;
+
+// updatedArray = todosdome.filter(item => item.title !== title);
+// todosdome = [];
+// setItem(keydome, updatedArray).then(() => {;init();});
+}
+
+function getarray() {
+    test(contactsdome);
+}
 /**
  * Returns the initials of a given name.
  * @param {string} name - The name to extract initials from.
@@ -450,16 +484,16 @@ function randomColor() {
  * @param {number} id - The ID of the task.
  */
 function generateSubtasks(id) {
-    todos[id].subtasks.forEach((subtask, index) => {
+    todosdome[id].subtasks.forEach((subtask, index) => {
         const checkbox = document.createElement('input');
         checkbox.className = 'checkbox';
         checkbox.type = 'checkbox';
         checkbox.id = `subtask${index}`;
         checkbox.name = `subtask${index}`;
-        checkbox.checked = todos[id].subtasksdone[index] === 1;
+        checkbox.checked = todosdome[id].subtasksdone[index] === 1;
 
         checkbox.addEventListener('change', function () {
-            todos[id].subtasksdone[index] = this.checked ? 1 : 0;
+            todosdome[id].subtasksdone[index] = this.checked ? 1 : 0;
         });
 
         const li = document.createElement('li');

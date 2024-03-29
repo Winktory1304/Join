@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../css/board.css">
     <script src="../js/board.js"></script>
     <script src="../js/storage.js"></script>
+    <link rel="stylesheet" href="../css/fonts.css">
+<link rel="stylesheet" href="../css/addtask.css">
+<script src="../js/add_task.js"></script>
 
 
     <!-- Template -->
@@ -17,20 +20,21 @@
 </head>
 
 <body class="board_body" onload="init()">
-    
-    <div class="board_openCard d-none" id="board_openCard" ></div>
+
+    <div class="board_openCard d-none" id="board_openCard"></div>
     <div class="board_addTask d-none" id="board_addTask" onclick="closeTaskDialog()"></div>
 
 
 
-    <div w3-include-html="./template/sidebar.html"></div> 
-    <div w3-include-html="./template/navbar.html"></div> 
+    <div w3-include-html="./template/sidebar.html"></div>
+    <div w3-include-html="./template/navbar.html"></div>
     <div class="board_content">
         <div class="board_top">
             <div class="board_head">
                 <h1 class="board_headline">Board</h1>
                 <div class="board_findTask">
-                    <input type="search" onkeypress="searchTask()" id="board_findTask_input" class="board_findTask_input" placeholder="Find Task">
+                    <input type="search" onkeypress="searchTask()" id="board_findTask_input"
+                        class="board_findTask_input" placeholder="Find Task">
                     <button class="addTask">Add Task
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_154243_3931" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -46,55 +50,65 @@
                     </button>
                 </div>
             </div>
-            <div class="board_kanbanheadline">
-                <div class="row">
-                    <h4>To do</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
-                </div>
-                <div class="row">
-                    <h4>In progress</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
-                </div>
-                <div class="row">
-                    <h4>Await feedback</h4> <img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
-                </div>
-                <div class="row">
-                    <h4>Done</h4>
-                    </svg>
-                </div>
-            </div>
         </div>
 
         <div class="board_bottom">
             <div class="board_tasks">
                 <!-- ID: board_todo -->
-                <div class="board_cardcolumn " id="board_open" ondrop="moveTo('open'),removeHighlight('board_open')"
-                    ondragleave="removeHighlight('board_open')" ondragover="allowDrop(event), highlight('board_open')">
-
+                <div>
+                    <div class="row">
+                        <h4>To do</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
+                    </div>
+                    <div class="board_cardcolumn " id="board_open" ondrop="moveTo('open'),removeHighlight('board_open')"
+                        ondragleave="removeHighlight('board_open')"
+                        ondragover="allowDrop(event), highlight('board_open')">
+                    </div>
 
                 </div>
                 <!-- ID: board_progress -->
-                <div class="board_cardcolumn " id="board_progress" ondrop="moveTo('progress'), removeHighlight('board_progress')"
-                    ondragleave="removeHighlight('board_progress')" ondragover="allowDrop(event), highlight('board_progress')">
+                <div>
+                    <div class="row">
+                        <h4>In Progress</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt=""
+                            srcset="">
+                    </div>
+                    <div class="board_cardcolumn" id="board_progress"
+                        ondrop="moveTo('progress'), removeHighlight('board_progress')"
+                        ondragleave="removeHighlight('board_progress')"
+                        ondragover="allowDrop(event), highlight('board_progress')">
 
+
+                    </div>
 
                 </div>
                 <!-- ID: board_feedback -->
-                <div class="board_cardcolumn " id="board_feedback" ondrop="moveTo('feedback'), removeHighlight('board_feedback')"
-                    ondragleave="removeHighlight('board_feedback')" ondragover="allowDrop(event), highlight('board_feedback')">
-
+                <div>
+                <div class="row">
+                    <h4>Feedback</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
                 </div>
-                <!-- ID: board_done -->
-                <div class="board_cardcolumn" id="board_done" ondrop="moveTo('done'), removeHighlight('board_done')"
-                    ondragleave="removeHighlight('board_done')" ondragover="allowDrop(event), highlight('board_done')">
-
+                <div class="board_cardcolumn " id="board_feedback"
+                    ondrop="moveTo('feedback'), removeHighlight('board_feedback')"
+                    ondragleave="removeHighlight('board_feedback')"
+                    ondragover="allowDrop(event), highlight('board_feedback')">
                 </div>
 
             </div>
+            <!-- ID: board_done -->
+            
+            <div>
+                <div class="row">
+                    <h4>Done</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
+                </div>
+                <div class="board_cardcolumn" id="board_done" ondrop="moveTo('done'), removeHighlight('board_done')"
+                ondragleave="removeHighlight('board_done')" ondragover="allowDrop(event), highlight('board_done')">
+
+            </div>
+        </div>
 
 </body>
 
 
 <script>
     includeHTML();
-    </script>
+</script>
 
 </html>

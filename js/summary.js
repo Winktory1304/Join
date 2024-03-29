@@ -1,3 +1,4 @@
+let todossum = [];
 let isShowMenu = false;
 
 function showHeaderMenu(headerID, hideHeaderClass) {
@@ -12,6 +13,14 @@ function showHeaderMenu(headerID, hideHeaderClass) {
 	}
 }
 
+function init() {
+    showAllNumbers();
+}
+ 
+function readServer() {
+    readJSON('todos', todossum);
+    console.log(todos);
+}
 
 function showAllNumbers() {
     showNumberOfToDo();
