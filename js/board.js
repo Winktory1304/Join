@@ -43,13 +43,13 @@ function readServer() {
     todosdome = [];
     try {
         readJSON('contacts', contactsdome);
-        readJSON(keydome, todosdome).then (() => {;updateHTML();});
+        readJSON(keydome, todosdome).then(() => { ; updateHTML(); });
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
-function gotoContact(){
+function gotoContact() {
     todosdome[0].contactsdome[0]
 }
 
@@ -69,13 +69,13 @@ function updateHTML() {
 
     document.getElementById('board_open').innerHTML = '';
     if (open.length === 0) {
-        document.getElementById('board_open').innerHTML =  noCard();
+        document.getElementById('board_open').innerHTML = noCard();
     }
 
     for (let index = 0; index < open.length; index++) {
         const element = open[index];
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-        
+
     }
 
 
@@ -85,7 +85,7 @@ function updateHTML() {
 
     document.getElementById('board_progress').innerHTML = '';
     if (inProgress.length === 0) {
-        document.getElementById('board_progress').innerHTML =  noCard();
+        document.getElementById('board_progress').innerHTML = noCard();
     }
 
     for (let index = 0; index < inProgress.length; index++) {
@@ -100,7 +100,7 @@ function updateHTML() {
 
     document.getElementById('board_feedback').innerHTML = '';
     if (inFeedback.length === 0) {
-        document.getElementById('board_feedback').innerHTML =  noCard();
+        document.getElementById('board_feedback').innerHTML = noCard();
     }
 
     for (let index = 0; index < inFeedback.length; index++) {
@@ -112,11 +112,11 @@ function updateHTML() {
 
 
     let closed = todosdome.filter(t => t['status'] == 'done');
-    
+
 
     document.getElementById('board_done').innerHTML = '';
     if (closed.length === 0) {
-        document.getElementById('board_done').innerHTML =  noCard();
+        document.getElementById('board_done').innerHTML = noCard();
     }
     for (let index = 0; index < closed.length; index++) {
         const element = closed[index];
@@ -363,7 +363,7 @@ function searchTask() {
             document.getElementById('board_open').innerHTML += generateTodoHTML(element);
         }
     }
-    
+
 }
 
 
@@ -374,10 +374,10 @@ function searchTask() {
  * @returns {Promise<void>} - A promise that resolves when the task is deleted.
  */
 function deleteTask(title) {
-    
+
     updatedArray = todosdome.filter(item => item.title !== title);
     todosdome = [];
-    setItem(keydome, updatedArray).then(() => {;init();});
+    setItem(keydome, updatedArray).then(() => { ; init(); });
 }
 
 /**
@@ -418,7 +418,7 @@ function openCard(id) {
  * @param {string} id - The ID of the Task for contact.
  */
 function generatecontactsdome(id) {
-    todosdome[id].contactsdome.forEach(contact => {
+    todosdome[id].contacts.forEach(contact => {
         document.getElementById('board_cardcontactsdome').innerHTML += `<li class="board_assigneditem">
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
@@ -435,27 +435,77 @@ function editTask(id) {
     document.getElementById('board_openCard').classList.remove('d-none');
     document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard">
-        <p onclick="closeTaskDialog()">X</p>
+        <p class="board_deledit" onclick="closeDialog()">X</p>
         <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
         <input type="text" id="addtask-input-description" value="${todosdome[id].task}" required>
-        <input type="text" id="addtask-input-subtasks" value="${todosdome[id].title}">
         <input type="date" id="addtask-input-date" value="${todosdome[id].date}" required>
-        <select id="addtask-input-category" required>
-            <option default value="${todosdome[id].tag}">${todosdome[id].tag}</option>
+        <select class="addtask-input-category" id="addtask-input-category" required>
+            <option default value="${todosdome[id].tag}" disabled>${todosdome[id].tag}</option>
             <option value="User Story">User Story</option>
             <option value="Technical Task">Technical Task</option>
         </select>
+
+        <select class="addtask-input-category" id="addtask-input-subtasks"  
+                 onmousedown="getSubtasks(${todosdome[id].id})"  aria-multiselectable="true">
+                
+                <option value="Bug" selected disabled>Subtasks</option>
+                </select>
+                <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                        <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+                      </div>
+
+
         <select class="addtask-input-category"
                         id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getarray()"  aria-multiselectable="true">
-                        <option value="" disabled selected>Select user</option>
+                        <option value="${todosdome[id].contacts}" disabled selected>${todosdome[id].contacts}</option>
                         </select>
-                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="pushJSON(), closeDialog(), readServer()">Update Task</button>
+                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todosdome[id].id}), closeDialog(), readServer()">Update Task</button>
     </div>
     `;
+}
 
-// updatedArray = todosdome.filter(item => item.title !== title);
-// todosdome = [];
-// setItem(keydome, updatedArray).then(() => {;init();});
+
+
+
+
+function getSubtasks(id) {
+    let subtasks = document.getElementById('addtask-input-subtasks')
+    subtasks.innerHTML = '';
+
+    todosdome[id].subtasks.forEach(subtask => {
+
+        subtasks.innerHTML += returnSubtasks(subtask);
+        console.log(returnSubtasks(subtask));
+    });
+}
+
+function returnSubtasks(subtask) {
+    return `<option id="${subtask} + 1" value="${subtask}">${subtask}</option>`
+}
+
+
+
+function updateJSON(id) {
+    let titleValue = document.getElementById('addtask-input-title').value;
+    let descriptionValue = document.getElementById('addtask-input-title').value;
+    let selectedContacts = document.getElementById('addtask-input-assigned').value;
+    let dateValue = document.getElementById('addtask-input-date').value;
+    let selectedCategory = document.getElementById('addtask-input-category').value;
+
+    todosdome.map(object => {
+        if (object.id === id) {
+            object.title = titleValue;
+            object.task = descriptionValue;
+            object.date = dateValue;
+            object.tag = selectedCategory;
+            object.contacts = [];
+            object.contacts.push(selectedContacts);
+
+
+            setItem(keydome, todosdome);
+        }
+    })
 }
 
 function getarray() {
