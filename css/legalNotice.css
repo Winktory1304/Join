@@ -36,6 +36,7 @@
     height: 1024px;
     background-color: #F6F7F8;
 font-family: 'inter', sans-serif;
+
 }
 
 /* addtask content */
@@ -46,8 +47,11 @@ font-family: 'inter', sans-serif;
     height: 928px;
     margin-left: 260px;
     font-family: 'inter', sans-serif;
-
+    scrollbar-width: thin;
+    scrollbar-color: grey;
+    overflow-y: auto;
 }
+
 
 /* addtask fonts */
 .legal-h1 {
