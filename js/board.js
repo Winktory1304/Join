@@ -5,6 +5,7 @@
 let todos = [];
 let updatedArray = [];
 let usersdome = [];
+let contacts = [];
 
 /**
  * The key used for storing the todos in the server.
@@ -39,11 +40,18 @@ function init() {
  */
 function readServer() {
     try {
+        readJSON('contacts', contacts);
         readJSON(key, todos).then (() => {;updateHTML();});
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
+function gotoContact(){
+    todos[0].contacts[0]
+}
+
+
 
 /**
  * The currently dragged element.
@@ -58,31 +66,56 @@ function updateHTML() {
     let open = todos.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
+    if (open.length === 0) {
+        document.getElementById('board_open').innerHTML =  noCard();
+    }
 
     for (let index = 0; index < open.length; index++) {
         const element = open[index];
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
+        
     }
+
+
+
+
     let inProgress = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
+    if (inProgress.length === 0) {
+        document.getElementById('board_progress').innerHTML =  noCard();
+    }
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
         document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
+
+
+
+
     let inFeedback = todos.filter(t => t['status'] == 'feedback');
 
     document.getElementById('board_feedback').innerHTML = '';
+    if (inFeedback.length === 0) {
+        document.getElementById('board_feedback').innerHTML =  noCard();
+    }
 
     for (let index = 0; index < inFeedback.length; index++) {
         const element = inFeedback[index];
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
+
+
+
+
     let closed = todos.filter(t => t['status'] == 'done');
+    
 
     document.getElementById('board_done').innerHTML = '';
-
+    if (closed.length === 0) {
+        document.getElementById('board_done').innerHTML =  noCard();
+    }
     for (let index = 0; index < closed.length; index++) {
         const element = closed[index];
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
@@ -90,6 +123,15 @@ function updateHTML() {
 
 }
 
+
+function noCard() {
+    return `<div class="board_notask"class="todo">
+    <div class="board_nocardcontent">
+        Keine Tasks gefunden!
+    </div>
+    </div>
+    `;
+}
 
 /**
  * Starts dragging the specified element.
@@ -122,7 +164,10 @@ function moveTo(category) {
  * @param {string} id - The id of the element to highlight.
  */
 function highlight(id) {
-    document.getElementById(id).classList.add('drag-area-highlight');
+    const element = document.getElementById(id);
+    if (!element.classList.contains('drag-area-highlight')) {
+        element.classList.add('drag-area-highlight');
+    }
 }
 
 /**
@@ -306,6 +351,20 @@ function addTask() {
     `;
 
 }
+function searchTask() {
+    document.getElementById('board_findTask_input').onkeydown = function () {
+        var search = document.getElementById('board_findTask_input').value;
+        var searchArray = todos.filter(t => t.title.includes(search));
+        document.getElementById('board_open').innerHTML = '';
+        for (let index = 0; index < searchArray.length; index++) {
+            const element = searchArray[index];
+            document.getElementById('board_open').innerHTML += generateTodoHTML(element);
+        }
+    }
+    
+}
+
+
 
 /**
  * Deletes a task from the todos array based on the given title.

@@ -30,7 +30,7 @@
             <div class="board_head">
                 <h1 class="board_headline">Board</h1>
                 <div class="board_findTask">
-                    <input type="text" class="board_findTask_input" placeholder="Find Task">
+                    <input type="search" onkeypress="searchTask()" id="board_findTask_input" class="board_findTask_input" placeholder="Find Task">
                     <button class="addTask">Add Task
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_154243_3931" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -66,25 +66,25 @@
         <div class="board_bottom">
             <div class="board_tasks">
                 <!-- ID: board_todo -->
-                <div class="board_cardcolumn" id="board_open" ondrop="moveTo('open')"
-                    ondragleave="removeHighlight('board_open')" ondragover="allowDrop(event);">
+                <div class="board_cardcolumn " id="board_open" ondrop="moveTo('open'),removeHighlight('board_open')"
+                    ondragleave="removeHighlight('board_open')" ondragover="allowDrop(event), highlight('board_open')">
 
 
                 </div>
                 <!-- ID: board_progress -->
-                <div class="board_cardcolumn" id="board_progress" ondrop="moveTo('progress')"
-                    ondragleave="removeHighlight('board_progress')" ondragover="allowDrop(event);">
+                <div class="board_cardcolumn " id="board_progress" ondrop="moveTo('progress'), removeHighlight('board_progress')"
+                    ondragleave="removeHighlight('board_progress')" ondragover="allowDrop(event), highlight('board_progress')">
 
 
                 </div>
                 <!-- ID: board_feedback -->
-                <div class="board_cardcolumn" id="board_feedback" ondrop="moveTo('feedback')"
-                    ondragleave="removeHighlight('board_feedback')" ondragover="allowDrop(event);">
+                <div class="board_cardcolumn " id="board_feedback" ondrop="moveTo('feedback'), removeHighlight('board_feedback')"
+                    ondragleave="removeHighlight('board_feedback')" ondragover="allowDrop(event), highlight('board_feedback')">
 
                 </div>
                 <!-- ID: board_done -->
-                <div class="board_cardcolumn" id="board_done" ondrop="moveTo('done')"
-                    ondragleave="removeHighlight('board_done')" ondragover="allowDrop(event);">
+                <div class="board_cardcolumn" id="board_done" ondrop="moveTo('done'), removeHighlight('board_done')"
+                    ondragleave="removeHighlight('board_done')" ondragover="allowDrop(event), highlight('board_done')">
 
                 </div>
 
