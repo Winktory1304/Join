@@ -358,6 +358,18 @@ color: black !important;
     font-family: "Inter";
 }
 
+.urgent.selected {
+    background-color: #FF3D00;
+}
+
+.medium.selected {
+    background-color: #FFA800;
+}
+
+.low.selected {
+    background-color: #7AE229;
+}
+
 /* .addtask-button-create-task[disabled='false'] {
     background-color: blue;
   }
