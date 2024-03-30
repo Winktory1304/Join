@@ -29,19 +29,23 @@
 /* addtask body */
 .addtask_body {
     position: fixed;
+    box-sizing: border-box;
     top: 0px;
-    width: 1440px;
-    height: 1024px;
-    background-color: #F6F7F8;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F5F5F5;
+    overflow-x: hidden;
 }
 
 /* addtask content */
 .addtask_content {
     position: fixed;
     top: 104px;
-    width: 1209px;
-    height: 928px;
+    width: 100%;
+    height: 100%;
     margin-left: 232px;
+    scrollbar-width: thin;
+    overflow-y: auto;
 }
 
 /* addtask fonts */
@@ -74,8 +78,11 @@
 /* addtask content main, left, middle, right, footer */
 .addtask-content-main {
     display: flex;
-    /* border: 1px solid rgb(8, 0, 255); */
+    border: 1px solid rgb(8, 0, 255);
     padding-top: 43px;
+    width: 100vw - 232px;
+    margin-left: 5px;
+    margin-right: 237px;
 }
 
 .addtask-left-content {
@@ -84,7 +91,7 @@
     margin-left: 96px;
     margin-right: 48.25px;
     left: 328px;
-    /* border: 1px solid rgb(255, 106, 0); */
+    border: 1px solid rgb(255, 106, 0);
 }
 
 .addtask-middle-content {
@@ -93,7 +100,7 @@
     top: 327px;
     left: 816.25px;
     background-color: #D1D1D1;
-    /* border: 1px solid rgb(255, 0, 0); */
+    border: 1px solid rgb(255, 0, 0);
 }
 
 .addtask-right-content {
@@ -101,16 +108,20 @@
     width: 440px;
     top: 327px;
     left: 864.25px;
-    /* border: 1px solid rgb(0, 255, 55); */
+    border: 1px solid rgb(0, 255, 55);
     margin-left: 48px;
 }
 
 .addtask-content-footer {
     display: flex;
+    width: 85vw;
     justify-content: space-between;
     align-items: end;
-    margin-left: 96px;
-    margin-right: 96px;
+    width: 100vw - 232px;
+    margin-left: 5px;
+    margin-right: 250px;
+    /* margin-left: 96px;
+    margin-right: 96px; */
 }
 
 /* style inputfields */
@@ -406,3 +417,11 @@ display: none;
     color: white;
   }
 
+
+
+
+
+
+
+
+  
