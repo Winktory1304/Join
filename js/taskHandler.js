@@ -2,15 +2,15 @@
  * Searches for tasks based on user input and updates the board with matching tasks.
  */
 function searchTask() {
-    document.getElementById('board_findTask_input').onkeydomedown = function () {
-        var search = document.getElementById('board_findTask_input').value;
-        var searchArray = todosdome.filter(t => t.title.includes(search));
-        document.getElementById('board_open').innerHTML = '';
-        for (let index = 0; index < searchArray.length; index++) {
-            const element = searchArray[index];
-            document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-        }
+  document.getElementById('board_findTask_input').onkeydomedown = function () {
+    var search = document.getElementById('board_findTask_input').value;
+    var searchArray = todosdome.filter(t => t.title.includes(search));
+    document.getElementById('board_open').innerHTML = '';
+    for (let index = 0; index < searchArray.length; index++) {
+      const element = searchArray[index];
+      document.getElementById('board_open').innerHTML += generateTodoHTML(element);
     }
+  }
 
 }
 
@@ -18,22 +18,22 @@ function searchTask() {
  * Adds a task to the todo list.
  */
 function addTask() {
-    addTaskPopup()
-    pushJSON();
-    try {
-      setItem(key, todos);
-    } catch (error) {
-      console.error('Error adding task', error);
-    }
+  addTaskPopup()
+  pushJSON();
+  try {
+    setItem(key, todos);
+  } catch (error) {
+    console.error('Error adding task', error);
   }
+}
 
 /**
  * Edits a task with the given ID.
  * @param {number} id - The ID of the task to be edited.
  */
 function editTask(id) {
-    document.getElementById('board_openCard').classList.remove('d-none');
-    document.getElementById('board_openCard').innerHTML = `
+  document.getElementById('board_openCard').classList.remove('d-none');
+  document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard">
         <p class="board_deledit" onclick="closeDialog()">X</p>
         <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
@@ -65,19 +65,34 @@ function editTask(id) {
     `;
 }
 
+/**
+ * Adds a subtask to the task list.
+ */
 function addSubtask() {
-    var input = document.getElementById("addtask-input-subtasks");
-    var container = document.getElementById("subtaskListContainer");
-  
-    var subtaskText = input.value;
-    subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
-  
-    var subtaskElement = document.createElement("li");
-    subtaskElement.textContent = subtaskText;
-    subtaskElement.style.paddingLeft = "16px";
-    subtaskElement.style.fontSize = "18px";
-  
-    container.parentNode.appendChild(subtaskElement);
-  
-    input.value = ""; // Optional: Clear the input field after adding the subtask
-  }
+  var input = document.getElementById("addtask-input-subtasks");
+  var container = document.getElementById("subtaskListContainer");
+
+  var subtaskText = input.value;
+  subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
+
+  var subtaskElement = document.createElement("li");
+  subtaskElement.textContent = subtaskText;
+  subtaskElement.style.paddingLeft = "16px";
+  subtaskElement.style.fontSize = "18px";
+
+  container.parentNode.appendChild(subtaskElement);
+
+  input.value = ""; // Optional: Clear the input field after adding the subtask
+}
+
+/**
+* Deletes a task from the todosdome array based on the given title.
+* @param {string} title - The title of the task to be deleted.
+* @returns {Promise<void>} - A promise that resolves when the task is deleted.
+*/
+function deleteTask(title) {
+
+  updatedArray = todosdome.filter(item => item.title !== title);
+  todosdome = [];
+  setItem(keydome, updatedArray).then(() => { ; init(); });
+}
