@@ -1,31 +1,16 @@
 /**
- * An array to store the todo tasks.
- * @type {Array}
- */
-let todos = [];
-
-/**
  * The key used to store the todos in local storage.
  * @type {string}
  */
 let key = 'todos';
 
+
 /**
- * An array to store the subtasks of a task.
- * @type {Array}
+ * Arrays die benötigt werden
  */
+let todos = [];
 let subtask = [];
-
-/**
- * An array to store the completion status of subtasks.
- * @type {Array}
- */
 let subtaskdone = [];
-
-/**
- * An array to store the contacts related to a task.
- * @type {Array}
- */
 let contacts = [];
 let selectedContacts = [];
 
@@ -45,16 +30,20 @@ function readServerData() {
   readJSON(key, todos);
 }
 
+function getReady() {
+  setContacts(contacts);
+}
 
-function test() {
+
+function setContacts(array) {
+
+
   document.getElementById('addtask-input-assigned').innerHTML = '';
-  contacts.forEach((element) => {
-    document.getElementById('addtask-input-assigned').innerHTML += 
-    `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">
-    ${element.firstName} ${element.lastName} <input type="checkbox">text<div></option>`;
+  array.forEach((element) => {
+    document.getElementById('addtask-input-assigned').innerHTML += `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">${element.firstName} ${element.lastName}</option>`;
   });
 
-  if (contacts.length === 0) {
+  if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
   document.getElementById('addtask-input-assigned').addEventListener('change', function () {
@@ -86,7 +75,6 @@ function showContacts(){
 }
 
 
-
 let title = document.getElementById('addtask-input-title');
 let date = document.getElementById('addtask-input-date');
 let category = document.getElementById('addtask-input-category');
@@ -95,29 +83,8 @@ let createTaskButton = document.getElementById('addtask-button-create-task');
 function initTask() {
   readServerData();
   validateInput();
-
   readServerData()
-
-
 }
-
-
-/**
- * Adds a task to the todo list.
- */
-function addTask() {
-  addTaskPopup()
-  pushJSON();
-  try {
-    setItem(key, todos);
-  } catch (error) {
-    console.error('Error adding task', error);
-  }
-}
-
-
-
-
 
 // Popup erstellen
 function addTaskPopup() {
@@ -142,23 +109,6 @@ function clearInputs() {
   categoryInput.disabled = false;
   var dateInput = document.getElementById('addtask-input-date');
   dateInput.value = '';
-}
-
-function addSubtask() {
-  var input = document.getElementById("addtask-input-subtasks");
-  var container = document.getElementById("subtaskListContainer");
-
-  var subtaskText = input.value;
-  subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
-
-  var subtaskElement = document.createElement("li");
-  subtaskElement.textContent = subtaskText;
-  subtaskElement.style.paddingLeft = "16px";
-  subtaskElement.style.fontSize = "18px";
-
-  container.parentNode.appendChild(subtaskElement);
-
-  input.value = ""; // Optional: Clear the input field after adding the subtask
 }
 
 /**
@@ -252,12 +202,3 @@ function validateForm() {
     return false;
   }
 }
-
-
-
-
-
-
-
-
-

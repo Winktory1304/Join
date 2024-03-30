@@ -17,8 +17,10 @@
     <!-- Template -->
     <link rel="stylesheet" href="../css/navbar_sidebar.css">
     <script src="../js/include.js"></script>
-
     <script src="../js/storage.js"></script>
+    <script src="../js/taskHandler.js"></script>
+    <script src="../js/board_html.js"></script>
+    <script src="../js/board.js"></script>
 
 </head>
 
@@ -54,7 +56,7 @@
 
 
                     <select class="addtask-input-category"
-                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="test()"  aria-multiselectable="true">
+                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getReady()"  aria-multiselectable="true">
                         <option value="" disabled selected>Select user</option>
                         </select>
                 </div>
