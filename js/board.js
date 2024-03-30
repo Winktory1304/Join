@@ -14,6 +14,9 @@ let contactsdome = [];
 let keydome = 'todos';
 
 
+/**
+ * Deletes all todos from the todosdome array, writes to the server, and updates the HTML.
+ */
 function deleteALL() {
     todosdome = [];
     writeServer();
@@ -49,12 +52,6 @@ function readServer() {
     }
 }
 
-function gotoContact() {
-    todosdome[0].contactsdome[0]
-}
-
-
-
 /**
  * The currently dragged element.
  * @type {HTMLElement}
@@ -78,9 +75,6 @@ function updateHTML() {
 
     }
 
-
-
-
     let inProgress = todosdome.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
@@ -92,9 +86,6 @@ function updateHTML() {
         const element = inProgress[index];
         document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
-
-
-
 
     let inFeedback = todosdome.filter(t => t['status'] == 'feedback');
 
@@ -108,11 +99,7 @@ function updateHTML() {
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
 
-
-
-
     let closed = todosdome.filter(t => t['status'] == 'done');
-
 
     document.getElementById('board_done').innerHTML = '';
     if (closed.length === 0) {
@@ -122,10 +109,13 @@ function updateHTML() {
         const element = closed[index];
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
     }
-
 }
 
 
+/**
+ * Generates HTML markup for a board with no tasks.
+ * @returns {string} The HTML markup for the board with no tasks.
+ */
 function noCard() {
     return `<div class="board_notask"class="todo">
     <div class="board_nocardcontent">
@@ -353,18 +343,6 @@ function addTask() {
     `;
 
 }
-function searchTask() {
-    document.getElementById('board_findTask_input').onkeydomedown = function () {
-        var search = document.getElementById('board_findTask_input').value;
-        var searchArray = todosdome.filter(t => t.title.includes(search));
-        document.getElementById('board_open').innerHTML = '';
-        for (let index = 0; index < searchArray.length; index++) {
-            const element = searchArray[index];
-            document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-        }
-    }
-
-}
 
 
 
@@ -431,44 +409,11 @@ function generatecontactsdome(id) {
 }
 
 
-function editTask(id) {
-    document.getElementById('board_openCard').classList.remove('d-none');
-    document.getElementById('board_openCard').innerHTML = `
-    <div class="board_taskcard">
-        <p class="board_deledit" onclick="closeDialog()">X</p>
-        <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
-        <input type="text" id="addtask-input-description" value="${todosdome[id].task}" required>
-        <input type="date" id="addtask-input-date" value="${todosdome[id].date}" required>
-        <select class="addtask-input-category" id="addtask-input-category" required>
-            <option default value="${todosdome[id].tag}" disabled>${todosdome[id].tag}</option>
-            <option value="User Story">User Story</option>
-            <option value="Technical Task">Technical Task</option>
-        </select>
 
-        <select class="addtask-input-category" id="addtask-input-subtasks"  
-                 onmousedown="getSubtasks(${todosdome[id].id})"  aria-multiselectable="true">
-                
-                <option value="Bug" selected disabled>Subtasks</option>
-                </select>
-                <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
-                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
-                        <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
-                      </div>
-
-
-        <select class="addtask-input-category"
-                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getarray()"  aria-multiselectable="true">
-                        <option value="${todosdome[id].contacts}" disabled selected>${todosdome[id].contacts}</option>
-                        </select>
-                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todosdome[id].id}), closeDialog(), readServer()">Update Task</button>
-    </div>
-    `;
-}
-
-
-
-
-
+/**
+ * Retrieves and displays the subtasks for a given task ID.
+ * @param {string} id - The ID of the task.
+ */
 function getSubtasks(id) {
     let subtasks = document.getElementById('addtask-input-subtasks')
     subtasks.innerHTML = '';
@@ -480,12 +425,20 @@ function getSubtasks(id) {
     });
 }
 
+/**
+ * Returns an HTML option element for a subtask.
+ *
+ * @param {string} subtask - The subtask value.
+ * @returns {string} The HTML option element.
+ */
 function returnSubtasks(subtask) {
     return `<option id="${subtask} + 1" value="${subtask}">${subtask}</option>`
 }
 
-
-
+/**
+ * Updates the JSON object with the provided id.
+ * @param {string} id - The id of the object to update.
+ */
 function updateJSON(id) {
     let titleValue = document.getElementById('addtask-input-title').value;
     let descriptionValue = document.getElementById('addtask-input-title').value;
@@ -508,9 +461,12 @@ function updateJSON(id) {
     })
 }
 
+
+
 function getarray() {
-    test(contactsdome);
+    setContacts(contactsdome);
 }
+
 /**
  * Returns the initials of a given name.
  * @param {string} name - The name to extract initials from.

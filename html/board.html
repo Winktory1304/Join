@@ -9,8 +9,9 @@
     <script src="../js/board.js"></script>
     <script src="../js/storage.js"></script>
     <link rel="stylesheet" href="../css/fonts.css">
-<link rel="stylesheet" href="../css/addtask.css">
-<script src="../js/add_task.js"></script>
+    <link rel="stylesheet" href="../css/addtask.css">
+    <script src="../js/add_task.js"></script>
+    <script src="../js/taskHandler.js"></script>
 
 
     <!-- Template -->
@@ -82,27 +83,28 @@
                 </div>
                 <!-- ID: board_feedback -->
                 <div>
-                <div class="row">
-                    <h4>Feedback</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
-                </div>
-                <div class="board_cardcolumn " id="board_feedback"
-                    ondrop="moveTo('feedback'), removeHighlight('board_feedback')"
-                    ondragleave="removeHighlight('board_feedback')"
-                    ondragover="allowDrop(event), highlight('board_feedback')">
-                </div>
+                    <div class="row">
+                        <h4>Feedback</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
+                    </div>
+                    <div class="board_cardcolumn " id="board_feedback"
+                        ondrop="moveTo('feedback'), removeHighlight('board_feedback')"
+                        ondragleave="removeHighlight('board_feedback')"
+                        ondragover="allowDrop(event), highlight('board_feedback')">
+                    </div>
 
-            </div>
-            <!-- ID: board_done -->
-            
-            <div>
-                <div class="row">
-                    <h4>Done</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
                 </div>
-                <div class="board_cardcolumn" id="board_done" ondrop="moveTo('done'), removeHighlight('board_done')"
-                ondragleave="removeHighlight('board_done')" ondragover="allowDrop(event), highlight('board_done')">
+                <!-- ID: board_done -->
 
-            </div>
-        </div>
+                <div>
+                    <div class="row">
+                        <h4>Done</h4><img class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset="">
+                    </div>
+                    <div class="board_cardcolumn" id="board_done" ondrop="moveTo('done'), removeHighlight('board_done')"
+                        ondragleave="removeHighlight('board_done')"
+                        ondragover="allowDrop(event), highlight('board_done')">
+
+                    </div>
+                </div>
 
 </body>
 
