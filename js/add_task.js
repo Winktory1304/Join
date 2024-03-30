@@ -202,3 +202,25 @@ function validateForm() {
     return false;
   }
 }
+/**
+ * selects the priority buttons and change classes
+ * @param {String} prio
+ */
+
+function selectPrio(prio) {
+  let containerUrgent = document.getElementById('addtaskButtonUrgent');
+  let containerMedium = document.getElementById('addtaskButtonMedium');
+  let containerLow = document.getElementById('addtaskButtonLow');
+
+  containerUrgent.classList.remove('selected');
+  containerMedium.classList.remove('selected');
+  containerLow.classList.remove('selected');
+  priority = prio;
+  if (prio == 'urgent') {
+      containerUrgent.classList.add('selected');
+  } else if (prio == 'medium') {
+      containerMedium.classList.add('selected');
+  } else {
+      containerLow.classList.add('selected');
+  }
+}

@@ -83,16 +83,16 @@
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Prio</div>
                     <div class="addtask-prio-buttons">
-                        <button class="addtask-button urgent">Urgent
+                        <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
                             <image src="../assets/img/addtaskurgent.svg"></image>
 
                         </button>
 
-                        <button class="addtask-button medium selected">Medium
+                        <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
                             <image src="../assets/img/addtaskmedium.svg"></image>
                         </button>
 
-                        <button class="addtask-button low ">Low <image src="../assets/img/addtasklow.svg"></image> </button>
+                        <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <image src="../assets/img/addtasklow.svg"></image> </button>
 
                     </div>
                 </div>
