@@ -223,4 +223,6 @@ function selectPrio(prio) {
   } else {
       containerLow.classList.add('selected');
   }
+
+  console.log(prio);
 }
