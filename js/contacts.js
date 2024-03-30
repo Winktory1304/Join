@@ -1,6 +1,9 @@
-let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
+let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"
+]
+
 let contacts = [];
 let contactupdated = [];
+
 let users = [];
 
 //Array zum pushen into the storage with the key 'contacts'
@@ -128,54 +131,24 @@ let contactstopush =
         }
     ]
 
-async function init() {
-    await readServerData();
-    removeDuplicateContacts()
-    await getUsersintoContacts();
-    renderContacts();
-}
-
 function deleteContact(email) {
+    
     contactupdated = contacts.filter(item => item.email !== email);
     contacts = [];
     try {
-        setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
+        setItem('contacts', contactupdated).then(() => {;readServerData();;renderContacts();});
         console.log('Daten aktualisiert');
     } catch (error) {
         console.error('Error deleting contact', error);
     }
+    
+    
 }
 
-async function getUsersintoContacts() {
-
-    try {
-        let users = [];
-        await readJSON('users', users);
-        console.log(users);
-        users.forEach(user => {
-            if (!contacts.some(contact => contact.email === user.email)) {
-                contacts.push({
-                    "firstName": user.name.split(' ')[0],
-                    "lastName": user.name.split(' ')[1],
-                    "email": user.email,
-                    "phoneNumber": "",
-                    "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
-                    "color": getRandomColor()
-                });
-            }
-        });
-        await setItem('contacts', contacts);
-        readServerData();
-        renderContacts();
-    } catch (error) {
-        console.error('Loading error:', error);
-    }
-}
-// async function getUsersintoContacts() {
-// let users = []
+// function getUsersintoContacts() {
+//     users = [];
 //     try {
-//         await readJSON('users', users); //Änderung für Domi
-//         console.log(users)
+//         readJSON('users', users);
 //     } catch (error) {
 //         console.error('Loading error:', error);
 //     }
@@ -190,31 +163,43 @@ async function getUsersintoContacts() {
 //                 "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
 //                 "color": getRandomColor()
 //             });
-//         }
 
+//         }
 //     });
-//     setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); })
+
+//     setItem('contacts', contactupdated).then (() => {;readServerData();;renderContacts();})
+    
 // }
 
 
 function resetContacts() {
-    contacts = [];
+    contacts= [];
     try {
-        setItem('contacts', contactstopush).then(() => { ; readServerData(); renderContacts(); });
+        setItem('contacts', contactstopush).then(() => {;readServerData();renderContacts();});
     } catch (error) {
         console.error('Error deleting contacts', error);
     }
 }
 
 
-async function readServerData() {
+
+function readServerData() {
+    
     try {
-        await readJSON('contacts', contacts); // Warte auf das Laden der Daten
-        console.log('Daten geladen:', contacts);
-        renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
+        
+        readJSON('contacts', contacts).then(() => { renderContacts() });
+        console.log('Daten geladen');
     } catch (error) {
         console.error('Loading error:', error);
     }
+    
+
+}
+
+function init() {
+    readServerData();
+    // getUsersintoContacts();
+    renderContacts();
 }
 
 
@@ -227,11 +212,10 @@ function renderContacts() {
     let counter = 0;
     Object.keys(groupedContacts).sort().forEach(initial => {
         content.innerHTML += `<div class="letter-group">
-        <div class="letter-group-first-name">${initial}</div>
-        <div>
-        <div class="letter-seperator"></div>`;
+                                <div class="letter-group-first-name">${initial}</div>
+                                <div>
+                                <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
-            removeDuplicateContacts()
             let contactId = 'contact-' + counter;
             counter++;
             content.innerHTML += /*html*/`
@@ -252,7 +236,6 @@ function renderContacts() {
         content.innerHTML += `</div></div>`;
     });
 }
-
 
 //Order contacts
 function groupContactsByInitial() {
@@ -282,6 +265,7 @@ let span = document.getElementsByClassName('close')[0];
 
 // When the user clicks anywhere outside of the modal, close it
 function addContactModal() {
+
     modal.style.display = "flex";
 }
 
@@ -309,7 +293,6 @@ function createNewContact(names, email, phone) {
     };
 }
 
-
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
@@ -325,6 +308,9 @@ function addContactOrWarn(emailIndex, newContact) {
         alert("Dieser Kontakt ist schon vorhanden");
     }
 }
+
+
+
 
 
 function clearInputFields() {
@@ -370,20 +356,4 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
-function removeDuplicateContacts() {
-    const uniqueEmails = new Set();
-    const uniqueContacts = contacts.filter(contact => {
-        if (!uniqueEmails.has(contact.email)) {
-            uniqueEmails.add(contact.email);
-            return true;
-        }
-        return false;
-    });
 
-    contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    init();
-});
