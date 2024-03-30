@@ -183,7 +183,7 @@
   }
 
 .addtask-input-assigned {
-    width: 424px;
+    width: 440px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
@@ -259,6 +259,7 @@ color: black !important;
 
 .addtask-input-category:hover {
     cursor: pointer;
+    border: 1px solid #29ABE2;
    }
 
 .addtask-input-category::placeholder {
@@ -328,6 +329,7 @@ color: black !important;
 
 .addtask-button:hover {
     cursor: pointer;
+       border: 1px solid #29ABE2;
 }
 
 .addtaskbutton {
