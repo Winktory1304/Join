@@ -287,7 +287,7 @@ function openDetailedContactsView(contactId) {
                 <div class="detail-view-contact-email"> Email</div>
                 <div id="detailViewEmail">${contact.email}</div>
                 <div class="detail-view-contact-phone">Phone</div>
-                <div id="detailViewPhone">${contact.phone}</div>`
+                <div id="detailViewPhone">${contact.phoneNumber}</div>`
 }
 
 
