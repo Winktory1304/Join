@@ -245,22 +245,6 @@ function groupContactsByInitial() {
 
     return groupedContacts;
 }
-// function groupContactsByInitial() {
-//     let groupedContacts = {};
-//     contacts.forEach(contact => {
-//         let initial = contact.firstName[0].toUpperCase();
-//         if (!groupedContacts[initial]) {
-//             groupedContacts[initial] = [];
-//         }
-//         groupedContacts[initial].push(contact);
-//     });
-
-//     // Konvertiere das Objekt in ein Array von Objekten für jede Gruppe
-//     detailViewContacts = Object.keys(groupedContacts).map(initial => ({
-//         initial, // der Buchstabe
-//         contacts: groupedContacts[initial], // das Array von Kontakten für diesen Buchstaben
-//     }));
-// }
 
 function openDetailedContactsView(contactId) {
     console.log(contactId);
@@ -279,7 +263,7 @@ function openDetailedContactsView(contactId) {
                         ${contact.firstName} ${contact.lastName}
                         </div>
                         <div class="detail-view-symbols">
-                            Edit Delete
+                            <p onclick=>Edit</p> <p>Delete</p>
                         </div>
                     </div>
                 </div>

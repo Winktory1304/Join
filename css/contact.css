@@ -455,6 +455,7 @@ body {
     font-weight: 500px;
 }
 .detail-view-symbols{
+    display: flex;
     font-size: 16px;
     gap: 8px;
 }
