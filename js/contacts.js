@@ -2,6 +2,7 @@ let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255
 let contacts = [];
 let contactupdated = [];
 let users = [];
+let detailViewContacts = [];
 
 //Array zum pushen into the storage with the key 'contacts'
 let contactstopush =
@@ -171,30 +172,6 @@ async function getUsersintoContacts() {
         console.error('Loading error:', error);
     }
 }
-// async function getUsersintoContacts() {
-// let users = []
-//     try {
-//         await readJSON('users', users); //Änderung für Domi
-//         console.log(users)
-//     } catch (error) {
-//         console.error('Loading error:', error);
-//     }
-//     users.forEach(user => {
-//         // Check if user already exists in contacts
-//         if (!contacts.some(contact => contact.email === user.email)) {
-//             contactupdated.push({
-//                 "firstName": user.name.split(' ')[0],
-//                 "lastName": user.name.split(' ')[1],
-//                 "email": user.email,
-//                 "phoneNumber": "",
-//                 "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
-//                 "color": getRandomColor()
-//             });
-//         }
-
-//     });
-//     setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); })
-// }
 
 
 function resetContacts() {
@@ -220,8 +197,8 @@ async function readServerData() {
 
 
 function renderContacts() {
+    sortContactsByInitial();
     let groupedContacts = groupContactsByInitial();
-    // console.log(groupedContacts);
     let content = document.getElementById('contactsRenderContent');
     content.innerHTML = '';
     let counter = 0;
@@ -232,7 +209,7 @@ function renderContacts() {
         <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
             removeDuplicateContacts()
-            let contactId = 'contact-' + counter;
+            let contactId = counter;
             counter++;
             content.innerHTML += /*html*/`
                 <div class="contact-box" id='${contactId}' onclick='openDetailedContactsView("${contactId}")'>
@@ -254,7 +231,7 @@ function renderContacts() {
 }
 
 
-//Order contacts
+// Order contacts
 function groupContactsByInitial() {
     let groupedContacts = {};
     contacts.forEach(contact => {
@@ -264,13 +241,53 @@ function groupContactsByInitial() {
         }
         groupedContacts[initial].push(contact);
     });
+
+
     return groupedContacts;
 }
+// function groupContactsByInitial() {
+//     let groupedContacts = {};
+//     contacts.forEach(contact => {
+//         let initial = contact.firstName[0].toUpperCase();
+//         if (!groupedContacts[initial]) {
+//             groupedContacts[initial] = [];
+//         }
+//         groupedContacts[initial].push(contact);
+//     });
 
+//     // Konvertiere das Objekt in ein Array von Objekten für jede Gruppe
+//     detailViewContacts = Object.keys(groupedContacts).map(initial => ({
+//         initial, // der Buchstabe
+//         contacts: groupedContacts[initial], // das Array von Kontakten für diesen Buchstaben
+//     }));
+// }
 
 function openDetailedContactsView(contactId) {
     console.log(contactId);
-
+    let contact = detailViewContacts[contactId]
+    let content = document.getElementById('detailViewContent');
+    content.innerHTML = /*html*/`
+                <div class="detail-view-child1">
+                    <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect width="42" height="42" rx="21" fill="white" />
+                        <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
+                        <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
+                    </svg>
+                    <div class="detail-view-box">
+                        <div class="detail-view-name">
+                        ${contact.firstName} ${contact.lastName}
+                        </div>
+                        <div class="detail-view-symbols">
+                            Edit Delete
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-view-contact-information-text">Contact Information</div>
+                <div class="detail-view-contact-email"> Email</div>
+                <div id="detailViewEmail">${contact.email}</div>
+                <div class="detail-view-contact-phone">Phone</div>
+                <div id="detailViewPhone">${contact.phone}</div>`
 }
 
 
@@ -345,6 +362,25 @@ function addNewContact() {
 }
 
 
+function sortContactsByInitial() {
+    detailViewContacts = contacts.sort((a, b) => {
+        // Vergleiche die ersten Buchstaben der Vornamen
+        const initialA = a.firstName[0].toUpperCase();
+        const initialB = b.firstName[0].toUpperCase();
+
+        if (initialA < initialB) {
+            return -1;
+        }
+        if (initialA > initialB) {
+            return 1;
+        }
+
+        // Wenn die ersten Buchstaben gleich sind, sortiere nach dem ganzen Vornamen
+        return a.firstName.toUpperCase().localeCompare(b.firstName.toUpperCase());
+    });
+}
+
+
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
     if (names.length < 2) {
@@ -356,19 +392,19 @@ function validateFullName(fullName) {
 
 //Check if email already exists
 function findEmailIndex(email) {
-    // Iteriert durch das contacts-Array und sucht nach der E-Mail-Adresse
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].email === email) {
-            return i; // Gibt den Index zurück, wenn die E-Mail gefunden wurde
+            return i;
         }
     }
-    return -1; // Gibt -1 zurück, wenn die E-Mail nicht gefunden wurde
+    return -1;
 }
 
 
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
+
 
 function removeDuplicateContacts() {
     const uniqueEmails = new Set();
