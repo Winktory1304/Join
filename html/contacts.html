@@ -10,6 +10,7 @@
     <script src="/js/contacts.js"></script>
     <script src="../js/include.js"></script>
     <script src="../js/storage.js"></script>
+    <script src="../js/editContactCard.js"></script>
 
     <title>contacts</title>
 
@@ -20,8 +21,8 @@
     <div w3-include-html="./template/navbar.html"></div>
     <div class="main">
         <div class="content-container">
-            <div id="addContactBtn" class="contacts-content">
-                <button onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
+            <div  class="contacts-content">
+                <button id="addContactBtn" onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
                     <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_154458_4951" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                             width="33" height="33">
@@ -51,7 +52,9 @@
     </div>
 
     <!--Modal-->
-
+    <div id="editContactCard" class="modal">
+        <div id="editModalContent" class="modal-content "></div>
+    </div>
     <div id="contactModal" class="modal">
         <!-- Modal content -->
         <div id="modalContent" class="modal-content">
@@ -116,7 +119,6 @@
                     </defs>
                 </svg>
             </div>
-
             <div class="modal-part-3">
                 <span onclick="closeModal()" class="close">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,10 +164,7 @@
                     </button>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 
 

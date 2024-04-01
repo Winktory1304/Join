@@ -241,10 +241,9 @@ function groupContactsByInitial() {
         }
         groupedContacts[initial].push(contact);
     });
-
-
     return groupedContacts;
 }
+
 
 function openDetailedContactsView(contactId) {
     console.log(contactId);
@@ -263,7 +262,7 @@ function openDetailedContactsView(contactId) {
                         ${contact.firstName} ${contact.lastName}
                         </div>
                         <div class="detail-view-symbols">
-                            <p onclick=>Edit</p> <p>Delete</p>
+                            <p onclick="editContact(${contactId})">Edit</p> <p>Delete</p>
                         </div>
                     </div>
                 </div>
@@ -276,27 +275,8 @@ function openDetailedContactsView(contactId) {
 
 
 
-let modal = document.getElementById('contactModal');
-let btn = document.getElementById('addContactBtn');
-let span = document.getElementsByClassName('close')[0];
 
 
-// When the user clicks anywhere outside of the modal, close it
-function addContactModal() {
-    modal.style.display = "flex";
-}
-
-
-function closeModal() {
-    modal.style.display = "none";
-}
-
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        closeModal();
-    }
-}
 
 
 function createNewContact(names, email, phone) {

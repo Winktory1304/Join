@@ -30,9 +30,7 @@ body {
     width: 456px;
 
 }
-*:hover{
-    cursor: pointer;
-}
+
 .contact-box {
     display: flex;
     align-items: center;
@@ -162,6 +160,7 @@ body {
 .contacts-add-new-contact-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
 }
 .letter-group{
     font-size: 20px;
@@ -369,16 +368,20 @@ body {
 
 
 }
-
+.dispplay-flex{
+    display: flex;
+}
 .modal-part-3-create-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
 }
 
 .modal-part-3-cancel-button:hover {
     color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
     border-color: #29ABE2;
+    cursor: pointer;
 
 
 }
