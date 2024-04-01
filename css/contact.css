@@ -319,6 +319,13 @@ body {
 
     margin-right: 48px;
 }
+.detail-view-email{
+    color: blue;
+}
+
+.contact-modal-form input {
+    font-size: 20px;
+}
 
 .contact-modal-input {
     height: 50px;

@@ -1,20 +1,20 @@
 function showModal(modalId) {
-    const modal = document.getElementById(modalId);
+    let modal = document.getElementById(modalId);
     if (modal) {
         modal.style.display = "flex";
     }
 }
 
 function hideModal(modalId) {
-    const modal = document.getElementById(modalId);
+    let modal = document.getElementById(modalId);
     if (modal) {
         modal.style.display = "none";
     }
 }
 
 function setupModalListeners(modalId) {
-    const modal = document.getElementById(modalId);
-    const spans = modal.querySelectorAll('.close'); // Annahme: alle Schließ-Buttons verwenden die Klasse 'close'
+    let modal = document.getElementById(modalId);
+    let spans = modal.querySelectorAll('.close'); // Annahme: alle Schließ-Buttons verwenden die Klasse 'close'
 
     spans.forEach(span => {
         span.onclick = function () {
@@ -31,8 +31,8 @@ function setupModalListeners(modalId) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('addContactBtn');
-    const modalId = 'contactModal';
+    let btn = document.getElementById('addContactBtn');
+    let modalId = 'contactModal';
 
     btn.onclick = function () {
         showModal(modalId);
@@ -42,9 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function editContact(contactId) {
-    const modalId = 'editContactCard';    
-    const contact = detailViewContacts[contactId];
-    const content = document.getElementById('editModalContent');
+    let modalId = 'editContactCard';    
+    let contact = detailViewContacts[contactId];
+    let content = document.getElementById('editModalContent');
+    
+    
 
     // Modal-Inhalt setzen
     content.innerHTML = /*html*/`
@@ -107,7 +109,7 @@ function editContact(contactId) {
                         type="number" placeholder="Phone">
                 </form>
                 <div class="modal-part-3-buttons-container">
-                    <button class="modal-part-3-cancel-button" onclick="closeModal()">
+                    <button class="modal-part-3-cancel-button" onclick="hideModal('editContactCard')">
                         Cancel
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -131,6 +133,10 @@ function editContact(contactId) {
                 </div>
             </div>
     `;
+    
+    document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
+    document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
+    document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
 
     showModal(modalId);
     setupModalListeners(modalId);
