@@ -1,3 +1,4 @@
+
 function showModal(modalId) {
     let modal = document.getElementById(modalId);
     if (modal) {
@@ -130,7 +131,7 @@ function editContact(contactId) {
     `;
     let saveButton = document.getElementById('saveContactButton');
     saveButton.onclick = function () {
-        saveContact(contactId, contact['firstName'], contact['lastName'], contact['email'], contact['phoneNumber']);
+        saveContact(contactId);
     };
 
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
@@ -141,28 +142,41 @@ function editContact(contactId) {
     setupModalListeners(modalId);
 }
 
-function saveContact(contactId, firstName, lastName, email, phoneNumber) {
-    // Kontakt in detailViewContacts aktualisieren
-    let updatedContact = detailViewContacts[contactId];
-    if (updatedContact) {
-        updatedContact.firstName = firstName;
-        updatedContact.lastName = lastName;
-        updatedContact.email = email;
-        updatedContact.phoneNumber = phoneNumber;
-        
-        // Annahme: Wir haben eine Funktion zum Aktualisieren des lokalen Speichers
-        updateServer(); // Diese Funktion musst du implementieren
 
-        // Schließe das Bearbeitungsmodal und zeige möglicherweise eine Bestätigungsnachricht an
-        hideModal('editContactCard');
-        alert('Kontakt wurde erfolgreich aktualisiert!');
+
+function saveContact(contactId) {
+    let content = document.getElementById('detailViewContent');
+    const firstName = document.getElementById('edit-contact-name-input').value.split(' ')[0];
+    const lastName = document.getElementById('edit-contact-name-input').value.split(' ')[1] || ''; // Default zu leer, falls kein Nachname gegeben ist
+    const email = document.getElementById('edit-contact-email-input').value;
+    const phoneNumber = document.getElementById('edit-contact-phone-input').value;
+
+    // Prüfe, ob der Kontakt im Array vorhanden ist
+    if (detailViewContacts[contactId]) {
+        // Aktualisiere den Kontakt mit den neuen Werten
+        detailViewContacts[contactId].firstName = firstName;
+        detailViewContacts[contactId].lastName = lastName;
+        detailViewContacts[contactId].email = email;
+        detailViewContacts[contactId].phoneNumber = phoneNumber;
+
+        // Nach der Aktualisierung, speichere die Änderungen im LocalStorage oder Server, wenn nötig
+        // Beispiel: updateServer(detailViewContacts); 
 
         // Rufe Funktionen auf, um die Kontaktliste neu zu rendern oder weitere notwendige Aktionen durchzuführen
+        updateServer();
         init();
+
+        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
+        hideModal('editContactCard');
+        content.innerHTML = '';
+        // alert('Kontakt wurde erfolgreich aktualisiert!');
     } else {
-        console.error('Kontakt nicht gefunden');
+        console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
     }
 }
+
+
+
 
 
 async function updateServer() {   

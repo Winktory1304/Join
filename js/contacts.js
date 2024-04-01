@@ -246,7 +246,7 @@ function groupContactsByInitial() {
 
 
 function openDetailedContactsView(contactId) {
-    console.log(contactId);
+    init();
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     content.innerHTML = /*html*/`
