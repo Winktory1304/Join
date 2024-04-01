@@ -76,9 +76,11 @@ function addSubtask() {
   subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
 
   var subtaskElement = document.createElement("li");
-  subtaskElement.textContent = subtaskText;
+  subtaskElement.innerHTML = `<label for="addsubtaskliste" >${subtaskText}</label>
+<input class="addsubtaskliste" type="checkbox" id="addsubtaskliste" name="subtask"><br>`; // Reordered HTML elements
+
   subtaskElement.style.paddingLeft = "16px";
-  subtaskElement.style.fontSize = "18px";
+  subtaskElement.style.fontSize = "20px";
 
   container.parentNode.appendChild(subtaskElement);
 

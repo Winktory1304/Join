@@ -150,15 +150,15 @@ function closeTaskDialog() {
 /**
  * Adds a task to the board.
  */
-function addTask() {
-    document.getElementById('board_addTask').innerHTML = `
-    <div class="board_addtaskcard">
-        <!-- Hier kommt der Code von Christina rein -->
-        <p onclick="closeTaskDialog()">X</p>
-    </div>
-    `;
+// function addTask() {
+//     document.getElementById('board_addTask').innerHTML = `
+//     <div class="board_addtaskcard">
+//         <!-- Hier kommt der Code von Christina rein -->
+//         <p onclick="closeTaskDialog()">X</p>
+//     </div>
+//     `;
 
-}
+// }
 
 /**
  * Returns the priority level of an element as a string.

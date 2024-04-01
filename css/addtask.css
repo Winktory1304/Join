@@ -431,7 +431,12 @@ display: none;
     color: white;
   }
 
-
+ .addsubtaskliste {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: "Inter";
+ }
 
 
 
