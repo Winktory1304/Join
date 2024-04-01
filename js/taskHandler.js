@@ -77,7 +77,7 @@ function addSubtask() {
 
   var subtaskElement = document.createElement("li");
   subtaskElement.innerHTML = `<label for="addsubtaskliste" >${subtaskText}</label>
-<input class="addsubtaskliste" type="checkbox" id="addsubtaskliste" name="subtask"><br>`; // Reordered HTML elements
+<br>`; // Reordered HTML elements
 
   subtaskElement.style.paddingLeft = "16px";
   subtaskElement.style.fontSize = "20px";

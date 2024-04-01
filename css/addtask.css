@@ -79,7 +79,6 @@
 /* addtask content main, left, middle, right, footer */
 .addtask-content-main {
     display: flex;
-    border: 1px solid rgb(8, 0, 255);
     padding-top: 43px;
     width: 100vw - 232px;
     margin-left: 5px;
@@ -92,7 +91,6 @@
     margin-left: 96px;
     margin-right: 48.25px;
     left: 328px;
-    border: 1px solid rgb(255, 106, 0);
 }
 
 .addtask-middle-content {
@@ -101,7 +99,7 @@
     top: 327px;
     left: 816.25px;
     background-color: #D1D1D1;
-    border: 1px solid rgb(255, 0, 0);
+
 }
 
 .addtask-right-content {
@@ -109,7 +107,7 @@
     width: 540px;
     top: 327px;
     left: 864.25px;
-    border: 1px solid rgb(0, 255, 55);
+
     margin-left: 48px;
 }
 
