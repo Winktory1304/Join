@@ -33,7 +33,6 @@ function setupModalListeners(modalId) {
 document.addEventListener('DOMContentLoaded', function () {
     let btn = document.getElementById('addContactBtn');
     let modalId = 'contactModal';
-
     btn.onclick = function () {
         showModal(modalId);
         setupModalListeners(modalId);
@@ -42,13 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function editContact(contactId) {
-    let modalId = 'editContactCard';    
+    let modalId = 'editContactCard';
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
-    
-    
-
-    // Modal-Inhalt setzen
     content.innerHTML = /*html*/`
         <div class="modal-part-1">
                 <svg class="modalLogo" width="55px" height="66px" viewBox="0 0 102 122" version="1.1"
@@ -116,8 +111,8 @@ function editContact(contactId) {
                                 d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z"
                                 stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg></button>
-                    <button class="modal-part-3-create-button" onclick="addNewContact()">
-                        Edit Contact
+                    <button class="modal-part-3-create-button" id="saveContactButton">
+                        Save
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_155331_3981" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                                 width="24" height="25">
@@ -133,13 +128,50 @@ function editContact(contactId) {
                 </div>
             </div>
     `;
-    
+    let saveButton = document.getElementById('saveContactButton');
+    saveButton.onclick = function () {
+        saveContact(contactId, contact['firstName'], contact['lastName'], contact['email'], contact['phoneNumber']);
+    };
+
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
     document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
 
     showModal(modalId);
     setupModalListeners(modalId);
+}
+
+function saveContact(contactId, firstName, lastName, email, phoneNumber) {
+    // Kontakt in detailViewContacts aktualisieren
+    let updatedContact = detailViewContacts[contactId];
+    if (updatedContact) {
+        updatedContact.firstName = firstName;
+        updatedContact.lastName = lastName;
+        updatedContact.email = email;
+        updatedContact.phoneNumber = phoneNumber;
+        
+        // Annahme: Wir haben eine Funktion zum Aktualisieren des lokalen Speichers
+        updateServer(); // Diese Funktion musst du implementieren
+
+        // Schließe das Bearbeitungsmodal und zeige möglicherweise eine Bestätigungsnachricht an
+        hideModal('editContactCard');
+        alert('Kontakt wurde erfolgreich aktualisiert!');
+
+        // Rufe Funktionen auf, um die Kontaktliste neu zu rendern oder weitere notwendige Aktionen durchzuführen
+        init();
+    } else {
+        console.error('Kontakt nicht gefunden');
+    }
+}
+
+
+async function updateServer() {   
+    try {       
+        await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
+        console.log('Kontaktinformationen erfolgreich aktualisiert');
+    } catch (error) {
+        console.error('Fehler beim Aktualisieren der Kontaktinformationen', error);
+    }
 }
 
 
@@ -157,47 +189,3 @@ function editContact(contactId) {
 
 
 
-
-
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     let modal = document.getElementById('contactModal');
-//     let btn = document.getElementById('addContactBtn');
-//     let span = document.getElementsByClassName('close')[0];
-//     btn.onclick = function () {
-//         addContactModal();
-//     };
-//     function addContactModal() {
-//         modal.style.display = "flex";
-//     }
-//     span.onclick = function () {
-//         modal.style.display = "none";
-//     }
-//     window.onclick = function (event) {
-//         if (event.target == modal) {
-//             modal.style.display = "none";
-//         }
-//     }
-// });
-
-
-
-
-// function editContact(contactId) {
-//     let modal = document.getElementById('editContactCard');
-//     let contact = detailViewContacts[contactId];
-//     let content = document.getElementById('editModalContent');
-//     modal.style.display = "flex";
-//     content.innerHTML = /*html*/`
-//         `
-//     let span = document.querySelector('#editModalContent .close'); // Stelle sicher, dass der Selektor passt
-//     span.onclick = function () {
-//         modal.style.display = "none";
-//     };
-//     // Schließen des Modals, wenn außerhalb des Modals geklickt wird
-//     window.onclick = function (event) {
-//         if (event.target == modal) {
-//             modal.style.display = "none";
-//         }
-//     };
-// }
