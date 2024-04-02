@@ -33,47 +33,36 @@ function readServerData() {
 
 function getReady() {
   setContacts(contacts);
+
+  document.getElementById('addtask-input-assigned').classList.remove('d-none');
+  
+  document.getElementById('addtask-input-assigned').addEventListener('mouseover', function () {
+    document.getElementById('addtask-input-assigned').classList.remove('d-none');
+  });
+
+  document.getElementById('addtask-input-assigned').addEventListener('mouseleave', function () {
+    document.getElementById('addtask-input-assigned').classList.add('d-none');
+  });
+}
+
+function closeContactList() {
+  document.getElementById('addtask-input-assigned').classList.remove('d-none');
+
+
 }
 
 
 function setContacts(array) {
-
-
   document.getElementById('addtask-input-assigned').innerHTML = '';
   array.forEach((element) => {
-    document.getElementById('addtask-input-assigned').innerHTML += `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">${element.firstName} ${element.lastName}</option>`;
+    document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
   });
 
   if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
-  document.getElementById('addtask-input-assigned').addEventListener('change', function () {
-  });
 }
 
-function showContacts(){
-  let contactdiv = document.getElementById('assignedContacts');
-  let assDiv = document.getElementById('assinedPersons');
-  if (contactdiv.classList.contains('display-none')) {
-      contactdiv.innerHTML = ``;
-      assDiv.innerHTML = ``;
-      contactdiv.classList.remove('display-none');
-      for (let i = 0; i < allContacts.length; i++) {
-          const element = allContacts[i];
-          const firstLetter = getLetters(element['name']) // element['name'].charAt(0).toUpperCase();
-          const checkChecked = checked(i);
-          contactdiv.innerHTML +=`
-          <div class="assigneContact">
-          <div class="assigned-circle" style="background-color: ${element['bgcolor']};">${firstLetter}</div>
-          <p>${element['name']}</p> 
-          <input onclick="addAssigne(${i})" ${checkChecked} id="check${i}" type="checkbox">
-          </div>`
-      }
-  }else{
-      contactdiv.classList.add('display-none');
-      showAssignedPersons();
-  }
-}
 
 
 let title = document.getElementById('addtask-input-title');
@@ -84,7 +73,7 @@ let createTaskButton = document.getElementById('addtask-button-create-task');
 function initTask() {
   readServerData();
   validateInput();
-  readServerData()
+  readServerData();
 }
 
 // Popup erstellen
