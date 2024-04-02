@@ -136,6 +136,12 @@ async function init() {
     renderContacts();
 }
 
+/**
+ * Deletes a contact from the contacts list based on the provided email.
+ *
+ * @param {string} email - The email of the contact to be deleted.
+ * @returns {void}
+ */
 function deleteContact(email) {
     contactupdated = contacts.filter(item => item.email !== email);
     contacts = [];
@@ -147,6 +153,13 @@ function deleteContact(email) {
     }
 }
 
+
+/**
+ * Retrieves users from a JSON file and adds them to the contacts list.
+ * @async
+ * @function getUsersintoContacts
+ * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
+ */
 async function getUsersintoContacts() {
 
     try {
@@ -174,6 +187,10 @@ async function getUsersintoContacts() {
 }
 
 
+/**
+ * Resets the contacts array, deletes contacts from storage, and renders the updated contacts.
+ * @returns {void}
+ */
 function resetContacts() {
     contacts = [];
     try {
@@ -184,6 +201,12 @@ function resetContacts() {
 }
 
 
+/**
+ * Reads server data and renders contacts.
+ * @async
+ * @function readServerData
+ * @returns {Promise<void>} A promise that resolves when the server data is loaded and contacts are rendered.
+ */
 async function readServerData() {
     try {
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
@@ -196,6 +219,10 @@ async function readServerData() {
 
 
 
+/**
+ * Renders the contacts on the page.
+ * Sorts the contacts by initial, groups them by initial, and displays them in the specified HTML element.
+ */
 function renderContacts() {
     sortContactsByInitial();
     let groupedContacts = groupContactsByInitial();
@@ -231,7 +258,10 @@ function renderContacts() {
 }
 
 
-// Order contacts
+/**
+ * Groups contacts by their initial.
+ * @returns {Object} An object containing contacts grouped by their initial.
+ */
 function groupContactsByInitial() {
     let groupedContacts = {};
     contacts.forEach(contact => {
@@ -245,6 +275,11 @@ function groupContactsByInitial() {
 }
 
 
+/**
+ * Opens the detailed view of a contact.
+ * 
+ * @param {number} contactId - The ID of the contact.
+ */
 function openDetailedContactsView(contactId) {
     init();
     let contact = detailViewContacts[contactId]
@@ -274,11 +309,14 @@ function openDetailedContactsView(contactId) {
 }
 
 
-
-
-
-
-
+/**
+ * Creates a new contact object.
+ *
+ * @param {string[]} names - An array of names.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @returns {object} - The newly created contact object.
+ */
 function createNewContact(names, email, phone) {
     return {
         "firstName": names[0],
@@ -291,6 +329,13 @@ function createNewContact(names, email, phone) {
 }
 
 
+/**
+ * Adds a new contact to the contacts array or displays a warning if the contact already exists.
+ *
+ * @param {number} emailIndex - The index of the contact's email in the contacts array.
+ * @param {object} newContact - The new contact object to be added.
+ * @returns {void}
+ */
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
@@ -308,6 +353,9 @@ function addContactOrWarn(emailIndex, newContact) {
 }
 
 
+/**
+ * Clears the input fields for creating a contact.
+ */
 function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
@@ -315,6 +363,9 @@ function clearInputFields() {
 }
 
 
+/**
+ * Adds a new contact to the contact list.
+ */
 function addNewContact() {
     let email = document.getElementById('create-contact-email-input').value;
     let emailIndex = findEmailIndex(email);
@@ -326,6 +377,12 @@ function addNewContact() {
 }
 
 
+/**
+ * Sorts the contacts array by the initial of their first name.
+ * If the initials are the same, sorts by the whole first name.
+ *
+ * @returns {void}
+ */
 function sortContactsByInitial() {
     detailViewContacts = contacts.sort((a, b) => {
         // Vergleiche die ersten Buchstaben der Vornamen
@@ -345,6 +402,11 @@ function sortContactsByInitial() {
 }
 
 
+/**
+ * Validates a full name by checking if it contains at least two names.
+ * @param {string} fullName - The full name to be validated.
+ * @returns {string[]|null} - An array of names if the full name is valid, otherwise null.
+ */
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
     if (names.length < 2) {
@@ -354,7 +416,12 @@ function validateFullName(fullName) {
     return names;
 }
 
-//Check if email already exists
+
+/**
+ * Finds the index of a contact with the specified email in the contacts array.
+ * @param {string} email - The email to search for.
+ * @returns {number} - The index of the contact with the specified email, or -1 if not found.
+ */
 function findEmailIndex(email) {
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].email === email) {
@@ -365,11 +432,18 @@ function findEmailIndex(email) {
 }
 
 
+/**
+ * Generates a random color from the available colors array.
+ * @returns {string} A random color.
+ */
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
 
+/**
+ * Removes duplicate contacts from the contacts array based on email uniqueness.
+ */
 function removeDuplicateContacts() {
     const uniqueEmails = new Set();
     const uniqueContacts = contacts.filter(contact => {

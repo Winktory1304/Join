@@ -1,4 +1,8 @@
 
+/**
+ * Displays a modal by setting its display style to "flex".
+ * @param {string} modalId - The ID of the modal element to be displayed.
+ */
 function showModal(modalId) {
     let modal = document.getElementById(modalId);
     if (modal) {
@@ -6,6 +10,10 @@ function showModal(modalId) {
     }
 }
 
+/**
+ * Hides the modal with the specified ID.
+ * @param {string} modalId - The ID of the modal to hide.
+ */
 function hideModal(modalId) {
     let modal = document.getElementById(modalId);
     if (modal) {
@@ -13,6 +21,10 @@ function hideModal(modalId) {
     }
 }
 
+/**
+ * Sets up event listeners for a modal with the given ID.
+ * @param {string} modalId - The ID of the modal element.
+ */
 function setupModalListeners(modalId) {
     let modal = document.getElementById(modalId);
     let spans = modal.querySelectorAll('.close'); // Annahme: alle Schließ-Buttons verwenden die Klasse 'close'
@@ -32,6 +44,10 @@ function setupModalListeners(modalId) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    /**
+     * The button element for adding a contact.
+     * @type {HTMLButtonElement}
+     */
     let btn = document.getElementById('addContactBtn');
     let modalId = 'contactModal';
     btn.onclick = function () {
@@ -41,6 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+/**
+ * Edits a contact.
+ * 
+ * @param {string} contactId - The ID of the contact to edit.
+ * @returns {void}
+ */
 function editContact(contactId) {
     let modalId = 'editContactCard';
     let contact = detailViewContacts[contactId];
@@ -144,6 +166,11 @@ function editContact(contactId) {
 
 
 
+/**
+ * Saves the contact with the specified contactId.
+ *
+ * @param {number} contactId - The ID of the contact to be saved.
+ */
 function saveContact(contactId) {
     let content = document.getElementById('detailViewContent');
     const firstName = document.getElementById('edit-contact-name-input').value.split(' ')[0];
@@ -151,25 +178,17 @@ function saveContact(contactId) {
     const email = document.getElementById('edit-contact-email-input').value;
     const phoneNumber = document.getElementById('edit-contact-phone-input').value;
 
-    // Prüfe, ob der Kontakt im Array vorhanden ist
+    
     if (detailViewContacts[contactId]) {
-        // Aktualisiere den Kontakt mit den neuen Werten
+        
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;
         detailViewContacts[contactId].email = email;
         detailViewContacts[contactId].phoneNumber = phoneNumber;
-
-        // Nach der Aktualisierung, speichere die Änderungen im LocalStorage oder Server, wenn nötig
-        // Beispiel: updateServer(detailViewContacts); 
-
-        // Rufe Funktionen auf, um die Kontaktliste neu zu rendern oder weitere notwendige Aktionen durchzuführen
-        updateServer();
         init();
-
         console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('editContactCard');
-        content.innerHTML = '';
-        // alert('Kontakt wurde erfolgreich aktualisiert!');
+        content.innerHTML = '';        
     } else {
         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
     }
@@ -177,8 +196,12 @@ function saveContact(contactId) {
 
 
 
-
-
+/**
+ * Updates the server with the new contact information.
+ * @async
+ * @function updateServer
+ * @returns {Promise<void>} A promise that resolves when the server update is complete.
+ */
 async function updateServer() {   
     try {       
         await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
