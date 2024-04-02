@@ -1,43 +1,21 @@
 /**
- * The key used to store the todos in local storage.
- * @type {string}
- */
-let key = 'todos';
-
-
-/**
  * Arrays die benötigt werden
  */
-let todos = [];
 let subtask = [];
 let subtaskdone = [];
-let contacts = [];
 let selectedContacts = [];
-
-
+let priority = 1;
 let resultValidation = false;
-
-
 let assignedPerson = [];
 let allAssigned = [];
 const htmlfields = ['assinedPersons', 'task-list'];
 
-/**
- * Reads the todo tasks from the server.
- */
-function readServerData() {
-  readJSON('contacts', contacts);
-  readJSON(key, todos);
-}
 
 function getReady() {
-  setContacts(contacts);
+  setContacts(server.contacts);
 }
 
-
 function setContacts(array) {
-
-
   document.getElementById('addtask-input-assigned').innerHTML = '';
   array.forEach((element) => {
     document.getElementById('addtask-input-assigned').innerHTML += `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">${element.firstName} ${element.lastName}</option>`;
@@ -46,8 +24,6 @@ function setContacts(array) {
   if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
-  document.getElementById('addtask-input-assigned').addEventListener('change', function () {
-  });
 }
 
 function showContacts(){
@@ -81,9 +57,8 @@ let category = document.getElementById('addtask-input-category');
 let createTaskButton = document.getElementById('addtask-button-create-task');
 
 function initTask() {
-  readServerData();
+  server.readServerData();
   validateInput();
-  readServerData()
 }
 
 // Popup erstellen
@@ -144,7 +119,7 @@ function pushJSON() {
     subtaskdone.push(0);
   }
 
-  todos.push({
+  server.todos.push({
     'id': checkId(),
     'title': checkTitle(),
     'task': descriptionValue,
@@ -152,14 +127,14 @@ function pushJSON() {
     'subtasksdone': subtaskdone,
     'date': dateValue,
     'tag': categoryValue,
-    'priority': 1,
+    'priority': priority,
     'contacts': x,
     'status': 'open'
   });
 
-  setItem(key, todos);
+  setItem('todos', server.todos);
 
-  console.log(todos);
+  console.log(server.todos);
 }
 
 /**
@@ -169,7 +144,7 @@ function pushJSON() {
 function checkTitle() {
   let titleValue = document.getElementById('addtask-input-title').value;
   let count = 1;
-  todos.forEach((element) => {
+  server.todos.forEach((element) => {
     if (element.title === titleValue) {
       titleValue = titleValue + count;
       count++;
@@ -183,10 +158,10 @@ function checkTitle() {
  * @returns {number} - The id of the task.
  */
 function checkId() {
-  if (todos.length === 0) {
+  if (server.todos.length === 0) {
     return 0;
   }
-  return todos.length;
+  return server.todos.length;
 }
 
 /**
@@ -215,13 +190,15 @@ function selectPrio(prio) {
   containerUrgent.classList.remove('selected');
   containerMedium.classList.remove('selected');
   containerLow.classList.remove('selected');
-  priority = prio;
   if (prio == 'urgent') {
       containerUrgent.classList.add('selected');
+      priority = 3;
   } else if (prio == 'medium') {
       containerMedium.classList.add('selected');
+      priority = 2;
   } else {
       containerLow.classList.add('selected');
+      priority = 1;
   }
 
   console.log(prio);
