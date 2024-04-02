@@ -123,13 +123,20 @@ function logIn() {
     if (user) {
         indexOfUsers(email);
         
+        document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
+              
         setTimeout(function () {
             document.getElementById(`logged_in_successfuly_container`).classList.add('d-none');
         }, 2000);
-        window.location.href = './html/summary.html';
+
+        setTimeout(function () {
+            window.location.href = './html/summary.html';
+        }, 2000);
+
+        
     }
     else {
-        message.innerText = 'Ups! Email or password not found !';  //*muss noch gemacht werden !!!        
+        message.innerText = 'Ups! Email or password not found !';        
     }
 }
 
@@ -146,13 +153,10 @@ function indexOfUsers(email) {
 }
 
 
-
-
-
 function logInGuest() {
     guest = document.getElementById('user_name');
     window.location.href = 'html/summary.html';
-    userIndex = -1;
+    userIndex = -1; 
     localStorage.setItem('currentUserIndex', userIndex);
     guest.innerHTML = '';
     guest.innerHTML = 'Guest';

@@ -1,5 +1,6 @@
 let isShowMenu = false;
 
+
 function showHeaderMenu(headerID, hideHeaderClass) {
 	let showMenu = document.getElementById(headerID);
 
@@ -28,6 +29,7 @@ function showNumberOfToDo() {
 
     document.getElementById('number_of_to_do').innerHTML = '';
     document.getElementById('number_of_to_do').innerHTML = amount.length;
+    console.log('wenn es geht dann:', amount)
 }
 
 
