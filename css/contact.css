@@ -39,6 +39,7 @@ body {
     padding-left: 15px;
     border-radius: 20px;
     margin-top: 5px;
+    cursor: pointer;
 }
 .contact-box:hover{
     background-color: rgba(0, 0, 0, 0.1);
