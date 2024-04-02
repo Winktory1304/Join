@@ -2,7 +2,7 @@
  * Updates the HTML elements on the board based on the todosdome array.
  */
 function updateHTML() {
-    let open = server.todos.filter(t => t['status'] == 'open');
+    let open = todosdome.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
     if (open.length === 0) {
@@ -12,9 +12,10 @@ function updateHTML() {
     for (let index = 0; index < open.length; index++) {
         const element = open[index];
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
+
     }
 
-    let inProgress = server.todos.filter(t => t['status'] == 'progress');
+    let inProgress = todosdome.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
     if (inProgress.length === 0) {
@@ -26,8 +27,8 @@ function updateHTML() {
         document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
 
-    let inFeedback = server.todos.filter(t => t['status'] == 'feedback');
-    
+    let inFeedback = todosdome.filter(t => t['status'] == 'feedback');
+
     document.getElementById('board_feedback').innerHTML = '';
     if (inFeedback.length === 0) {
         document.getElementById('board_feedback').innerHTML = noCard();
@@ -38,7 +39,7 @@ function updateHTML() {
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
 
-    let closed = server.todos.filter(t => t['status'] == 'done');
+    let closed = todosdome.filter(t => t['status'] == 'done');
 
     document.getElementById('board_done').innerHTML = '';
     if (closed.length === 0) {

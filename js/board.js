@@ -1,26 +1,55 @@
-let server = new ServerFunctions();
-
 /**
  * The array that stores the todo tasks.
  * @type {Array}
  */
+let todosdome = [];
 let updatedArray = [];
+let usersdome = [];
+let contactsdome = [];
 
 /**
- * Deletes all todos from the server.todos array, writes to the server, and updates the HTML.
+ * The keydome used for storing the todosdome in the server.
+ * @type {string}
+ */
+let keydome = 'todos';
+
+
+/**
+ * Deletes all todos from the todosdome array, writes to the server, and updates the HTML.
  */
 function deleteALL() {
-    server.todos = [];
-    setItem('todos', server.todos);
+    todosdome = [];
+    writeServer();
     updateHTML();
 }
 
+/**
+ * Writes the todosdome array to the server.
+ */
+function writeServer() {
+    setItem(keydome, todosdome);
+    console.log('Daten aktualisiert!');
+}
 
 /**
- * Initializes the board by reading the server.todos from the server.
+ * Initializes the board by reading the todosdome from the server.
  */
-function initBoard() {
-        server.updateBoard();
+function init() {
+    readServer();
+}
+
+/**
+ * Reads the todosdome from the server and updates the HTML elements on the board.
+ */
+function readServer() {
+    contactsdome = [];
+    todosdome = [];
+    try {
+        readJSON('contacts', contactsdome);
+        readJSON(keydome, todosdome).then(() => { ; updateHTML(); });
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 /**
@@ -28,6 +57,9 @@ function initBoard() {
  * @type {HTMLElement}
  */
 let currentDraggedElement;
+
+
+
 
 /**
  * Generates HTML markup for a board with no tasks.
@@ -63,9 +95,9 @@ function allowDrop(ev) {
  * @param {string} category - The category to move the element to.
  */
 function moveTo(category) {
-    server.todos[currentDraggedElement]['status'] = category;
+    todosdome[currentDraggedElement]['status'] = category;
     updateHTML();
-    setItem('todos', server.todos);
+    writeServer(keydome, todosdome);
 }
 
 /**
@@ -111,7 +143,7 @@ function subTasks(element) {
  */
 function subTaskscomplete(id) {
 
-    let subtasksdone = server.todos[id].subtasksdone;
+    let subtasksdone = todosdome[id].subtasksdone;
 
     let count = 0;
     for (let i = 0; i < subtasksdone.length; i++) {
@@ -144,16 +176,16 @@ function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">
                         <div class="board_cardnav">
-                            <div class="board_opencardtag" ${setTag(server.todos[id])}>
-                                <p>${server.todos[id].tag}</p>
+                            <div class="board_opencardtag" ${setTag(todosdome[id])}>
+                                <p>${todosdome[id].tag}</p>
                             </div>
                             <div class="board_cardclosed"><p class="board_cardexit" onclick="closeDialog()">X</p>
                             </div>
                         </div>
-                        <div class="board_cardheadline">${server.todos[id].title}</div>
-                        <div class="board_cardtask board_text">${server.todos[id].task}</div>
-                        <div class="board_carddate board_text">Due date: ${server.todos[id].date}</div>
-                        <div class="board_cardprio board_text">Priority: ${setPriority(server.todos[id])} ${prioritySelector(server.todos[id])}</div>
+                        <div class="board_cardheadline">${todosdome[id].title}</div>
+                        <div class="board_cardtask board_text">${todosdome[id].task}</div>
+                        <div class="board_carddate board_text">Due date: ${todosdome[id].date}</div>
+                        <div class="board_cardprio board_text">Priority: ${setPriority(todosdome[id])} ${prioritySelector(todosdome[id])}</div>
                         <div class="board_assigned board_text" id="board_cardcontactsdome">
                             <h4>Assigned to:</h4>
                             <!-- Hier kommen die Sachen aus der Funktion contactsdomeLoad die noch erstellt werden muss -->
@@ -161,8 +193,8 @@ function openCard(id) {
                         </div>
                         <div class="board_subtasks board_text" id="board_cardsubtasks">
                             <h4>Subtasks</h4></div>
-                            <div class="board_deledit" onclick="editTask('${server.todos[id].id}')">Edit</div>
-                        <div class="board_deledit" onclick="deleteTask('${server.todos[id].title}'), closeDialog()">Delete</div>
+                            <div class="board_deledit" onclick="editTask('${todosdome[id].id}')">Edit</div>
+                        <div class="board_deledit" onclick="deleteTask('${todosdome[id].title}'), closeDialog()">Delete</div>
                     </div>
                     `;
     generateSubtasks(id);
@@ -174,7 +206,7 @@ function openCard(id) {
  * @param {string} id - The ID of the Task for contact.
  */
 function generatecontactsdome(id) {
-    server.todos[id].contacts.forEach(contact => {
+    todosdome[id].contacts.forEach(contact => {
         document.getElementById('board_cardcontactsdome').innerHTML += `<li class="board_assigneditem">
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
@@ -194,7 +226,7 @@ function getSubtasks(id) {
     let subtasks = document.getElementById('addtask-input-subtasks')
     subtasks.innerHTML = '';
 
-    server.todos[id].subtasks.forEach(subtask => {
+    todosdome[id].subtasks.forEach(subtask => {
 
         subtasks.innerHTML += returnSubtasks(subtask);
         console.log(returnSubtasks(subtask));
@@ -222,7 +254,7 @@ function updateJSON(id) {
     let dateValue = document.getElementById('addtask-input-date').value;
     let selectedCategory = document.getElementById('addtask-input-category').value;
 
-    server.todos.map(object => {
+    todosdome.map(object => {
         if (object.id === id) {
             object.title = titleValue;
             object.task = descriptionValue;
@@ -232,7 +264,7 @@ function updateJSON(id) {
             object.contacts.push(selectedContacts);
 
 
-            setItem(keydome, server.todos);
+            setItem(keydome, todosdome);
         }
     })
 }
@@ -241,7 +273,7 @@ function updateJSON(id) {
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
 function getarray() {
-    setContacts(server.contacts);
+    setContacts(contactsdome);
 }
 
 /**
@@ -267,16 +299,16 @@ function randomColor() {
  * @param {number} id - The ID of the task.
  */
 function generateSubtasks(id) {
-    server.todos[id].subtasks.forEach((subtask, index) => {
+    todosdome[id].subtasks.forEach((subtask, index) => {
         const checkbox = document.createElement('input');
         checkbox.className = 'checkbox';
         checkbox.type = 'checkbox';
         checkbox.id = `subtask${index}`;
         checkbox.name = `subtask${index}`;
-        checkbox.checked = server.todos[id].subtasksdone[index] === 1;
+        checkbox.checked = todosdome[id].subtasksdone[index] === 1;
 
         checkbox.addEventListener('change', function () {
-            server.todos[id].subtasksdone[index] = this.checked ? 1 : 0;
+            todosdome[id].subtasksdone[index] = this.checked ? 1 : 0;
         });
 
         const li = document.createElement('li');
