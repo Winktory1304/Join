@@ -19,7 +19,7 @@ function init() {
  
 function readServer() {
     readJSON('todos', todossum);
-    console.log(todos);
+    console.log(todossum);
 }
 
 function showAllNumbers() {
