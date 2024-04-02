@@ -5,6 +5,7 @@ let contacts = [];
 let contactupdated = [];
 
 let users = [];
+let detailViewContacts = [];
 
 //Array zum pushen into the storage with the key 'contacts'
 let contactstopush =
@@ -131,6 +132,13 @@ let contactstopush =
         }
     ]
 
+async function init() {
+    await readServerData();
+    removeDuplicateContacts()
+    await getUsersintoContacts();
+    renderContacts();
+}
+
 function deleteContact(email) {
     
     contactupdated = contacts.filter(item => item.email !== email);
@@ -141,14 +149,38 @@ function deleteContact(email) {
     } catch (error) {
         console.error('Error deleting contact', error);
     }
-    
-    
 }
 
-// function getUsersintoContacts() {
-//     users = [];
+async function getUsersintoContacts() {
+
+    try {
+        let users = [];
+        await readJSON('users', users);
+        console.log(users);
+        users.forEach(user => {
+            if (!contacts.some(contact => contact.email === user.email)) {
+                contacts.push({
+                    "firstName": user.name.split(' ')[0],
+                    "lastName": user.name.split(' ')[1],
+                    "email": user.email,
+                    "phoneNumber": "",
+                    "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
+                    "color": getRandomColor()
+                });
+            }
+        });
+        await setItem('contacts', contacts);
+        readServerData();
+        renderContacts();
+    } catch (error) {
+        console.error('Loading error:', error);
+    }
+}
+// async function getUsersintoContacts() {
+// let users = []
 //     try {
-//         readJSON('users', users);
+//         await readJSON('users', users); //Änderung für Domi
+//         console.log(users)
 //     } catch (error) {
 //         console.error('Loading error:', error);
 //     }
@@ -163,12 +195,10 @@ function deleteContact(email) {
 //                 "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
 //                 "color": getRandomColor()
 //             });
-
 //         }
-//     });
 
-//     setItem('contacts', contactupdated).then (() => {;readServerData();;renderContacts();})
-    
+//     });
+//     setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); })
 // }
 
 
@@ -182,9 +212,7 @@ function resetContacts() {
 }
 
 
-
-function readServerData() {
-    
+async function readServerData() {
     try {
         
         readJSON('contacts', contacts).then(() => { renderContacts() });
@@ -204,9 +232,13 @@ function init() {
 
 
 
+/**
+ * Renders the contacts on the page.
+ * Sorts the contacts by initial, groups them by initial, and displays them in the specified HTML element.
+ */
 function renderContacts() {
+    sortContactsByInitial();
     let groupedContacts = groupContactsByInitial();
-    // console.log(groupedContacts);
     let content = document.getElementById('contactsRenderContent');
     content.innerHTML = '';
     let counter = 0;
@@ -216,6 +248,7 @@ function renderContacts() {
                                 <div>
                                 <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
+            removeDuplicateContacts()
             let contactId = 'contact-' + counter;
             counter++;
             content.innerHTML += /*html*/`
@@ -237,7 +270,10 @@ function renderContacts() {
     });
 }
 
-//Order contacts
+/**
+ * Groups contacts by their initial.
+ * @returns {Object} An object containing contacts grouped by their initial.
+ */
 function groupContactsByInitial() {
     let groupedContacts = {};
     contacts.forEach(contact => {
@@ -251,6 +287,11 @@ function groupContactsByInitial() {
 }
 
 
+/**
+ * Opens the detailed view of a contact.
+ * 
+ * @param {number} contactId - The ID of the contact.
+ */
 function openDetailedContactsView(contactId) {
     console.log(contactId);
 
@@ -265,7 +306,6 @@ let span = document.getElementsByClassName('close')[0];
 
 // When the user clicks anywhere outside of the modal, close it
 function addContactModal() {
-
     modal.style.display = "flex";
 }
 
@@ -293,6 +333,13 @@ function createNewContact(names, email, phone) {
     };
 }
 
+/**
+ * Adds a new contact to the contacts array or displays a warning if the contact already exists.
+ *
+ * @param {number} emailIndex - The index of the contact's email in the contacts array.
+ * @param {object} newContact - The new contact object to be added.
+ * @returns {void}
+ */
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
@@ -313,6 +360,9 @@ function addContactOrWarn(emailIndex, newContact) {
 
 
 
+/**
+ * Clears the input fields for creating a contact.
+ */
 function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
@@ -320,6 +370,9 @@ function clearInputFields() {
 }
 
 
+/**
+ * Adds a new contact to the contact list.
+ */
 function addNewContact() {
     let email = document.getElementById('create-contact-email-input').value;
     let emailIndex = findEmailIndex(email);
@@ -331,6 +384,36 @@ function addNewContact() {
 }
 
 
+/**
+ * Sorts the contacts array by the initial of their first name.
+ * If the initials are the same, sorts by the whole first name.
+ *
+ * @returns {void}
+ */
+function sortContactsByInitial() {
+    detailViewContacts = contacts.sort((a, b) => {
+        // Vergleiche die ersten Buchstaben der Vornamen
+        const initialA = a.firstName[0].toUpperCase();
+        const initialB = b.firstName[0].toUpperCase();
+
+        if (initialA < initialB) {
+            return -1;
+        }
+        if (initialA > initialB) {
+            return 1;
+        }
+
+        // Wenn die ersten Buchstaben gleich sind, sortiere nach dem ganzen Vornamen
+        return a.firstName.toUpperCase().localeCompare(b.firstName.toUpperCase());
+    });
+}
+
+
+/**
+ * Validates a full name by checking if it contains at least two names.
+ * @param {string} fullName - The full name to be validated.
+ * @returns {string[]|null} - An array of names if the full name is valid, otherwise null.
+ */
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
     if (names.length < 2) {
@@ -340,20 +423,44 @@ function validateFullName(fullName) {
     return names;
 }
 
-//Check if email already exists
+
+/**
+ * Finds the index of a contact with the specified email in the contacts array.
+ * @param {string} email - The email to search for.
+ * @returns {number} - The index of the contact with the specified email, or -1 if not found.
+ */
 function findEmailIndex(email) {
-    // Iteriert durch das contacts-Array und sucht nach der E-Mail-Adresse
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].email === email) {
-            return i; // Gibt den Index zurück, wenn die E-Mail gefunden wurde
+            return i;
         }
     }
-    return -1; // Gibt -1 zurück, wenn die E-Mail nicht gefunden wurde
+    return -1;
 }
 
 
+/**
+ * Generates a random color from the available colors array.
+ * @returns {string} A random color.
+ */
 function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+function removeDuplicateContacts() {
+    const uniqueEmails = new Set();
+    const uniqueContacts = contacts.filter(contact => {
+        if (!uniqueEmails.has(contact.email)) {
+            uniqueEmails.add(contact.email);
+            return true;
+        }
+        return false;
+    });
 
+    contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+});

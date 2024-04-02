@@ -11,6 +11,7 @@
 
 
     <script src="../js/storage.js"></script>
+    <script src="../js/editContactCard.js"></script>
 
     <title>contacts</title>
 
@@ -21,8 +22,8 @@
     <div w3-include-html="./template/navbar.html"></div>
     <div class="main">
         <div class="content-container">
-            <div id="addContactBtn" class="contacts-content">
-                <button onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
+            <div  class="contacts-content">
+                <button id="addContactBtn" onclick="addContactModal()" class="contacts-add-new-contact-button">Add new contact
                     <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_154458_4951" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                             width="33" height="33">
@@ -44,26 +45,7 @@
                     <div class="contacts-placeholder-seperator"></div>
                     <div class="contacts-placeholder-text">Better with a team</div>
                 </div>
-                <div class="detail-view">
-                    <div class="detail-view-child1">
-                        <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect width="42" height="42" rx="21" fill="white" />
-                            <circle cx="21" cy="21" r="20" fill="#FF7A00" stroke="white" stroke-width="2" />
-                            <path
-                                d="M13.0222 25H11.9142L15.1188 16.2727H16.2097L19.4142 25H18.3063L15.6983 17.6534H15.6301L13.0222 25ZM13.4313 21.5909H17.8972V22.5284H13.4313V21.5909ZM20.7736 16.2727H22.035L25.0009 23.517H25.1032L28.0691 16.2727H29.3304V25H28.3418V18.3693H28.2566L25.5293 25H24.5748L21.8475 18.3693H21.7623V25H20.7736V16.2727Z"
-                                fill="white" />
-                        </svg>
-                        <div class="detail-view-box">
-                            <div class="detail-view-name">
-                                First LastName
-                            </div>
-                            <div class="detail-view-symbols">
-                                Edit Delete
-                            </div>
-                        </div>
-                    </div>
-                    <div>Contact Information</div>
+                <div id="detailViewContent" class="detail-view">                   
 
                 </div>
             </div>
@@ -71,7 +53,9 @@
     </div>
 
     <!--Modal-->
-
+    <div id="editContactCard" class="modal">
+        <div id="editModalContent" class="modal-content "></div>
+    </div>
     <div id="contactModal" class="modal">
         <!-- Modal content -->
         <div id="modalContent" class="modal-content">
@@ -136,7 +120,6 @@
                     </defs>
                 </svg>
             </div>
-
             <div class="modal-part-3">
                 <span onclick="closeModal()" class="close">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +142,7 @@
                         type="number" placeholder="Phone">
                 </form>
                 <div class="modal-part-3-buttons-container">
-                    <button class="modal-part-3-cancel-button" onclick="closeModal()">
+                    <button class="modal-part-3-cancel-button" onclick="hideModal('contactModal')">
                         Cancel
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -182,10 +165,7 @@
                     </button>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 
 
