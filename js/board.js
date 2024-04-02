@@ -65,7 +65,7 @@ function allowDrop(ev) {
 function moveTo(category) {
     server.todos[currentDraggedElement]['status'] = category;
     updateHTML();
-    server.writeServerData();
+    setItem('todos', server.todos);
 }
 
 /**

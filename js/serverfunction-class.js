@@ -33,4 +33,9 @@ class ServerFunctions {
         readJSON('contacts', this.contacts).then(() => {;renderContacts();});
     }
 
+    updateSummary() {
+        this.todos = [];
+        readJSON('todos', this.todos).then(() => {;showAllNumbers();});
+    }
+
 }
