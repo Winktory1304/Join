@@ -18,6 +18,10 @@ let selectedContacts = [];
 let resultValidation = false;
 
 
+let assignedPerson = [];
+let allAssigned = [];
+const htmlfields = ['assinedPersons', 'task-list'];
+
 /**
  * Reads the todo tasks from the server.
  */
@@ -42,12 +46,32 @@ function setContacts(array) {
   if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
-
   document.getElementById('addtask-input-assigned').addEventListener('change', function () {
-
   });
+}
 
-
+function showContacts(){
+  let contactdiv = document.getElementById('assignedContacts');
+  let assDiv = document.getElementById('assinedPersons');
+  if (contactdiv.classList.contains('display-none')) {
+      contactdiv.innerHTML = ``;
+      assDiv.innerHTML = ``;
+      contactdiv.classList.remove('display-none');
+      for (let i = 0; i < allContacts.length; i++) {
+          const element = allContacts[i];
+          const firstLetter = getLetters(element['name']) // element['name'].charAt(0).toUpperCase();
+          const checkChecked = checked(i);
+          contactdiv.innerHTML +=`
+          <div class="assigneContact">
+          <div class="assigned-circle" style="background-color: ${element['bgcolor']};">${firstLetter}</div>
+          <p>${element['name']}</p> 
+          <input onclick="addAssigne(${i})" ${checkChecked} id="check${i}" type="checkbox">
+          </div>`
+      }
+  }else{
+      contactdiv.classList.add('display-none');
+      showAssignedPersons();
+  }
 }
 
 
@@ -177,4 +201,28 @@ function validateForm() {
 
     return false;
   }
+}
+/**
+ * selects the priority buttons and change classes
+ * @param {String} prio
+ */
+
+function selectPrio(prio) {
+  let containerUrgent = document.getElementById('addtaskButtonUrgent');
+  let containerMedium = document.getElementById('addtaskButtonMedium');
+  let containerLow = document.getElementById('addtaskButtonLow');
+
+  containerUrgent.classList.remove('selected');
+  containerMedium.classList.remove('selected');
+  containerLow.classList.remove('selected');
+  priority = prio;
+  if (prio == 'urgent') {
+      containerUrgent.classList.add('selected');
+  } else if (prio == 'medium') {
+      containerMedium.classList.add('selected');
+  } else {
+      containerLow.classList.add('selected');
+  }
+
+  console.log(prio);
 }

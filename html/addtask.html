@@ -19,6 +19,8 @@
     <script src="../js/include.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/taskHandler.js"></script>
+    <script src="../js/board_html.js"></script>
+    <script src="../js/board.js"></script>
 
 </head>
 
@@ -46,15 +48,23 @@
                         placeholder="Enter a Description" rows="4">Test</textarea>
 
                 </div>
+
+
+
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Assigned to</div>
 
 
-                    <select class="addtask-input-category"
+                    <select class="addtask-input-assigned"
                         id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getReady()"  aria-multiselectable="true">
                         <option value="" disabled selected>Select user</option>
                         </select>
                 </div>
+
+
+
+
+                
             </div>
             <div class="addtask-middle-content">
 
@@ -73,16 +83,16 @@
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Prio</div>
                     <div class="addtask-prio-buttons">
-                        <button class="addtask-button">Urgent
+                        <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
                             <image src="../assets/img/addtaskurgent.svg"></image>
 
                         </button>
 
-                        <button class="addtask-button">Medium
+                        <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
                             <image src="../assets/img/addtaskmedium.svg"></image>
                         </button>
 
-                        <button class="addtask-button">Low <image src="../assets/img/addtasklow.svg"></image> </button>
+                        <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <image src="../assets/img/addtasklow.svg"></image> </button>
 
                     </div>
                 </div>
