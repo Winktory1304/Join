@@ -14,7 +14,9 @@ function showHeaderMenu(headerID, hideHeaderClass) {
 }
 
 function init() {
-    showAllNumbers();
+    readServer().then(() => {
+        showAllNumbers();
+    });
 }
  
 function readServer() {
@@ -33,7 +35,7 @@ function showAllNumbers() {
 
 
 function showNumberOfToDo() {
-    let amount = todos.filter(t => t['status'] == 'open');
+    let amount = todossum.filter(t => t['status'] == 'open');
 
     document.getElementById('number_of_to_do').innerHTML = '';
     document.getElementById('number_of_to_do').innerHTML = amount.length;
@@ -41,21 +43,21 @@ function showNumberOfToDo() {
 
 
 function showNumberOfDone() {
-    let amount = todos.filter(t => t['status'] == 'done');
+    let amount = todossum.filter(t => t['status'] == 'done');
 
     document.getElementById('number_of_done').innerHTML = '';
     document.getElementById('number_of_done').innerHTML = amount.length;
 }
 
 function showNumberOfUrgent() {
-    let amount = todos.filter(t => t['priority'] == '3');
+    let amount = todossum.filter(t => t['priority'] == '3');
 
     document.getElementById('number_of_urgent').innerHTML = '';
     document.getElementById('number_of_urgent').innerHTML = amount.length;
 }
 
 function showNumberOfTasksInBoard() {
-    let amount = todos.length;
+    let amount = todossum.length;
 
     document.getElementById('number_of_tasks_in_boards').innerHTML = '';
     document.getElementById('number_of_tasks_in_boards').innerHTML = amount;
@@ -63,14 +65,14 @@ function showNumberOfTasksInBoard() {
 
 
 function showNumberOfTaskaInProgress() {
-    let amount = todos.filter(t => t['status'] == 'progress');
+    let amount = todossum.filter(t => t['status'] == 'progress');
 
     document.getElementById('number_of_tasks_in_progress').innerHTML = '';
     document.getElementById('number_of_tasks_in_progress').innerHTML = amount.length;
 }
 
 function showNumberOfAwaitingFeedback() {
-    let amount = todos.filter(t => t['status'] == 'feedback');
+    let amount = todossum.filter(t => t['status'] == 'feedback');
 
     document.getElementById('number_of_awaiting_feedback').innerHTML = '';
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
