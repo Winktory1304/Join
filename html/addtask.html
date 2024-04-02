@@ -51,14 +51,11 @@
 
 
 
-                <div class="addtask-gap16">
-                    <div class="addtask-h2">Assigned to</div>
+                <div class="addtask-gap16" >
+                    <div class="addtask-h2" >Assigned to</div>
 
-
-                    <select class="addtask-input-assigned"
-                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getReady()"  aria-multiselectable="true">
-                        <option value="" disabled selected>Select user</option>
-                        </select>
+                    <input type="text" placeholder="Contacts" class="addtask-input-assigned" id="changeAssigned" onfocus="getReady()">
+                    <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
                 </div>
 
 
