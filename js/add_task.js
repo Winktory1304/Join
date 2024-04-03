@@ -13,7 +13,6 @@ let subtask = [];
 let subtaskdone = [];
 let contacts = [];
 let selectedContacts = [];
-let priority = 2;
 
 let priority = 2;
 
