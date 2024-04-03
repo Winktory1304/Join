@@ -15,6 +15,7 @@ let contacts = [];
 let selectedContacts = [];
 
 let priority = 2;
+let status = 'open';
 
 let resultValidation = false;
 
@@ -144,7 +145,7 @@ function pushJSON() {
     'tag': categoryValue,
     'priority': priority,
     'contacts': x,
-    'status': 'open'
+    'status': status
   });
 
   setItem(key, todos);

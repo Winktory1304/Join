@@ -1,3 +1,4 @@
+
 /**
  * Searches for tasks based on user input and updates the board with matching tasks.
  */
@@ -13,6 +14,47 @@ function searchTask() {
   }
 
 }
+
+function hoverPlus(id) {
+  
+  let plus = document.getElementsByClassName('board_plus');
+  plus[id].setAttribute('src', '../assets/img/board-plus_blue.svg');
+}
+
+function hoverPlusOut(id) {
+  let plus = document.getElementsByClassName('board_plus');
+  plus[id].setAttribute('src', '../assets/img/board-plus.svg');
+}
+
+
+function createTask(statusInput) {
+
+  
+
+
+  if (statusInput === 'open') {
+    status = 'open';
+    addTask();
+    updateHTML();
+  }
+  else if (statusInput === 'progress') {
+    status = 'progress';
+    addTask();
+    updateHTML();
+  }
+  else if (statusInput === 'feedback') {
+    status = 'feedback';
+    addTask();
+    updateHTML();
+  }
+  else {
+    status = 'open';
+    addTask();
+    updateHTML();
+  }
+}
+
+
 
 /**
  * Adds a task to the todo list.
