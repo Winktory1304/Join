@@ -3,20 +3,61 @@
  * Searches for tasks based on user input and updates the board with matching tasks.
  */
 function searchTask() {
-  document.getElementById('board_findTask_input').onkeydomedown = function () {
+
+  document.getElementById('board_findTask_input').addEventListener('keyup', function () {
     var search = document.getElementById('board_findTask_input').value;
     var searchArray = todos.filter(t => t.title.includes(search));
-    document.getElementById('board_open').innerHTML = '';
-    for (let index = 0; index < searchArray.length; index++) {
-      const element = searchArray[index];
+    var statusopen = searchArray.filter(t => t.status === 'open');
+    var statusfeedback = searchArray.filter(t => t.status === 'feedback');
+    var statusprogress = searchArray.filter(t => t.status === 'progress');
+    var statusdone = searchArray.filter(t => t.status === 'done');
+
+    statusprogress.forEach((element) => {
+      document.getElementById('board_progress').innerHTML = '';
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_feedback').innerHTML = '';
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+    }
+    );
+
+    statusopen.forEach((element) => {
+      document.getElementById('board_open').innerHTML = '';
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_feedback').innerHTML = '';
+      document.getElementById('board_progress').innerHTML = '';
       document.getElementById('board_open').innerHTML += generateTodoHTML(element);
     }
-  }
+    );
+
+    statusfeedback.forEach((element) => {
+      document.getElementById('board_feedback').innerHTML = '';
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_open').innerHTML = '';
+      document.getElementById('board_progress').innerHTML = '';
+      document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
+    }
+    );
+
+    statusdone.forEach((element) => {
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_feedback').innerHTML = '';
+      document.getElementById('board_open').innerHTML = '';
+      document.getElementById('board_progress').innerHTML = '';
+      document.getElementById('board_done').innerHTML += generateTodoHTML(element);
+    }
+    );
+
+    if (search === '') {
+      updateHTML();
+    }
+
+  });
 
 }
 
 function hoverPlus(id) {
-  
+
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus_blue.svg');
 }
@@ -29,23 +70,26 @@ function hoverPlusOut(id) {
 
 function createTask(statusInput) {
 
-  
+
 
 
   if (statusInput === 'open') {
     status = 'open';
     addTask();
     updateHTML();
+    status = 'open';
   }
   else if (statusInput === 'progress') {
     status = 'progress';
     addTask();
     updateHTML();
+    status = 'open';
   }
   else if (statusInput === 'feedback') {
     status = 'feedback';
     addTask();
     updateHTML();
+    status = 'open';
   }
   else {
     status = 'open';
@@ -114,14 +158,14 @@ function editTask(id) {
         <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), closeDialog()">Update Task</button>
     </div>
     `;
-    
+
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');
 }
 
 function fillSubtasks() {
   subtask = [];
   todos.forEach((element) => {
-      subtask = element.subtasks;
+    subtask = element.subtasks;
   });
 }
 
