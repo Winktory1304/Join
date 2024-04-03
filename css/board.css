@@ -384,8 +384,25 @@ h4 {
     
     transform: translateX(0);
     animation-fill-mode: forwards;
+    overflow: x;
 
 }
+
+.board_taskcardedit {
+    gap: 10px !important;
+}
+
+
+.board_taskedit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    font-size: 20px;
+
+}
+
 @keyframes slide-in {
     0% {
         transform: translateX(200%);

@@ -4,7 +4,7 @@
 function searchTask() {
   document.getElementById('board_findTask_input').onkeydomedown = function () {
     var search = document.getElementById('board_findTask_input').value;
-    var searchArray = todosdome.filter(t => t.title.includes(search));
+    var searchArray = todos.filter(t => t.title.includes(search));
     document.getElementById('board_open').innerHTML = '';
     for (let index = 0; index < searchArray.length; index++) {
       const element = searchArray[index];
@@ -34,36 +34,55 @@ function addTask() {
 function editTask(id) {
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
-    <div class="board_taskcard">
-        <p class="board_deledit" onclick="closeDialog()">X</p>
-        <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
-        <input type="text" id="addtask-input-description" value="${todosdome[id].task}" required>
-        <input type="date" id="addtask-input-date" value="${todosdome[id].date}" required>
+    <div class="board_taskcard" id ="taskcardedit">
+        <div class="board_taskedit">
+        <h1>Edit Task</h1>
+        <p class="board_cardexit" onclick="closeDialog()">X</p>
+        </div>
+        <p>Task Title</p>
+        <input type="text" id="addtask-input-title" value="${todos[id].title}" required>
+        <p>Task Description</p>
+        <input type="text" id="addtask-input-description" value="${todos[id].task}" required>
+        <p>Task Date</p>
+        <input type="date" id="addtask-input-date" value="${todos[id].date}" required>
+        <p>Task Category</p>
         <select class="addtask-input-category" id="addtask-input-category" required>
-            <option default value="${todosdome[id].tag}" disabled>${todosdome[id].tag}</option>
+            <option default value="${todos[id].tag}" disabled>${todos[id].tag}</option>
             <option value="User Story">User Story</option>
             <option value="Technical Task">Technical Task</option>
         </select>
-
-        <select class="addtask-input-category" id="addtask-input-subtasks"  
-                 onmousedown="getSubtasks(${todosdome[id].id})"  aria-multiselectable="true">
-                
-                <option value="Bug" selected disabled>Subtasks</option>
-                </select>
-                <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
-                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
-                        <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
-                      </div>
-
-
-        <select class="addtask-input-category"
-                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getReady()"  aria-multiselectable="true">
-                        <option value="${todosdome[id].contacts}" disabled selected>${todosdome[id].contacts}</option>
-                        </select>
-                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todosdome[id].id}), closeDialog(), readServer()">Update Task</button>
+        <p>Task Category</p>
+            <div class="addtask-prio-buttons">
+                <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
+                  <image src="../assets/img/addtaskurgent.svg"></image>
+                </button>
+                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
+                  <image src="../assets/img/addtaskmedium.svg"></image>
+                </button>
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <image src="../assets/img/addtasklow.svg"></image> </button>
+            </div>
+        <p>Subtasks</p>
+        <div style="position: relative;" id="subtaskListContainer">             
+            <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+            <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+        </div>
+        <p>Assigned Contacts</p>
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned" id="changeAssigned" onfocus="getReady()">
+        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
+        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), closeDialog()">Update Task</button>
     </div>
     `;
+    
+  document.getElementById('taskcardedit').classList.add('board_taskcardedit');
 }
+
+function fillSubtasks() {
+  subtask = [];
+  todos.forEach((element) => {
+      subtask = element.subtasks;
+  });
+}
+
 
 /**
  * Adds a subtask to the task list.
@@ -88,13 +107,13 @@ function addSubtask() {
 }
 
 /**
-* Deletes a task from the todosdome array based on the given title.
+* Deletes a task from the todos array based on the given title.
 * @param {string} title - The title of the task to be deleted.
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
 function deleteTask(title) {
 
-  updatedArray = todosdome.filter(item => item.title !== title);
-  todosdome = [];
+  updatedArray = todos.filter(item => item.title !== title);
+  todos = [];
   setItem(keydome, updatedArray).then(() => { ; init(); });
 }
