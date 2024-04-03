@@ -1,8 +1,9 @@
 body {
     margin: auto;
     box-sizing: border-box;
-    max-width: 1440px;
+    width: 100%;
     font-family: "Inter";
+    max-height: 100%;
 
 
 }
@@ -10,10 +11,9 @@ body {
 
 
 .main {
-    display: flex;
-    max-width: 1440px;
+    display: flex;    
     margin-left: 232px;
-
+    max-width: calc(100vw - 232px);
 }
 
 
@@ -25,7 +25,7 @@ body {
     align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     min-width: 456px;
-    height: calc(1024px - 96px);
+    max-height: calc(100vh - 96px);
 
     width: 456px;
 
@@ -70,7 +70,7 @@ body {
 
 .content-container {
     display: flex;
-    width: calc(1440px - 232px);
+    width: 100%
 
 }
 
@@ -100,6 +100,7 @@ body {
 }
 
 .contacts-overview {
+    align-items: center;
     display: flex;
     flex-direction: column;   
     flex: 1;
