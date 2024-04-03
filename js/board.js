@@ -18,6 +18,7 @@ let keydome = 'todos';
  */
 function deleteALL() {
     todosdome = [];
+    todos = [];
     writeServer();
     updateHTML();
 }
@@ -46,6 +47,7 @@ function readServer() {
     try {
         readJSON('contacts', contacts);
         readJSON(keydome, todosdome).then(() => { ; updateHTML(); });
+        readJSON(keydome, todos).then(() => { ; updateHTML(); });
     } catch (error) {
         console.error('Error:', error);
     }
@@ -72,6 +74,20 @@ function noCard() {
     </div>
     `;
 }
+
+function changeAddTask() {
+    let button = document.getElementById('addtask-button-cancel');
+    let create = document.getElementById('addtask-button-create-task');
+
+    create.setAttribute('onclick', 'addTask(), readServer(), closeTaskDialog()');
+
+
+
+    button.value = 'Close';
+    button.setAttribute('onclick', 'closeTaskDialog()');
+    button.innerHTML = 'X Close';
+}
+
 
 /**
  * Starts dragging the specified element.

@@ -15,6 +15,7 @@ let contacts = [];
 let selectedContacts = [];
 let priority = 2;
 
+let priority = 2;
 
 let resultValidation = false;
 
@@ -206,8 +207,8 @@ function selectPrio(prio) {
   containerMedium.classList.remove('selected');
   containerLow.classList.remove('selected');
   if (prio == 'urgent') {
+    containerUrgent.classList.add('selected');
     priority = 3;
-      containerUrgent.classList.add('selected');
   } else if (prio == 'medium') {
     priority = 2;
       containerMedium.classList.add('selected');
