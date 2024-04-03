@@ -1,11 +1,3 @@
-.summary-html {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3b3b3b;
-    font-family: 'inter', sans-serif;
-}
-
 .summary-body {
     position: fixed;
     top: 0px;
@@ -13,13 +5,11 @@
     height: 1024px;
     background-color: #F5F5F5;
     overflow: hidden;
+    font-family: 'inter', sans-serif;
 }
 
 body {
-    max-width: 1440px;
-    max-height: 1024px;
-    margin: 0;
-    
+    margin: 0;    
     background-color: #F6F7F8;
     display: flex;
     justify-content: center;
