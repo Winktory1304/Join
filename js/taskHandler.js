@@ -12,41 +12,54 @@ function searchTask() {
     var statusprogress = searchArray.filter(t => t.status === 'progress');
     var statusdone = searchArray.filter(t => t.status === 'done');
 
+    if (statusprogress.length !== 0) {
+    document.getElementById('board_progress').innerHTML = '';
     statusprogress.forEach((element) => {
-      document.getElementById('board_progress').innerHTML = '';
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_feedback').innerHTML = '';
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
     );
-
-    statusopen.forEach((element) => {
+  }
+    else if (statusopen.length !== 0) {
       document.getElementById('board_open').innerHTML = '';
+      statusopen.forEach((element) => {
+        document.getElementById('board_done').innerHTML = '';
+        document.getElementById('board_feedback').innerHTML = '';
+        document.getElementById('board_progress').innerHTML = '';
+        document.getElementById('board_open').innerHTML += generateTodoHTML(element);
+      }
+      );
+    }
+
+    else if (statusfeedback.length !== 0) {
+      document.getElementById('board_feedback').innerHTML = '';
+      statusfeedback.forEach((element) => {
+        document.getElementById('board_done').innerHTML = '';
+        document.getElementById('board_open').innerHTML = '';
+        document.getElementById('board_progress').innerHTML = '';
+        document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
+      }
+      );
+    }
+
+    else if (statusdone.length !== 0) {
+      document.getElementById('board_done').innerHTML = '';
+      statusdone.forEach((element) => {
+        document.getElementById('board_feedback').innerHTML = '';
+        document.getElementById('board_open').innerHTML = '';
+        document.getElementById('board_progress').innerHTML = '';
+        document.getElementById('board_done').innerHTML += generateTodoHTML(element);
+      }
+      );
+    }
+    else{
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_progress').innerHTML = '';
-      document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-    }
-    );
-
-    statusfeedback.forEach((element) => {
-      document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_open').innerHTML = '';
       document.getElementById('board_progress').innerHTML = '';
-      document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
-    );
-
-    statusdone.forEach((element) => {
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_open').innerHTML = '';
-      document.getElementById('board_progress').innerHTML = '';
-      document.getElementById('board_done').innerHTML += generateTodoHTML(element);
-    }
-    );
 
     if (search === '') {
       updateHTML();
@@ -69,32 +82,32 @@ function hoverPlusOut(id) {
 
 
 function createTask(statusInput) {
-
-
-
-
   if (statusInput === 'open') {
     status = 'open';
     addTask();
     updateHTML();
     status = 'open';
+    priority = 2;
   }
   else if (statusInput === 'progress') {
     status = 'progress';
     addTask();
     updateHTML();
     status = 'open';
+    priority = 2;
   }
   else if (statusInput === 'feedback') {
     status = 'feedback';
     addTask();
     updateHTML();
     status = 'open';
+    priority = 2;
   }
   else {
     status = 'open';
     addTask();
     updateHTML();
+    priority = 2;
   }
 }
 
@@ -155,7 +168,7 @@ function editTask(id) {
         <p>Assigned Contacts</p>
         <input type="text" placeholder="Contacts" class="addtask-input-assigned" id="changeAssigned" onfocus="getReady()">
         <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
-        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), closeDialog()">Update Task</button>
+        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
     </div>
     `;
 

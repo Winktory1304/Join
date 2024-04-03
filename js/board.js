@@ -101,7 +101,6 @@ function startDragging(id) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 /**
  * Moves the current dragged element to the specified category.
  * @param {string} category - The category to move the element to.
