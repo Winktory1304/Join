@@ -1,4 +1,6 @@
-let users = [];
+let usersreg = [];
+
+let currentUser;
 
 
 async function initRegister() {
@@ -14,8 +16,8 @@ async function loadUsers() {
          * Das Ergebnis wird in der Variable x gespeichert.
          * Danach wird auf die Ebene gecastet, die wir haben wollen.
          */
-        
-        readJSON('users', users);
+
+        readJSON('users', usersreg);
 
 
         // users = JSON.parse(await getItem('users'));
@@ -49,7 +51,7 @@ async function registerUser() {
 
 
 function checkIfEmailExists(email) {
-    return users.some((user) => user.email === email);
+    return usersreg.some((user) => user.email === email);
 }
 
 
@@ -65,12 +67,12 @@ async function pushTheUserToStorage() {
     let email = document.getElementById('sign_up_email');
     let password = document.getElementById('sign_up_password');
 
-    users.push({
+    usersreg.push({
         name: name.value,
         email: email.value,
         password: password.value,
     });
-    await setItem('users', JSON.stringify(users));
+    await setItem('users', JSON.stringify(usersreg));
     resetForm();
 }
 
@@ -121,41 +123,59 @@ function logIn() {
     let message = document.getElementById('email_or_password_not_found');
     let user = userValidation(email, password);
     if (user) {
-        indexOfUsers(email);
-        
+        indexOfUser(email);
+
+        document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
+
         setTimeout(function () {
             document.getElementById(`logged_in_successfuly_container`).classList.add('d-none');
         }, 2000);
-        window.location.href = './html/summary.html';
+
+        setTimeout(function () {
+            window.location.href = './html/summary.html';
+        }, 2000);
+        loadCurrentUser();
     }
     else {
-        message.innerText = 'Ups! Email or password not found !';  //*muss noch gemacht werden !!!        
+        message.innerText = 'Ups! Email or password not found !';
     }
 }
 
 
 function userValidation(email, password) {
-    let user = users.find(u => u.email == email && u.password == password);
+    let user = usersreg.find(u => u.email == email && u.password == password);
     return user;
 }
 
 
-function indexOfUsers(email) {
-    let userIndex = users.findIndex(user => user.email === email);
+function indexOfUser(email) {
+    let userIndex = usersreg.findIndex(user => user.email === email);
     localStorage.setItem('currentUserIndex', userIndex);
+    console.log('zeig mir den aktuellen User', userIndex);
+}
+
+function loadCurrentUser() {
+    currentUser = localStorage.getItem('currentUserIndex');
+}
+
+function showNameOfUser() {
+    let name = document.getElementById('user_name');
+    i = currentUser;
+    if (i >= 0) {
+        name.innerHTML = `${usersreg[i]['name']}`;
+    } else {
+        name.innerHTML = '';
+        name.innerHTML = 'Guest';
+    }
 }
 
 
-
-
-
 function logInGuest() {
-    guest = document.getElementById('user_name');
-    window.location.href = 'html/summary.html';
+    window.location.href = './html/summary.html';
     userIndex = -1;
     localStorage.setItem('currentUserIndex', userIndex);
-    guest.innerHTML = '';
-    guest.innerHTML = 'Guest';
+    document.getElementById('user_name') = 'Guest User';
+    loadCurrentUser();
 }
 
 
@@ -164,3 +184,5 @@ function goBackToLogIn() {
     document.getElementById('sing_up_container').classList.add('d-none');
     document.getElementById('log_container').classList.remove('height-sing-up');
 }
+
+

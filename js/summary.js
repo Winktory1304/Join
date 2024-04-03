@@ -1,20 +1,11 @@
 let server = new ServerFunctions();
-let isShowMenu = false;
 
-function showHeaderMenu(headerID, hideHeaderClass) {
-	let showMenu = document.getElementById(headerID);
+let today = new Date();
+let hour = today.getHours();
 
-	if (isShowMenu) {
-		showMenu.classList.add(hideHeaderClass);
-		isShowMenu = false;
-	} else {
-		showMenu.classList.remove(hideHeaderClass);
-		isShowMenu = true; 
-	}
-}
 
 function init() {
-        server.updateSummary();
+    server.updateSummary();
 }
 
 function showAllNumbers() {
@@ -23,7 +14,8 @@ function showAllNumbers() {
     showNumberOfUrgent();
     showNumberOfTasksInBoard();
     showNumberOfTaskaInProgress();
-    showNumberOfAwaitingFeedback()
+    showNumberOfAwaitingFeedback();
+    showWayOfGreeting()
 }
 
 
@@ -70,3 +62,20 @@ function showNumberOfAwaitingFeedback() {
     document.getElementById('number_of_awaiting_feedback').innerHTML = '';
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
 }
+
+
+function showWayOfGreeting() {
+    let greeting;
+    if (hour >= 4 && hour < 12) {
+        greeting = 'Good morning';
+    } else if (hour >= 12 && hour < 18) {
+        greeting = 'Good afternoon';
+    } else {
+        greeting = 'Good evening';
+    }
+
+    let greetBox = document.getElementById('greet_box');
+    greetBox.innerHTML = '';
+    greetBox.textContent = greeting;
+}
+
