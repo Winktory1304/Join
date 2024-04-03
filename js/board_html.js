@@ -137,7 +137,7 @@ function closeDialog() {
  */
 function openTaskDialog() {
     document.getElementById('board_addTask').classList.remove('d-none');
-    addTask();
+    popUp();
 }
 
 /**

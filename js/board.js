@@ -5,7 +5,6 @@
 let todosdome = [];
 let updatedArray = [];
 let usersdome = [];
-let contactsdome = [];
 
 /**
  * The keydome used for storing the todosdome in the server.
@@ -42,10 +41,10 @@ function init() {
  * Reads the todosdome from the server and updates the HTML elements on the board.
  */
 function readServer() {
-    contactsdome = [];
+    contacts = [];
     todosdome = [];
     try {
-        readJSON('contacts', contactsdome);
+        readJSON('contacts', contacts);
         readJSON(keydome, todosdome).then(() => { ; updateHTML(); });
     } catch (error) {
         console.error('Error:', error);
@@ -201,6 +200,7 @@ function openCard(id) {
     generatecontactsdome(id);
 }
 
+
 /**
  * Generates contact cards for a given ID.
  * @param {string} id - The ID of the Task for contact.
@@ -273,7 +273,7 @@ function updateJSON(id) {
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
 function getarray() {
-    setContacts(contactsdome);
+    setContacts(contacts);
 }
 
 /**
