@@ -134,24 +134,25 @@ function editTask(id) {
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard" id ="taskcardedit">
+      <div id="board_editframe" class="board_editframe max-width-525">
         <div class="board_taskedit">
         <h1>Edit Task</h1>
         <p class="board_cardexit" onclick="closeDialog()">X</p>
         </div>
         <p>Task Title</p>
-        <input type="text" id="addtask-input-title" value="${todos[id].title}" required>
+        <input class="max-width-500" type="text" id="addtask-input-title" value="${todos[id].title}" required>
         <p>Task Description</p>
-        <input type="text" id="addtask-input-description" value="${todos[id].task}" required>
+        <input class="max-width-500"  type="text" id="addtask-input-description" value="${todos[id].task}" required>
         <p>Task Date</p>
-        <input type="date" id="addtask-input-date" value="${todos[id].date}" required>
+        <input class="max-width-500"  type="date" id="addtask-input-date" value="${todos[id].date}" required>
         <p>Task Category</p>
-        <select class="addtask-input-category" id="addtask-input-category" required>
+        <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
             <option default value="${todos[id].tag}" disabled>${todos[id].tag}</option>
             <option value="User Story">User Story</option>
             <option value="Technical Task">Technical Task</option>
         </select>
         <p>Task Category</p>
-            <div class="addtask-prio-buttons">
+            <div class="addtask-prio-buttons max-width-500">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
                   <image src="../assets/img/addtaskurgent.svg"></image>
                 </button>
@@ -162,14 +163,16 @@ function editTask(id) {
             </div>
         <p>Subtasks</p>
         <div style="position: relative;" id="subtaskListContainer">             
-            <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
-            <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            <input class="addtask-input-subtasks max-width-500" id="addtask-input-subtasks" placeholder="Add new subtask">
+            <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%);">
+            <ul id="addsubtaskliste" class="addsubtaskliste"></ul>
         </div>
         <p>Assigned Contacts</p>
-        <input type="text" placeholder="Contacts" class="addtask-input-assigned" id="changeAssigned" onfocus="getReady()">
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned" onfocus="getReady()">
         <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
         <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
-    </div>
+      </div>
+      </div>
     `;
 
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');

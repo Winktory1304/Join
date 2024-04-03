@@ -126,7 +126,7 @@
 
 /* style inputfields */
 .addtask-input-title {
-    width: 524px;
+    width: 524px !important;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
