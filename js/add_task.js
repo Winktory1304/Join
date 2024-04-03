@@ -14,6 +14,7 @@ let subtaskdone = [];
 let contacts = [];
 let selectedContacts = [];
 
+let priority = 2;
 
 let resultValidation = false;
 
@@ -141,7 +142,7 @@ function pushJSON() {
     'subtasksdone': subtaskdone,
     'date': dateValue,
     'tag': categoryValue,
-    'priority': 1,
+    'priority': priority,
     'contacts': x,
     'status': 'open'
   });
@@ -204,13 +205,15 @@ function selectPrio(prio) {
   containerUrgent.classList.remove('selected');
   containerMedium.classList.remove('selected');
   containerLow.classList.remove('selected');
-  priority = prio;
   if (prio == 'urgent') {
     containerUrgent.classList.add('selected');
+    priority = 3;
   } else if (prio == 'medium') {
     containerMedium.classList.add('selected');
+    priority = 2;
   } else {
     containerLow.classList.add('selected');
+    priority = 1;
   }
 
   console.log(prio);

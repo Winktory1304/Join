@@ -57,7 +57,7 @@ function editTask(id) {
 
 
         <select class="addtask-input-category"
-                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getarray()"  aria-multiselectable="true">
+                        id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getReady()"  aria-multiselectable="true">
                         <option value="${todosdome[id].contacts}" disabled selected>${todosdome[id].contacts}</option>
                         </select>
                         <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todosdome[id].id}), closeDialog(), readServer()">Update Task</button>
