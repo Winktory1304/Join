@@ -1,4 +1,5 @@
 let usersreg = [];
+let loggeduser = [];
 
 let currentUser;
 
@@ -154,9 +155,19 @@ function indexOfUser(email) {
     console.log('zeig mir den aktuellen User', userIndex);
 }
 
-function loadCurrentUser() {
-    currentUser = localStorage.getItem('currentUserIndex');
+
+
+async function loadCurrentUser() {
+
+    let currentemail = document.getElementById('log_in_email').value;
+    loggeduser.push({
+        email: currentemail.value,
+    });
+    await setItem('usersemail', JSON.stringify(loggeduser));
+    resetForm();
+    console.log('zeig mir den eingeloggten User', currentemail);
 }
+
 
 function showNameOfUser() {
     let name = document.getElementById('user_name');

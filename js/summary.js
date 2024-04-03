@@ -3,6 +3,21 @@ let server = new ServerFunctions();
 let today = new Date();
 let hour = today.getHours();
 
+let isShowMenu = false;
+
+function showHeaderMenu(headerID, hideHeaderClass) {
+	let showMenu = document.getElementById(headerID);
+
+	if (isShowMenu) {
+		showMenu.classList.add(hideHeaderClass);
+		isShowMenu = false;
+	} else {
+		showMenu.classList.remove(hideHeaderClass);
+		isShowMenu = true; 
+	}
+}
+
+
 
 function init() {
     server.updateSummary();
@@ -13,17 +28,20 @@ function showAllNumbers() {
     showNumberOfDone();
     showNumberOfUrgent();
     showNumberOfTasksInBoard();
-    showNumberOfTaskaInProgress();
+    showNumberOfTasksInProgress();
     showNumberOfAwaitingFeedback();
     showWayOfGreeting()
 }
 
 
 function showNumberOfToDo() {
-    let amount = server.todos.filter(t => t['status'] == 'open');
+    let open = server.todos.filter(t => t['status'] == 'open');
+    let progress = server.todos.filter(t => t['status'] == 'progress');
+    let feedback = server.todos.filter(t => t['status'] == 'feedback');
+    let amount = open.length + progress.length + feedback.length;
 
     document.getElementById('number_of_to_do').innerHTML = '';
-    document.getElementById('number_of_to_do').innerHTML = amount.length;
+    document.getElementById('number_of_to_do').innerHTML = amount;
 }
 
 
@@ -49,7 +67,7 @@ function showNumberOfTasksInBoard() {
 }
 
 
-function showNumberOfTaskaInProgress() {
+function showNumberOfTasksInProgress() {
     let amount = server.todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('number_of_tasks_in_progress').innerHTML = '';
