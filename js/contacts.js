@@ -1,9 +1,6 @@
-let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"
-]
-
+let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
 let contacts = [];
 let contactupdated = [];
-
 let users = [];
 let detailViewContacts = [];
 
@@ -139,18 +136,30 @@ async function init() {
     renderContacts();
 }
 
+/**
+ * Deletes a contact from the contacts list based on the provided email.
+ *
+ * @param {string} email - The email of the contact to be deleted.
+ * @returns {void}
+ */
 function deleteContact(email) {
-    
     contactupdated = contacts.filter(item => item.email !== email);
     contacts = [];
     try {
-        setItem('contacts', contactupdated).then(() => {;readServerData();;renderContacts();});
+        setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
         console.log('Daten aktualisiert');
     } catch (error) {
         console.error('Error deleting contact', error);
     }
 }
 
+
+/**
+ * Retrieves users from a JSON file and adds them to the contacts list.
+ * @async
+ * @function getUsersintoContacts
+ * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
+ */
 async function getUsersintoContacts() {
 
     try {
@@ -176,58 +185,36 @@ async function getUsersintoContacts() {
         console.error('Loading error:', error);
     }
 }
-// async function getUsersintoContacts() {
-// let users = []
-//     try {
-//         await readJSON('users', users); //Änderung für Domi
-//         console.log(users)
-//     } catch (error) {
-//         console.error('Loading error:', error);
-//     }
-//     users.forEach(user => {
-//         // Check if user already exists in contacts
-//         if (!contacts.some(contact => contact.email === user.email)) {
-//             contactupdated.push({
-//                 "firstName": user.name.split(' ')[0],
-//                 "lastName": user.name.split(' ')[1],
-//                 "email": user.email,
-//                 "phoneNumber": "",
-//                 "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
-//                 "color": getRandomColor()
-//             });
-//         }
-
-//     });
-//     setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); })
-// }
 
 
+/**
+ * Resets the contacts array, deletes contacts from storage, and renders the updated contacts.
+ * @returns {void}
+ */
 function resetContacts() {
-    contacts= [];
+    contacts = [];
     try {
-        setItem('contacts', contactstopush).then(() => {;readServerData();renderContacts();});
+        setItem('contacts', contactstopush).then(() => { ; readServerData(); renderContacts(); });
     } catch (error) {
         console.error('Error deleting contacts', error);
     }
 }
 
 
+/**
+ * Reads server data and renders contacts.
+ * @async
+ * @function readServerData
+ * @returns {Promise<void>} A promise that resolves when the server data is loaded and contacts are rendered.
+ */
 async function readServerData() {
     try {
-        
-        readJSON('contacts', contacts).then(() => { renderContacts() });
-        console.log('Daten geladen');
+        await readJSON('contacts', contacts); // Warte auf das Laden der Daten
+        console.log('Daten geladen:', contacts);
+        renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
         console.error('Loading error:', error);
     }
-    
-
-}
-
-function init() {
-    readServerData();
-    // getUsersintoContacts();
-    renderContacts();
 }
 
 
@@ -244,12 +231,12 @@ function renderContacts() {
     let counter = 0;
     Object.keys(groupedContacts).sort().forEach(initial => {
         content.innerHTML += `<div class="letter-group">
-                                <div class="letter-group-first-name">${initial}</div>
-                                <div>
-                                <div class="letter-seperator"></div>`;
+        <div class="letter-group-first-name">${initial}</div>
+        <div>
+        <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
             removeDuplicateContacts()
-            let contactId = 'contact-' + counter;
+            let contactId = counter;
             counter++;
             content.innerHTML += /*html*/`
                 <div class="contact-box" id='${contactId}' onclick='openDetailedContactsView("${contactId}")'>
@@ -269,6 +256,7 @@ function renderContacts() {
         content.innerHTML += `</div></div>`;
     });
 }
+
 
 /**
  * Groups contacts by their initial.
@@ -293,35 +281,42 @@ function groupContactsByInitial() {
  * @param {number} contactId - The ID of the contact.
  */
 function openDetailedContactsView(contactId) {
-    console.log(contactId);
-
+    init();
+    let contact = detailViewContacts[contactId]
+    let content = document.getElementById('detailViewContent');
+    content.innerHTML = /*html*/`
+                <div class="detail-view-child1">
+                    <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect width="42" height="42" rx="21" fill="white" />
+                        <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
+                        <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
+                    </svg>
+                    <div class="detail-view-box">
+                        <div class="detail-view-name">
+                        ${contact.firstName} ${contact.lastName}
+                        </div>
+                        <div class="detail-view-symbols">
+                            <p onclick="editContact(${contactId})">Edit</p> <p>Delete</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-view-contact-information-text">Contact Information</div>
+                <div class="detail-view-contact-email"> Email</div>
+                <div id="detailViewEmail" class="detail-view-email">${contact.email}</div>
+                <div class="detail-view-contact-phone">Phone</div>
+                <div id="detailViewPhone">${contact.phoneNumber}</div>`
 }
 
 
-
-let modal = document.getElementById('contactModal');
-let btn = document.getElementById('addContactBtn');
-let span = document.getElementsByClassName('close')[0];
-
-
-// When the user clicks anywhere outside of the modal, close it
-function addContactModal() {
-    modal.style.display = "flex";
-}
-
-
-function closeModal() {
-    modal.style.display = "none";
-}
-
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        closeModal();
-    }
-}
-
-
+/**
+ * Creates a new contact object.
+ *
+ * @param {string[]} names - An array of names.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @returns {object} - The newly created contact object.
+ */
 function createNewContact(names, email, phone) {
     return {
         "firstName": names[0],
@@ -332,6 +327,7 @@ function createNewContact(names, email, phone) {
         "color": getRandomColor()
     };
 }
+
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
@@ -355,9 +351,6 @@ function addContactOrWarn(emailIndex, newContact) {
         alert("Dieser Kontakt ist schon vorhanden");
     }
 }
-
-
-
 
 
 /**
@@ -447,6 +440,10 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+
+/**
+ * Removes duplicate contacts from the contacts array based on email uniqueness.
+ */
 function removeDuplicateContacts() {
     const uniqueEmails = new Set();
     const uniqueContacts = contacts.filter(contact => {
