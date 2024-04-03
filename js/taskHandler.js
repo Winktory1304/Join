@@ -4,7 +4,7 @@
 function searchTask() {
   document.getElementById('board_findTask_input').onkeydomedown = function () {
     var search = document.getElementById('board_findTask_input').value;
-    var searchArray = server.todos.filter(t => t.title.includes(search));
+    var searchArray = todosdome.filter(t => t.title.includes(search));
     document.getElementById('board_open').innerHTML = '';
     for (let index = 0; index < searchArray.length; index++) {
       const element = searchArray[index];
@@ -20,6 +20,11 @@ function searchTask() {
 function addTask() {
   addTaskPopup()
   pushJSON();
+  try {
+    setItem(key, todos);
+  } catch (error) {
+    console.error('Error adding task', error);
+  }
 }
 
 /**
@@ -31,17 +36,17 @@ function editTask(id) {
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard">
         <p class="board_deledit" onclick="closeDialog()">X</p>
-        <input type="text" id="addtask-input-title" value="${server.todos[id].title}" required>
-        <input type="text" id="addtask-input-description" value="${server.todos[id].task}" required>
-        <input type="date" id="addtask-input-date" value="${server.todos[id].date}" required>
+        <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
+        <input type="text" id="addtask-input-description" value="${todosdome[id].task}" required>
+        <input type="date" id="addtask-input-date" value="${todosdome[id].date}" required>
         <select class="addtask-input-category" id="addtask-input-category" required>
-            <option default value="${server.todos[id].tag}" disabled>${server.todos[id].tag}</option>
+            <option default value="${todosdome[id].tag}" disabled>${todosdome[id].tag}</option>
             <option value="User Story">User Story</option>
             <option value="Technical Task">Technical Task</option>
         </select>
 
         <select class="addtask-input-category" id="addtask-input-subtasks"  
-                 onmousedown="getSubtasks(${server.todos[id].id})"  aria-multiselectable="true">
+                 onmousedown="getSubtasks(${todosdome[id].id})"  aria-multiselectable="true">
                 
                 <option value="Bug" selected disabled>Subtasks</option>
                 </select>
@@ -53,9 +58,9 @@ function editTask(id) {
 
         <select class="addtask-input-category"
                         id="addtask-input-assigned"  onchange="validateInput()" onmousedown="getarray()"  aria-multiselectable="true">
-                        <option value="${server.todos[id].contacts}" disabled selected>${server.todos[id].contacts}</option>
+                        <option value="${todosdome[id].contacts}" disabled selected>${todosdome[id].contacts}</option>
                         </select>
-                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${server.todos[id].id}), closeDialog(), readServer()">Update Task</button>
+                        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todosdome[id].id}), closeDialog(), readServer()">Update Task</button>
     </div>
     `;
 }
@@ -83,13 +88,13 @@ function addSubtask() {
 }
 
 /**
-* Deletes a task from the server.todos array based on the given title.
+* Deletes a task from the todosdome array based on the given title.
 * @param {string} title - The title of the task to be deleted.
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
 function deleteTask(title) {
 
-  updatedArray = server.todos.filter(item => item.title !== title);
-  server.todos = [];
-  setItem(keydome, updatedArray).then(() => { ; initBoard(); });
+  updatedArray = todosdome.filter(item => item.title !== title);
+  todosdome = [];
+  setItem(keydome, updatedArray).then(() => { ; init(); });
 }

@@ -1,8 +1,8 @@
 let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
+let contacts = [];
 let contactupdated = [];
+let users = [];
 let detailViewContacts = [];
-
-let server = new ServerFunctions();
 
 //Array zum pushen into the storage with the key 'contacts'
 let contactstopush =
@@ -129,10 +129,9 @@ let contactstopush =
         }
     ]
 
-async function initContacts() {
-    server.contacts = [];
-    server.updateContacts();
-    // removeDuplicateContacts();
+async function init() {
+    await readServerData();
+    removeDuplicateContacts()
     await getUsersintoContacts();
     renderContacts();
 }
@@ -144,7 +143,8 @@ async function initContacts() {
  * @returns {void}
  */
 function deleteContact(email) {
-    contactupdated = server.contacts.filter(item => item.email !== email);
+    contactupdated = contacts.filter(item => item.email !== email);
+    contacts = [];
     try {
         setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
         console.log('Daten aktualisiert');
@@ -163,9 +163,12 @@ function deleteContact(email) {
 async function getUsersintoContacts() {
 
     try {
-        server.users.forEach(user => {
-            if (!server.contacts.some(contact => contact.email === user.email)) {
-                server.contacts.push({
+        let users = [];
+        await readJSON('users', users);
+        console.log(users);
+        users.forEach(user => {
+            if (!contacts.some(contact => contact.email === user.email)) {
+                contacts.push({
                     "firstName": user.name.split(' ')[0],
                     "lastName": user.name.split(' ')[1],
                     "email": user.email,
@@ -175,7 +178,8 @@ async function getUsersintoContacts() {
                 });
             }
         });
-        // await setItem('contacts', server.contacts);
+        await setItem('contacts', contacts);
+        readServerData();
         renderContacts();
     } catch (error) {
         console.error('Loading error:', error);
@@ -188,7 +192,7 @@ async function getUsersintoContacts() {
  * @returns {void}
  */
 function resetContacts() {
-    server.contacts = [];
+    contacts = [];
     try {
         setItem('contacts', contactstopush).then(() => { ; readServerData(); renderContacts(); });
     } catch (error) {
@@ -205,8 +209,8 @@ function resetContacts() {
  */
 async function readServerData() {
     try {
-        server.updateContacts();
-        console.log('Daten geladen:', server.contacts);
+        await readJSON('contacts', contacts); // Warte auf das Laden der Daten
+        console.log('Daten geladen:', contacts);
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
         console.error('Loading error:', error);
@@ -220,6 +224,7 @@ async function readServerData() {
  * Sorts the contacts by initial, groups them by initial, and displays them in the specified HTML element.
  */
 function renderContacts() {
+    sortContactsByInitial();
     let groupedContacts = groupContactsByInitial();
     let content = document.getElementById('contactsRenderContent');
     content.innerHTML = '';
@@ -230,7 +235,7 @@ function renderContacts() {
         <div>
         <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
-            // removeDuplicateContacts()
+            removeDuplicateContacts()
             let contactId = counter;
             counter++;
             content.innerHTML += /*html*/`
@@ -259,7 +264,7 @@ function renderContacts() {
  */
 function groupContactsByInitial() {
     let groupedContacts = {};
-    server.contacts.forEach(contact => {
+    contacts.forEach(contact => {
         let initial = contact.firstName[0].toUpperCase();
         if (!groupedContacts[initial]) {
             groupedContacts[initial] = [];
@@ -276,18 +281,20 @@ function groupContactsByInitial() {
  * @param {number} contactId - The ID of the contact.
  */
 function openDetailedContactsView(contactId) {
+    init();
+    let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     content.innerHTML = /*html*/`
                 <div class="detail-view-child1">
                     <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="42" height="42" rx="21" fill="white" />
-                        <circle cx="21" cy="21" r="20" fill="${server.contacts[contactId].color}" stroke="white" stroke-width="2" />
-                        <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${server.contacts[contactId].firstLetterofNames}</text>
+                        <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
+                        <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
                     </svg>
                     <div class="detail-view-box">
                         <div class="detail-view-name">
-                        ${server.contacts[contactId].firstName} ${server.contacts[contactId].lastName}
+                        ${contact.firstName} ${contact.lastName}
                         </div>
                         <div class="detail-view-symbols">
                             <p onclick="editContact(${contactId})">Edit</p> <p>Delete</p>
@@ -296,9 +303,9 @@ function openDetailedContactsView(contactId) {
                 </div>
                 <div class="detail-view-contact-information-text">Contact Information</div>
                 <div class="detail-view-contact-email"> Email</div>
-                <div id="detailViewEmail" class="detail-view-email">${server.contacts[contactId].email}</div>
+                <div id="detailViewEmail" class="detail-view-email">${contact.email}</div>
                 <div class="detail-view-contact-phone">Phone</div>
-                <div id="detailViewPhone">${server.contacts[contactId].phoneNumber}</div>`
+                <div id="detailViewPhone">${contact.phoneNumber}</div>`
 }
 
 
@@ -331,10 +338,9 @@ function createNewContact(names, email, phone) {
  */
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
-        server.contacts.push(newContact);
-        debugger;
+        contacts.push(newContact);
         try {
-            setItem('contacts', server.contacts);
+            setItem('contacts', contacts);
             console.log('Daten aktualisiert');
         } catch (error) {
             console.error('Error adding contact', error);
@@ -378,7 +384,7 @@ function addNewContact() {
  * @returns {void}
  */
 function sortContactsByInitial() {
-    detailViewContacts = server.contacts.sort((a, b) => {
+    detailViewContacts = contacts.sort((a, b) => {
         // Vergleiche die ersten Buchstaben der Vornamen
         const initialA = a.firstName[0].toUpperCase();
         const initialB = b.firstName[0].toUpperCase();
@@ -417,8 +423,8 @@ function validateFullName(fullName) {
  * @returns {number} - The index of the contact with the specified email, or -1 if not found.
  */
 function findEmailIndex(email) {
-    for (let i = 0; i < server.contacts.length; i++) {
-        if (server.contacts[i].email === email) {
+    for (let i = 0; i < contacts.length; i++) {
+        if (contacts[i].email === email) {
             return i;
         }
     }
@@ -440,7 +446,7 @@ function getRandomColor() {
  */
 function removeDuplicateContacts() {
     const uniqueEmails = new Set();
-    let uniqueContacts = server.contacts.filter(contact => {
+    const uniqueContacts = contacts.filter(contact => {
         if (!uniqueEmails.has(contact.email)) {
             uniqueEmails.add(contact.email);
             return true;
@@ -448,10 +454,10 @@ function removeDuplicateContacts() {
         return false;
     });
 
-    server.contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
+    contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    initContacts();
+    init();
 });
