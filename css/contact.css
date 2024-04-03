@@ -25,9 +25,7 @@ body {
     align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     min-width: 456px;
-    max-height: calc(100vh - 96px);
-
-    width: 456px;
+    max-height: calc(100vh - 96px); 
 
 }
 
@@ -439,7 +437,7 @@ body {
     display: flex;    
     flex-direction: column;
     height: 364px;
-    margin-left: 65px;
+   
     
 
 }
