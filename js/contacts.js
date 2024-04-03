@@ -374,6 +374,7 @@ function addNewContact() {
     if (!names) return; //"Wenn nicht names wahr ist" (also, wenn names leer oder null ist), dann mache, was danach kommt (in diesem Fall, stoppe die Funktion mit return;).
     let newContact = createNewContact(names, email, document.getElementById('create-contact-phone-input').value);
     addContactOrWarn(emailIndex, newContact);
+    hideModal('contactModal');
 }
 
 
