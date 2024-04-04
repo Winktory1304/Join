@@ -27,12 +27,13 @@ body {
     height: 74px;
     position: fixed;
     top: 80%;
-    right: 0%;  
+    right: 0%;
     background-color: #243647;
     border: 1px solid;
     color: white;
     animation-name: animateright;
-    animation-duration: 2s; /* Gesamtdauer der Animation */
+    animation-duration: 2s;
+    /* Gesamtdauer der Animation */
     animation-fill-mode: forwards;
 
 }
@@ -498,7 +499,23 @@ body {
 .detail-view-symbols {
     display: flex;
     font-size: 16px;
+    gap: 13px;
+
+}
+
+.edit-contact-symbols {
+    display: flex;
+    align-items: center;
     gap: 8px;
+    cursor: pointer;
+}
+
+.edit-contact-symbols:hover {
+    fill: #29ABE2;
+    cursor: pointer;
+    color: #29ABE2;
+    font-weight: 700;
+    
 }
 
 .detail-view-contact-email {
@@ -544,16 +561,24 @@ body {
     0% {
         transform: translateX(100%);
     }
+
     40% {
-        transform: translateX(calc(50% - 50vw)); /* Fly in to the center */
+        transform: translateX(calc(50% - 50vw));
+        /* Fly in to the center */
     }
+
     60% {
-        transform: translateX(calc(50% - 50vw)); /* Stay in the center */
+        transform: translateX(calc(50% - 50vw));
+        /* Stay in the center */
     }
+
     80% {
-        transform: translateX(calc(50% - 50vw)); /* Stay in the center for 800ms */
+        transform: translateX(calc(50% - 50vw));
+        /* Stay in the center for 800ms */
     }
+
     100% {
-        transform: translateX(200%); /* Fly out to the right */
+        transform: translateX(200%);
+        /* Fly out to the right */
     }
 }
