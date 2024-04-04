@@ -1,5 +1,3 @@
-let server = new ServerFunctions();
-
 let today = new Date();
 let hour = today.getHours();
 
@@ -17,10 +15,10 @@ function showHeaderMenu(headerID, hideHeaderClass) {
 	}
 }
 
-
-
 function init() {
-    server.updateSummary();
+    readJSON('todos', todos).then(() => {
+        showAllNumbers(); 
+    });
 }
 
 function showAllNumbers() {
@@ -35,9 +33,9 @@ function showAllNumbers() {
 
 
 function showNumberOfToDo() {
-    let open = server.todos.filter(t => t['status'] == 'open');
-    let progress = server.todos.filter(t => t['status'] == 'progress');
-    let feedback = server.todos.filter(t => t['status'] == 'feedback');
+    let open = todos.filter(t => t['status'] == 'open');
+    let progress = todos.filter(t => t['status'] == 'progress');
+    let feedback = todos.filter(t => t['status'] == 'feedback');
     let amount = open.length + progress.length + feedback.length;
 
     document.getElementById('number_of_to_do').innerHTML = '';
@@ -46,21 +44,21 @@ function showNumberOfToDo() {
 
 
 function showNumberOfDone() {
-    let amount = server.todos.filter(t => t['status'] == 'done');
+    let amount = todos.filter(t => t['status'] == 'done');
 
     document.getElementById('number_of_done').innerHTML = '';
     document.getElementById('number_of_done').innerHTML = amount.length;
 }
 
 function showNumberOfUrgent() {
-    let amount = server.todos.filter(t => t['priority'] == '3');
+    let amount = todos.filter(t => t['priority'] == '3');
 
     document.getElementById('number_of_urgent').innerHTML = '';
     document.getElementById('number_of_urgent').innerHTML = amount.length;
 }
 
 function showNumberOfTasksInBoard() {
-    let amount = server.todos.length;
+    let amount = todos.length;
 
     document.getElementById('number_of_tasks_in_boards').innerHTML = '';
     document.getElementById('number_of_tasks_in_boards').innerHTML = amount;
@@ -68,14 +66,14 @@ function showNumberOfTasksInBoard() {
 
 
 function showNumberOfTasksInProgress() {
-    let amount = server.todos.filter(t => t['status'] == 'progress');
+    let amount = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('number_of_tasks_in_progress').innerHTML = '';
     document.getElementById('number_of_tasks_in_progress').innerHTML = amount.length;
 }
 
 function showNumberOfAwaitingFeedback() {
-    let amount = server.todos.filter(t => t['status'] == 'feedback');
+    let amount = todos.filter(t => t['status'] == 'feedback');
 
     document.getElementById('number_of_awaiting_feedback').innerHTML = '';
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
