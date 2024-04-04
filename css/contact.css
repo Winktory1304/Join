@@ -416,8 +416,11 @@ body {
     box-shadow: 0px 4px 4px 0px #00000040;
     border-color: #29ABE2;
     cursor: pointer;
+}
 
-
+/* Ändert die Farbe der SVG-Linien beim Hovern */
+.modal-part-3-cancel-button:hover .edit-svg path {
+    stroke: #29ABE2; 
 }
 
 .contact-modal-input::placeholder {
