@@ -1,9 +1,6 @@
-let usersreg = [];
 let loggeduser = [];
 
-
 let currentUser;
-
 
 async function initRegister() {
     loadUsers();
@@ -19,7 +16,7 @@ async function loadUsers() {
          * Danach wird auf die Ebene gecastet, die wir haben wollen.
          */
 
-        readJSON('users', usersreg);
+        readJSON('users', users);
 
 
         // users = JSON.parse(await getItem('users'));
@@ -62,7 +59,7 @@ function registerUser() {
  * @returns {boolean} True if the email exists, false otherwise.
  */
 function checkIfEmailExists(email) {
-    return usersreg.some((user) => user.email === email);
+    return users.some((user) => user.email === email);
 }
 
 
@@ -83,12 +80,12 @@ async function pushTheUserToStorage() {
     let email = document.getElementById('sign_up_email');
     let password = document.getElementById('sign_up_password');
 
-    usersreg.push({
+    users.push({
         name: name.value,
         email: email.value,
         password: password.value,
     });
-    await setItem('users', JSON.stringify(usersreg));
+    await setItem('users', users);
     resetForm();
 }
 
@@ -148,6 +145,8 @@ function logIn() {
         indexOfUser(email);
         loadCurrentUser();
 
+
+
         document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
 
         setTimeout(function () {
@@ -171,7 +170,7 @@ function logIn() {
  * @returns {object|null} The user object if found, null otherwise.
  */
 function userValidation(email, password) {
-    let user = usersreg.find(u => u.email == email && u.password == password);
+    let user = users.find(u => u.email == email && u.password == password);
     return user;
 }
 
@@ -179,7 +178,7 @@ function userValidation(email, password) {
  *    ===== funktioniert nicht !!!!
  */
 function indexOfUser(email) {
-    let userIndex = usersreg.findIndex(user => user.email === email);
+    let userIndex = users.findIndex(user => user.email === email);
     localStorage.setItem('currentUserIndex', userIndex);
     console.log('zeig mir den aktuellen User', userIndex);
 }
@@ -207,7 +206,7 @@ function showNameOfUser() {
     let name = document.getElementById('user_name');
     i = currentUser;
     if (i >= 0) {
-        name.innerHTML = `${usersreg[i]['name']}`;
+        name.innerHTML = `${users[i]['name']}`;
     } else {
         name.innerHTML = '';
         name.innerHTML = 'Guest';

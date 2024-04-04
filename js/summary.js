@@ -2,6 +2,8 @@ let today = new Date();
 let hour = today.getHours();
 let users = [];
 
+const currentIndex = localStorage.getItem('currentUserIndex');
+
 let greetingname;
 let isShowMenu = false;
 
@@ -22,7 +24,7 @@ function showName() {
         greetingname = 'Guest';
         showWayOfGreeting();
     } else {
-    let user = users.find(u => u['id'] == 3);
+    let user = users.find(u => u['id'] == currentIndex);
     greetingname = user['name'];
     showWayOfGreeting();
     }
