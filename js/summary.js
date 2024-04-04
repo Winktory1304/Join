@@ -5,7 +5,6 @@ let users = [];
 const currentIndex = localStorage.getItem('currentUserIndex');
 
 let greetingname;
-let isShowMenu = false;
 
 function resetUsers() {
     users = [];
@@ -20,34 +19,25 @@ function getName() {
 }
 
 function showName() {
-    if (users.length == 0) {
+    if (currentIndex === "Guest") {
         greetingname = 'Guest';
         showWayOfGreeting();
-    } else {
+    }
+    else{
     let user = users.filter(u => u.email === currentIndex);
     console.log('current user', currentIndex);
-    debugger;
     greetingname = user[0].name;
     showWayOfGreeting();
     }
 }
 
 
-function showHeaderMenu(headerID, hideHeaderClass) {
-	let showMenu = document.getElementById(headerID);
 
-	if (isShowMenu) {
-		showMenu.classList.add(hideHeaderClass);
-		isShowMenu = false;
-	} else {
-		showMenu.classList.remove(hideHeaderClass);
-		isShowMenu = true; 
-	}
-}
+
 
 function init() {
     readJSON('todos', todos).then(() => {
-        showAllNumbers(); 
+        showAllNumbers();
     });
 }
 

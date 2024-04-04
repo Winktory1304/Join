@@ -2,30 +2,17 @@ let loggeduser = [];
 
 let currentUser;
 
-async function initRegister() {
+function initRegister() {
     loadUsers();
 }
 
-async function loadUsers() {
+function loadUsers() {
     try {
-
-        /**
-         * Hier wird die Funktion getItem() aufgerufen, die in der Datei storage.js definiert ist.
-         * getItem() gibt ein Promise zurück, das mit await aufgelöst wird.
-         * Das Ergebnis wird in der Variable x gespeichert.
-         * Danach wird auf die Ebene gecastet, die wir haben wollen.
-         */
-
         readJSON('users', users);
-
-
-        // users = JSON.parse(await getItem('users'));
-        // console.log('Users:', users);
     } catch (e) {
         console.error('Loading error:', e);
     }
 }
-
 
 /**
  * Registers a user if email doesn't already exists.
@@ -52,7 +39,6 @@ function registerUser() {
     }
 }
 
-
 /**
  * Checks if an email already exists in the users array.
  * @param {string} email - The email to check.
@@ -61,7 +47,6 @@ function registerUser() {
 function checkIfEmailExists(email) {
     return users.some((user) => user.email === email);
 }
-
 
 /**
  * Shows a message saying that the email already exists.
@@ -135,7 +120,6 @@ function checkPrivacyPolicy() {
     }
 }
 
-
 function logIn() {
     let email = document.getElementById('log_in_email').value;
     let password = document.getElementById('log_in_password').value;
@@ -143,9 +127,6 @@ function logIn() {
     let user = userValidation(email, password);
     if (user) {
         indexOfUser(email);
-        loadCurrentUser();
-
-
 
         document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
 
@@ -175,55 +156,21 @@ function userValidation(email, password) {
 }
 
 /**
- *    ===== funktioniert nicht !!!!
+ *    ===== funktioniert nicht !!!! <- Gefixxt!
  */
 function indexOfUser(email) {
     let userIndex = users.filter(user => user.email === email);
-    localStorage.setItem('currentUserIndex', userIndex[0].email);
+    localStorage.setItem('currentUserIndex', userIndex[0].email); // <- hier wird die User Email in den LocalStorage gespeichert
     console.log('zeig mir den aktuellen User', userIndex[0].email);
 }
 
-
 /**
- *    ===== funktioniert nicht !!!!
- */
-async function loadCurrentUser() {
-
-    let currentemail = document.getElementById('log_in_email').value;
-    loggeduser.push({
-        email: currentemail.value,
-    });
-    await setItem('usersemail', JSON.stringify(loggeduser));
-    resetForm();
-    console.log('zeig mir den eingeloggten User', loggeduser);
-}
-
-
-/**
- *    ===== funktioniert nicht !!!! alt!!
- */
-function showNameOfUser() {
-    let name = document.getElementById('user_name');
-    i = currentUser;
-    if (i >= 0) {
-        name.innerHTML = `${users[i]['name']}`;
-    } else {
-        name.innerHTML = '';
-        name.innerHTML = 'Guest';
-    }
-}
-
-/**
- *   funktioniert nicht vollständig!!!!
+ *   funktioniert nicht vollständig!!!! <- Gefixxt!
  */
 function logInGuest() {
     window.location.href = './html/summary.html';
-    userIndex = -1;
-    localStorage.setItem('currentUserIndex', userIndex);
-    document.getElementById('user_name') = 'Guest User';
-    loadCurrentUser();
+    localStorage.setItem('currentUserIndex', "Guest");
 }
-
 
 /**
  * Redistricts to the login window.
