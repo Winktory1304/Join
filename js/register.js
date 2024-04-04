@@ -1,6 +1,7 @@
 let usersreg = [];
 let loggeduser = [];
 
+
 let currentUser;
 
 
@@ -28,7 +29,11 @@ async function loadUsers() {
     }
 }
 
-async function registerUser() {
+
+/**
+ * Registers a user if email doesn't already exists.
+ */
+function registerUser() {
 
     let email = document.getElementById('sign_up_email').value;
     checkPrivacyPolicy();
@@ -51,18 +56,28 @@ async function registerUser() {
 }
 
 
+/**
+ * Checks if an email already exists in the users array.
+ * @param {string} email - The email to check.
+ * @returns {boolean} True if the email exists, false otherwise.
+ */
 function checkIfEmailExists(email) {
     return usersreg.some((user) => user.email === email);
 }
 
 
+/**
+ * Shows a message saying that the email already exists.
+ */
 function warningEmailExists() {
     let warning = document.getElementById('password_match');
     warning.innerHTML = 'The email already exists';
     warning.style.color = 'red';
 }
 
-
+/**
+ * Adds user to users array and stores it in the remote storage.
+ */
 async function pushTheUserToStorage() {
     let name = document.getElementById('sign_up_name');
     let email = document.getElementById('sign_up_email');
@@ -77,7 +92,9 @@ async function pushTheUserToStorage() {
     resetForm();
 }
 
-
+/**
+ * Resets input fields and disables registration button in the registration form.
+ */
 function resetForm() {
     document.getElementById('sign_up_name').value = '';
     document.getElementById('sign_up_email').value = '';
@@ -86,7 +103,9 @@ function resetForm() {
     document.getElementById('sign_up_button').disabled = true;
 }
 
-
+/**
+ * Checks whether the password is entered correctly twice and enables the register button.
+ */
 function checkPassword() {
     if (document.getElementById('sign_up_password').value == document.getElementById('sign_up_confirm_password').value) {
         document.getElementById('sign_up_button').disabled = false;
@@ -101,7 +120,9 @@ function checkPassword() {
     }
 }
 
-
+/**
+ * Checks if the terms and conditions are confirmed to enable register button.
+ */
 function checkPrivacyPolicy() {
     let checkPrivacyPolicyTrue = document.getElementById('privacy_policy_check');
     let signUpButton = document.getElementById('sign_up_button');
@@ -113,7 +134,7 @@ function checkPrivacyPolicy() {
 
     } else {
         signUpButton.disabled = false;
-        signUpButton.classList.remove('disable-button');  //* Reset background color/
+        signUpButton.classList.remove('disable-button');  //* Unlocks the register button
     }
 }
 
@@ -125,6 +146,7 @@ function logIn() {
     let user = userValidation(email, password);
     if (user) {
         indexOfUser(email);
+        loadCurrentUser();
 
         document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
 
@@ -135,20 +157,27 @@ function logIn() {
         setTimeout(function () {
             window.location.href = './html/summary.html';
         }, 2000);
-        loadCurrentUser();
+        
     }
     else {
         message.innerText = 'Ups! Email or password not found !';
     }
 }
 
-
+/**
+ * Validates user by checking email and password.
+ * @param {string} email - The email entered by the user.
+ * @param {string} password - The password entered by the user.
+ * @returns {object|null} The user object if found, null otherwise.
+ */
 function userValidation(email, password) {
     let user = usersreg.find(u => u.email == email && u.password == password);
     return user;
 }
 
-
+/**
+ *    ===== funktioniert nicht !!!!
+ */
 function indexOfUser(email) {
     let userIndex = usersreg.findIndex(user => user.email === email);
     localStorage.setItem('currentUserIndex', userIndex);
@@ -156,7 +185,9 @@ function indexOfUser(email) {
 }
 
 
-
+/**
+ *    ===== funktioniert nicht !!!!
+ */
 async function loadCurrentUser() {
 
     let currentemail = document.getElementById('log_in_email').value;
@@ -165,10 +196,13 @@ async function loadCurrentUser() {
     });
     await setItem('usersemail', JSON.stringify(loggeduser));
     resetForm();
-    console.log('zeig mir den eingeloggten User', currentemail);
+    console.log('zeig mir den eingeloggten User', loggeduser);
 }
 
 
+/**
+ *    ===== funktioniert nicht !!!! alt!!
+ */
 function showNameOfUser() {
     let name = document.getElementById('user_name');
     i = currentUser;
@@ -180,7 +214,9 @@ function showNameOfUser() {
     }
 }
 
-
+/**
+ *   funktioniert nicht vollständig!!!!
+ */
 function logInGuest() {
     window.location.href = './html/summary.html';
     userIndex = -1;
@@ -190,6 +226,9 @@ function logInGuest() {
 }
 
 
+/**
+ * Redistricts to the login window.
+ */
 function goBackToLogIn() {
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
