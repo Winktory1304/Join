@@ -208,14 +208,29 @@ function selectPrio(prio) {
   containerLow.classList.remove('selected');
   if (prio == 'urgent') {
     containerUrgent.classList.add('selected');
+    document.getElementById('addtask-button-low-unselected').classList.add('addtask-button-low-unselected')
+    document.getElementById('addtask-button-medium-unselected').classList.add('addtask-button-medium-unselected');
+    document.getElementById('addtask-button-urgent-unselected').classList.remove('addtask-button-urgent-unselected');
+    document.getElementById('addtask-button-urgent-unselected').classList.add('addtask-button-selected');
+
+
+  
     priority = 3;
   } else if (prio == 'medium') {
     priority = 2;
       containerMedium.classList.add('selected');
-  } else {
+      document.getElementById('addtask-button-low-unselected').classList.add('addtask-button-low-unselected')
+      document.getElementById('addtask-button-urgent-unselected').classList.add('addtask-button-urgent-unselected');
+      document.getElementById('addtask-button-medium-unselected').classList.remove('addtask-button-medium-unselected');
+      document.getElementById('addtask-button-medium-unselected').classList.add('addtask-button-selected');
+   } else {
     priority = 1;
       containerLow.classList.add('selected');
-  }
+      document.getElementById('addtask-button-urgent-unselected').classList.add('addtask-button-urgent-unselected')
+      document.getElementById('addtask-button-medium-unselected').classList.add('addtask-button-medium-unselected');
+      document.getElementById('addtask-button-low-unselected').classList.remove('addtask-button-low-unselected');
+      document.getElementById('addtask-button-low-unselected').classList.add('addtask-button-selected');
+        }
 
   console.log(prio);
 }
