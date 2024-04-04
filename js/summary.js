@@ -24,8 +24,10 @@ function showName() {
         greetingname = 'Guest';
         showWayOfGreeting();
     } else {
-    let user = users.find(u => u['id'] == currentIndex);
-    greetingname = user['name'];
+    let user = users.filter(u => u.email === currentIndex);
+    console.log('current user', currentIndex);
+    debugger;
+    greetingname = user[0].name;
     showWayOfGreeting();
     }
 }

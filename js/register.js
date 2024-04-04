@@ -178,9 +178,9 @@ function userValidation(email, password) {
  *    ===== funktioniert nicht !!!!
  */
 function indexOfUser(email) {
-    let userIndex = users.findIndex(user => user.email === email);
-    localStorage.setItem('currentUserIndex', userIndex);
-    console.log('zeig mir den aktuellen User', userIndex);
+    let userIndex = users.filter(user => user.email === email);
+    localStorage.setItem('currentUserIndex', userIndex[0].email);
+    console.log('zeig mir den aktuellen User', userIndex[0].email);
 }
 
 
