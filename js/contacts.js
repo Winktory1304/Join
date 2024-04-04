@@ -290,7 +290,15 @@ function openDetailedContactsView(contactId) {
                 <div id="detailViewPhone">${contact.phoneNumber}</div>`
 }
 
+// Popup erstellen
+function addTaskPopup() {
+    let popup = document.getElementById('createContactsPopup');
+    popup.style.display = 'block';
 
+    setTimeout(function () {
+        popup.style.display = 'none';
+    }, );
+}
 
 /**
  * Deletes a contact by its ID.
@@ -302,7 +310,7 @@ function deleteContactById(contactId) {
     if (contactId >= 0 && contactId < detailViewContacts.length) {
         // Entferne den Kontakt aus dem detailViewContacts Array
         const [removedContact] = detailViewContacts.splice(contactId, 1);
-        
+
         //  Kontakt muss auch aus dem Hauptkontaktarray `contacts` entfernt werden
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         if (contactIndex !== -1) {
@@ -388,6 +396,7 @@ function addNewContact() {
     let newContact = createNewContact(names, email, document.getElementById('create-contact-phone-input').value);
     addContactOrWarn(emailIndex, newContact);
     hideModal('contactModal');
+    addTaskPopup();
 }
 
 

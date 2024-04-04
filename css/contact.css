@@ -11,13 +11,36 @@ body {
 
 
 .main {
-    display: flex;    
+    display: flex;
     margin-left: 232px;
     max-width: calc(100vw - 232px);
 }
 
+.popup {
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    align-items: center;
+    width: 326px;
+    height: 74px;
+    position: fixed;
+    top: 80%;
+    right: 0%;  
+    background-color: #243647;
+    border: 1px solid;
+    color: white;
+    animation-name: animateright;
+    animation-duration: 2s; /* Gesamtdauer der Animation */
+    animation-fill-mode: forwards;
 
+}
 
+/* .d-none {
+    display: none;
+
+} */
 
 .contacts-content {
     display: flex;
@@ -25,7 +48,7 @@ body {
     align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     min-width: 456px;
-    max-height: calc(100vh - 96px); 
+    max-height: calc(100vh - 96px);
 
 }
 
@@ -38,12 +61,14 @@ body {
     border-radius: 20px;
     margin-top: 5px;
 }
-.contact-box:hover{
+
+.contact-box:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    
-    
-} 
-.contact-box:active{
+
+
+}
+
+.contact-box:active {
     background-color: #2A3647;
     color: white;
 }
@@ -69,7 +94,6 @@ body {
 .content-container {
     display: flex;
     width: 100%
-
 }
 
 
@@ -83,7 +107,7 @@ body {
     background: white;
     margin-top: 50px;
     margin-bottom: 720px;
-    
+
     /* color of the tracking area */
 }
 
@@ -100,16 +124,16 @@ body {
 .contacts-overview {
     align-items: center;
     display: flex;
-    flex-direction: column;   
+    flex-direction: column;
     flex: 1;
-    background-color:  #F6F7F8;
+    background-color: #F6F7F8;
 }
 
 .contacts-placeholder {
     display: flex;
     height: 73px;
     align-items: center;
-    gap: 30px;    
+    gap: 30px;
     margin-top: calc(206px - 96px);
     margin-bottom: 32px;
     margin-left: 58px;
@@ -161,26 +185,29 @@ body {
     box-shadow: 0px 4px 4px 0px #00000040;
     cursor: pointer;
 }
-.letter-group{
+
+.letter-group {
     font-size: 20px;
     font-weight: 400;
-    
+
 }
-.letter-group-first-name{
+
+.letter-group-first-name {
     padding: 17px 36px 17px 36px;
 }
-.contact-box-email{
+
+.contact-box-email {
     color: blue;
 }
 
 .render-contacts-container {
-    margin: 0 28px;    
+    margin: 0 28px;
     margin-right: 4px;
     overflow: auto;
     padding-right: 32px;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 /* ***********  Modal ************/
@@ -188,15 +215,11 @@ body {
 
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
@@ -280,11 +303,12 @@ body {
     margin-left: 48px;
     margin-top: 16px;
 }
-.letter-seperator{
+
+.letter-seperator {
     width: 100%;
     border: 1px solid #D1D1D1;
     margin-top: 8px;
-   
+
 }
 
 .modal-part-2 {
@@ -318,7 +342,8 @@ body {
 
     margin-right: 48px;
 }
-.detail-view-email{
+
+.detail-view-email {
     color: blue;
 }
 
@@ -374,9 +399,11 @@ body {
 
 
 }
-.dispplay-flex{
+
+.dispplay-flex {
     display: flex;
 }
+
 .modal-part-3-create-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -433,15 +460,16 @@ body {
     font-weight: 400;
 }
 
-.detail-view{
-    display: flex;    
+.detail-view {
+    display: flex;
     flex-direction: column;
     height: 364px;
-   
-    
+
+
 
 }
-.detail-view-contact-information-text{
+
+.detail-view-contact-information-text {
     display: flex;
     font-size: 20px;
     font-weight: 400;
@@ -449,31 +477,37 @@ body {
     width: 207px;
     align-items: center;
 }
-.detail-view-child1{
+
+.detail-view-child1 {
     display: flex;
-    width: 100%;   
+    width: 100%;
     height: 120px;
 }
-.detail-view-box{
+
+.detail-view-box {
     margin-left: 54px;
 }
-.detail-view-name{
+
+.detail-view-name {
     margin-top: 16px;
     font-size: 47px;
-    gap:5px;
+    gap: 5px;
     font-weight: 500px;
 }
-.detail-view-symbols{
+
+.detail-view-symbols {
     display: flex;
     font-size: 16px;
     gap: 8px;
 }
-.detail-view-contact-email{
+
+.detail-view-contact-email {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 15px;
 }
-.detail-view-contact-phone{
+
+.detail-view-contact-phone {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 15px;
@@ -482,7 +516,7 @@ body {
 
 
 /* Add Animation */
-@-webkit-keyframes animatetop {
+/* @-webkit-keyframes animatetop {
     from {
         top: -300px;
         opacity: 0
@@ -492,7 +526,7 @@ body {
         top: 0;
         opacity: 1
     }
-}
+} */
 
 @keyframes animatetop {
     from {
@@ -503,5 +537,23 @@ body {
     to {
         top: 0;
         opacity: 1
+    }
+}
+
+@keyframes animateright {
+    0% {
+        transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(calc(50% - 50vw)); /* Fly in to the center */
+    }
+    60% {
+        transform: translateX(calc(50% - 50vw)); /* Stay in the center */
+    }
+    80% {
+        transform: translateX(calc(50% - 50vw)); /* Stay in the center for 800ms */
+    }
+    100% {
+        transform: translateX(200%); /* Fly out to the right */
     }
 }
