@@ -1,7 +1,33 @@
 let today = new Date();
 let hour = today.getHours();
+let users = [];
 
+let greetingname;
 let isShowMenu = false;
+
+function resetUsers() {
+    users = [];
+    setItem('users', users);
+    init();
+}
+
+function getName() {
+    readJSON('users', users).then(() => {
+        showName();
+    });
+}
+
+function showName() {
+    if (users.length == 0) {
+        greetingname = 'Guest';
+        showWayOfGreeting();
+    } else {
+    let user = users.find(u => u['id'] == 3);
+    greetingname = user['name'];
+    showWayOfGreeting();
+    }
+}
+
 
 function showHeaderMenu(headerID, hideHeaderClass) {
 	let showMenu = document.getElementById(headerID);
@@ -29,6 +55,7 @@ function showAllNumbers() {
     showNumberOfTasksInProgress();
     showNumberOfAwaitingFeedback();
     showWayOfGreeting()
+    getName();
 }
 
 
@@ -91,7 +118,10 @@ function showWayOfGreeting() {
     }
 
     let greetBox = document.getElementById('greet_box');
+    let greetName = document.getElementById('user_name');
     greetBox.innerHTML = '';
+    greetName.innerHTML = '';
+    greetName.innerHTML = greetingname;
     greetBox.textContent = greeting;
 }
 
