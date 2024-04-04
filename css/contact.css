@@ -37,10 +37,10 @@ body {
 
 }
 
-/* .d-none {
+.d-none {
     display: none;
 
-} */
+}
 
 .contacts-content {
     display: flex;

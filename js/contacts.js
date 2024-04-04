@@ -291,14 +291,16 @@ function openDetailedContactsView(contactId) {
 }
 
 // Popup erstellen
-function addTaskPopup() {
+function createContactPopup() {
     let popup = document.getElementById('createContactsPopup');
-    popup.style.display = 'block';
+    popup.style.display = 'flex';
 
     setTimeout(function () {
         popup.style.display = 'none';
-    }, );
+    }, 3000);
 }
+
+
 
 /**
  * Deletes a contact by its ID.
@@ -396,7 +398,7 @@ function addNewContact() {
     let newContact = createNewContact(names, email, document.getElementById('create-contact-phone-input').value);
     addContactOrWarn(emailIndex, newContact);
     hideModal('contactModal');
-    addTaskPopup();
+    createContactPopup();
 }
 
 
