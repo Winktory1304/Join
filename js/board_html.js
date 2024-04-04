@@ -1,8 +1,8 @@
 /**
- * Updates the HTML elements on the board based on the todosdome array.
+ * Updates the HTML elements on the board based on the todos array.
  */
 function updateHTML() {
-    let open = todosdome.filter(t => t['status'] == 'open');
+    let open = todos.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
     if (open.length === 0) {
@@ -15,7 +15,7 @@ function updateHTML() {
 
     }
 
-    let inProgress = todosdome.filter(t => t['status'] == 'progress');
+    let inProgress = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
     if (inProgress.length === 0) {
@@ -27,7 +27,7 @@ function updateHTML() {
         document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
 
-    let inFeedback = todosdome.filter(t => t['status'] == 'feedback');
+    let inFeedback = todos.filter(t => t['status'] == 'feedback');
 
     document.getElementById('board_feedback').innerHTML = '';
     if (inFeedback.length === 0) {
@@ -39,7 +39,7 @@ function updateHTML() {
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
 
-    let closed = todosdome.filter(t => t['status'] == 'done');
+    let closed = todos.filter(t => t['status'] == 'done');
 
     document.getElementById('board_done').innerHTML = '';
     if (closed.length === 0) {
@@ -137,7 +137,7 @@ function closeDialog() {
  */
 function openTaskDialog() {
     document.getElementById('board_addTask').classList.remove('d-none');
-    addTask();
+    changeAddTask();
 }
 
 /**

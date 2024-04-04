@@ -136,17 +136,30 @@ async function init() {
     renderContacts();
 }
 
+/**
+ * Deletes a contact from the contacts list based on the provided email.
+ *
+ * @param {string} email - The email of the contact to be deleted.
+ * @returns {void}
+ */
 function deleteContact(email) {
     contactupdated = contacts.filter(item => item.email !== email);
     contacts = [];
     try {
-        setItem('contacts', contactupdated).then(() => {;readServerData();;renderContacts();});
+        setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
         console.log('Daten aktualisiert');
     } catch (error) {
         console.error('Error deleting contact', error);
     }
 }
 
+
+/**
+ * Retrieves users from a JSON file and adds them to the contacts list.
+ * @async
+ * @function getUsersintoContacts
+ * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
+ */
 async function getUsersintoContacts() {
 
     try {
@@ -167,47 +180,32 @@ async function getUsersintoContacts() {
         });
         await setItem('contacts', contacts);
         readServerData();
-        renderContacts();
     } catch (error) {
         console.error('Loading error:', error);
     }
 }
-// async function getUsersintoContacts() {
-// let users = []
-//     try {
-//         await readJSON('users', users); //Änderung für Domi
-//         console.log(users)
-//     } catch (error) {
-//         console.error('Loading error:', error);
-//     }
-//     users.forEach(user => {
-//         // Check if user already exists in contacts
-//         if (!contacts.some(contact => contact.email === user.email)) {
-//             contactupdated.push({
-//                 "firstName": user.name.split(' ')[0],
-//                 "lastName": user.name.split(' ')[1],
-//                 "email": user.email,
-//                 "phoneNumber": "",
-//                 "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
-//                 "color": getRandomColor()
-//             });
-//         }
-
-//     });
-//     setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); })
-// }
 
 
+/**
+ * Resets the contacts array, deletes contacts from storage, and renders the updated contacts.
+ * @returns {void}
+ */
 function resetContacts() {
     contacts = [];
     try {
-        setItem('contacts', contactstopush).then(() => {;readServerData();renderContacts();});
+        setItem('contacts', contactstopush).then(() => { ; readServerData(); renderContacts(); });
     } catch (error) {
         console.error('Error deleting contacts', error);
     }
 }
 
 
+/**
+ * Reads server data and renders contacts.
+ * @async
+ * @function readServerData
+ * @returns {Promise<void>} A promise that resolves when the server data is loaded and contacts are rendered.
+ */
 async function readServerData() {
     try {
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
@@ -216,14 +214,6 @@ async function readServerData() {
     } catch (error) {
         console.error('Loading error:', error);
     }
-    
-
-}
-
-function init() {
-    readServerData();
-    // getUsersintoContacts();
-    renderContacts();
 }
 
 
@@ -240,9 +230,9 @@ function renderContacts() {
     let counter = 0;
     Object.keys(groupedContacts).sort().forEach(initial => {
         content.innerHTML += `<div class="letter-group">
-                                <div class="letter-group-first-name">${initial}</div>
-                                <div>
-                                <div class="letter-seperator"></div>`;
+        <div class="letter-group-first-name">${initial}</div>
+        <div>
+        <div class="letter-seperator"></div>`;
         groupedContacts[initial].forEach(contact => {
             removeDuplicateContacts()
             let contactId = counter;
@@ -265,6 +255,7 @@ function renderContacts() {
         content.innerHTML += `</div></div>`;
     });
 }
+
 
 /**
  * Groups contacts by their initial.
@@ -289,7 +280,6 @@ function groupContactsByInitial() {
  * @param {number} contactId - The ID of the contact.
  */
 function openDetailedContactsView(contactId) {
-    init();
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     content.innerHTML = /*html*/`
@@ -317,6 +307,14 @@ function openDetailedContactsView(contactId) {
 }
 
 
+/**
+ * Creates a new contact object.
+ *
+ * @param {string[]} names - An array of names.
+ * @param {string} email - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @returns {object} - The newly created contact object.
+ */
 function createNewContact(names, email, phone) {
     return {
         "firstName": names[0],
@@ -327,6 +325,7 @@ function createNewContact(names, email, phone) {
         "color": getRandomColor()
     };
 }
+
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
@@ -350,9 +349,6 @@ function addContactOrWarn(emailIndex, newContact) {
         alert("Dieser Kontakt ist schon vorhanden");
     }
 }
-
-
-
 
 
 /**
@@ -442,6 +438,10 @@ function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+
+/**
+ * Removes duplicate contacts from the contacts array based on email uniqueness.
+ */
 function removeDuplicateContacts() {
     const uniqueEmails = new Set();
     const uniqueContacts = contacts.filter(contact => {
