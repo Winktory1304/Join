@@ -137,7 +137,7 @@ function logIn() {
         setTimeout(function () {
             window.location.href = './html/summary.html';
         }, 2000);
-        
+
     }
     else {
         message.innerText = 'Ups! Email or password not found !';
@@ -175,6 +175,7 @@ function logInGuest() {
 /**
  * Redistricts to the login window.
  */
+
 function goBackToLogIn() {
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
@@ -182,3 +183,6 @@ function goBackToLogIn() {
 }
 
 
+function goOneStepBack() {
+    window.history.back();
+}
