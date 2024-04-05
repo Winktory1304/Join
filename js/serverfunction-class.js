@@ -24,18 +24,17 @@ class ServerFunctions {
     updateBoard() {
         this.contacts = [];
         this.todos = [];
-        readJSON('todos', this.todos).then(() => {;updateHTML();});
+        readJSON('todos', this.todos).then(() => { ; updateHTML(); });
         readJSON('contacts', this.contacts);
     }
 
     updateContacts() {
         this.contacts = [];
-        readJSON('contacts', this.contacts).then(() => {;renderContacts();});
+        readJSON('contacts', this.contacts).then(() => { ; renderContacts(); });
     }
 
     updateSummary() {
         this.todos = [];
-        readJSON('todos', this.todos).then(() => {;showAllNumbers();});
+        readJSON('todos', this.todos).then(() => { ; showAllNumbers(); });
     }
-
 }

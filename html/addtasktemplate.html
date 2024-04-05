@@ -1,0 +1,103 @@
+
+
+<div class="addtask_h1">
+    Add Task
+</div>
+<div class="addtask-content-main">
+    <div class="addtask-left-content">
+        <div class="addtask-gap16">
+            <div class="addtask-h2">Title<span>*</span></div>
+            <input value="Test" onchange="validateInput()" type="text"
+                class="addtask-input-title" id="addtask-input-title" placeholder="Enter a title" required>
+            <div class="messagedatevalidation d-none" id="messagedatevalidationTitel">This field is required
+            </div>
+        </div>
+        <div class="addtask-gap16">
+            <div class="addtask-h2">Description</div>
+            <textarea class="addtask-input-description" id="addtask-input-description"
+                placeholder="Enter a Description" rows="4">Test</textarea>
+
+        </div>
+
+
+
+        <div class="addtask-gap16" >
+            <div class="addtask-h2" >Assigned to</div>
+
+            <input type="text" placeholder="Contacts" class="addtask-input-assigned" id="changeAssigned" onfocus="getReady(), getarray()">
+            <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
+        </div>
+
+
+
+
+        
+    </div>
+    <div class="addtask-middle-content">
+
+    </div>
+
+    <div class="addtask-right-content">
+        <div class="addtask-gap16">
+            <div class="addtask-h2">Due date<span>*</span></div>
+            <input style="color: black;"  onchange="validateInput()" type="date"
+                name="begin" class="addtask-input-date" id="addtask-input-date" placeholder="dd-mm-yyyy"
+                min="1997-01-01" max="2030-12-31" value="2024-12-31">
+            <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required
+            </div>
+
+        </div>
+        <div class="addtask-gap16">
+            <div class="addtask-h2">Prio</div>
+            <div class="addtask-prio-buttons">
+                <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
+                    <image src="../assets/img/addtaskurgent.svg"></image>
+
+                </button>
+
+                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
+                    <image src="../assets/img/addtaskmedium.svg"></image>
+                </button>
+
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <image src="../assets/img/addtasklow.svg"></image> </button>
+
+            </div>
+        </div>
+        <div class="addtask-gap16">
+            <div class="addtask-h2">Category<span>*</span></div>
+            <select onchange="validateInput()" class="addtask-input-category"
+                id="addtask-input-category">
+                <option value="" disabled selected>Select task category</option>
+                <option value="Technical Task">Technical Task</option>
+                <option value="User Story">User Story</option>
+            </select>
+            <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required
+            </div>
+        </div>
+        <div class="addtask-gap16">
+            <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+            <div style="position: relative;">
+                             
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+              </div>
+            
+        </div>
+    </div>
+</div>
+<div class="addtask-content-footer">
+    <div class="addtask-footer">
+        <span>*</span>This field is required
+    </div>
+    <div class="addtaskbutton">
+        <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
+            x</Button>
+        <Button class="addtask-button-create-task" id="addtask-button-create-task"
+            onclick="addTask()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
+            </image></Button>
+        
+            <div id="popup" class="popup d-none">Task added to Board</div>
+
+
+    </div>
+</div>

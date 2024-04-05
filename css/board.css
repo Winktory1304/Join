@@ -4,6 +4,11 @@
     align-items: center;
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
+ 
+}
+
+body {
+    margin: 0;
 }
 
 /* Header und Sidebar, sollten im Template kommen */
@@ -369,7 +374,7 @@ h4 {
 
     position: relative;
     width: 525px;
-    height: 900px;
+    height: 700px;
 
     background: #FFFFFF;
 
@@ -384,8 +389,39 @@ h4 {
     
     transform: translateX(0);
     animation-fill-mode: forwards;
+}
+
+.board_taskcardedit {
+    gap: 10px !important;
+    
+}
+
+.board_editframe{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.max-width-525{
+    width: 525px !important;
+}
+
+.max-width-500{
+    width: 500px !important;
+}
+
+.addtask-button-create-task{
+    right: -10px !important;
+}
+.board_taskedit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    font-size: 20px;
 
 }
+
 @keyframes slide-in {
     0% {
         transform: translateX(200%);
@@ -429,7 +465,7 @@ h4 {
     padding: 4px 16px;
     gap: 10px;
 
-    width: 150px;
+    width: 160px;
     height: 27px;
 
     /* background: #0038FF; */
@@ -463,7 +499,8 @@ h4 {
 }
 
 .board_deledit {
-    align-self: self-end;
+    display: flex;
+    justify-content: space-between;
 }
 
 .board_subtasks {
@@ -518,11 +555,10 @@ p {
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.603);
-    
+    position: fixed;
 }
 
 .board_addtaskcard{
@@ -530,15 +566,14 @@ p {
     flex-direction: column;
     gap: 20px;
     padding: 48px 40px;
-    width: 1116px;
-    height: 870px;
+    width: 1250px;
+    height: 750px;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
-    margin-left: 22%;
+    margin-left: 15%;
     margin-top: 35px;
-    z-index: 2;
-
+    z-index: 1000;
     
     transition: transform 0.3s ease-in-out;
     animation: slide-in 0.3s ease-in-out;
@@ -549,6 +584,21 @@ p {
 }
 
 
+.addtask_h1{
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+.addtask-left-content{
+    margin-left: 0px
+}
+
+.addtask-content-footer{
+    justify-content: space-between;
+    width: 1250px;
+}
+
+
 .board_deledit{
 
     cursor: pointer;
@@ -556,4 +606,16 @@ p {
 
 .board_deledit:hover{
     color: #FF0000;
+}
+
+.board_taskactions{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.addtask-input-description{
+    width: 524px !important;
 }

@@ -1,30 +1,21 @@
-.summary-html {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3b3b3b;
-    font-family: 'inter', sans-serif;
-}
-
 .summary-body {
     position: fixed;
     top: 0px;
-    width: 1440px;
-    height: 1024px;
+    width: 100vw;
+    height: 100vh;
     background-color: #F5F5F5;
     overflow: hidden;
+    font-family: 'inter', sans-serif !important;
 }
 
 body {
-    max-width: 1440px;
-    max-height: 1024px;
-    margin: 0;
-    
+    margin: 0;    
     background-color: #F6F7F8;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 16px;
+    overflow: hidden;
 }
 
 .unset-body {
@@ -54,7 +45,7 @@ body {
     align-items: center;
     width: 730px;
     height: 73px;
-    margin-top: 110px;
+    margin-top: 50px;
 }
 
 .summary-header-container h1 {
@@ -68,9 +59,9 @@ body {
 .summary-content {
     flex-direction: column;
     display: flex;
-    width: calc(100vw - 232px);
+    width: 100vw;
     margin-left: 232px;
-    height: calc(100% - 96px);
+    height: 100vh;
     padding-left: 96px;
 }
 
@@ -336,6 +327,7 @@ body {
     align-items: center;
     gap: 3px;
     padding-left: 80px;
+    margin-left: 200px;
 }
 
 .greeting-box {

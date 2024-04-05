@@ -197,7 +197,8 @@ body {
 }
 
 .arrow-left-line:hover {
-    background-color: #b7c9db;
+    cursor: pointer;
+    background-color: #f6f6f6;
     height: 32px;
     width: 32px;
     border-radius: 50%;

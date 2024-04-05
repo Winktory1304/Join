@@ -32,15 +32,13 @@ function readServerData() {
 
 function getReady() {
   setContacts(contacts);
-}
-
 
 function setContacts(array) {
 
 
   document.getElementById('addtask-input-assigned').innerHTML = '';
   array.forEach((element) => {
-    document.getElementById('addtask-input-assigned').innerHTML += `<option  id="id-${element.id}" value="${element.firstName} ${element.lastName}">${element.firstName} ${element.lastName}</option>`;
+    document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
   });
 
   if (array.length === 0) {
@@ -50,29 +48,6 @@ function setContacts(array) {
   });
 }
 
-function showContacts(){
-  let contactdiv = document.getElementById('assignedContacts');
-  let assDiv = document.getElementById('assinedPersons');
-  if (contactdiv.classList.contains('display-none')) {
-      contactdiv.innerHTML = ``;
-      assDiv.innerHTML = ``;
-      contactdiv.classList.remove('display-none');
-      for (let i = 0; i < allContacts.length; i++) {
-          const element = allContacts[i];
-          const firstLetter = getLetters(element['name']) // element['name'].charAt(0).toUpperCase();
-          const checkChecked = checked(i);
-          contactdiv.innerHTML +=`
-          <div class="assigneContact">
-          <div class="assigned-circle" style="background-color: ${element['bgcolor']};">${firstLetter}</div>
-          <p>${element['name']}</p> 
-          <input onclick="addAssigne(${i})" ${checkChecked} id="check${i}" type="checkbox">
-          </div>`
-      }
-  }else{
-      contactdiv.classList.add('display-none');
-      showAssignedPersons();
-  }
-}
 
 
 let title = document.getElementById('addtask-input-title');
@@ -154,7 +129,7 @@ function pushJSON() {
     'tag': categoryValue,
     'priority': 1,
     'contacts': x,
-    'status': 'open'
+    'status': status
   });
 
   setItem(key, todos);
@@ -217,10 +192,14 @@ function selectPrio(prio) {
   containerLow.classList.remove('selected');
   priority = prio;
   if (prio == 'urgent') {
+
       containerUrgent.classList.add('selected');
+
   } else if (prio == 'medium') {
+    priority = 2;
       containerMedium.classList.add('selected');
   } else {
+    priority = 1;
       containerLow.classList.add('selected');
   }
 

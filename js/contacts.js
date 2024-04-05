@@ -137,6 +137,26 @@ async function init() {
 }
 
 /**
+
+ * Deletes a contact from the contacts list based on the provided email.
+ *
+ * @param {string} email - The email of the contact to be deleted.
+ * @returns {void}
+ */
+function deleteContact(email) {
+    contactupdated = contacts.filter(item => item.email !== email);
+    contacts = [];
+    try {
+        setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
+        console.log('Daten aktualisiert');
+    } catch (error) {
+        console.error('Error deleting contact', error);
+    }
+}
+
+
+/**
+
  * Retrieves users from a JSON file and adds them to the contacts list.
  * @async
  * @function getUsersintoContacts
@@ -162,7 +182,7 @@ async function getUsersintoContacts() {
         });
         await setItem('contacts', contacts);
         readServerData();
-        renderContacts();
+
     } catch (error) {
         console.error('Loading error:', error);
     }
@@ -299,47 +319,7 @@ function openDetailedContactsView(contactId) {
                 <div id="detailViewEmail" class="detail-view-email">${contact.email}</div>
                 <div class="detail-view-contact-phone">Phone</div>
                 <div id="detailViewPhone">${contact.phoneNumber}</div>`
-}
 
-// Popup erstellen
-function createContactPopup() {
-    let popup = document.getElementById('createContactsPopup');
-    popup.style.display = 'flex';
-
-    setTimeout(function () {
-        popup.style.display = 'none';
-    }, 3000);
-}
-
-
-
-/**
- * Deletes a contact by its ID.
- *
- * @param {number} contactId - The ID of the contact to be deleted.
- */
-function deleteContactById(contactId) {
-    // Prüfe, ob die contactId innerhalb der Länge des detailViewContacts Arrays liegt
-    if (contactId >= 0 && contactId < detailViewContacts.length) {
-        // Entferne den Kontakt aus dem detailViewContacts Array
-        const [removedContact] = detailViewContacts.splice(contactId, 1);
-
-        //  Kontakt muss auch aus dem Hauptkontaktarray `contacts` entfernt werden
-        const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
-        if (contactIndex !== -1) {
-            contacts.splice(contactIndex, 1);
-        }
-        document.getElementById('detailViewContent').innerHTML = '';
-        try {
-            setItem('contacts', contacts).then(() => {
-                readServerData(); // Lese die Daten neu ein, 
-                renderContacts(); // Aktualisiere die Ansicht
-            });
-            console.log('Kontakt gelöscht und Daten aktualisiert');
-        } catch (error) {
-            console.error('Fehler beim Löschen des Kontakts', error);
-        }
-    }
 }
 
 
