@@ -6,6 +6,7 @@ function searchTask() {
 
   document.getElementById('board_findTask_input').addEventListener('keyup', function () {
     var search = document.getElementById('board_findTask_input').value;
+
     var searchArray = todos.filter(t => t.title.includes(search));
     var statusopen = searchArray.filter(t => t.status === 'open');
     var statusfeedback = searchArray.filter(t => t.status === 'feedback');
@@ -19,6 +20,7 @@ function searchTask() {
       document.getElementById('board_feedback').innerHTML = '';
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+
     }
     );
   }
@@ -133,6 +135,7 @@ function addTask() {
 function editTask(id) {
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
+
     <div class="board_taskcard" id ="taskcardedit">
       <div id="board_editframe" class="board_editframe max-width-525">
         <div class="board_taskedit">
@@ -209,13 +212,17 @@ function addSubtask() {
 }
 
 /**
+
 * Deletes a task from the todos array based on the given title.
+
 * @param {string} title - The title of the task to be deleted.
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
 function deleteTask(title) {
 
+
   updatedArray = todos.filter(item => item.title !== title);
   todos = [];
+
   setItem(keydome, updatedArray).then(() => { ; init(); });
 }

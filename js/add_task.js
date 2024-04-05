@@ -14,8 +14,6 @@ let subtaskdone = [];
 let contacts = [];
 let selectedContacts = [];
 
-let priority = 2;
-let status = 'open';
 
 let resultValidation = false;
 
@@ -35,25 +33,9 @@ function readServerData() {
 function getReady() {
   setContacts(contacts);
 
-  document.getElementById('addtask-input-assigned').classList.remove('d-none');
-  
-  document.getElementById('addtask-input-assigned').addEventListener('mouseover', function () {
-    document.getElementById('addtask-input-assigned').classList.remove('d-none');
-  });
-
-  document.getElementById('addtask-input-assigned').addEventListener('mouseleave', function () {
-    document.getElementById('addtask-input-assigned').classList.add('d-none');
-  });
-}
-
-function closeContactList() {
-  document.getElementById('addtask-input-assigned').classList.remove('d-none');
-
-
-}
-
-
 function setContacts(array) {
+
+
   document.getElementById('addtask-input-assigned').innerHTML = '';
   array.forEach((element) => {
     document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
@@ -62,6 +44,8 @@ function setContacts(array) {
   if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
+  document.getElementById('addtask-input-assigned').addEventListener('change', function () {
+  });
 }
 
 
@@ -74,7 +58,7 @@ let createTaskButton = document.getElementById('addtask-button-create-task');
 function initTask() {
   readServerData();
   validateInput();
-  readServerData();
+  readServerData()
 }
 
 // Popup erstellen
@@ -143,7 +127,7 @@ function pushJSON() {
     'subtasksdone': subtaskdone,
     'date': dateValue,
     'tag': categoryValue,
-    'priority': priority,
+    'priority': 1,
     'contacts': x,
     'status': status
   });
@@ -206,9 +190,11 @@ function selectPrio(prio) {
   containerUrgent.classList.remove('selected');
   containerMedium.classList.remove('selected');
   containerLow.classList.remove('selected');
+  priority = prio;
   if (prio == 'urgent') {
-    containerUrgent.classList.add('selected');
-    priority = 3;
+
+      containerUrgent.classList.add('selected');
+
   } else if (prio == 'medium') {
     priority = 2;
       containerMedium.classList.add('selected');
