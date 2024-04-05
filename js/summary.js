@@ -23,16 +23,50 @@ function showName() {
         greetingname = 'Guest';
         showWayOfGreeting();
     }
-    else{
-    let user = users.filter(u => u.email === currentIndex);
-    console.log('current user', currentIndex);
-    greetingname = user[0].name;
-    showWayOfGreeting();
+    else {
+        let user = users.filter(u => u.email === currentIndex);
+        console.log('current user', currentIndex);
+        greetingname = user[0].name;
+        console.log('current name', greetingname);
+        showWayOfGreeting();
+        getInitials(user);
     }
 }
 
 
+function getInitials(user) {
 
+    let fullName = user[0].name;
+    let nameParts = fullName.split(' ');
+    let firstName = nameParts[0].charAt(0);
+    let secondName = nameParts[1].charAt(0);
+
+    initials = firstName+secondName;
+    document.getElementById('initials').innerHTML = initials;
+
+    console.log(firstName);
+    console.log(secondName);
+    console.log(initials);
+}
+
+
+function showWayOfGreeting() {
+    let greeting;
+    if (hour >= 4 && hour < 12) {
+        greeting = 'Good morning';
+    } else if (hour >= 12 && hour < 18) {
+        greeting = 'Good afternoon';
+    } else {
+        greeting = 'Good evening';
+    }
+
+    let greetBox = document.getElementById('greet_box');
+    let greetName = document.getElementById('user_name');
+    greetBox.innerHTML = '';
+    greetName.innerHTML = '';
+    greetName.innerHTML = greetingname;
+    greetBox.textContent = greeting;
+}
 
 
 function init() {
@@ -40,6 +74,7 @@ function init() {
         showAllNumbers();
     });
 }
+
 
 function showAllNumbers() {
     showNumberOfToDo();
@@ -99,23 +134,3 @@ function showNumberOfAwaitingFeedback() {
     document.getElementById('number_of_awaiting_feedback').innerHTML = '';
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
 }
-
-
-function showWayOfGreeting() {
-    let greeting;
-    if (hour >= 4 && hour < 12) {
-        greeting = 'Good morning';
-    } else if (hour >= 12 && hour < 18) {
-        greeting = 'Good afternoon';
-    } else {
-        greeting = 'Good evening';
-    }
-
-    let greetBox = document.getElementById('greet_box');
-    let greetName = document.getElementById('user_name');
-    greetBox.innerHTML = '';
-    greetName.innerHTML = '';
-    greetName.innerHTML = greetingname;
-    greetBox.textContent = greeting;
-}
-
