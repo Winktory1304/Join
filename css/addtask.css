@@ -326,11 +326,34 @@ color: black !important;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    align-items: center;
 }
 
 .addtask-button:hover {
     cursor: pointer;
        border: 1px solid #29ABE2;
+}
+
+.addtask-button-selected{
+    stroke: white;
+    fill: white;
+    color: white;
+}
+
+.addtask-button-urgent-unselected{
+    stroke:#FF3D00;
+    fill:#FF3D00;
+    color:#FF3D00;
+}
+.addtask-button-medium-unselected{
+    stroke:#ffa800;
+    fill:#ffa800;
+    color:#ffa800;
+}
+.addtask-button-low-unselected{
+    stroke: #7AE229;
+    fill: #7AE229;
+    color: #7AE229;
 }
 
 .addtaskbutton {
@@ -372,13 +395,6 @@ color: black !important;
     background-color: #7AE229;
 }
 
-/* .addtask-button-create-task[disabled='false'] {
-    background-color: blue;
-  }
-  
-  .addtask-button-create-task[disabled="true"] {
-    background-color: rgb(255, 0, 0);
-  } */
    
 
 .addtask-button-cancel {
@@ -439,7 +455,6 @@ display: none !important;
     font-weight: 400;
     font-family: "Inter";
  }
-
 
 
 

@@ -208,14 +208,28 @@ function selectPrio(prio) {
   containerLow.classList.remove('selected');
   if (prio == 'urgent') {
     containerUrgent.classList.add('selected');
+    document.getElementById('addtask-button-low-unselected').setAttribute("class","addtask-button-low-unselected");
+    document.getElementById('addtask-button-medium-unselected').setAttribute("class","addtask-button-medium-unselected");
+    document.getElementById('addtask-button-urgent-unselected').removeAttribute("addtask-button-urgent-unselected");
+    document.getElementById('addtask-button-urgent-unselected').setAttribute("class","addtask-button-selected");
+
+
+  
     priority = 3;
   } else if (prio == 'medium') {
     priority = 2;
       containerMedium.classList.add('selected');
-  } else {
+      document.getElementById('addtask-button-low-unselected').setAttribute("class","addtask-button-low-unselected");
+      document.getElementById('addtask-button-urgent-unselected').setAttribute("class","addtask-button-urgent-unselected");
+      document.getElementById('addtask-button-medium-unselected').removeAttribute("addtask-button-medium-unselected");
+      document.getElementById('addtask-button-medium-unselected').setAttribute("class","addtask-button-selected");
+   } else {
     priority = 1;
       containerLow.classList.add('selected');
-  }
+      document.getElementById('addtask-button-urgent-unselected').setAttribute("class","addtask-button-urgent-unselected");
+      document.getElementById('addtask-button-medium-unselected').setAttribute("class","addtask-button-medium-unselected");
+      document.getElementById('addtask-button-low-unselected').removeAttribute("addtask-button-low-unselected");
+      document.getElementById('addtask-button-low-unselected').setAttribute("class","addtask-button-selected");
 
   console.log(prio);
-}
+}}
