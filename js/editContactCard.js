@@ -1,3 +1,4 @@
+
 /**
  * Displays a modal by setting its display style to "flex".
  * @param {string} modalId - The ID of the modal element to be displayed.
@@ -9,7 +10,6 @@ function showModal(modalId) {
     }
 }
 
-
 /**
  * Hides the modal with the specified ID.
  * @param {string} modalId - The ID of the modal to hide.
@@ -20,7 +20,6 @@ function hideModal(modalId) {
         modal.style.display = "none";
     }
 }
-
 
 /**
  * Sets up event listeners for a modal with the given ID.
@@ -156,13 +155,14 @@ function editContact(contactId) {
     saveButton.onclick = function () {
         saveContact(contactId);
     };
+
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
     document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
+
     showModal(modalId);
     setupModalListeners(modalId);
 }
-
 
 
 
@@ -193,6 +193,7 @@ function saveContact(contactId) {
         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
     }
 }
+
 
 
 /**

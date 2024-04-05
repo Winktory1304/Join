@@ -54,8 +54,6 @@ function closeContactList() {
 
 
 function setContacts(array) {
-
-
   document.getElementById('addtask-input-assigned').innerHTML = '';
   array.forEach((element) => {
     document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
@@ -64,8 +62,6 @@ function setContacts(array) {
   if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
-  document.getElementById('addtask-input-assigned').addEventListener('change', function () {
-  });
 }
 
 
@@ -78,6 +74,7 @@ let createTaskButton = document.getElementById('addtask-button-create-task');
 function initTask() {
   readServerData();
   validateInput();
+  readServerData();
 }
 
 // Popup erstellen
@@ -146,7 +143,7 @@ function pushJSON() {
     'subtasksdone': subtaskdone,
     'date': dateValue,
     'tag': categoryValue,
-    'priority': 1,
+    'priority': priority,
     'contacts': x,
     'status': status
   });
@@ -209,7 +206,6 @@ function selectPrio(prio) {
   containerUrgent.classList.remove('selected');
   containerMedium.classList.remove('selected');
   containerLow.classList.remove('selected');
-  priority = prio;
   if (prio == 'urgent') {
     containerUrgent.classList.add('selected');
     document.getElementById('addtask-button-low-unselected').setAttribute("class","addtask-button-low-unselected");
