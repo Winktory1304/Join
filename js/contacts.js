@@ -5,129 +5,108 @@ let users = [];
 let detailViewContacts = [];
 
 //Array zum pushen into the storage with the key 'contacts'
-let contactstopush =
-    [
-        {
-            "firstName": "Anna",
-            "lastName": "Schmidt",
-            "email": "annaschmidt@test123.de",
-            "phoneNumber": "01731305001",
-            "firstLetterofNames": "AS",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Bernd",
-            "lastName": "Müller",
-            "email": "berndmueller@test123.de",
-            "phoneNumber": "01731305002",
-            "firstLetterofNames": "BM",
-            "color": "rgb(110,82,255)"
-        },
-        {
-            "firstName": "Claudia",
-            "lastName": "Schneider",
-            "email": "claudiaschneider@test123.de",
-            "phoneNumber": "01731305003",
-            "firstLetterofNames": "CS",
-            "color": "rgb(252,113,255)"
-        },
-        {
-            "firstName": "David",
-            "lastName": "Fischer",
-            "email": "davidfischer@test123.de",
-            "phoneNumber": "01731305004",
-            "firstLetterofNames": "DF",
-            "color": "rgb(255,195,69)"
-        },
-        {
-            "firstName": "Elena",
-            "lastName": "Weber",
-            "email": "elenaweber@test123.de",
-            "phoneNumber": "01731305005",
-            "firstLetterofNames": "EW",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Felix",
-            "lastName": "Meyer",
-            "email": "felixmeyer@test123.de",
-            "phoneNumber": "01731305006",
-            "firstLetterofNames": "FM",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Greta",
-            "lastName": "Wagner",
-            "email": "gretawagner@test123.de",
-            "phoneNumber": "01731305007",
-            "firstLetterofNames": "GW",
-            "color": "rgb(255,122,0)"
-        },
-        {
-            "firstName": "Hans",
-            "lastName": "Becker",
-            "email": "hansbecker@test123.de",
-            "phoneNumber": "01731305008",
-            "firstLetterofNames": "HB",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Ingrid",
-            "lastName": "Schulz",
-            "email": "ingridschulz@test123.de",
-            "phoneNumber": "01731305009",
-            "firstLetterofNames": "IS",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Johannes",
-            "lastName": "Hoffmann",
-            "email": "johanneshoffmann@test123.de",
-            "phoneNumber": "01731305010",
-            "firstLetterofNames": "JH",
-            "color": "rgb(255,122,0)"
-        },
-        {
-            "firstName": "Karin",
-            "lastName": "Krause",
-            "email": "karinkrause@test123.de",
-            "phoneNumber": "01731305011",
-            "firstLetterofNames": "KK",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Lukas",
-            "lastName": "Lehmann",
-            "email": "lukaslehmann@test123.de",
-            "phoneNumber": "01731305012",
-            "firstLetterofNames": "LL",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Maria",
-            "lastName": "Schäfer",
-            "email": "mariaschäfer@test123.de",
-            "phoneNumber": "01731305013",
-            "firstLetterofNames": "MS",
-            "color": "rgb(31,215,193)"
-        },
-        {
-            "firstName": "Niklas",
-            "lastName": "Köhler",
-            "email": "niklasköhler@test123.de",
-            "phoneNumber": "01731305014",
-            "firstLetterofNames": "NK",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Olivia",
-            "lastName": "Klein",
-            "email": "oliviaklein@test123.de",
-            "phoneNumber": "01731305015",
-            "firstLetterofNames": "OK",
-            "color": "rgb(31,215,193)"
-        }
-    ]
+let contactstopush = [
+    {
+        "idContact": "2024040613175629395223868",
+        "firstName": "Anna",
+        "lastName": "Schmidt",
+        "email": "annaschmidt@test123.de",
+        "phoneNumber": "01731305001",
+        "firstLetterofNames": "AS",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629403443714",
+        "firstName": "Bernd",
+        "lastName": "Müller",
+        "email": "berndmueller@test123.de",
+        "phoneNumber": "01731305002",
+        "firstLetterofNames": "BM",
+        "color": "rgb(110,82,255)"
+    },
+    {
+        "idContact": "2024040613175629405476039",
+        "firstName": "Claudia",
+        "lastName": "Schneider",
+        "email": "claudiaschneider@test123.de",
+        "phoneNumber": "01731305003",
+        "firstLetterofNames": "CS",
+        "color": "rgb(252,113,255)"
+    },
+    {
+        "idContact": "2024040613175629407086375",
+        "firstName": "David",
+        "lastName": "Fischer",
+        "email": "davidfischer@test123.de",
+        "phoneNumber": "01731305004",
+        "firstLetterofNames": "DF",
+        "color": "rgb(255,195,69)"
+    },
+    {
+        "idContact": "2024040613175629408448702",
+        "firstName": "Elena",
+        "lastName": "Weber",
+        "email": "elenaweber@test123.de",
+        "phoneNumber": "01731305005",
+        "firstLetterofNames": "EW",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629409956874",
+        "firstName": "Felix",
+        "lastName": "Meyer",
+        "email": "felixmeyer@test123.de",
+        "phoneNumber": "01731305006",
+        "firstLetterofNames": "FM",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629411285357",
+        "firstName": "Greta",
+        "lastName": "Wagner",
+        "email": "gretawagner@test123.de",
+        "phoneNumber": "01731305007",
+        "firstLetterofNames": "GW",
+        "color": "rgb(255,122,0)"
+    },
+    {
+        "idContact": "2024040613175629412611935",
+        "firstName": "Hans",
+        "lastName": "Becker",
+        "email": "hansbecker@test123.de",
+        "phoneNumber": "01731305008",
+        "firstLetterofNames": "HB",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629414944486",
+        "firstName": "Ingrid",
+        "lastName": "Schulz",
+        "email": "ingridschulz@test123.de",
+        "phoneNumber": "01731305009",
+        "firstLetterofNames": "IS",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629416622303",
+        "firstName": "Johannes",
+        "lastName": "Hoffmann",
+        "email": "johanneshoffmann@test123.de",
+        "phoneNumber": "01731305010",
+        "firstLetterofNames": "JH",
+        "color": "rgb(255,122,0)"
+    },
+    {
+        "idContact": "2024040613175629417964359",
+        "firstName": "Karin",
+        "lastName": "Krause",
+        "email": "karinkrause@test123.de",
+        "phoneNumber": "01731305011",
+        "firstLetterofNames": "KK",
+        "color": "rgb(147,39,255)"
+    }   
+]
+
 
 async function init() {
     await readServerData();
@@ -329,6 +308,7 @@ function deleteContactById(contactId) {
         }
         document.getElementById('detailViewContent').innerHTML = '';
         try {
+            setItem('users', contacts);            
             setItem('contacts', contacts).then(() => {
                 readServerData(); // Lese die Daten neu ein, 
                 renderContacts(); // Aktualisiere die Ansicht
@@ -365,7 +345,7 @@ function createNewContact(names, email, phone) {
 function generateUniqueId() {
     // Generate a unique ID using a timestamp and a random number
     const timestamp = Date.now().toString(36);
-    const randomNumber = Math.random().toString(36);
+    const randomNumber = Math.random().toString(36).substring(2);
     return timestamp + randomNumber;
 }
 
@@ -475,16 +455,6 @@ function findEmailIndex(email) {
 }
 
 
-// function findIdIndex(id) {
-//     for (let i = 0; i < contacts.length; i++) {
-//         if (contacts[i].email === email) {
-//             return i;
-//         }
-//     }
-//     return -1;
-// }
-
-
 /**
  * Generates a random color from the available colors array.
  * @returns {string} A random color.
@@ -495,28 +465,13 @@ function getRandomColor() {
 
 
 /**
- * Removes duplicate contacts from the contacts array based on email uniqueness.
- */
-// function removeDuplicateContacts() {
-//     const uniqueEmails = new Set();
-//     const uniqueContacts = contacts.filter(contact => {
-//         if (!uniqueEmails.has(contact.email)) {
-//             uniqueEmails.add(contact.email);
-//             return true;
-//         }
-//         return false;
-//     });
-
-//     contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
-// }
-/**
- * Removes duplicate contacts from the contacts array based on email uniqueness.
+ * Removes duplicate contacts from the contacts array based on id uniqueness.
  */
 function removeDuplicateContacts() {
     const uniqueIds = new Set();
     const uniqueContacts = contacts.filter(contact => {
-        if (!uniqueIds.has(contact.id)) {
-            uniqueIds.add(contact.id);
+        if (!uniqueIds.has(contact.idContact)) {
+            uniqueIds.add(contact.idContact);
             return true;
         }
         return false;
