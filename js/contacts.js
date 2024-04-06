@@ -475,6 +475,16 @@ function findEmailIndex(email) {
 }
 
 
+// function findIdIndex(id) {
+//     for (let i = 0; i < contacts.length; i++) {
+//         if (contacts[i].email === email) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// }
+
+
 /**
  * Generates a random color from the available colors array.
  * @returns {string} A random color.
@@ -487,17 +497,32 @@ function getRandomColor() {
 /**
  * Removes duplicate contacts from the contacts array based on email uniqueness.
  */
+// function removeDuplicateContacts() {
+//     const uniqueEmails = new Set();
+//     const uniqueContacts = contacts.filter(contact => {
+//         if (!uniqueEmails.has(contact.email)) {
+//             uniqueEmails.add(contact.email);
+//             return true;
+//         }
+//         return false;
+//     });
+
+//     contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
+// }
+/**
+ * Removes duplicate contacts from the contacts array based on email uniqueness.
+ */
 function removeDuplicateContacts() {
-    const uniqueEmails = new Set();
+    const uniqueIds = new Set();
     const uniqueContacts = contacts.filter(contact => {
-        if (!uniqueEmails.has(contact.email)) {
-            uniqueEmails.add(contact.email);
+        if (!uniqueIds.has(contact.id)) {
+            uniqueIds.add(contact.id);
             return true;
         }
         return false;
     });
 
-    contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
+    contacts = uniqueContacts; // Update the contacts array with the unique contacts
 }
 
 
