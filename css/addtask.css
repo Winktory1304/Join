@@ -104,7 +104,7 @@
 }
 
 .addtask-right-content {
-    height: 416px;
+    height: 580px;
     width: 540px;
     top: 327px;
     left: 864.25px;
@@ -126,7 +126,7 @@
 
 /* style inputfields */
 .addtask-input-title {
-    width: 540px;
+    width: 524px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
@@ -183,7 +183,7 @@
   }
 
 .addtask-input-assigned {
-    width: 540px;
+    width: 524px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
@@ -209,7 +209,7 @@
   }
 
 .addtask-input-date {
-    width: 540px;
+    width: 524px;
     height: 48px;
     gap: 0;
     border-radius: 10px;
@@ -271,7 +271,7 @@ color: black !important;
   }
 
 .addtask-input-subtasks {
-    width: 540px;
+    width: 524px;
     height: 48px;
     padding-left: 12px;
     gap: 0;
@@ -334,7 +334,7 @@ color: black !important;
        border: 1px solid #29ABE2;
 }
 
-.addtask-button-selected{
+/* .addtask-button-selected{
     stroke: white;
     fill: white;
     color: white;
@@ -354,7 +354,7 @@ color: black !important;
     stroke: #7AE229;
     fill: #7AE229;
     color: #7AE229;
-}
+} */
 
 .addtaskbutton {
     display: flex;
@@ -467,7 +467,7 @@ display: none !important;
 
 
 .inputfield{
-    width: 540px;
+    width: 520px;
     max-height: 300px;
     display: flex;
     flex-direction: column;
@@ -477,6 +477,54 @@ display: none !important;
     gap: 10px;
     background-color: #ffffff;
     padding: 10px;
+    position: relative; /* Position relativ setzen */
+    z-index: 1; /* Z-Index erhöhen, um sicherzustellen, dass das Inputfeld über dem darunter liegenden Text liegt */
+}
+
+
+
+.containerSubtask {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+ 
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    gap: 5px;
+
+       font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+ 
+
+  }
+  
+  .subtaskIcons {
+    display: flex;
+    gap: 5px; /* Abstand zwischen den beiden Icons */
+  }
+.containerForSubtask{
+    width: 520px;
+    max-height: 100px;
+    scrollbar-width: thin;
+    border-radius: 10px;
+    overflow: auto;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    gap: 5px;
+   display: flex;
+flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 150px;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
 }
   
 
