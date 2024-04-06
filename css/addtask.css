@@ -368,6 +368,13 @@ color: black !important;
     padding-right: 20px;
 }
 
+.prioimg {
+width: 20px;
+height: 20px;
+
+}
+
+
 .addtask-button-create-task{
     width: 183px;
     height: 56px;
