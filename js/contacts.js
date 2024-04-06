@@ -350,7 +350,9 @@ function deleteContactById(contactId) {
  * @returns {object} - The newly created contact object.
  */
 function createNewContact(names, email, phone) {
+    const id = generateUniqueId();
     return {
+        "id": id,
         "firstName": names[0],
         "lastName": names.slice(1).join(' '),
         "email": email,
@@ -358,6 +360,13 @@ function createNewContact(names, email, phone) {
         "firstLetterofNames": names[0][0] + names[1][0],
         "color": getRandomColor()
     };
+}
+
+function generateUniqueId() {
+    // Generate a unique ID using a timestamp and a random number
+    const timestamp = Date.now().toString(36);
+    const randomNumber = Math.random().toString(36);
+    return timestamp + randomNumber;
 }
 
 
