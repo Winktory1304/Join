@@ -477,7 +477,7 @@ display: none !important;
     gap: 10px;
     background-color: #ffffff;
     padding: 10px;
-    position: relative; /* Position relativ setzen */
+     position: relative; /*Position relativ setzen; */
     z-index: 1; /* Z-Index erhöhen, um sicherzustellen, dass das Inputfeld über dem darunter liegenden Text liegt */
 }
 
