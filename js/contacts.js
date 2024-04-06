@@ -109,8 +109,7 @@ let contactstopush = [
 
 
 async function init() {
-    await readServerData();
-    removeDuplicateContacts()
+    await readServerData ();    
     await getUsersintoContacts();
     renderContacts();
 }
@@ -139,6 +138,7 @@ async function getUsersintoContacts() {
                 });
             }
         });
+        removeDuplicateContacts();
         await setItem('contacts', contacts);
         readServerData();
     } catch (error) {
@@ -171,6 +171,7 @@ async function readServerData() {
     try {
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
         console.log('Daten geladen:', contacts);
+        removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
         console.error('Loading error:', error);
