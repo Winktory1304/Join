@@ -321,42 +321,17 @@ function deleteContactById(contactId) {
 }
 
 
-/**
- * Creates a new contact object.
- *
- * @param {string[]} names - An array of names.
- * @param {string} email - The email address of the contact.
- * @param {string} phone - The phone number of the contact.
- * @returns {object} - The newly created contact object.
- */
-function createNewContact(names, email, phone) {
-    const id = generateUniqueId();
-    return {
-        "id": id,
-        "firstName": names[0],
-        "lastName": names.slice(1).join(' '),
-        "email": email,
-        "phoneNumber": phone,
-        "firstLetterofNames": names[0][0] + names[1][0],
-        "color": getRandomColor()
-    };
-}
 
-function generateUniqueId() {
-    // Generate a unique ID using a timestamp and a random number
-    const timestamp = Date.now().toString(36);
-    const randomNumber = Math.random().toString(36).substring(2);
-    return timestamp + randomNumber;
-}
+
 
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
- *
- * @param {number} emailIndex - The index of the contact's email in the contacts array.
- * @param {object} newContact - The new contact object to be added.
- * @returns {void}
- */
+*
+* @param {number} emailIndex - The index of the contact's email in the contacts array.
+* @param {object} newContact - The new contact object to be added.
+* @returns {void}
+*/
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
@@ -376,7 +351,7 @@ function addContactOrWarn(emailIndex, newContact) {
 
 /**
  * Clears the input fields for creating a contact.
- */
+*/
 function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
@@ -386,7 +361,7 @@ function clearInputFields() {
 
 /**
  * Adds a new contact to the contact list.
- */
+*/
 function addNewContact() {
     let email = document.getElementById('create-contact-email-input').value;
     let emailIndex = findEmailIndex(email);
@@ -401,11 +376,45 @@ function addNewContact() {
 
 
 /**
+ * Creates a new contact object.
+*
+* @param {string[]} names - An array of names.
+* @param {string} email - The email address of the contact.
+* @param {string} phone - The phone number of the contact.
+* @returns {object} - The newly created contact object.
+*/
+function createNewContact(names, email, phone) {
+    const id = generateUniqueId();
+    return {
+        "idContact": id,
+        "firstName": names[0],
+        "lastName": names.slice(1).join(' '),
+        "email": email,
+        "phoneNumber": phone,
+        "firstLetterofNames": names[0][0] + names[1][0],
+        "color": getRandomColor()
+    };
+}
+
+
+/**
+ * Generates a unique ID using a timestamp and a random number.
+ * @returns {string} The generated unique ID.
+ */
+function generateUniqueId() {
+    // Generate a unique ID using a timestamp and a random number
+    const timestamp = Date.now().toString(36);
+    const randomNumber = Math.random().toString(36).substring(2);
+    return timestamp + randomNumber;
+}
+
+
+/**
  * Sorts the contacts array by the initial of their first name.
  * If the initials are the same, sorts by the whole first name.
- *
- * @returns {void}
- */
+*
+* @returns {void}
+*/
 function sortContactsByInitial() {
     detailViewContacts = contacts.sort((a, b) => {
         // Vergleiche die ersten Buchstaben der Vornamen
