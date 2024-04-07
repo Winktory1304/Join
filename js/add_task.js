@@ -21,9 +21,6 @@ let priority = 2;
 let status = 'open';
 let resultValidation = false;
 const htmlfields = ['assinedPersons', 'task-list'];
-let assignedPerson = [];
-let allAssigned = [];
-const htmlfields = ["assinedPersons", "task-list"];
 
 function switchCase(statusInput) {	
   switch (statusInput) {
