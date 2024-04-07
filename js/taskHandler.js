@@ -55,17 +55,28 @@ function searchTask() {
 
 }
 
+/**
+ * Changes the source of the image element with the class 'board_plus' at the specified index to a blue plus image.
+ * @param {number} id - The index of the image element to modify.
+ */
 function hoverPlus(id) {
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus_blue.svg');
 }
 
+/**
+ * Changes the source attribute of the plus image element to '../assets/img/board-plus.svg'.
+ * @param {number} id - The index of the plus image element in the document.getElementsByClassName('board_plus') collection.
+ */
 function hoverPlusOut(id) {
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus.svg');
 }
 
-
+/**
+ * Creates a new task based on the provided status input.
+ * @param {string} statusInput - The status of the task ('open', 'progress', 'feedback', or any other value).
+ */
 function createTask(statusInput) {
   if (statusInput === 'open') {
     status = 'open';
@@ -95,8 +106,6 @@ function createTask(statusInput) {
     priority = 2;
   }
 }
-
-
 
 /**
  * Adds a task to the todo list.
@@ -167,11 +176,13 @@ function editTask(id) {
       </div>
       </div>
     `;
-
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');
   fillSubtasks();
 }
 
+/**
+ * Fills the subtask array with subtasks from the todos array.
+ */
 function fillSubtasks() {
   subtask = [];
   todos.forEach((element) => {
@@ -179,17 +190,16 @@ function fillSubtasks() {
   });
 }
 
-
 function addSubtask() {
-  var text = 'label-'+(subtask.length);
-  var text2 = 'div-'+(subtask.length);
+  var text = 'label-' + (subtask.length);
+  var text2 = 'div-' + (subtask.length);
   var input = document.getElementById("addtask-input-subtasks");
   document.getElementById("containerForSubtask").classList.remove('d-none');
   var container = document.getElementById("containerForSubtask"); // Container für Subtasks
 
   var subtaskText = input.value;
   subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
-  
+
   // Erstellen des HTML-Inhalts für den Subtask
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
   <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
@@ -214,27 +224,40 @@ function deleteTask(title) {
 }
 
 
-function deleteSubtask(titel,id) {
+/**
+ * Deletes a subtask from the subtask array and removes the corresponding element from the DOM.
+ * @param {string} titel - The title of the subtask to be deleted.
+ * @param {string} id - The id of the subtask element in the DOM.
+ */
+function deleteSubtask(titel, id) {
   var subtaskToDelete = subtask.filter((item => item !== titel));
   console.log(subtaskToDelete);
-  subtask.splice(subtaskToDelete,1);
-  console.log(subtask.length-1);
+  subtask.splice(subtaskToDelete, 1);
+  console.log(subtask.length - 1);
 
   var subtaskElement = document.getElementById(id);
 
-subtaskElement.remove();
-
+  subtaskElement.remove();
 }
 
+/**
+ * Edits a subtask element by replacing its content with an input field.
+ * @param {string} titel - The title of the subtask.
+ * @param {string} id - The ID of the subtask element.
+ */
 function editSubtask(titel, id) {
   var subtaskElement = document.getElementById(id);
-  subtaskElement.innerHTML = generateEditSubtaskHTML(titel, id);
- 
-}
-function generateEditSubtaskHTML(titel, id){
-return `<input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtask(this.value, '${id}')">`;
+  subtaskElement.innerHTML = 
+  `
+  <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtask(this.value, '${id}')">
+  `;
 }
 
+/**
+ * Updates the content of a subtask element and updates the corresponding subtask in the subtask array.
+ * @param {string} updatedSubtask - The updated content for the subtask element.
+ * @param {string} id - The id of the subtask element to be updated.
+ */
 function updateSubtask(updatedSubtask, id) {
   var subtaskElement = document.getElementById(id);
   subtaskElement.innerHTML = `${updatedSubtask} 
@@ -242,3 +265,5 @@ function updateSubtask(updatedSubtask, id) {
   subtask[id.split('-')[1]] = updatedSubtask;
 }
 
+// var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div  >${subtaskText}</div><div class="subtaskIcons">
+// <img onclick="editSubtask('${subtaskText}','${text}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;

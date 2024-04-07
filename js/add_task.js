@@ -2,18 +2,25 @@
  * The key used to store the todos in local storage.
  * @type {string}
  */
-let key = "todos";
+let key = 'todos';
+
+/**
+ * Arrays die benötigt werden
+ */
 let todos = [];
 let subtask = [];
 let subtaskdone = [];
 let contacts = [];
 let selectedContacts = [];
-let priority = 2;
-let status = "open";
-let resultValidation = false;
 let assignedPerson = [];
 let allAssigned = [];
-const htmlfields = ["assinedPersons", "task-list"];
+/**
+ * Variable die benötigt wird
+ */
+let priority = 2;
+let status = 'open';
+let resultValidation = false;
+const htmlfields = ['assinedPersons', 'task-list'];
 
 function switchCase(statusInput) {	
   switch (statusInput) {
@@ -54,6 +61,9 @@ function readServerData() {
   readJSON(key, todos);
 }
 
+/**
+ * Sets up the necessary event listeners and functionality when the page is ready.
+ */
 function getReady() {
   setContacts(contacts);
 
@@ -83,6 +93,9 @@ function getReady() {
   });
 }
 
+/**
+ * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
+ */
 function closeContactList() {
   switchCase('assigned').classList.remove("d-none");
 }
