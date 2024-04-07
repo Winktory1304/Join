@@ -74,11 +74,9 @@ function writeContactsintonewArray() {
     }
   }
 
-  if (todos.length === 0) {
-    todos.push({
-      'contacts': selectedContacts
-    });
-  }
+  if (todos.length === 0) 
+    return;
+  else 
   todos[todos.length - 1].contacts = selectedContacts;
 
   document.getElementById('test').innerHTML = '';
