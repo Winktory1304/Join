@@ -11,6 +11,7 @@ function searchTask() {
     for (let index = 0; index < searchArray.length; index++) {
       const element = searchArray[index];
       document.getElementById('board_open').innerHTML += generateTodoHTML(element);
+    }
     var searchArray = todos.filter(t => t.title.includes(search));
     var statusopen = searchArray.filter(t => t.status === 'open');
     var statusfeedback = searchArray.filter(t => t.status === 'feedback');
@@ -18,48 +19,34 @@ function searchTask() {
     var statusdone = searchArray.filter(t => t.status === 'done');
 
     if (statusprogress.length !== 0) {
-    document.getElementById('board_progress').innerHTML = '';
-    statusprogress.forEach((element) => {
+      document.getElementById('board_progress').innerHTML = '';
+      statusprogress.forEach((element) => {
+        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+      });
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
-    }
-    );
-  }
-    else if (statusopen.length !== 0) {
+    } else if (statusopen.length !== 0) {
       document.getElementById('board_open').innerHTML = '';
       statusopen.forEach((element) => {
-        document.getElementById('board_done').innerHTML = '';
-        document.getElementById('board_feedback').innerHTML = '';
-        document.getElementById('board_progress').innerHTML = '';
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-      }
-      );
-    }
-
-    else if (statusfeedback.length !== 0) {
+      });
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_feedback').innerHTML = '';
+    } else if (statusfeedback.length !== 0) {
       document.getElementById('board_feedback').innerHTML = '';
       statusfeedback.forEach((element) => {
-        document.getElementById('board_done').innerHTML = '';
-        document.getElementById('board_open').innerHTML = '';
-        document.getElementById('board_progress').innerHTML = '';
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
-      }
-      );
-    }
-
-    else if (statusdone.length !== 0) {
+      });
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_open').innerHTML = '';
+    } else if (statusdone.length !== 0) {
       document.getElementById('board_done').innerHTML = '';
       statusdone.forEach((element) => {
-        document.getElementById('board_feedback').innerHTML = '';
-        document.getElementById('board_open').innerHTML = '';
-        document.getElementById('board_progress').innerHTML = '';
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
-      }
-      );
-    }
-    else{
+      });
+      document.getElementById('board_feedback').innerHTML = '';
+      document.getElementById('board_open').innerHTML = '';
+    } else {
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_feedback').innerHTML = '';
       document.getElementById('board_open').innerHTML = '';
@@ -69,11 +56,10 @@ function searchTask() {
     if (search === '') {
       updateHTML();
     }
-
-  };
+  });
+}
 
 function hoverPlus(id) {
-
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus_blue.svg');
 }
@@ -136,7 +122,6 @@ function addTask() {
 function editTask(id) {
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
-<<<<<<<<< Temporary merge branch 1
     <div class="board_taskcard">
         <p class="board_deledit" onclick="closeDialog()">X</p>
         <input type="text" id="addtask-input-title" value="${todosdome[id].title}" required>
@@ -165,7 +150,6 @@ function editTask(id) {
                         </select>
                         <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todosdome[id].id}), closeDialog(), readServer()">Update Task</button>
     </div>
-=========
     <div class="board_taskcard" id ="taskcardedit">
       <div id="board_editframe" class="board_editframe max-width-525">
         <div class="board_taskedit">
