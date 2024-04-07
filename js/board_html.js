@@ -91,12 +91,33 @@ function generateTodoHTML(element) {
                         <p class="board_tasktext">${limitTaskText(element)}</p>
                         <div class="board_cardbar"> ${subTasks(element)}</div>
                         <div class="board_cardbottom">
-                            <div class="board_cardcontactsdome">Kontakte</div>
+                            <div class="board_cardcontactsdome">${generateContacts(element.contacts)}</div>
                             <div class="board prio">${prioritySelector(element)}</div>
                         </div>
                     </div>
                     </div>
                     `;
+}
+
+
+function generateContacts(contacts) {
+    
+    if (contacts.length > 5) {
+        contacts = contacts.slice(0, 5);
+    }
+    let contactHTML = '';
+    contacts.forEach((contact) => {
+        let initials = contact.split(' ').map(name => name.charAt(0)).join('');
+        contactHTML +=`
+        <div class="board_cardcontactsring">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>
+        </div>
+        `;
+    });
+    return contactHTML;
 }
 
 /**
@@ -138,6 +159,7 @@ function closeDialog() {
 function openTaskDialog() {
     document.getElementById('board_addTask').classList.remove('d-none');
     changeAddTask();
+    selectedContacts = [];
 }
 
 /**
@@ -145,20 +167,8 @@ function openTaskDialog() {
  */
 function closeTaskDialog() {
     document.getElementById('board_addTask').classList.add('d-none');
+    selectedContacts = [];
 }
-
-/**
- * Adds a task to the board.
- */
-// function addTask() {
-//     document.getElementById('board_addTask').innerHTML = `
-//     <div class="board_addtaskcard">
-//         <!-- Hier kommt der Code von Christina rein -->
-//         <p onclick="closeTaskDialog()">X</p>
-//     </div>
-//     `;
-
-// }
 
 /**
  * Returns the priority level of an element as a string.
