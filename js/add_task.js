@@ -82,11 +82,7 @@ function writeContactsintonewArray() {
     }
   }
 
-  if (todos.length === 0) 
-    return;
-  else 
-  todos[todos.length - 1].contacts = selectedContacts;
-
+ 
   document.getElementById('test').innerHTML = '';
 
   selectedContacts.forEach((element) => {
@@ -99,6 +95,12 @@ function writeContactsintonewArray() {
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
   `;
+
+  if (todos.length === 0) 
+  return;
+else 
+todos[todos.length - 1].contacts = selectedContacts;
+
   });
 }
 

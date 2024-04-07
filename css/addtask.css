@@ -552,3 +552,19 @@ flex-direction: column;
     border: 1px solid #FF3D00;
     cursor: pointer;
 }
+
+
+.inputfieldEditSubtask {
+width: 440px;
+height: 40px;
+font-size: 20px;
+
+border-width: 0 0 2px;
+border-color:  #29ABE2;
+
+}
+
+.inputfieldEditSubtask:focus {
+    border-color: green;
+    outline: 1px dotted #000
+  }
