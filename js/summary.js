@@ -41,7 +41,7 @@ function getInitials(user) {
     let firstName = nameParts[0].charAt(0);
     let secondName = nameParts[1].charAt(0);
 
-    initials = firstName+secondName;
+    initials = firstName + secondName;
     document.getElementById('initials').innerHTML = initials;
 
     console.log(firstName);
@@ -133,4 +133,15 @@ function showNumberOfAwaitingFeedback() {
 
     document.getElementById('number_of_awaiting_feedback').innerHTML = '';
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
+}
+
+function UpcomingDeadline() {
+   
+    const filteredDates = todos.filter(todo => todo['priority'] === 3)
+        .map(todo => todo.date);
+
+    console.log(filteredDates);
+
+
+
 }
