@@ -122,13 +122,16 @@ async function init() {
  */
 async function getUsersintoContacts() {
 
+    
+    debugger;
     try {
-        let users = [];
-        await readJSON('users', users);
-        console.log(users);
+        users = [];
+    await readJSON('users', users); // Warte auf das Laden der Daten
         users.forEach(user => {
+            debugger;
             if (!contacts.some(contact => contact.email === user.email)) {
                 contacts.push({
+                    "idContact": generateUniqueId(),
                     "firstName": user.name.split(' ')[0],
                     "lastName": user.name.split(' ')[1],
                     "email": user.email,
@@ -136,11 +139,12 @@ async function getUsersintoContacts() {
                     "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
                     "color": getRandomColor()
                 });
+                debugger;
             }
         });
         removeDuplicateContacts();
         await setItem('contacts', contacts);
-        readServerData();
+        await readServerData();
     } catch (error) {
         console.error('Loading error:', error);
     }
@@ -308,8 +312,7 @@ function deleteContactById(contactId) {
             contacts.splice(contactIndex, 1);
         }
         document.getElementById('detailViewContent').innerHTML = '';
-        try {
-            setItem('users', contacts);            
+        try {         
             setItem('contacts', contacts).then(() => {
                 readServerData(); // Lese die Daten neu ein, 
                 renderContacts(); // Aktualisiere die Ansicht
