@@ -11,7 +11,7 @@
 /* Header and sidebar */
 .privacy-sidebar {
     position: fixed;
-    top: 8px;
+
     width: 232px;
     height: 1024px;
     background-color: #2A3647;
@@ -20,7 +20,7 @@
 
 .privacy-header {
     position: fixed;
-    top: 8px;
+
     width: 100vw !important;
     height: 96px;
     background-color: #ffffff;
@@ -34,6 +34,7 @@
     width: 100vw;
     height: 100vh;
     background-color: #F6F7F8;
+    margin: 0;
  
 
 }

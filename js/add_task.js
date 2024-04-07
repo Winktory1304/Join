@@ -37,20 +37,28 @@ function getReady() {
 
   document.getElementById('addtask-input-assigned').classList.remove('d-none');
 
-  document.getElementById('addtask-input-assigned').addEventListener('mouseover', function () {
+  // Ändere Event-Listener auf Klick-Ereignisse
+  document.getElementById('addtask-input-assigned').addEventListener('click', function () {
     document.getElementById('addtask-input-assigned').classList.remove('d-none');
   });
 
-  document.getElementById('addtask-input-assigned').addEventListener('mouseleave', function () {
-    document.getElementById('addtask-input-assigned').classList.add('d-none');
+  // Entferne den Event-Listener für mouseleave
+  document.getElementById('addtask-input-assigned').removeEventListener('mouseleave');
+
+  // Optional: Füge eine Funktion hinzu, um das Dropdown-Menü zu schließen
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    var assignedInput = document.getElementById('addtask-input-assigned');
+    if (target !== assignedInput && !assignedInput.contains(target)) {
+      assignedInput.classList.add('d-none');
+    }
   });
 }
 
 function closeContactList() {
   document.getElementById('addtask-input-assigned').classList.remove('d-none');
-
-
 }
+
 
 
 function setContacts(array) {
