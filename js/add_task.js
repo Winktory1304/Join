@@ -4,7 +4,6 @@
  */
 let key = 'todos';
 
-
 /**
  * Arrays die benötigt werden
  */
@@ -13,15 +12,15 @@ let subtask = [];
 let subtaskdone = [];
 let contacts = [];
 let selectedContacts = [];
-
-let priority = 2;
-let status = 'open';
-
-let resultValidation = false;
-
-
 let assignedPerson = [];
 let allAssigned = [];
+
+/**
+ * Variable die benötigt wird
+ */
+let priority = 2;
+let status = 'open';
+let resultValidation = false;
 const htmlfields = ['assinedPersons', 'task-list'];
 
 /**
@@ -32,6 +31,9 @@ function readServerData() {
   readJSON(key, todos);
 }
 
+/**
+ * Sets up the necessary event listeners and functionality when the page is ready.
+ */
 function getReady() {
   setContacts(contacts);
 
@@ -55,12 +57,18 @@ function getReady() {
   });
 }
 
+/**
+ * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
+ */
 function closeContactList() {
   document.getElementById('addtask-input-assigned').classList.remove('d-none');
 }
 
-
-
+/**
+ * Sets the contacts in the add task form.
+ * 
+ * @param {Array} array - The array of contacts.
+ */
 function setContacts(array) {
 
   document.getElementById('addtask-input-assigned').innerHTML = '';
@@ -80,7 +88,9 @@ function setContacts(array) {
   }
 }
 
-
+/**
+ * Writes selected contacts into a new array and updates the DOM.
+ */
 function writeContactsintonewArray() {
   let checkboxes = document.getElementsByClassName('checkBox');
   selectedContacts = [];
@@ -102,8 +112,6 @@ function writeContactsintonewArray() {
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
   `;
-
-
 
     if (todos.length === 0)
       todos[0].contacts = selectedContacts;
@@ -259,10 +267,11 @@ function selectPrio(prio) {
     priority = 3;
   } else if (prio == 'medium') {
     priority = 2;
-      containerMedium.classList.add('selected');
+    containerMedium.classList.add('selected');
 
-   } else {
+  } else {
     priority = 1;
-      containerLow.classList.add('selected');
+    containerLow.classList.add('selected');
 
-}}
+  }
+}
