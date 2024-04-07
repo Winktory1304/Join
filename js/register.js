@@ -1,31 +1,23 @@
-let users = [];
+let loggeduser = [];
 
+let currentUser;
 
-async function initRegister() {
+function initRegister() {
     loadUsers();
 }
 
-async function loadUsers() {
+function loadUsers() {
     try {
-
-        /**
-         * Hier wird die Funktion getItem() aufgerufen, die in der Datei storage.js definiert ist.
-         * getItem() gibt ein Promise zurück, das mit await aufgelöst wird.
-         * Das Ergebnis wird in der Variable x gespeichert.
-         * Danach wird auf die Ebene gecastet, die wir haben wollen.
-         */
-        
         readJSON('users', users);
-
-
-        // users = JSON.parse(await getItem('users'));
-        // console.log('Users:', users);
     } catch (e) {
         console.error('Loading error:', e);
     }
 }
 
-async function registerUser() {
+/**
+ * Registers a user if email doesn't already exists.
+ */
+function registerUser() {
 
     let email = document.getElementById('sign_up_email').value;
     checkPrivacyPolicy();
@@ -47,19 +39,27 @@ async function registerUser() {
     }
 }
 
-
+/**
+ * Checks if an email already exists in the users array.
+ * @param {string} email - The email to check.
+ * @returns {boolean} True if the email exists, false otherwise.
+ */
 function checkIfEmailExists(email) {
     return users.some((user) => user.email === email);
 }
 
-
+/**
+ * Shows a message saying that the email already exists.
+ */
 function warningEmailExists() {
     let warning = document.getElementById('password_match');
     warning.innerHTML = 'The email already exists';
     warning.style.color = 'red';
 }
 
-
+/**
+ * Adds user to users array and stores it in the remote storage.
+ */
 async function pushTheUserToStorage() {
     let name = document.getElementById('sign_up_name');
     let email = document.getElementById('sign_up_email');
@@ -70,11 +70,13 @@ async function pushTheUserToStorage() {
         email: email.value,
         password: password.value,
     });
-    await setItem('users', JSON.stringify(users));
+    await setItem('users', users);
     resetForm();
 }
 
-
+/**
+ * Resets input fields and disables registration button in the registration form.
+ */
 function resetForm() {
     document.getElementById('sign_up_name').value = '';
     document.getElementById('sign_up_email').value = '';
@@ -83,7 +85,9 @@ function resetForm() {
     document.getElementById('sign_up_button').disabled = true;
 }
 
-
+/**
+ * Checks whether the password is entered correctly twice and enables the register button.
+ */
 function checkPassword() {
     if (document.getElementById('sign_up_password').value == document.getElementById('sign_up_confirm_password').value) {
         document.getElementById('sign_up_button').disabled = false;
@@ -98,7 +102,9 @@ function checkPassword() {
     }
 }
 
-
+/**
+ * Checks if the terms and conditions are confirmed to enable register button.
+ */
 function checkPrivacyPolicy() {
     let checkPrivacyPolicyTrue = document.getElementById('privacy_policy_check');
     let signUpButton = document.getElementById('sign_up_button');
@@ -110,10 +116,9 @@ function checkPrivacyPolicy() {
 
     } else {
         signUpButton.disabled = false;
-        signUpButton.classList.remove('disable-button');  //* Reset background color/
+        signUpButton.classList.remove('disable-button');  //* Unlocks the register button
     }
 }
-
 
 function logIn() {
     let email = document.getElementById('log_in_email').value;
@@ -121,46 +126,63 @@ function logIn() {
     let message = document.getElementById('email_or_password_not_found');
     let user = userValidation(email, password);
     if (user) {
-        indexOfUsers(email);
-        
+        indexOfUser(email);
+
+        document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
+
         setTimeout(function () {
             document.getElementById(`logged_in_successfuly_container`).classList.add('d-none');
         }, 2000);
-        window.location.href = './html/summary.html';
+
+        setTimeout(function () {
+            window.location.href = './html/summary.html';
+        }, 2000);
+
     }
     else {
-        message.innerText = 'Ups! Email or password not found !';  //*muss noch gemacht werden !!!        
+        message.innerText = 'Ups! Email or password not found !';
     }
 }
 
-
+/**
+ * Validates user by checking email and password.
+ * @param {string} email - The email entered by the user.
+ * @param {string} password - The password entered by the user.
+ * @returns {object|null} The user object if found, null otherwise.
+ */
 function userValidation(email, password) {
     let user = users.find(u => u.email == email && u.password == password);
     return user;
 }
 
-
-function indexOfUsers(email) {
-    let userIndex = users.findIndex(user => user.email === email);
-    localStorage.setItem('currentUserIndex', userIndex);
+/**
+ *    ===== funktioniert nicht !!!! <- Gefixxt!
+ */
+function indexOfUser(email) {
+    let userIndex = users.filter(user => user.email === email);
+    localStorage.setItem('currentUserIndex', userIndex[0].email); // <- hier wird die User Email in den LocalStorage gespeichert
+    console.log('zeig mir den aktuellen User', userIndex[0].email);
 }
 
-
-
-
-
+/**
+ *   funktioniert nicht vollständig!!!! <- Gefixxt!
+ */
 function logInGuest() {
-    guest = document.getElementById('user_name');
-    window.location.href = 'html/summary.html';
-    userIndex = -1;
-    localStorage.setItem('currentUserIndex', userIndex);
-    guest.innerHTML = '';
-    guest.innerHTML = 'Guest';
+    window.location.href = './html/summary.html';
+    localStorage.setItem('currentUserIndex', "Guest");
 }
 
+/**
+ * Redistricts to the login window.
+ */
 
 function goBackToLogIn() {
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
     document.getElementById('log_container').classList.remove('height-sing-up');
+}
+
+
+function goOneStepBack() {
+    window.history.back();
 }

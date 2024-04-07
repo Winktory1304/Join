@@ -36,7 +36,7 @@ function getReady() {
   setContacts(contacts);
 
   document.getElementById('addtask-input-assigned').classList.remove('d-none');
-  
+
   document.getElementById('addtask-input-assigned').addEventListener('mouseover', function () {
     document.getElementById('addtask-input-assigned').classList.remove('d-none');
   });
@@ -56,12 +56,44 @@ function closeContactList() {
 function setContacts(array) {
   document.getElementById('addtask-input-assigned').innerHTML = '';
   array.forEach((element) => {
-    document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
+    document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
   });
 
   if (array.length === 0) {
     document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
   }
+}
+
+
+function writeContactsintonewArray() {
+  let checkboxes = document.getElementsByClassName('checkBox');
+  selectedContacts = [];
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      selectedContacts.push(checkboxes[i].value);
+    }
+  }
+
+  if (todos.length === 0) {
+    todos.push({
+      'contacts': selectedContacts
+    });
+  }
+  todos[todos.length - 1].contacts = selectedContacts;
+
+  document.getElementById('test').innerHTML = '';
+
+  selectedContacts.forEach((element) => {
+    let contact = element.split(' ');
+    let initials = contact.map(name => name.charAt(0)).join('');
+
+    document.getElementById('test').innerHTML += `
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>
+  `;
+  });
 }
 
 
@@ -128,7 +160,7 @@ function pushJSON() {
   var categoryValue = document.getElementById('addtask-input-category').value;
   var contactsValue = document.getElementById('addtask-input-assigned').value;
 
-  let x = [contactsValue];
+  let x = selectedContacts;
 
   if (subtasksValue !== '') {
     subtask.push(subtasksValue);

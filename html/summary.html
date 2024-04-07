@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="summary-html">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,8 @@
     <title>Summary</title>
 
     
-    <script src="../js/storage.js"></script>
-    <script src="../js/serverfunction-class.js"></script>
+    <script src="../js/template.js"></script>
+    <script src="../js/storage.js"></script> 
     <script src="../js/index.js"></script>
     <script src="../js/summary.js"></script>
     <script src="../js/register.js"></script>
@@ -18,18 +18,18 @@
     <!-- Template -->
     <link rel="stylesheet" href="../css/navbar_sidebar.css">
     <script src="../js/include.js"></script>
+    <script src="../js/taskHandler.js"></script>
+    <script src="../js/add_task.js"></script>
     
 
     
 
 </head>
 
-<body onload="init()" class="unset-body" class="summary-body">
+<body onload="init()" class="unset-body summary-body">
 
     <div w3-include-html="./template/sidebar.html"></div>
-
-    <div w3-include-html="./template/navbar.html" class="header-container"></div>
-
+    <div w3-include-html="./template/navbar.html"></div>
 
 
     <main class="main-content-summary">
@@ -127,8 +127,8 @@
 
 
                 <div class="greeting-container">
-                    <h2 class="greeting-box">Good morning</h2>
-                    <span class="user-name" id="user_name">Artur</span>
+                    <h2 id="greet_box" class="greeting-box">Guten Tag</h2>
+                    <span id="user_name" class="user-name" >Artur</span>
                 </div>
             </div>
         </div>

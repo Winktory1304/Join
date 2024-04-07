@@ -389,16 +389,19 @@ h4 {
     
     transform: translateX(0);
     animation-fill-mode: forwards;
+    
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .board_taskcardedit {
     gap: 10px !important;
     
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .board_editframe{
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .max-width-525{
@@ -516,10 +519,7 @@ h4 {
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .checkbox {
@@ -618,4 +618,19 @@ p {
 
 .addtask-input-description{
     width: 524px !important;
+}
+
+
+.board_cardcontactsdome{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.board_cardcontactsring{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: -15px;
 }

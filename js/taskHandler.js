@@ -13,48 +13,34 @@ function searchTask() {
     var statusdone = searchArray.filter(t => t.status === 'done');
 
     if (statusprogress.length !== 0) {
-    document.getElementById('board_progress').innerHTML = '';
-    statusprogress.forEach((element) => {
+      document.getElementById('board_progress').innerHTML = '';
+      statusprogress.forEach((element) => {
+        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+      });
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
-    }
-    );
-  }
-    else if (statusopen.length !== 0) {
+    } else if (statusopen.length !== 0) {
       document.getElementById('board_open').innerHTML = '';
       statusopen.forEach((element) => {
-        document.getElementById('board_done').innerHTML = '';
-        document.getElementById('board_feedback').innerHTML = '';
-        document.getElementById('board_progress').innerHTML = '';
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-      }
-      );
-    }
-
-    else if (statusfeedback.length !== 0) {
+      });
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_feedback').innerHTML = '';
+    } else if (statusfeedback.length !== 0) {
       document.getElementById('board_feedback').innerHTML = '';
       statusfeedback.forEach((element) => {
-        document.getElementById('board_done').innerHTML = '';
-        document.getElementById('board_open').innerHTML = '';
-        document.getElementById('board_progress').innerHTML = '';
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
-      }
-      );
-    }
-
-    else if (statusdone.length !== 0) {
+      });
+      document.getElementById('board_done').innerHTML = '';
+      document.getElementById('board_open').innerHTML = '';
+    } else if (statusdone.length !== 0) {
       document.getElementById('board_done').innerHTML = '';
       statusdone.forEach((element) => {
-        document.getElementById('board_feedback').innerHTML = '';
-        document.getElementById('board_open').innerHTML = '';
-        document.getElementById('board_progress').innerHTML = '';
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
-      }
-      );
-    }
-    else{
+      });
+      document.getElementById('board_feedback').innerHTML = '';
+      document.getElementById('board_open').innerHTML = '';
+    } else {
       document.getElementById('board_done').innerHTML = '';
       document.getElementById('board_feedback').innerHTML = '';
       document.getElementById('board_open').innerHTML = '';
@@ -70,7 +56,6 @@ function searchTask() {
 }
 
 function hoverPlus(id) {
-
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus_blue.svg');
 }
@@ -131,6 +116,7 @@ function addTask() {
  * @param {number} id - The ID of the task to be edited.
  */
 function editTask(id) {
+  selectedContacts = todos[id].contacts;
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard" id ="taskcardedit">
@@ -154,21 +140,28 @@ function editTask(id) {
         <p>Task Category</p>
             <div class="addtask-prio-buttons max-width-500">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
-                  <image src="../assets/img/addtaskurgent.svg"></image>
+                  <img src="../assets/img/addtaskurgent.svg">
                 </button>
                 <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
-                  <image src="../assets/img/addtaskmedium.svg"></image>
+                  <img src="../assets/img/addtaskmedium.svg">
                 </button>
-                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <image src="../assets/img/addtasklow.svg"></image> </button>
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
             </div>
-        <p>Subtasks</p>
-        <div style="position: relative;" id="subtaskListContainer">             
-            <input class="addtask-input-subtasks max-width-500" id="addtask-input-subtasks" placeholder="Add new subtask">
-            <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%);">
-            <ul id="addsubtaskliste" class="addsubtaskliste"></ul>
-        </div>
+        <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+            <div style="position: relative;">
+
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
+            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
+        
         <p>Assigned Contacts</p>
-        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned" onfocus="getReady()">
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
+                onfocus="getReady(), getarray()">
+                
+        <div class="addtask-gap16" id="test">
+        </div>
         <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
         <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
       </div>
@@ -176,6 +169,7 @@ function editTask(id) {
     `;
 
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');
+  fillSubtasks();
 }
 
 function fillSubtasks() {

@@ -1,0 +1,84 @@
+.help-body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F5F5F5;
+    font-family: 'inter', sans-serif !important;
+    overflow: hidden;
+}
+
+.unset-body {
+    display: unset;
+}
+
+.help-content {
+    overflow-y: auto;
+    height: 100vh;
+    padding: 110px 110px 0px 328px;
+    margin-right: auto;   
+}
+
+.help-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+.help-header1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.help-header1 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 3px;
+    border-radius: 100%;
+}
+
+.help-header1 a:hover {
+    background-color: rgba(209, 209, 209, 0.5);
+}
+
+.help-content h1 {
+    font-size: 64px;
+}
+
+.arrow-left-line {
+    width: 32px;
+    height: 32px;
+}
+
+.arrow-left-line:hover {
+    cursor: pointer;
+    background-color: #f1f1f1;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    scale: 1.1;
+}
+
+
+.help-content li {
+    font-weight: 700;
+    font-size: 20px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.help-content ol li::marker {
+    font-size: 27px;
+    padding-inline-start: 32px;
+}
+
+.help-content li p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0px;
+}
+
+.help-content span {
+    color: #29ABE2;
+}
