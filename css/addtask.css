@@ -9,23 +9,6 @@
     margin-top: 0 !important;
 }
 
-/* Header and sidebar */
-.addtask_sidebar {
-    position: fixed;
-    width: 232px;
-    height: 1024px;
-    background-color: #2A3647;
-    box-shadow: 0px 0px 4px 0px #0000001A;
-}
-
-.addtask_header {
-    position: fixed;
-    width: 1440px !important;
-    height: 96px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-}
-
 /* addtask body */
 .addtask_body {
     position: fixed;
