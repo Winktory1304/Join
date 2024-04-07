@@ -1,5 +1,10 @@
 /* style contend add task */
-
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
 .legal-html {
     display: flex;
     justify-content: center;

@@ -10,7 +10,7 @@
 /* Header and sidebar */
 .addtask_sidebar {
     position: fixed;
-    top: 8px;
+   
     width: 232px;
     height: 1024px;
     background-color: #2A3647;
@@ -19,7 +19,7 @@
 
 .addtask_header {
     position: fixed;
-    top: 8px;
+   
     width: 1440px !important;
     height: 96px;
     background-color: #ffffff;
