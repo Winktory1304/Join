@@ -37,20 +37,28 @@ function getReady() {
 
   document.getElementById('addtask-input-assigned').classList.remove('d-none');
 
-  document.getElementById('addtask-input-assigned').addEventListener('mouseover', function () {
+  // Ändere Event-Listener auf Klick-Ereignisse
+  document.getElementById('addtask-input-assigned').addEventListener('click', function () {
     document.getElementById('addtask-input-assigned').classList.remove('d-none');
   });
 
-  document.getElementById('addtask-input-assigned').addEventListener('mouseleave', function () {
-    document.getElementById('addtask-input-assigned').classList.add('d-none');
+  // Entferne den Event-Listener für mouseleave
+  document.getElementById('addtask-input-assigned').removeEventListener('mouseleave');
+
+  // Optional: Füge eine Funktion hinzu, um das Dropdown-Menü zu schließen
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    var assignedInput = document.getElementById('addtask-input-assigned');
+    if (target !== assignedInput && !assignedInput.contains(target)) {
+      assignedInput.classList.add('d-none');
+    }
   });
 }
 
 function closeContactList() {
   document.getElementById('addtask-input-assigned').classList.remove('d-none');
-
-
 }
+
 
 
 function setContacts(array) {
@@ -81,7 +89,6 @@ function writeContactsintonewArray() {
       selectedContacts.push(checkboxes[i].value);
     }
   }
-
 
   document.getElementById('test').innerHTML = '';
 
@@ -248,15 +255,14 @@ function selectPrio(prio) {
   containerLow.classList.remove('selected');
   if (prio == 'urgent') {
     containerUrgent.classList.add('selected');
-    document.getElementById('addtaskButtonUrgent').src = "../assets/img/addtaskurgentwhite.svg";
+
     priority = 3;
   } else if (prio == 'medium') {
     priority = 2;
-    containerMedium.classList.add('selected');
-    document.getElementById('addtaskButtonMedium').src = "../assets/img/addtaskmediumwhite.svg";
-  } else {
+      containerMedium.classList.add('selected');
+
+   } else {
     priority = 1;
-    containerLow.classList.add('selected');
-    document.getElementById('addtaskButtonLow').src = "../assets/img/addtasklowwhite.svg";
-  }
-}
+      containerLow.classList.add('selected');
+
+}}
