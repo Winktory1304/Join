@@ -299,7 +299,6 @@ function updateJSON(id) {
             object.contacts = selectedContacts;
             object.subtasks = subtask;
             object.priority = priority;
-            debugger;
             writeServer();
         }
     })
