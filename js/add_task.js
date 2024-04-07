@@ -14,12 +14,37 @@ let resultValidation = false;
 let assignedPerson = [];
 let allAssigned = [];
 const htmlfields = ["assinedPersons", "task-list"];
-var title = document.getElementById("addtask-input-title");
-var date = document.getElementById("addtask-input-date");
-var category = document.getElementById("addtask-input-category");
-var createTaskButton = document.getElementById("addtask-button-create-task");
-var description = document.getElementById("addtask-input-description");
-var subtasks = document.getElementById("addtask-input-subtasks");
+
+function switchCase(statusInput) {	
+  switch (statusInput) {
+    case "title":
+      return document.getElementById("addtask-input-title")
+    case "titleValue":
+      return document.getElementById("addtask-input-title").value
+    case "description":
+      return document.getElementById("addtask-input-description")
+    case "descriptionValue":
+      return document.getElementById("addtask-input-description").value
+    case "subtasks":
+      return document.getElementById("addtask-input-subtasks")
+    case "subtasksValue":
+      return document.getElementById("addtask-input-subtasks").value
+    case "category":
+      return document.getElementById("addtask-input-category")
+    case "categoryValue":
+      return document.getElementById("addtask-input-category").value
+    case "date":
+      return document.getElementById("addtask-input-date")
+    case "dateValue":
+      return document.getElementById("addtask-input-date").value
+    case "assigned":
+      return document.getElementById("addtask-input-assigned")
+    case "assignedValue":
+      return document.getElementById("addtask-input-assigned").value
+    default:
+      return null
+  }
+}
 
 /**
  * Reads the todo tasks from the server.
@@ -59,19 +84,17 @@ function getReady() {
 }
 
 function closeContactList() {
-  document.getElementById("addtask-input-assigned").classList.remove("d-none");
+  switchCase('assigned').classList.remove("d-none");
 }
 
 function setContacts(array) {
-  document.getElementById("addtask-input-assigned").innerHTML = "";
+  switchCase('assigned').innerHTML = "";
   array.forEach((element) => {
-    document.getElementById(
-      "addtask-input-assigned"
-    ).innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
+    switchCase('assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
   });
 
   if (array.length === 0) {
-    document.getElementById("addtask-input-assigned").innerHTML =
+    switchCase(assigned).innerHTML =
       "<option>No contacts available</option>";
   }
 }
@@ -95,8 +118,7 @@ function writeContactsintonewArray() {
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
-    </svg>
-  `;
+    </svg>`;
 
     if (todos.length === 0) return;
     else todos[todos.length - 1].contacts = selectedContacts;
@@ -121,15 +143,13 @@ function addTaskPopup() {
 
 /**
  * Clears the input fields.
- */
+ */   
 function clearInputs() {
-  console.log("clear");
-  title.value = "";
-  description.value = "";
-  subtasks.value = "";
-  category.selectedIndex = 0;
-  category.disabled = false;
-  date.value = "";
+  switchCase('title').value = "";
+  switchCase('description').value = "";
+  switchCase('subtasks').value = "";
+  switchCase('category').selectedIndex = 0;
+  switchCase('category').disabled = false;
 }
 
 /**
@@ -150,19 +170,19 @@ function validateInput() {
  */
 function pushJSON() {
   debugger
-  if (subtasks.value !== "") {
-    subtask.push(subtasks.value);
+  if (switchCase('subtasksValue') !== "") {
+    subtask.push(switchCase('subtasksValue'));
     subtaskdone.push(0);
   }
 
   todos.push({
     id: checkId(),
     title: checkTitle(),
-    task: description.value,
+    task: switchCase('descriptionValue'),
     subtasks: subtask,
     subtasksdone: subtaskdone,
-    date: date.value,
-    tag: category.value,
+    date: switchCase('dateValue'),
+    tag: switchCase('categoryValue'),
     priority: priority,
     contacts: selectedContacts,
     status: status,
@@ -178,12 +198,12 @@ function pushJSON() {
 function checkTitle() {
   let count = 1;
   todos.forEach((element) => {
-    if (element.title === title.value) {
-      title.value = title.value + count;
+    if (element.title === switchCase('titleValue')) {
+      switchCase('titleValue') = switchCase('titleValue') + count;
       count++;
     }
   });
-  return title.value;
+  return switchCase('titleValue');
 }
 
 /**
@@ -202,7 +222,7 @@ function checkId() {
  * @returns {boolean} - The validation result.
  */
 function validateForm() {
-  if (title.value !== "" && date.value !== "" && category.value !== "") {
+  if (switchCase('titleValue')  !== "" && switchCase('dateValue')  !== "" && switchCase('categoryValue')  !== "") {
     return true;
   } else {
     return false;
