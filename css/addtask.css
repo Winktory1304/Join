@@ -472,7 +472,7 @@ display: none !important;
 
 .inputfield{
     width: 520px;
-    max-height: 300px;
+    max-height: 150px;
     display: flex;
     flex-direction: column;
     scrollbar-width: thin;
