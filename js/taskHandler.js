@@ -116,6 +116,7 @@ function addTask() {
  * @param {number} id - The ID of the task to be edited.
  */
 function editTask(id) {
+  selectedContacts = todos[id].contacts;
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard" id ="taskcardedit">
@@ -139,12 +140,12 @@ function editTask(id) {
         <p>Task Category</p>
             <div class="addtask-prio-buttons max-width-500">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
-                  <image src="../assets/img/addtaskurgent.svg"></image>
+                  <img src="../assets/img/addtaskurgent.svg">
                 </button>
                 <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
-                  <image src="../assets/img/addtaskmedium.svg"></image>
+                  <img src="../assets/img/addtaskmedium.svg">
                 </button>
-                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <image src="../assets/img/addtasklow.svg"></image> </button>
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
             </div>
         <p>Subtasks</p>
         <div style="position: relative;" id="subtaskListContainer">             
@@ -153,7 +154,11 @@ function editTask(id) {
             <ul id="addsubtaskliste" class="addsubtaskliste"></ul>
         </div>
         <p>Assigned Contacts</p>
-        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned" onfocus="getReady()">
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
+                onfocus="getReady(), getarray()">
+                
+        <div class="addtask-gap16" id="test">
+        </div>
         <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
         <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
       </div>
@@ -161,6 +166,7 @@ function editTask(id) {
     `;
 
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');
+  fillSubtasks();
 }
 
 function fillSubtasks() {

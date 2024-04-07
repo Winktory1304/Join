@@ -279,7 +279,6 @@ function returnSubtasks(subtask) {
 function updateJSON(id) {
     let titleValue = document.getElementById('addtask-input-title').value;
     let descriptionValue = document.getElementById('addtask-input-description').value;
-    let selectedContacts = document.getElementById('addtask-input-assigned').value;
     let dateValue = document.getElementById('addtask-input-date').value;
     let selectedCategory = document.getElementById('addtask-input-category').value;
     var subtasksValue = document.getElementById('addtask-input-subtasks').value;
@@ -296,10 +295,11 @@ function updateJSON(id) {
             object.task = descriptionValue;
             object.date = dateValue;
             object.tag = selectedCategory;
-            object.contacts = [];
-            object.contacts.push(selectedContacts);
+            object.contacts =[];
+            object.contacts = selectedContacts;
             object.subtasks = subtask;
             object.priority = priority;
+            debugger;
             writeServer();
         }
     })
@@ -310,6 +310,13 @@ function updateJSON(id) {
  */
 function getarray() {
     setContacts(contacts);
+    
+  let checkboxes = document.getElementsByClassName('checkBox');
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (selectedContacts.includes(checkboxes[i].value)) {
+      checkboxes[i].checked = true;
+    }
+  }
 }
 
 /**
