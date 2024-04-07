@@ -208,14 +208,14 @@ function selectPrio(prio) {
   containerLow.classList.remove('selected');
   if (prio == 'urgent') {
     containerUrgent.classList.add('selected');
-    document.getElementById('addtaskButtonUrgent').src="../assets/img/addtaskurgentwhite.svg";
+
     priority = 3;
   } else if (prio == 'medium') {
     priority = 2;
       containerMedium.classList.add('selected');
-      document.getElementById('addtaskButtonMedium').src="../assets/img/addtaskmediumwhite.svg";
+
    } else {
     priority = 1;
       containerLow.classList.add('selected');
-      document.getElementById('addtaskButtonLow').src="../assets/img/addtasklowwhite.svg";
+
 }}
