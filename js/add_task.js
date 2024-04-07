@@ -54,9 +54,17 @@ function closeContactList() {
 
 
 function setContacts(array) {
+
   document.getElementById('addtask-input-assigned').innerHTML = '';
+
+  var loggeduser = localStorage.getItem('currentUserIndex');
+
   array.forEach((element) => {
-    document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
+    if (element.email === loggeduser) {
+      document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} (You)<input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
+    }
+    else
+      document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
   });
 
   if (array.length === 0) {
@@ -74,10 +82,6 @@ function writeContactsintonewArray() {
     }
   }
 
-  if (todos.length === 0) 
-    return;
-  else 
-  todos[todos.length - 1].contacts = selectedContacts;
 
   document.getElementById('test').innerHTML = '';
 
@@ -91,6 +95,13 @@ function writeContactsintonewArray() {
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
   `;
+
+
+
+    if (todos.length === 0)
+      todos[0].contacts = selectedContacts;
+    else
+      todos[todos.length - 1].contacts = selectedContacts;
   });
 }
 
@@ -156,7 +167,6 @@ function pushJSON() {
   var subtasksValue = document.getElementById('addtask-input-subtasks').value;
   var dateValue = document.getElementById('addtask-input-date').value;
   var categoryValue = document.getElementById('addtask-input-category').value;
-  var contactsValue = document.getElementById('addtask-input-assigned').value;
 
   let x = selectedContacts;
 

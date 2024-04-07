@@ -122,13 +122,10 @@ async function init() {
  */
 async function getUsersintoContacts() {
 
-    
-    debugger;
     try {
         users = [];
     await readJSON('users', users); // Warte auf das Laden der Daten
         users.forEach(user => {
-            debugger;
             if (!contacts.some(contact => contact.email === user.email)) {
                 contacts.push({
                     "idContact": generateUniqueId(),
@@ -139,7 +136,6 @@ async function getUsersintoContacts() {
                     "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
                     "color": getRandomColor()
                 });
-                debugger;
             }
         });
         removeDuplicateContacts();
