@@ -147,12 +147,15 @@ function editTask(id) {
                 </button>
                 <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
             </div>
-        <p>Subtasks</p>
-        <div style="position: relative;" id="subtaskListContainer">             
-            <input class="addtask-input-subtasks max-width-500" id="addtask-input-subtasks" placeholder="Add new subtask">
-            <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()" style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%);">
-            <ul id="addsubtaskliste" class="addsubtaskliste"></ul>
-        </div>
+        <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+            <div style="position: relative;">
+
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
+            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
+        
         <p>Assigned Contacts</p>
         <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
                 onfocus="getReady(), getarray()">
