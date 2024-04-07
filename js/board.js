@@ -4,33 +4,53 @@
  */
 let updatedArray = [];
 let usersdome = [];
+<<<<<<<<< Temporary merge branch 1
+let contactsdome = [];
+
+/**
+ * The keydome used for storing the todosdome in the server.
+=========
 
 /**
  * The keydome used for storing the todos in the server.
+>>>>>>>>> Temporary merge branch 2
  * @type {string}
  */
 let keydome = 'todos';
 
 
 /**
+<<<<<<<<< Temporary merge branch 1
+ * Deletes all todos from the todosdome array, writes to the server, and updates the HTML.
+ */
+function deleteALL() {
+    todosdome = [];
  * Deletes all todos from the todos array, writes to the server, and updates the HTML.
  */
 function deleteALL() {
     todos = [];
+>>>>>>>>> Temporary merge branch 2
     writeServer();
     updateHTML();
 }
 
 /**
+<<<<<<<<< Temporary merge branch 1
+ * Writes the todosdome array to the server.
+ */
+function writeServer() {
+    setItem(keydome, todosdome);
  * Writes the todos array to the server.
  */
 function writeServer() {
     setItem(keydome, todos).then(() => { ; readServer(); });
+>>>>>>>>> Temporary merge branch 2
     console.log('Daten aktualisiert!');
 }
 
 /**
  * Initializes the board by reading the todos from the server.
+>>>>>>>>> Temporary merge branch 2
  */
 function init() {
     readServer();
@@ -192,12 +212,22 @@ function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">
                         <div class="board_cardnav">
+<<<<<<<<< Temporary merge branch 1
+                            <div class="board_opencardtag" ${setTag(todosdome[id])}>
+                                <p>${todosdome[id].tag}</p>
+=========
                             <div class="board_opencardtag" ${setTag(todos[id])}>
                                 <p>${todos[id].tag}</p>
                             </div>
                             <div class="board_cardclosed"><p class="board_cardexit" onclick="closeDialog()">X</p>
                             </div>
                         </div>
+<<<<<<<<< Temporary merge branch 1
+                        <div class="board_cardheadline">${todosdome[id].title}</div>
+                        <div class="board_cardtask board_text">${todosdome[id].task}</div>
+                        <div class="board_carddate board_text">Due date: ${todosdome[id].date}</div>
+                        <div class="board_cardprio board_text">Priority: ${setPriority(todosdome[id])} ${prioritySelector(todosdome[id])}</div>
+=========
                         <div class="board_cardheadline">${todos[id].title}</div>
                         <div class="board_cardtask board_text">${todos[id].task}</div>
                         <div class="board_carddate board_text">Due date: ${getDate(todos[id].date)}</div>
@@ -209,6 +239,10 @@ function openCard(id) {
                         </div>
                         <div class="board_subtasks board_text" id="board_cardsubtasks">
                             <h4>Subtasks</h4></div>
+<<<<<<<<< Temporary merge branch 1
+                            <div class="board_deledit" onclick="editTask('${todosdome[id].id}')">Edit</div>
+                        <div class="board_deledit" onclick="deleteTask('${todosdome[id].title}'), closeDialog()">Delete</div>
+=========
                             <div class="board_taskactions" id="">
                                 <div class="board_deledit" onclick="editTask('${todos[id].id}')"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
@@ -237,6 +271,7 @@ function generatecontactsdome(id) {
         }
         else
             document.getElementById('board_cardcontactsdome').innerHTML += `<li class="board_assigneditem">
+>>>>>>>>> Temporary merge branch 2
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
                 <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${getInitials(contact)}</text>
@@ -255,7 +290,11 @@ function getSubtasks(id) {
     let subtasks = document.getElementById('addtask-input-subtasks')
     subtasks.innerHTML = '';
 
+<<<<<<<<< Temporary merge branch 1
+    todosdome[id].subtasks.forEach(subtask => {
+=========
     todos[id].subtasks.forEach(subtask => {
+>>>>>>>>> Temporary merge branch 2
 
         subtasks.innerHTML += returnSubtasks(subtask);
         console.log(returnSubtasks(subtask));
@@ -291,6 +330,7 @@ function updateJSON(id) {
     }
 
     todos.map(object => {
+>>>>>>>>> Temporary merge branch 2
         if (object.id === id) {
             object.title = titleValue;
             object.task = descriptionValue;
@@ -309,7 +349,11 @@ function updateJSON(id) {
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
 function getarray() {
+<<<<<<<<< Temporary merge branch 1
+    setContacts(contactsdome);
+=========
     setContacts(contacts);
+>>>>>>>>> Temporary merge branch 2
 }
 
 /**
@@ -340,16 +384,27 @@ function randomColor() {
  * @param {number} id - The ID of the task.
  */
 function generateSubtasks(id) {
+<<<<<<<<< Temporary merge branch 1
+    todosdome[id].subtasks.forEach((subtask, index) => {
+=========
     todos[id].subtasks.forEach((subtask, index) => {
+>>>>>>>>> Temporary merge branch 2
         const checkbox = document.createElement('input');
         checkbox.className = 'checkbox';
         checkbox.type = 'checkbox';
         checkbox.id = `subtask${index}`;
         checkbox.name = `subtask${index}`;
+<<<<<<<<< Temporary merge branch 1
+        checkbox.checked = todosdome[id].subtasksdone[index] === 1;
+
+        checkbox.addEventListener('change', function () {
+            todosdome[id].subtasksdone[index] = this.checked ? 1 : 0;
+=========
         checkbox.checked = todos[id].subtasksdone[index] === 1;
 
         checkbox.addEventListener('change', function () {
             todos[id].subtasksdone[index] = this.checked ? 1 : 0;
+>>>>>>>>> Temporary merge branch 2
         });
 
         const li = document.createElement('li');
