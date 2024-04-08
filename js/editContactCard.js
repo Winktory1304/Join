@@ -58,6 +58,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function addContactModalResponiv(){
+    let modalId = 'responsivAddContact';
+    let btn = document.getElementById('addContactBtnResponsiv');
+    btn.onclick = function () {
+        showModal(modalId);
+        setupModalListeners(modalId);
+    };
+}
+
 /**
  * Edits a contact.
  * 
