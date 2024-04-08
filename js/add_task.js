@@ -4,7 +4,6 @@
  */
 let key = 'todos';
 
-
 /**
  * Arrays die benötigt werden
  */
@@ -13,60 +12,108 @@ let subtask = [];
 let subtaskdone = [];
 let contacts = [];
 let selectedContacts = [];
-
-let priority = 2;
-let status = 'open';
-
-let resultValidation = false;
-
-
 let assignedPerson = [];
 let allAssigned = [];
+/**
+ * Variable die benötigt wird
+ */
+let priority = 2;
+let status = 'open';
+let resultValidation = false;
 const htmlfields = ['assinedPersons', 'task-list'];
+
+function switchCase(statusInput) {	
+  switch (statusInput) {
+    case "title":
+      return document.getElementById("addtask-input-title")
+    case "titleValue":
+      return document.getElementById("addtask-input-title").value
+    case "description":
+      return document.getElementById("addtask-input-description")
+    case "descriptionValue":
+      return document.getElementById("addtask-input-description").value
+    case "subtasks":
+      return document.getElementById("addtask-input-subtasks")
+    case "subtasksValue":
+      return document.getElementById("addtask-input-subtasks").value
+    case "category":
+      return document.getElementById("addtask-input-category")
+    case "categoryValue":
+      return document.getElementById("addtask-input-category").value
+    case "date":
+      return document.getElementById("addtask-input-date")
+    case "dateValue":
+      return document.getElementById("addtask-input-date").value
+    case "assigned":
+      return document.getElementById("addtask-input-assigned")
+    case "assignedValue":
+      return document.getElementById("addtask-input-assigned").value
+    default:
+      return null
+  }
+}
 
 /**
  * Reads the todo tasks from the server.
  */
 function readServerData() {
-  readJSON('contacts', contacts);
+  readJSON("contacts", contacts);
   readJSON(key, todos);
 }
 
+/**
+ * Sets up the necessary event listeners and functionality when the page is ready.
+ */
 function getReady() {
   setContacts(contacts);
 
-  document.getElementById('addtask-input-assigned').classList.remove('d-none');
+  document.getElementById("addtask-input-assigned").classList.remove("d-none");
 
-  document.getElementById('addtask-input-assigned').addEventListener('mouseover', function () {
-    document.getElementById('addtask-input-assigned').classList.remove('d-none');
-  });
+  // Ändere Event-Listener auf Klick-Ereignisse
+  document
+    .getElementById("addtask-input-assigned")
+    .addEventListener("click", function () {
+      document
+        .getElementById("addtask-input-assigned")
+        .classList.remove("d-none");
+    });
 
-  document.getElementById('addtask-input-assigned').addEventListener('mouseleave', function () {
-    document.getElementById('addtask-input-assigned').classList.add('d-none');
+  // Entferne den Event-Listener für mouseleave
+  document
+    .getElementById("addtask-input-assigned")
+    .removeEventListener("mouseleave");
+
+  // Optional: Füge eine Funktion hinzu, um das Dropdown-Menü zu schließen
+  document.addEventListener("click", function (event) {
+    var target = event.target;
+    var assignedInput = document.getElementById("addtask-input-assigned");
+    if (target !== assignedInput && !assignedInput.contains(target)) {
+      assignedInput.classList.add("d-none");
+    }
   });
 }
 
+/**
+ * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
+ */
 function closeContactList() {
-  document.getElementById('addtask-input-assigned').classList.remove('d-none');
-
-
+  switchCase('assigned').classList.remove("d-none");
 }
-
 
 function setContacts(array) {
-  document.getElementById('addtask-input-assigned').innerHTML = '';
+  switchCase('assigned').innerHTML = "";
   array.forEach((element) => {
-    document.getElementById('addtask-input-assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
+    switchCase('assigned').innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
   });
 
   if (array.length === 0) {
-    document.getElementById('addtask-input-assigned').innerHTML = '<option>No contacts available</option>';
+    switchCase(assigned).innerHTML =
+      "<option>No contacts available</option>";
   }
 }
 
-
 function writeContactsintonewArray() {
-  let checkboxes = document.getElementsByClassName('checkBox');
+  let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
@@ -74,32 +121,22 @@ function writeContactsintonewArray() {
     }
   }
 
-  if (todos.length === 0) 
-    return;
-  else 
-  todos[todos.length - 1].contacts = selectedContacts;
-
-  document.getElementById('test').innerHTML = '';
+  document.getElementById("test").innerHTML = "";
 
   selectedContacts.forEach((element) => {
-    let contact = element.split(' ');
-    let initials = contact.map(name => name.charAt(0)).join('');
+    let contact = element.split(" ");
+    let initials = contact.map((name) => name.charAt(0)).join("");
 
-    document.getElementById('test').innerHTML += `
+    document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
-    </svg>
-  `;
+    </svg>`;
+
+    if (todos.length === 0) return;
+    else todos[todos.length - 1].contacts = selectedContacts;
   });
 }
-
-
-
-let title = document.getElementById('addtask-input-title');
-let date = document.getElementById('addtask-input-date');
-let category = document.getElementById('addtask-input-category');
-let createTaskButton = document.getElementById('addtask-button-create-task');
 
 function initTask() {
   readServerData();
@@ -109,41 +146,34 @@ function initTask() {
 
 // Popup erstellen
 function addTaskPopup() {
-  var popup = document.getElementById('popup');
-  popup.style.display = 'block';
+  var popup = document.getElementById("popup");
+  popup.style.display = "block";
 
   setTimeout(function () {
-    popup.style.display = 'none';
+    popup.style.display = "none";
   }, 1000);
 }
 
 /**
  * Clears the input fields.
- */
+ */   
 function clearInputs() {
-  console.log('clear');
-  document.getElementById('addtask-input-title').value = '';
-  document.getElementById('addtask-input-description').value = '';
-  document.getElementById('addtask-input-subtasks').value = '';
-  var categoryInput = document.getElementById('addtask-input-category');
-  categoryInput.selectedIndex = 0;
-  categoryInput.disabled = false;
-  var dateInput = document.getElementById('addtask-input-date');
-  dateInput.value = '';
+  switchCase('title').value = "";
+  switchCase('description').value = "";
+  switchCase('subtasks').value = "";
+  switchCase('category').selectedIndex = 0;
+  switchCase('category').disabled = false;
 }
 
 /**
  * Validates the input fields and enables/disables the create task button accordingly.
  */
 function validateInput() {
-
   resultValidation = validateForm();
   const button = document.getElementById("addtask-button-create-task");
   if (resultValidation) {
     button.disabled = false;
-
-  }
-  else {
+  } else {
     button.disabled = true;
   }
 }
@@ -152,35 +182,26 @@ function validateInput() {
  * Logs the input values and adds a new task to the todo list.
  */
 function pushJSON() {
-  var descriptionValue = document.getElementById('addtask-input-description').value;
-  var subtasksValue = document.getElementById('addtask-input-subtasks').value;
-  var dateValue = document.getElementById('addtask-input-date').value;
-  var categoryValue = document.getElementById('addtask-input-category').value;
-  var contactsValue = document.getElementById('addtask-input-assigned').value;
-
-  let x = selectedContacts;
-
-  if (subtasksValue !== '') {
-    subtask.push(subtasksValue);
+  debugger
+  if (switchCase('subtasksValue') !== "") {
+    subtask.push(switchCase('subtasksValue'));
     subtaskdone.push(0);
   }
 
   todos.push({
-    'id': checkId(),
-    'title': checkTitle(),
-    'task': descriptionValue,
-    'subtasks': subtask,
-    'subtasksdone': subtaskdone,
-    'date': dateValue,
-    'tag': categoryValue,
-    'priority': priority,
-    'contacts': x,
-    'status': status
+    id: checkId(),
+    title: checkTitle(),
+    task: switchCase('descriptionValue'),
+    subtasks: subtask,
+    subtasksdone: subtaskdone,
+    date: switchCase('dateValue'),
+    tag: switchCase('categoryValue'),
+    priority: priority,
+    contacts: selectedContacts,
+    status: status,
   });
 
   setItem(key, todos);
-
-  console.log(todos);
 }
 
 /**
@@ -188,15 +209,14 @@ function pushJSON() {
  * @returns {string} - The checked title value.
  */
 function checkTitle() {
-  let titleValue = document.getElementById('addtask-input-title').value;
   let count = 1;
   todos.forEach((element) => {
-    if (element.title === titleValue) {
-      titleValue = titleValue + count;
+    if (element.title === switchCase('titleValue')) {
+      switchCase('titleValue') = switchCase('titleValue') + count;
       count++;
     }
   });
-  return titleValue;
+  return switchCase('titleValue');
 }
 
 /**
@@ -215,11 +235,9 @@ function checkId() {
  * @returns {boolean} - The validation result.
  */
 function validateForm() {
-  if (document.getElementById("addtask-input-title").value !== '' && document.getElementById("addtask-input-date").value !== '' && document.getElementById("addtask-input-category").value !== '') {
+  if (switchCase('titleValue')  !== "" && switchCase('dateValue')  !== "" && switchCase('categoryValue')  !== "") {
     return true;
-
   } else {
-
     return false;
   }
 }
@@ -229,24 +247,22 @@ function validateForm() {
  */
 
 function selectPrio(prio) {
-  let containerUrgent = document.getElementById('addtaskButtonUrgent');
-  let containerMedium = document.getElementById('addtaskButtonMedium');
-  let containerLow = document.getElementById('addtaskButtonLow');
+  let containerUrgent = document.getElementById("addtaskButtonUrgent");
+  let containerMedium = document.getElementById("addtaskButtonMedium");
+  let containerLow = document.getElementById("addtaskButtonLow");
 
-  containerUrgent.classList.remove('selected');
-  containerMedium.classList.remove('selected');
-  containerLow.classList.remove('selected');
-  if (prio == 'urgent') {
-    containerUrgent.classList.add('selected');
-    document.getElementById('addtaskButtonUrgent').src = "../assets/img/addtaskurgentwhite.svg";
+  containerUrgent.classList.remove("selected");
+  containerMedium.classList.remove("selected");
+  containerLow.classList.remove("selected");
+  if (prio == "urgent") {
+    containerUrgent.classList.add("selected");
+
     priority = 3;
-  } else if (prio == 'medium') {
+  } else if (prio == "medium") {
     priority = 2;
-    containerMedium.classList.add('selected');
-    document.getElementById('addtaskButtonMedium').src = "../assets/img/addtaskmediumwhite.svg";
+    containerMedium.classList.add("selected");
   } else {
     priority = 1;
-    containerLow.classList.add('selected');
-    document.getElementById('addtaskButtonLow').src = "../assets/img/addtasklowwhite.svg";
+    containerLow.classList.add("selected");
   }
 }
