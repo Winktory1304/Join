@@ -170,6 +170,10 @@
 .addtask-input-assigned {
     width: 524px;
     height: 48px;
+    padding-left: 12px;
+    gap: 0;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
@@ -178,6 +182,19 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    display: flex;
+background-color: white;
+}
+
+.addtask-input-assigned-input {
+border: none;
+font-style: normal;
+font-size: 20px;
+font-weight: 400;
+font-family: "Inter";
+
+
+
 }
 
 .addtask-input-assigned:hover {
