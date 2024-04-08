@@ -1,8 +1,13 @@
+
+
+
 /**
  * The key used to store the todos in local storage.
  * @type {string}
  */
 let key = 'todos';
+let openassigned = false;
+
 
 /**
  * Arrays die benötigt werden
@@ -65,9 +70,14 @@ function readServerData() {
  * Sets up the necessary event listeners and functionality when the page is ready.
  */
 function getReady() {
+  
+  if (openassigned === false) {
+    // Wenn openassigned falsch ist
+    // Entferne d-none
+    document.getElementById('addtask-input-assigned').classList.remove("d-none");
+    document.getElementById('test').classList.add("d-none");
+    openassigned = true;
   setContacts(contacts);
-
-  document.getElementById("addtask-input-assigned").classList.remove("d-none");
 
   // Ändere Event-Listener auf Klick-Ereignisse
   document
@@ -92,6 +102,22 @@ function getReady() {
     }
   });
 }
+ else {
+  // Ansonsten
+  // Füge d-none hinzu
+  document.getElementById('addtask-input-assigned').classList.add("d-none");
+  document.getElementById('test').classList.remove("d-none");
+  openassigned = false;
+   }
+// getReady(), getarray();
+  }
+
+
+
+
+
+
+
 
 /**
  * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.

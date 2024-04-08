@@ -18,11 +18,17 @@
 
         </div>
 
+
+
+
+
+
+
         <div class="addtask-gap16">
             <div class="addtask-h2">Assigned to</div>
-            <div class="addtask-input-assigned">
-                <input class="addtask-input-assigned-input" placeholder="Contacts" id="changeAssigned" >
-                <div onclick="getReady(), getarray()" onclick="">&#9207;</div>
+            <div style="position: relative;">
+                <input class="addtask-input-subtasks" placeholder="Contacts" id="changeAssigned" >
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick = "getReady(), getarray()"style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
             <div class="inputfield d-none" id="addtask-input-assigned" onchange="validateInput()"
                 aria-multiselectable="true"></div>
@@ -86,6 +92,10 @@
             <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required
             </div>
         </div>
+
+
+
+
         <div class="addtask-gap16">
             <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
             <div style="position: relative;">

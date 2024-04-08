@@ -265,5 +265,11 @@ function updateSubtask(updatedSubtask, id) {
   subtask[id.split('-')[1]] = updatedSubtask;
 }
 
+
+
+
+
+
+
 // var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div  >${subtaskText}</div><div class="subtaskIcons">
 // <img onclick="editSubtask('${subtaskText}','${text}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
