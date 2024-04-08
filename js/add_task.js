@@ -79,28 +79,6 @@ function getReady() {
     openassigned = true;
   setContacts(contacts);
 
-  // Ändere Event-Listener auf Klick-Ereignisse
-  document
-    .getElementById("addtask-input-assigned")
-    .addEventListener("click", function () {
-      document
-        .getElementById("addtask-input-assigned")
-        .classList.remove("d-none");
-    });
-
-  // Entferne den Event-Listener für mouseleave
-  document
-    .getElementById("addtask-input-assigned")
-    .removeEventListener("mouseleave");
-
-  // Optional: Füge eine Funktion hinzu, um das Dropdown-Menü zu schließen
-  document.addEventListener("click", function (event) {
-    var target = event.target;
-    var assignedInput = document.getElementById("addtask-input-assigned");
-    if (target !== assignedInput && !assignedInput.contains(target)) {
-      assignedInput.classList.add("d-none");
-    }
-  });
 }
  else {
   // Ansonsten
@@ -208,7 +186,7 @@ function validateInput() {
  * Logs the input values and adds a new task to the todo list.
  */
 function pushJSON() {
-  debugger
+
   if (switchCase('subtasksValue') !== "") {
     subtask.push(switchCase('subtasksValue'));
     subtaskdone.push(0);
