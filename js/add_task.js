@@ -194,7 +194,7 @@ function pushJSON() {
 
   todos.push({
     id: checkId(),
-    title: checkTitle(),
+    title: checkTitle('test'),
     task: switchCase('descriptionValue'),
     subtasks: subtask,
     subtasksdone: subtaskdone,
@@ -212,15 +212,17 @@ function pushJSON() {
  * Checks if the title of the task already exists in the todo list and appends a number if necessary.
  * @returns {string} - The checked title value.
  */
-function checkTitle() {
+function checkTitle(titleDefaultValue) {
   let count = 1;
+  
   todos.forEach((element) => {
-    if (element.title === switchCase('titleValue')) {
-      switchCase('titleValue') = switchCase('titleValue') + count;
+    if (element.title === titleDefaultValue) {
+      let titleValue = titleDefaultValue + count;
       count++;
+      return titleValue;
     }
   });
-  return switchCase('titleValue');
+  return "test";
 }
 
 /**
