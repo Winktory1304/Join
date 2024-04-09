@@ -594,7 +594,7 @@ body {
 
 /* responsive  */
 
-@media(max-width: 450px)  {
+@media(max-width: 760px)  {
     .responisiv-display-none {
         display: none;
     }
@@ -616,8 +616,13 @@ body {
     }
     
 }
+@media(max-width:1220px){
+    .contacts-overview{
+        display: none;
+    }
+}
 
-@media(min-width: 450px){
+@media(min-width: 760px){
     .test-responisv-top{
         display: none;
     }
