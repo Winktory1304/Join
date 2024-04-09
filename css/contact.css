@@ -351,6 +351,9 @@ body {
 .contact-modal-form input {
     font-size: 20px;
 }
+.responsiv-contact-modal-form input {
+    font-size: 20px;
+}
 
 .contact-modal-input {
     height: 50px;
@@ -651,7 +654,7 @@ body {
    
 }
 .responiv-modal{
-    display: flex;    
+    display: none;    
     justify-content: center;
 }
 .responiv-modal-part1{
