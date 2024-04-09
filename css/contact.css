@@ -663,3 +663,46 @@ body {
     width: 100%;
     border-radius: 30px 30px 0px 0px;
 }
+.responsiv-unkown-user{
+    position: relative;
+    top: 178px;
+    margin: auto;
+}
+.responsiv-contact-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 92px;
+    width: 100%;
+}
+.responsiv-contact-modal-input {
+    height: 50px;
+    margin-left: 16px;
+    margin-right: 16px;    
+    gap: 10px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    padding: 13px, 21px, 13px, 21px;
+    border-radius: 10px;
+}
+
+.responsiv-modal-part-3-create-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 51px;
+    margin-left: 97px;
+    margin-right: 97px;  
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border: 1px;
+    margin-bottom: 80px;
+    margin-top: 45px;
+}
+.responsiv-modal-part-3-create-button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}

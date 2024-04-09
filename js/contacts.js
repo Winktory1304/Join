@@ -363,16 +363,29 @@ function clearInputFields() {
 }
 
 
+
+function addNewContact() {
+    addContact('create-contact-email-input', 'create-contact-name-input', 'create-contact-phone-input');
+}
+
+function addNewContactResponsiv() {
+    addContact('responsivCreateContactEmailInput', 'responsivCreateContactNameInput', 'responsivCreateContactPhoneInput');
+}
+
 /**
  * Adds a new contact to the contact list.
-*/
-function addNewContact() {
-    let email = document.getElementById('create-contact-email-input').value;
+ * 
+ * @param {string} emailInputId - The ID of the email input element.
+ * @param {string} nameInputId - The ID of the name input element.
+ * @param {string} phoneInputId - The ID of the phone input element.
+ */
+function addContact(emailInputId, nameInputId, phoneInputId) {
+    let email = document.getElementById(emailInputId).value;
     let emailIndex = findEmailIndex(email);
-    let fullName = document.getElementById('create-contact-name-input').value;
+    let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
-    if (!names) return; //"Wenn nicht names wahr ist" (also, wenn names leer oder null ist), dann mache, was danach kommt (in diesem Fall, stoppe die Funktion mit return;).
-    let newContact = createNewContact(names, email, document.getElementById('create-contact-phone-input').value);
+    if (!names) return;
+    let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
     hideModal('contactModal');
     createContactPopup();
