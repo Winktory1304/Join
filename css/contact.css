@@ -4,7 +4,8 @@ body {
     width: 100%;
     font-family: "Inter";
     max-height: 100%;
-
+    
+    
 
 }
 
@@ -48,7 +49,7 @@ body {
     flex-direction: column;
     align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
-    min-width: 456px;
+    /* min-width: 456px; */
     max-height: calc(100vh - 96px);
 
 }
@@ -58,13 +59,14 @@ body {
     align-items: center;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 15px;
+    /* padding-left: 15px; */
     border-radius: 20px;
     margin-top: 5px;
 }
 
 .contact-box:hover {
     background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 
 
 }
@@ -75,10 +77,13 @@ body {
 }
 
 .first-letters-of-names {
+    display: flex;
     margin-right: 35px;
 }
 
 .first-and-last-name-box {
+    display: flex;
+    flex-direction: column;
     font-size: 20px;
     font-weight: 400;
     margin-top: 15px;
@@ -202,10 +207,9 @@ body {
 }
 
 .render-contacts-container {
-    margin: 0 28px;
-    margin-right: 4px;
+   /* margin: 0 28px; */   
     overflow: auto;
-    padding-right: 32px;
+    /* padding-right: 32px; */
     display: flex;
     flex-direction: column;
 
@@ -306,7 +310,7 @@ body {
 }
 
 .letter-seperator {
-    width: 100%;
+    /* width: 100%; */
     border: 1px solid #D1D1D1;
     margin-top: 8px;
 
@@ -604,11 +608,7 @@ body {
         
     
     }   
-    .contacts-content{
-        min-width: 100%;
-        max-width: 100%;
-        max-height: calc(100vh - 160px);
-    }
+   
     .content-container{
         display: flex;
         flex-direction: column;
@@ -620,6 +620,10 @@ body {
     .contacts-overview{
         display: none;
     }
+    .contacts-content{
+        width: 100%;
+         max-height: calc(100vh - 160px);
+     }
 }
 
 @media(min-width: 760px){
