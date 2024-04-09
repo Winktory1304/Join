@@ -6,18 +6,9 @@ body {
     overflow: hidden;
     background-color: #F6F7F8;
     font-size: 16px;
+    font-family: 'inter', sans-serif !important;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    font-family: "Inter";
-    border: unset;
-}
-
-*:focus {
-    outline: none;
-}
 
 .d-none {
     display: none !important;
@@ -78,6 +69,26 @@ body {
     font-weight: normal;
     padding-right: 29px;
 }
+
+.sign-up-header-button {
+    width: 110px;
+    height: 48px;
+    color: white;
+    background-color: rgb(42, 54, 71);
+    font-size: 21px;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+.sign-up-header-button:hover {
+    cursor: pointer;
+    background-color: rgb(41, 171, 226);
+    border-width: 0;
+    box-shadow: 0px 6px 15px -4px rgba(0, 0, 0, 0.58);
+    -webkit-box-shadow: 0px 6px 15px -4px rgba(0, 0, 0, 0.58);
+    -moz-box-shadow: 0px 6px 15px -4px rgba(0, 0, 0, 0.58);
+}
+
 
 .log-button {
     width: 110px;
@@ -168,8 +179,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 422px;    
-    gap: 32px;
-}
+ }
 
 .sing-up-container {
     display: flex;
@@ -208,8 +218,7 @@ body {
 .sing-up-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 26px;
+    align-items: center;    
     width: 422px;
 }
 
@@ -225,8 +234,7 @@ body {
 .sing-up-index-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+    align-items: flex-start;    
     width: 100%;
 }
 
@@ -241,6 +249,7 @@ body {
     padding: 1px;
     border-color: #d1d1d1;
     gap: 8px;
+    margin-bottom: 20px;
 }
 
 .input-area input {
@@ -285,7 +294,7 @@ body {
     display: flex;
     padding-top: 6px;
     padding-right: 195px;
-    padding-bottom: 37px;
+    padding-bottom: 32px;
 }
 
 input[type="checkbox"]+label {

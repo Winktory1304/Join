@@ -46,6 +46,196 @@
 
 @media(max-width: 569px) {
 
+    html {
+        font-size: 0.360em;
+    }
+
+    .intro-join-logo {
+        position: absolute;
+        width: 313px;
+        height: 404px;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: resizeJoinLogo 1s ease-in-out forwards;
+        animation-delay: 250ms;
+    }
+
+    @keyframes resizeJoinLogo {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 313px;
+            height: 404px;
+        }
+
+        100% {
+            top: 37px;
+            left: 38px;
+            transform: translate(0, 0);
+            width: 64px;
+            height: 78px;
+        }
+    }
+
+    .log-container {
+        margin: 30px 10px;
+        min-width: 320px;
+        width: 90%;
+        height: 515px;
+        transform: translateX(-52%);
+    }
+
+    .email-or-password-not-found {
+        width: 265px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: red;
+    }
+
+    .log-in-checkbox {
+        padding-bottom: 20px;
+    }
+
+    .log-in-index-container {
+        display: flex;
+        flex-direction: column;
+        width: 93%;
+    }
+
+    .log-in-container h1 {
+        margin-top: 30px;
+        margin-bottom: 16px;
+        font-size: 47px;
+        font-weight: 700;
+    }
+
+
+    .button-container {
+        display: table-column;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0px;
+    }
+
+    .log-button {
+        width: 177px;
+        height: 48px;
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    .guest-button {
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    .header-container {
+        position: fixed;
+        left: 15%;
+        transform: translateX(-47%);
+        transform: translateY(890px);
+        width: 292px;
+        height: 49px;
+        display: flex;
+        align-items: center;
+    }
+
+    .sign-up-header-button {
+        width: 104px;
+        height: 49px;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
+    }
+
+
+    .header-container h2 {
+        font-size: 20px;
+        font-weight: 400;
+        padding-right: 20px;
+    }
+
+
+
+
+
+    .height-sing-up {
+        height: 595px !important;
+    }
+
+    .sing-up-container h1 {
+        font-size: 47px;
+        font-weight: 700;
+        margin-top: 24px;
+        margin-bottom: 18px;
+    }
+
+    .arrow-left-line {
+        top: 38px;
+        left: 40px;
+    }
+
+    .input-area {
+        width: 93%;
+        margin: 10px;
+
+    }
+
+
+    .sing-up-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;        
+        width: 90%;
+    }
+
+    .sign-up-button {
+        width: 180px;
+        height: 51px;
+        font-size: 16px;
+    }
+
+    .sing-up-check-box-label {
+        font-size: 16px !important;
+    }
+
+    .password-match {
+        width: 265px;
+    }
+
+
+    input[type="checkbox"]+label {
+        font-size: 16px;
+    }
+
+    input[type="checkbox"]+label::before {
+        width: 20px;
+        height: 20px;
+        font-size: 16px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     .mobile-start-screen {
@@ -64,16 +254,51 @@
         position: absolute;
     }
 
-    .header-container {
+
+
+
+
+
+    .sing-up-header {
+        display: none;
+    }
+
+    .sing-up-header-mobile {
         display: flex;
-        justify-content: flex-end;
+        margin-top: 5.7rem;
+        justify-content: center;
         align-items: center;
-        position: absolute;    
-        top: 60px;
-        gap: 2px;
+        gap: 3.5rem;
+    }
+
+    .main-container-index {
+        flex-direction: column;
+    }
+
+    .btn-log-in-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
 
     }
 
 
+    .footer-text-container {
+        font-size: 2rem;
+    }
+
+
+
+    .sing-up-input-container {
+        gap: 12px;
+    }
+
+
+    .sign-up-btn-container {
+        margin-top: 2.2rem;
+    }
 
 }
