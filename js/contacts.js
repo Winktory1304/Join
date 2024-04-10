@@ -339,13 +339,14 @@ function deleteContactById(contactId) {
 function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
+        createContactPopup();
         try {
             setItem('contacts', contacts);
             console.log('Daten aktualisiert');
         } catch (error) {
             console.error('Error adding contact', error);
         }
-        clearInputFields();
+        // clearInputFields();
         renderContacts();
     } else {
         alert("Dieser Kontakt ist schon vorhanden");
@@ -360,16 +361,19 @@ function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
     document.getElementById('create-contact-phone-input').value = '';
+    document.getElementById('responsivCreateContactNameInput').value = '';
+    document.getElementById('responsivCreateContactEmailInput').value = '';
+    document.getElementById('responsivCreateContactPhoneInput').value = '';
 }
 
 
 
 function addNewContact() {
-    addContact('create-contact-email-input', 'create-contact-name-input', 'create-contact-phone-input');
+    addContact('create-contact-email-input', 'create-contact-name-input', 'create-contact-phone-input', 'contactModal');
 }
 
 function addNewContactResponsiv() {
-    addContact('responsivCreateContactEmailInput', 'responsivCreateContactNameInput', 'responsivCreateContactPhoneInput');
+    addContact('responsivCreateContactEmailInput', 'responsivCreateContactNameInput', 'responsivCreateContactPhoneInput', 'responsivAddContact');
 }
 
 /**
@@ -379,7 +383,7 @@ function addNewContactResponsiv() {
  * @param {string} nameInputId - The ID of the name input element.
  * @param {string} phoneInputId - The ID of the phone input element.
  */
-function addContact(emailInputId, nameInputId, phoneInputId) {
+function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
     let emailIndex = findEmailIndex(email);
     let fullName = document.getElementById(nameInputId).value;
@@ -387,8 +391,9 @@ function addContact(emailInputId, nameInputId, phoneInputId) {
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
-    hideModal('contactModal');
-    createContactPopup();
+    hideModal(modalId);
+    // createContactPopup();
+    clearInputFields()
 }
 
 
