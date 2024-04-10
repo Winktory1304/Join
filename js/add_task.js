@@ -1,8 +1,13 @@
+
+
+
 /**
  * The key used to store the todos in local storage.
  * @type {string}
  */
 let key = 'todos';
+let openassigned = false;
+
 
 /**
  * Arrays die benötigt werden
@@ -65,33 +70,32 @@ function readServerData() {
  * Sets up the necessary event listeners and functionality when the page is ready.
  */
 function getReady() {
+  
+  if (openassigned === false) {
+    // Wenn openassigned falsch ist
+    // Entferne d-none
+    document.getElementById('addtask-input-assigned').classList.remove("d-none");
+    document.getElementById('test').classList.add("d-none");
+    openassigned = true;
   setContacts(contacts);
 
-  document.getElementById("addtask-input-assigned").classList.remove("d-none");
-
-  // Ändere Event-Listener auf Klick-Ereignisse
-  document
-    .getElementById("addtask-input-assigned")
-    .addEventListener("click", function () {
-      document
-        .getElementById("addtask-input-assigned")
-        .classList.remove("d-none");
-    });
-
-  // Entferne den Event-Listener für mouseleave
-  document
-    .getElementById("addtask-input-assigned")
-    .removeEventListener("mouseleave");
-
-  // Optional: Füge eine Funktion hinzu, um das Dropdown-Menü zu schließen
-  document.addEventListener("click", function (event) {
-    var target = event.target;
-    var assignedInput = document.getElementById("addtask-input-assigned");
-    if (target !== assignedInput && !assignedInput.contains(target)) {
-      assignedInput.classList.add("d-none");
-    }
-  });
 }
+ else {
+  // Ansonsten
+  // Füge d-none hinzu
+  document.getElementById('addtask-input-assigned').classList.add("d-none");
+  document.getElementById('test').classList.remove("d-none");
+  openassigned = false;
+   }
+// getReady(), getarray();
+  }
+
+
+
+
+
+
+
 
 /**
  * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
@@ -182,7 +186,7 @@ function validateInput() {
  * Logs the input values and adds a new task to the todo list.
  */
 function pushJSON() {
-  debugger
+
   if (switchCase('subtasksValue') !== "") {
     subtask.push(switchCase('subtasksValue'));
     subtaskdone.push(0);
@@ -190,7 +194,7 @@ function pushJSON() {
 
   todos.push({
     id: checkId(),
-    title: checkTitle(),
+    title: checkTitle('test'),
     task: switchCase('descriptionValue'),
     subtasks: subtask,
     subtasksdone: subtaskdone,
@@ -208,15 +212,17 @@ function pushJSON() {
  * Checks if the title of the task already exists in the todo list and appends a number if necessary.
  * @returns {string} - The checked title value.
  */
-function checkTitle() {
+function checkTitle(titleDefaultValue) {
   let count = 1;
+  
   todos.forEach((element) => {
-    if (element.title === switchCase('titleValue')) {
-      switchCase('titleValue') = switchCase('titleValue') + count;
+    if (element.title === titleDefaultValue) {
+      let titleValue = titleDefaultValue + count;
       count++;
+      return titleValue;
     }
   });
-  return switchCase('titleValue');
+  return "test";
 }
 
 /**

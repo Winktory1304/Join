@@ -3,7 +3,7 @@
 </div>
 <div class="addtask-content-main">
     <div class="addtask-left-content">
-                    
+
         <div class="addtask-gap16">
             <div class="addtask-h2">Title<span>*</span></div>
             <input value="Test" onchange="validateInput()" type="text" class="addtask-input-title"
@@ -18,16 +18,30 @@
 
         </div>
 
+
+
+
+
+
+
         <div class="addtask-gap16">
             <div class="addtask-h2">Assigned to</div>
-
-            <input type="text" placeholder="Contacts" class="addtask-input-assigned" id="changeAssigned"
-                onfocus="getReady(), getarray()">
+            <div style="position: relative;">
+                <input class="addtask-input-subtasks" placeholder="Contacts" id="changeAssigned" >
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick = "getReady(), getarray()"style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
             <div class="inputfield d-none" id="addtask-input-assigned" onchange="validateInput()"
                 aria-multiselectable="true"></div>
         </div>
         <div class="addtask-gap16" id="test">
         </div>
+
+
+
+
+
+
+
 
     </div>
     <div class="addtask-middle-content">
@@ -44,18 +58,19 @@
 
 
 
-            
+
         </div>
         <div class="addtask-gap16">
             <div class="addtask-h2">Prio</div>
             <div class="addtask-prio-buttons">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent " id="addtaskButtonUrgent">Urgent
-              
+
                     <img class="prioimg" src="../assets/img/addtaskurgent.svg" alt="Beschreibung des Bildes">
 
                 </button>
 
-                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
+                <button onclick="selectPrio('medium')" class="addtask-button medium selected"
+                    id="addtaskButtonMedium">Medium
                     <img class="prioimg" src="../assets/img/addtaskmedium.svg" alt="Beschreibung des Bildes">
 
                 </button>
@@ -77,6 +92,10 @@
             <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required
             </div>
         </div>
+
+
+
+
         <div class="addtask-gap16">
             <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
             <div style="position: relative;">
