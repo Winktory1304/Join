@@ -1,8 +1,9 @@
 let today = new Date();
 let hour = today.getHours();
 
-
 let greetingname;
+
+let isShowMenu = false;
 
 function resetUsers() {
     users = [];
@@ -12,8 +13,36 @@ function resetUsers() {
 
 function getName() {
     readJSON('users', users).then(() => {
-        showName();
+        showName2();
     });
+}
+
+
+function showHeaderMenu(headerID, hideHeaderClass) {
+    let showMenu = document.getElementById(headerID);
+
+    if (isShowMenu) {
+        showMenu.classList.add(hideHeaderClass);
+        isShowMenu = false;
+    } else {
+        showMenu.classList.remove(hideHeaderClass);
+        isShowMenu = true;
+    }
+}
+
+function showName2() {
+    if (currentIndex === "Guest") {
+        greetingname = 'Guest';
+        showWayOfGreeting()
+    }
+    else {
+        let user = users.filter(u => u.email === currentIndex);
+        console.log('current user', currentIndex);
+        greetingname = user[0].name;
+        console.log('current name', greetingname);
+        showWayOfGreeting()
+        getInitials2(user);
+    }
 }
 
 

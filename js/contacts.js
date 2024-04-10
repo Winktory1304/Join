@@ -108,10 +108,10 @@ let contactstopush = [
 
 
 async function init() {
+    getName();
     await readServerData();
     await getUsersintoContacts();
     renderContacts();
-    getName();
 }
 
 /**
