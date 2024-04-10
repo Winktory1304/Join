@@ -16,5 +16,4 @@ function registerWindow() {
     resetForm();
 }
 
-document.getElementById('header_container').addEventListener('click', registerWindow);
 
