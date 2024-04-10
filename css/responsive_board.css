@@ -1,8 +1,69 @@
-@media (max-width: 1200px){
+@media (max-width: 1750px){
+.board_tasks {
+    flex-wrap: wrap;
+}
+
+.board_task{
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+}
+
+.spalte{
+    width: 20%;
+    max-width: 90%;
+
+}
+
+.row{
+    width: 100%;
+
+}
+.board_notask{
+    margin: 10px;
+    padding: 10px;
+    width: 70%;
+    height: 30px;
+}
+.board_nocardcontent{
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+}
+.board_cardcontent {
+    height: 100%;
+    gap: 1px;
+}
+
+.board_addtaskcard{
+    margin-left: 5%;
+    width: 80%;
+}
+.addtask-content-main{
+    width: 100%;
+    margin: 0;
+}
+.addtask-left-content{
+    width: 80%;
+    margin: 0;
+}
+.addtask-input-description,
+.addtask-gap16,
+.addtask-input-subtasks,
+.addtask-input-date,.addtask-prio-buttons,.addtask-input-category,.addtask-content-footer,
+.addtask-input-title{
+    width: 90% !important;
+    margin: 0;
+}
+}
+
+@media (max-width: 1300px){
 .board_content{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-left: 0px;
     top: 80px;
     width: 100%;
@@ -10,16 +71,34 @@
     height: calc(100vh - 160px);
 }
 
-.addTask{
-    width: 100%;
-    height: 30px;
-    margin: 10px;
-    margin-left: 0px;
+.board_cardheadline{
+    font-size: 35px;
 }
+.addTask{
+    display: none;
+}
+
+.mobile_hidden{
+    display: none !important;
+
+}
+
+.mobile_headline{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    padding-right: 10px;
+    height: 50px;
+    margin: 0;
+    font-size: 48px;
+
+}
+
 
 .board_findTask_input{
     width: 100%;
-    height: 30px;
+    height: 48px;
     margin: 10px;
     margin-left: 0px;
 }
@@ -27,6 +106,7 @@
 
 .board_cardcontent {
     height: 100%;
+    gap: 1px;
 }
 
 .board_task{
@@ -44,7 +124,7 @@
 .board_nocardcontent{
     margin: 10px;
     padding: 10px;
-    width: 200px;
+    width: 100%;
     height: 30px;
     font-size: 15px;
 }
@@ -52,10 +132,12 @@
 .board_top {
     display: flex;
     flex-direction: column;
-    height: 200px;
+    height: 100px;
     margin: 0;
-    width: 100%;
-    margin-top: 80px;
+    width: 95%;
+    padding-right: 7px;
+    margin-top: 40px;
+    height: 150px;
 }
 
 .board_head{
@@ -64,7 +146,6 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 50px;
     margin: 0;
 }
 
@@ -89,51 +170,116 @@
     width: 100%;
     height: 50px;
     margin: 0;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 .board_cardcolumn {
     flex-direction: row;
-    max-width: 320px;
     min-height: 150px;
     margin-left: 15px;
     margin-right: 15px;
     width: 100%;
     margin: 0;
+    gap: 10px;
+    overflow: auto;
 }
 
 
 .board_headline{
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 50px;
     margin: 0;
+    font-size: 47px;
 }
 
 .spalte{
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 90%;
 }
 
 .row{
-    width: 90%;
+    width: 100%;
+    margin-left: 0;
 }
 
+.board_openCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+}
+
+.board_taskcard{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 60%;
+    margin: 0;
+}
+.addtask-prio-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+}
+.addtask-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    margin: 0;
+}
+
+.max-width-500{
+    max-width: 100% !important;
+}
+.max-width-525{
+    max-width: 100% !important;
+}
+
+.addtask-input-subtasks{
+    max-width: 100% !important;
+}
+
+.board_opencardtag{
+    font-size: 15px;
+}
+
+.board_cardexit{
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.board_taskedit{
+    font-size: 15px;
+}
+
+progress{
+    width: 90px !important;
+    height: 20px;
+
+}
 }
 
 
 @media (max-width: 350px){
     .board_content{
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         margin-left: 0px;
         top: 80px;
         width: 100%;
-        max-width: 300px;
         padding: 10px;
         height: calc(100vh - 160px);
     }

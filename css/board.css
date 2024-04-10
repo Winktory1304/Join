@@ -41,7 +41,7 @@ body {
 .board_content {
     position: fixed;
     top: 104px;
-    width: 87.6%;
+    width: calc(100vw - 232px);
     height: 100%;
     margin-left: 232px;
     scrollbar-width: thin;
@@ -56,16 +56,16 @@ body {
     flex-direction: column;
     height: 200px;
     margin: 0;
+    width: 90%;
 }
 
 .board_head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1500px;
     height: 73px;
     margin-top: 50px;
-    margin-right: 100px;
+    width: 100%;
 }
 
 .board_headline {
@@ -136,6 +136,34 @@ input {
     cursor: pointer;
 }
 
+.plus {
+     /* Secondary-plus */
+
+     box-sizing: border-box;
+
+     /* Auto layout */
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     padding: 2px 4px;
+     gap: 4px;
+ 
+     width: 35px;
+     height: 35px;
+     background: #2A3647;
+     border: 1px solid #2A3647;
+     border-radius: 10px;
+ 
+     /* Inside auto layout */
+     flex: none;
+     order: 1;
+     flex-grow: 0;
+ 
+     color: #FFFFFF;
+     font-size: 21px;
+     cursor: pointer;
+}
 
 .board_kanbanheadline {
     display: flex;
@@ -187,11 +215,20 @@ h4 {
     justify-content: space-between;
     margin-top: 10px;
     height: 928px;
-    gap: 12px;
-    margin-right: 20px;
     width: 80vw;
     
 
+}
+
+.spalte{
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+    gap: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .board_task {
@@ -284,7 +321,7 @@ h4 {
     flex-direction: column;
     gap: 0px;
     width: 240px;
-    min-height: 1500px;
+    min-height: 900px;
     margin-top: 10px;
 
 }
@@ -394,14 +431,16 @@ h4 {
     overflow-x: hidden;
 }
 
+.mobile_headline{
+    display: none;
+
+}
+
 .board_taskcardedit {
     gap: 10px !important;
     
     overflow-y: auto;
     overflow-x: hidden;
-}
-
-.board_editframe{
 }
 
 .max-width-525{

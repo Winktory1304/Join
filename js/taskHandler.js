@@ -127,55 +127,7 @@ function addTask() {
 function editTask(id) {
   selectedContacts = todos[id].contacts;
   document.getElementById('board_openCard').classList.remove('d-none');
-  document.getElementById('board_openCard').innerHTML = `
-    <div class="board_taskcard" id ="taskcardedit">
-      <div id="board_editframe" class="board_editframe max-width-525">
-        <div class="board_taskedit">
-        <h1>Edit Task</h1>
-        <p class="board_cardexit" onclick="closeDialog()">X</p>
-        </div>
-        <p>Task Title</p>
-        <input class="max-width-500" type="text" id="addtask-input-title" value="${todos[id].title}" required>
-        <p>Task Description</p>
-        <input class="max-width-500"  type="text" id="addtask-input-description" value="${todos[id].task}" required>
-        <p>Task Date</p>
-        <input class="max-width-500"  type="date" id="addtask-input-date" value="${todos[id].date}" required>
-        <p>Task Category</p>
-        <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
-            <option default value="${todos[id].tag}" disabled>${todos[id].tag}</option>
-            <option value="User Story">User Story</option>
-            <option value="Technical Task">Technical Task</option>
-        </select>
-        <p>Task Category</p>
-            <div class="addtask-prio-buttons max-width-500">
-                <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
-                  <img src="../assets/img/addtaskurgent.svg">
-                </button>
-                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
-                  <img src="../assets/img/addtaskmedium.svg">
-                </button>
-                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
-            </div>
-        <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
-            <div style="position: relative;">
-
-                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
-                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
-                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
-            </div>
-            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
-        
-        <p>Assigned Contacts</p>
-        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
-                onfocus="getReady(), getarray()">
-                
-        <div class="addtask-gap16" id="test">
-        </div>
-        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
-        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
-      </div>
-      </div>
-    `;
+  document.getElementById('board_openCard').innerHTML = generateEditTaskHTML(todos[id]);
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');
   fillSubtasks();
 }
@@ -190,6 +142,9 @@ function fillSubtasks() {
   });
 }
 
+/**
+ * Adds a subtask to the task list.
+ */
 function addSubtask() {
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
@@ -231,9 +186,7 @@ function deleteTask(title) {
  */
 function deleteSubtask(titel, id) {
   var subtaskToDelete = subtask.filter((item => item !== titel));
-  console.log(subtaskToDelete);
   subtask.splice(subtaskToDelete, 1);
-  console.log(subtask.length - 1);
 
   var subtaskElement = document.getElementById(id);
 
@@ -264,12 +217,3 @@ function updateSubtask(updatedSubtask, id) {
  `;
   subtask[id.split('-')[1]] = updatedSubtask;
 }
-
-
-
-
-
-
-
-// var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div  >${subtaskText}</div><div class="subtaskIcons">
-// <img onclick="editSubtask('${subtaskText}','${text}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;

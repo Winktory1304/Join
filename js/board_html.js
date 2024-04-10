@@ -2,55 +2,31 @@
  * Updates the HTML elements on the board based on the todos array.
  */
 function updateHTML() {
-    let open = todos.filter(t => t['status'] == 'open');
-
-    document.getElementById('board_open').innerHTML = '';
-    if (open.length === 0) {
-        document.getElementById('board_open').innerHTML = noCard();
-    }
-
-    for (let index = 0; index < open.length; index++) {
-        const element = open[index];
-        document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-
-    }
-
-    let inProgress = todos.filter(t => t['status'] == 'progress');
-
-    document.getElementById('board_progress').innerHTML = '';
-    if (inProgress.length === 0) {
-        document.getElementById('board_progress').innerHTML = noCard();
-    }
-
-    for (let index = 0; index < inProgress.length; index++) {
-        const element = inProgress[index];
-        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
-    }
-
-    let inFeedback = todos.filter(t => t['status'] == 'feedback');
-
-    document.getElementById('board_feedback').innerHTML = '';
-    if (inFeedback.length === 0) {
-        document.getElementById('board_feedback').innerHTML = noCard();
-    }
-
-    for (let index = 0; index < inFeedback.length; index++) {
-        const element = inFeedback[index];
-        document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
-    }
-
-    let closed = todos.filter(t => t['status'] == 'done');
-
-    document.getElementById('board_done').innerHTML = '';
-    if (closed.length === 0) {
-        document.getElementById('board_done').innerHTML = noCard();
-    }
-    for (let index = 0; index < closed.length; index++) {
-        const element = closed[index];
-        document.getElementById('board_done').innerHTML += generateTodoHTML(element);
-    }
+    generateTaskHTML('open', 'board_open');
+    generateTaskHTML('progress', 'board_progress');
+    generateTaskHTML('feedback', 'board_feedback');
+    generateTaskHTML('done', 'board_done');
 }
 
+/**
+ * Generates HTML for tasks based on the given status and appends it to the specified element.
+ * @param {string} statusInput - The status of the tasks to generate HTML for.
+ * @param {string} id - The ID of the element to append the generated HTML to.
+ */
+function generateTaskHTML(statusInput , id){
+    let status = todos.filter(t => t['status'] == statusInput);
+
+    document.getElementById(id).innerHTML = '';
+    if (status.length === 0) {
+        document.getElementById(id).innerHTML = noCard();
+    }
+
+    for (let index = 0; index < status.length; index++) {
+        const element = open[index];
+        document.getElementById(id).innerHTML += generateTodoHTML(element);
+
+    }
+}
 
 /**
  * Returns an SVG icon based on the priority of the element.
@@ -100,6 +76,11 @@ function generateTodoHTML(element) {
 }
 
 
+/**
+ * Generates HTML markup for displaying contact information.
+ * @param {string[]} contacts - An array of contact names.
+ * @returns {string} - The generated HTML markup.
+ */
 function generateContacts(contacts) {
     
     if (contacts.length > 5) {
@@ -187,4 +168,62 @@ function setPriority(element) {
     } else {
         return '';
     }
+}
+
+/**
+ * Generates the HTML code for editing a task.
+ *
+ * @param {Object} element - The task element to be edited.
+ * @returns {string} The HTML code for editing the task.
+ */
+function generateEditTaskHTML(element) {
+    return `
+    <div class="board_taskcard" id ="taskcardedit">
+      <div id="board_editframe" class="board_editframe max-width-525">
+        <div class="board_taskedit">
+        <h1>Edit Task</h1>
+        <p class="board_cardexit" onclick="closeDialog()">X</p>
+        </div>
+        <p>Task Title</p>
+        <input class="max-width-500" type="text" id="addtask-input-title" value="${element.title}" required>
+        <p>Task Description</p>
+        <input class="max-width-500"  type="text" id="addtask-input-description" value="${element.task}" required>
+        <p>Task Date</p>
+        <input class="max-width-500"  type="date" id="addtask-input-date" value="${element.date}" required>
+        <p>Task Category</p>
+        <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
+            <option default value="${element.tag}" disabled>${element.tag}</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+        </select>
+        <p>Task Category</p>
+            <div class="addtask-prio-buttons max-width-500">
+                <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
+                  <img src="../assets/img/addtaskurgent.svg">
+                </button>
+                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
+                  <img src="../assets/img/addtaskmedium.svg">
+                </button>
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
+            </div>
+        <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+            <div style="position: relative;">
+
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
+            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
+        
+        <p>Assigned Contacts</p>
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
+                onfocus="getReady(), getarray()">
+                
+        <div class="addtask-gap16" id="test">
+        </div>
+        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
+        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${element.id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
+      </div>
+      </div>
+    `;
 }
