@@ -20,6 +20,7 @@ function loadUsers() {
 function registerUser() {
 
     let email = document.getElementById('sign_up_email').value;
+    checkPassword();
     checkPrivacyPolicy();
 
     if (checkIfEmailExists(email)) {
@@ -78,11 +79,13 @@ async function pushTheUserToStorage() {
  * Resets input fields and disables registration button in the registration form.
  */
 function resetForm() {
-    document.getElementById('sign_up_name').value = '';
-    document.getElementById('sign_up_email').value = '';
-    document.getElementById('sign_up_password').value = '';
-    document.getElementById('sign_up_confirm_password').value = '';
+    document.getElementById('sign_up_name').innerHTML = '';
+    document.getElementById('sign_up_email').innerHTML = '';
+    document.getElementById('sign_up_password').innerHTML = '';
+    document.getElementById('sign_up_confirm_password').innerHTML = '';
     document.getElementById('sign_up_button').disabled = true;
+    document.getElementById('log_in_email').innerHTML = '';
+    document.getElementById('log_in_password').innerHTML = '';
 }
 
 /**
@@ -144,6 +147,7 @@ function logIn() {
     }
 }
 
+
 /**
  * Validates user by checking email and password.
  * @param {string} email - The email entered by the user.
@@ -182,7 +186,9 @@ function goBackToLogIn() {
     document.getElementById('log_container').classList.remove('height-sing-up');
 }
 
-
+/**
+ * You go to a previous window.
+ */
 function goOneStepBack() {
     window.history.back();
 }
