@@ -23,7 +23,7 @@
     <div class="test-responisv-top"></div>
     <div class="main">
         <div class="content-container">
-            <div class="contacts-content">
+            <div id="contactsContent" class="contacts-content">
                 <button id="addContactBtn" class="responisiv-display-none contacts-add-new-contact-button">Add new
                     contact
                     <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,13 +51,17 @@
 
                 </div>
             </div>
-            <div class="responisv-contacts-overview d-none">
+            <div id="responsivContactsOverview" class="responisv-contacts-overview ">
                 <div class="contacts-placeholder">
                     <div class="contacts-placeholder-font1">Contacts</div>
                     <div class="contacts-placeholder-seperator"></div>
                     <div class="contacts-placeholder-text">Better with a team</div>
                 </div>
-                <div id="detailViewContent" class="detail-view">
+                
+                <svg onclick='removeResponivContactsOverview()' width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.4373 14.6667H25.3333C26.0696 14.6667 26.6666 15.2637 26.6666 16.0001C26.6666 16.7364 26.0696 17.3334 25.3333 17.3334H10.4373L16.6466 23.5427C17.1672 24.0634 17.1672 24.9074 16.6466 25.4281C16.126 25.9487 15.2819 25.9487 14.7613 25.4281L6.74746 17.4143C5.96642 16.6332 5.96642 15.3669 6.74747 14.5858L14.7613 6.57206C15.2819 6.05144 16.126 6.05144 16.6466 6.57206C17.1672 7.09268 17.1672 7.93677 16.6466 8.45739L10.4373 14.6667Z" fill="#29ABE2"/>
+                </svg>
+                <div id="responsivDetailViewContent" class="detail-view">
 
                 </div>
             </div>
@@ -237,7 +241,6 @@
                 </svg>
             </button>
         </div>
-
     </div>
     <div id="createContactsPopup" class="popup d-none">Contact succesfully created </div>
     <button id="addContactBtnResponsiv" onclick="addContactModalResponiv()"
