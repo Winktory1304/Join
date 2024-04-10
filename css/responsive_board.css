@@ -1,0 +1,140 @@
+@media (max-width: 1200px){
+.board_content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 0px;
+    top: 80px;
+    width: 100%;
+    padding: 10px;
+    height: calc(100vh - 160px);
+}
+
+.addTask{
+    width: 100%;
+    height: 30px;
+    margin: 10px;
+    margin-left: 0px;
+}
+
+.board_findTask_input{
+    width: 100%;
+    height: 30px;
+    margin: 10px;
+    margin-left: 0px;
+}
+
+
+.board_cardcontent {
+    height: 100%;
+}
+
+.board_task{
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+
+}
+.board_notask{
+    margin: 10px;
+    padding: 10px;
+    width: 80%;
+    height: 30px;
+}
+.board_nocardcontent{
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.board_top {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    margin: 0;
+    width: 100%;
+    margin-top: 80px;
+}
+
+.board_head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+
+.board_bottom {
+    height: 200px;
+    width: 100%;
+    margin: 0;
+}
+
+.board_tasks {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    height: 150px;
+    margin: 0;
+}
+.board_findTask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    margin-top: 100px;
+}
+
+.board_cardcolumn {
+    flex-direction: row;
+    max-width: 320px;
+    min-height: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 100%;
+    margin: 0;
+}
+
+
+.board_headline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+}
+
+.spalte{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row{
+    width: 90%;
+}
+
+}
+
+
+@media (max-width: 350px){
+    .board_content{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-left: 0px;
+        top: 80px;
+        width: 100%;
+        max-width: 300px;
+        padding: 10px;
+        height: calc(100vh - 160px);
+    }
+}
