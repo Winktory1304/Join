@@ -192,7 +192,7 @@ function pushJSON() {
 
   todos.push({
     id: checkId(),
-    title: checkTitle('test'),
+    title: document.getElementById("addtask-input-title").value,
     task: switchCase('descriptionValue'),
     subtasks: subtask,
     subtasksdone: subtaskdone,
@@ -212,15 +212,17 @@ function pushJSON() {
  */
 function checkTitle(titleDefaultValue) {
   let count = 1;
-  
+  debugger
   todos.forEach((element) => {
     if (element.title === titleDefaultValue) {
       let titleValue = titleDefaultValue + count;
       count++;
       return titleValue;
+    } else {
+      return titleDefaultValue;
     }
   });
-  return "test";
+ 
 }
 
 /**
