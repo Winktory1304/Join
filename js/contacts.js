@@ -1,7 +1,6 @@
 let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
 let contacts = [];
 let contactupdated = [];
-let users = [];
 let detailViewContacts = [];
 
 //Array zum pushen into the storage with the key 'contacts'
@@ -112,6 +111,7 @@ async function init() {
     await readServerData ();    
     await getUsersintoContacts();
     renderContacts();
+    getName();
 }
 
 /**

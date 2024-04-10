@@ -1,8 +1,6 @@
 let today = new Date();
 let hour = today.getHours();
-let users = [];
 
-const currentIndex = localStorage.getItem('currentUserIndex');
 
 let greetingname;
 
@@ -18,36 +16,7 @@ function getName() {
     });
 }
 
-function showName() {
-    if (currentIndex === "Guest") {
-        greetingname = 'Guest';
-        showWayOfGreeting();
-    }
-    else {
-        let user = users.filter(u => u.email === currentIndex);
-        console.log('current user', currentIndex);
-        greetingname = user[0].name;
-        console.log('current name', greetingname);
-        showWayOfGreeting();
-        getInitials(user);
-    }
-}
 
-
-function getInitials(user) {
-
-    let fullName = user[0].name;
-    let nameParts = fullName.split(' ');
-    let firstName = nameParts[0].charAt(0);
-    let secondName = nameParts[1].charAt(0);
-
-    initials = firstName+secondName;
-    document.getElementById('initials').innerHTML = initials;
-
-    console.log(firstName);
-    console.log(secondName);
-    console.log(initials);
-}
 
 
 function showWayOfGreeting() {

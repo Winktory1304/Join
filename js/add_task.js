@@ -1,6 +1,3 @@
-
-
-
 /**
  * The key used to store the todos in local storage.
  * @type {string}
@@ -64,6 +61,7 @@ function switchCase(statusInput) {
 function readServerData() {
   readJSON("contacts", contacts);
   readJSON(key, todos);
+  getName();
 }
 
 /**

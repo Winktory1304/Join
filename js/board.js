@@ -34,6 +34,7 @@ function writeServer() {
  */
 function init() {
     readServer();
+    getName();
 }
 
 /**
