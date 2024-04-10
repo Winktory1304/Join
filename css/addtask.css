@@ -537,6 +537,9 @@
     }
 }
 
+
+ 
+
 @media(max-width: 1400px) {
     .width540 {
         width: 400px;
@@ -546,22 +549,7 @@
         width: 384px;
     }
 
-    .addtask-button {
-        width: 106px;
-        height: 56px;
-        border-radius: 10px;
-        padding: 1px 1px 1px 1px;
-        gap: 8px;
-        display: flex;
-        justify-content: space-evenly;
-        border: 1px solid #d1d1d1;
-        background-color: white;
-        font-style: normal;
-        font-size: 20px;
-        font-weight: 400;
-        font-family: "Inter";
-        align-items: center;
-    }
+
 }
 
 @media(max-width: 1300px) {
@@ -603,13 +591,74 @@
         width: 540px;
     }
 
+    @media(max-width: 1300px) {
 
+        .sidebar {
+            display: none !important;
+        }
+    
+        .addtask_h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .addtask-middle-content {
+            display: none;
+        }
+        .addtask-content-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+      
+      
+        .addtask-left-content {
+            margin: 0 !important;
+        }
+    
+        .addtask-right-content {
+            margin-top: 50px;
+            margin-left: 0;
+          }
+      
+          .width540 {
+            width: 540px;
+        }
+    
+        .width524 {
+            width: 540px;
+        }
 
 }
 
 @media(max-width: 1000px) {
 
+    .addtask_content {
+        margin-left: 0;
+        margin-right: 0;
+    display: flex;
+    position: relative;
+    }
 
 
+}
 
+
+@media(max-width: 750px) {
+
+    .addtask_content {
+        margin-left: 0;
+        margin-right: 0;
+    display: flex;
+    position: relative;
+    }
+
+    .width540 {
+        width: 500px;
+    }
+
+    .width524 {
+        width: 500px;
+    }
 }
