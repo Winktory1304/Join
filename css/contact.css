@@ -606,7 +606,7 @@ body {
 
 /* responsive  */
 
-@media(max-width: 760px) {
+@media(max-width: 1220px) {
     .responisiv-display-none {
         display: none;
     }
@@ -643,7 +643,7 @@ body {
     }
 }
 
-@media(min-width: 760px) {
+@media(min-width: 1220px) {
     .test-responisv-top {
         display: none;
     }
