@@ -4,16 +4,16 @@
 <div class="addtask-content-main">
     <div class="addtask-left-content">
 
-        <div class="addtask-gap16">
+        <div class="addtask-gap16 width540">
             <div class="addtask-h2">Title<span>*</span></div>
-            <input value="Test" onchange="validateInput()" type="text" class="addtask-input-title"
+            <input value="Test" onchange="validateInput()" type="text" class="addtask-input-title width540"
                 id="addtask-input-title" placeholder="Enter a title" required>
             <div class="messagedatevalidation d-none" id="messagedatevalidationTitel">This field is required
             </div>
         </div>
         <div class="addtask-gap16">
             <div class="addtask-h2">Description</div>
-            <textarea class="addtask-input-description" id="addtask-input-description" placeholder="Enter a Description"
+            <textarea class="addtask-input-description width540" id="addtask-input-description" placeholder="Enter a Description"
                 rows="4">Test</textarea>
 
         </div>
@@ -25,12 +25,12 @@
 
 
         <div class="addtask-gap16">
-            <div class="addtask-h2">Assigned to</div>
+            <div class="addtask-h2" >Assigned to</div>
             <div style="position: relative;">
-                <input class="addtask-input-subtasks" placeholder="Contacts" id="changeAssigned" >
+                <input class="addtask-input-subtasks width540" placeholder="Contacts" id="changeAssigned" >
                 <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick = "getReady(), getarray()"style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
-            <div class="inputfield d-none" id="addtask-input-assigned" onchange="validateInput()"
+            <div class="inputfield d-none width540" id="addtask-input-assigned" onchange="validateInput()"
                 aria-multiselectable="true"></div>
         </div>
         <div class="addtask-gap16" id="test">
@@ -51,7 +51,7 @@
     <div class="addtask-right-content">
         <div class="addtask-gap16">
             <div class="addtask-h2">Due date<span>*</span></div>
-            <input style="color: black;" onchange="validateInput()" type="date" name="begin" class="addtask-input-date"
+            <input style="color: black;" onchange="validateInput()" type="date" name="begin" class="addtask-input-date width524"
                 id="addtask-input-date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" value="2024-12-31">
             <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required
             </div>
@@ -84,7 +84,7 @@
         </div>
         <div class="addtask-gap16">
             <div class="addtask-h2">Category<span>*</span></div>
-            <select onchange="validateInput()" class="addtask-input-category" id="addtask-input-category">
+            <select onchange="validateInput()" class="addtask-input-category width540" id="addtask-input-category">
                 <option value="" disabled selected>Select task category</option>
                 <option value="Technical Task">Technical Task</option>
                 <option value="User Story">User Story</option>
@@ -100,7 +100,7 @@
             <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
             <div style="position: relative;">
 
-                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <input class="addtask-input-subtasks width524" id="addtask-input-subtasks" placeholder="Add new subtask">
                 <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
                     style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
