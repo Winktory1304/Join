@@ -17,7 +17,6 @@
 <body onload="initRegister()">
 
  
-
   <div class="mobile-start-screen">
     <svg class="mobile-logo" xmlns="http://www.w3.org/2000/svg" width="101" height="122" viewBox="0 0 101 122"
       fill="none">
@@ -56,7 +55,7 @@
 
 
 
-  <div class="header-container">
+  <div id="header_container" class="header-container">
     <h2>Not a Join user?</h2>
     <button class="sign-up-header-button" onclick="registerWindow()">Sign up</button>
   </div>
@@ -129,8 +128,8 @@
             </svg>
           </div>
           <div class="input-area">
-            <input onkeyup="checkPassword()" id="sign_up_password" type="password" minlength="5" placeholder="Password"
-              required />
+            <input onkeyup="checkPassword()" placeholder="Password" id="sign_up_password" type="password" required minlength="5" 
+               />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -145,8 +144,8 @@
           </div>
 
           <div class="input-area" id="input_area_red">
-            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" minlength="5"
-              placeholder="Confirm Password" required />
+            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" required minlength="5"
+              placeholder="Confirm Password"  />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
