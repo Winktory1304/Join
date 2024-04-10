@@ -4,8 +4,8 @@ body {
     width: 100%;
     font-family: "Inter";
     max-height: 100%;
-    
-    
+
+
 
 }
 
@@ -49,8 +49,9 @@ body {
     flex-direction: column;
     align-items: center;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
-    /* min-width: 456px; */
+    width: 456px;
     max-height: calc(100vh - 96px);
+    overflow: auto;
 
 }
 
@@ -104,27 +105,28 @@ body {
 
 
 
-.render-contacts-container::-webkit-scrollbar {
-    width: 4px;
+.contacts-content::-webkit-scrollbar {
+    width: 8px;
     /* width of the entire scrollbar */
 }
 
-.render-contacts-container::-webkit-scrollbar-track {
-    background: white;
+.contacts-content::-webkit-scrollbar-track {
+    /* background: white;
     margin-top: 50px;
-    margin-bottom: 720px;
+    margin-bottom: 720px; */
+    border-radius: 8px;
 
     /* color of the tracking area */
 }
 
-.render-contacts-container::-webkit-scrollbar-thumb {
+.contacts-content::-webkit-scrollbar-thumb {
     background-color: rgba(168, 168, 168, 1);
     /* color of the scroll thumb */
     border-radius: 8px;
     /* roundness of the scroll thumb */
-    border: 8px solid rgba(168, 168, 168, 1);
+    /* border: 8px solid rgba(168, 168, 168, 1); */
     /* creates padding around scroll thumb */
-    min-height: 1px;
+    /* min-height: 1px; */
 }
 
 .contacts-overview {
@@ -207,8 +209,8 @@ body {
 }
 
 .render-contacts-container {
-   /* margin: 0 28px; */   
-    overflow: auto;
+    /* margin: 0 28px; */
+    
     /* padding-right: 32px; */
     display: flex;
     flex-direction: column;
@@ -355,6 +357,7 @@ body {
 .contact-modal-form input {
     font-size: 20px;
 }
+
 .responsiv-contact-modal-form input {
     font-size: 20px;
 }
@@ -426,7 +429,7 @@ body {
 
 /* Ändert die Farbe der SVG-Linien beim Hovern */
 .modal-part-3-cancel-button:hover .edit-svg path {
-    stroke: #29ABE2; 
+    stroke: #29ABE2;
 }
 
 .contact-modal-input::placeholder {
@@ -524,7 +527,7 @@ body {
     cursor: pointer;
     color: #29ABE2;
     font-weight: 700;
-    
+
 }
 
 .detail-view-contact-email {
@@ -539,7 +542,8 @@ body {
     margin-bottom: 15px;
     margin-top: 22px;
 }
-.test-responisv-top{
+
+.test-responisv-top {
     width: 100%;
     height: 80px;
     background-color: #888;
@@ -598,46 +602,59 @@ body {
 
 /* responsive  */
 
-@media(max-width: 760px)  {
+@media(max-width: 760px) {
     .responisiv-display-none {
         display: none;
     }
-    .main{
+
+    .main {
         margin-left: 0px;
         max-width: 100%;
-        
-    
-    }   
-   
-    .content-container{
+
+
+    }
+
+    .content-container {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    
-}
-@media(max-width:1220px){
-    .contacts-overview{
-        display: none;
-    }
-    .contacts-content{
-        width: 100%;
-         max-height: calc(100vh - 160px);
-     }
+
 }
 
-@media(min-width: 760px){
-    .test-responisv-top{
+@media(max-width:1220px) {
+    .contacts-overview {
         display: none;
     }
-    .contacts-add-new-contact-button-responisv{
-        display: none;
-    }
-    .responiv-modal{
-        display: none!important;
+
+    .contacts-content {
+        width: 100%;
+        max-height: calc(100vh - 160px);
+        
     }
 }
-.contacts-add-new-contact-button-responisv{
+@media(max-width:461px) {
+    .first-and-last-name-box{
+        font-size: 16px;
+    }
+}
+
+@media(min-width: 760px) {
+    .test-responisv-top {
+        display: none;
+    }
+
+    .contacts-add-new-contact-button-responisv {
+        display: none;
+    }
+
+    .responiv-modal {
+        display: none !important;
+    }
+}
+
+
+.contacts-add-new-contact-button-responisv {
     height: 56px;
     width: 56px;
     background-color: #2A3647;
@@ -647,26 +664,29 @@ body {
     right: 16px;
     border: 0px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    
+
 }
-.responsiv-add-contact-content{
+
+.responsiv-add-contact-content {
     display: flex;
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
     margin-top: 80px;
     margin-bottom: 80px;
     height: 80%;
     width: 90%;
     background-color: #F6F7F8;
     border-radius: 30px;
-    
-   
+
+
 }
-.responiv-modal{
-    display: none;    
+
+.responiv-modal {
+    display: none;
     justify-content: center;
 }
-.responiv-modal-part1{
+
+.responiv-modal-part1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -675,11 +695,13 @@ body {
     width: 100%;
     border-radius: 30px 30px 0px 0px;
 }
-.responsiv-unkown-user{
+
+.responsiv-unkown-user {
     position: relative;
     top: 178px;
     margin: auto;
 }
+
 .responsiv-contact-modal-form {
     display: flex;
     flex-direction: column;
@@ -687,23 +709,24 @@ body {
     margin-top: 92px;
     width: 100%;
 }
+
 .responsiv-contact-modal-input {
     height: 50px;
     margin-left: 16px;
-    margin-right: 16px;    
+    margin-right: 16px;
     gap: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
     padding: 13px, 21px, 13px, 21px;
     border-radius: 10px;
 }
 
-.responsiv-modal-part-3-create-button{
+.responsiv-modal-part-3-create-button {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 51px;
     margin-left: 97px;
-    margin-right: 97px;  
+    margin-right: 97px;
     border-radius: 10px;
     background-color: #2A3647;
     color: white;
@@ -713,6 +736,7 @@ body {
     margin-bottom: 80px;
     margin-top: 45px;
 }
+
 .responsiv-modal-part-3-create-button:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
