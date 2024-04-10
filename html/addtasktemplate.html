@@ -3,10 +3,9 @@
 </div>
 <div class="addtask-content-main">
     <div class="addtask-left-content">
-
         <div class="addtask-gap16 width540">
             <div class="addtask-h2">Title<span>*</span></div>
-            <input value="Test" onchange="validateInput()" type="text" class="addtask-input-title width540"
+            <input onkeyup="validateInput()" type="text" class="addtask-input-title width540"
                 id="addtask-input-title" placeholder="Enter a title" required>
             <div class="messagedatevalidation d-none" id="messagedatevalidationTitel">This field is required
             </div>
@@ -14,15 +13,8 @@
         <div class="addtask-gap16">
             <div class="addtask-h2">Description</div>
             <textarea class="addtask-input-description width540" id="addtask-input-description" placeholder="Enter a Description"
-                rows="4">Test</textarea>
-
+                rows="4"></textarea>
         </div>
-
-
-
-
-
-
 
         <div class="addtask-gap16">
             <div class="addtask-h2" >Assigned to</div>
@@ -36,43 +28,29 @@
         <div class="addtask-gap16" id="test">
         </div>
 
-
-
-
-
-
-
-
     </div>
     <div class="addtask-middle-content">
-
     </div>
 
     <div class="addtask-right-content">
         <div class="addtask-gap16">
             <div class="addtask-h2">Due date<span>*</span></div>
             <input style="color: black;" onchange="validateInput()" type="date" name="begin" class="addtask-input-date width524"
-                id="addtask-input-date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" value="2024-12-31">
+                id="addtask-input-date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" >
             <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required
             </div>
-
-
-
 
         </div>
         <div class="addtask-gap16">
             <div class="addtask-h2">Prio</div>
             <div class="addtask-prio-buttons">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent " id="addtaskButtonUrgent">Urgent
-
                     <img class="prioimg" src="../assets/img/addtaskurgent.svg" alt="Beschreibung des Bildes">
-
                 </button>
 
                 <button onclick="selectPrio('medium')" class="addtask-button medium selected"
                     id="addtaskButtonMedium">Medium
                     <img class="prioimg" src="../assets/img/addtaskmedium.svg" alt="Beschreibung des Bildes">
-
                 </button>
 
                 <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low
