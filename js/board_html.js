@@ -2,31 +2,55 @@
  * Updates the HTML elements on the board based on the todos array.
  */
 function updateHTML() {
-    generateTaskHTML('open', 'board_open');
-    generateTaskHTML('progress', 'board_progress');
-    generateTaskHTML('feedback', 'board_feedback');
-    generateTaskHTML('done', 'board_done');
-}
+    let open = todos.filter(t => t['status'] == 'open');
 
-/**
- * Generates HTML for tasks based on the given status and appends it to the specified element.
- * @param {string} statusInput - The status of the tasks to generate HTML for.
- * @param {string} id - The ID of the element to append the generated HTML to.
- */
-function generateTaskHTML(statusInput , id){
-    let status = todos.filter(t => t['status'] == statusInput);
-
-    document.getElementById(id).innerHTML = '';
-    if (status.length === 0) {
-        document.getElementById(id).innerHTML = noCard();
+    document.getElementById('board_open').innerHTML = '';
+    if (open.length === 0) {
+        document.getElementById('board_open').innerHTML = noCard();
     }
 
-    for (let index = 0; index < status.length; index++) {
+    for (let index = 0; index < open.length; index++) {
         const element = open[index];
-        document.getElementById(id).innerHTML += generateTodoHTML(element);
+        document.getElementById('board_open').innerHTML += generateTodoHTML(element);
 
     }
+
+    let inProgress = todos.filter(t => t['status'] == 'progress');
+
+    document.getElementById('board_progress').innerHTML = '';
+    if (inProgress.length === 0) {
+        document.getElementById('board_progress').innerHTML = noCard();
+    }
+
+    for (let index = 0; index < inProgress.length; index++) {
+        const element = inProgress[index];
+        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+    }
+
+    let inFeedback = todos.filter(t => t['status'] == 'feedback');
+
+    document.getElementById('board_feedback').innerHTML = '';
+    if (inFeedback.length === 0) {
+        document.getElementById('board_feedback').innerHTML = noCard();
+    }
+
+    for (let index = 0; index < inFeedback.length; index++) {
+        const element = inFeedback[index];
+        document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
+    }
+
+    let closed = todos.filter(t => t['status'] == 'done');
+
+    document.getElementById('board_done').innerHTML = '';
+    if (closed.length === 0) {
+        document.getElementById('board_done').innerHTML = noCard();
+    }
+    for (let index = 0; index < closed.length; index++) {
+        const element = closed[index];
+        document.getElementById('board_done').innerHTML += generateTodoHTML(element);
+    }
 }
+
 
 /**
  * Returns an SVG icon based on the priority of the element.
@@ -76,11 +100,6 @@ function generateTodoHTML(element) {
 }
 
 
-/**
- * Generates HTML markup for displaying contact information.
- * @param {string[]} contacts - An array of contact names.
- * @returns {string} - The generated HTML markup.
- */
 function generateContacts(contacts) {
     
     if (contacts.length > 5) {
@@ -170,12 +189,6 @@ function setPriority(element) {
     }
 }
 
-/**
- * Generates the HTML code for editing a task.
- *
- * @param {Object} element - The task element to be edited.
- * @returns {string} The HTML code for editing the task.
- */
 function generateEditTaskHTML(element) {
     return `
     <div class="board_taskcard" id ="taskcardedit">
