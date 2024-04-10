@@ -606,7 +606,7 @@ body {
 
 /* responsive  */
 
-@media(max-width: 1220px) {
+@media(max-width: 1300px) {
     .responisiv-display-none {
         display: none;
     }
@@ -623,10 +623,6 @@ body {
         flex-direction: column;
         width: 100%;
     }
-
-}
-
-@media(max-width:1220px) {
     .contacts-overview {
         display: none;
     }
@@ -636,8 +632,9 @@ body {
         max-height: calc(100vh - 160px);
 
     }
-     
 }
+
+
 
 @media(max-width:461px) {
     .first-and-last-name-box {
@@ -645,7 +642,7 @@ body {
     }
 }
 
-@media(min-width: 1220px) {
+@media(min-width: 1300px) {
     .test-responisv-top {
         display: none;
     }
