@@ -104,12 +104,12 @@ let contactstopush = [
         "phoneNumber": "01731305011",
         "firstLetterofNames": "KK",
         "color": "rgb(147,39,255)"
-    }   
+    }
 ]
 
 
 async function init() {
-    await readServerData ();    
+    await readServerData();
     await getUsersintoContacts();
     renderContacts();
 }
@@ -122,13 +122,13 @@ async function init() {
  */
 async function getUsersintoContacts() {
 
-    
-   
+
+
     try {
         users = [];
-    await readJSON('users', users); // Warte auf das Laden der Daten
+        await readJSON('users', users); // Warte auf das Laden der Daten
         users.forEach(user => {
-            
+
             if (!contacts.some(contact => contact.email === user.email)) {
                 contacts.push({
                     "idContact": generateUniqueId(),
@@ -139,7 +139,7 @@ async function getUsersintoContacts() {
                     "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
                     "color": getRandomColor()
                 });
-                
+
             }
         });
         removeDuplicateContacts();
@@ -312,7 +312,7 @@ function deleteContactById(contactId) {
             contacts.splice(contactIndex, 1);
         }
         document.getElementById('detailViewContent').innerHTML = '';
-        try {         
+        try {
             setItem('contacts', contacts).then(() => {
                 readServerData(); // Lese die Daten neu ein, 
                 renderContacts(); // Aktualisiere die Ansicht
