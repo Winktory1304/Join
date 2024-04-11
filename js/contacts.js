@@ -239,6 +239,22 @@ function groupContactsByInitial() {
     return groupedContacts;
 }
 
+
+/**
+ * Shows the responsive detail view for contacts.
+ */
+function showResponsivDetail() {
+    document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview');
+    document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
+    document.getElementById('contactsContent').classList.add('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.add('d-none');
+    document.getElementById('editContactBtnResponsiv').classList.remove('d-none');
+}
+
+
+/**
+ * Removes the responsive behavior from the contacts overview.
+ */
 function removeResponivContactsOverview(){
     let content = document.getElementById('detailViewContent');
     content.classList.remove('detail-view-content-responsiv');
@@ -247,7 +263,7 @@ function removeResponivContactsOverview(){
     document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
     document.getElementById('editContactBtnResponsiv').classList.add('d-none'); 
     
-    // document.getElementById('contactsContent').classList.remove('contacts-content-dnone'); 
+
 
 }
 /**
@@ -261,11 +277,7 @@ function openDetailedContactsView(contactId) {
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
     if (width < 1220) {               
-        document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview'); 
-        document.getElementById('responsivContactsOverview').classList.add('dispplay-flex'); 
-        document.getElementById('contactsContent').classList.add('contacts-content-dnone'); 
-        document.getElementById('addContactBtnResponsiv').classList.add('d-none'); 
-        document.getElementById('editContactBtnResponsiv').classList.remove('d-none'); 
+        showResponsivDetail(); 
         responsivContent.innerHTML = /*html*/`
                     <div class="detail-view-child1-responsiv">
                         <svg width="80" height="80" viewBox="0 0 42 42" fill="none"
@@ -321,6 +333,8 @@ function openDetailedContactsView(contactId) {
                 <div>${contact.phoneNumber}</div>`
 }
 }
+
+
 
 /**
  * Displays a popup for creating contacts.
