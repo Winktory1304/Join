@@ -245,7 +245,7 @@ function showResponsivDetail() {
     document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
     document.getElementById('contactsContent').classList.add('contacts-content-dnone');
     document.getElementById('addContactBtnResponsiv').classList.add('d-none');
-    document.getElementById('editContactBtnResponsiv').classList.remove('d-none');
+    document.getElementById('burgerContactBtnResponsiv').classList.remove('d-none');
 }
 
 
@@ -258,7 +258,8 @@ function removeResponivContactsOverview(){
     content.classList.remove('dispplay-flex'); 
     document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
     document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
-    document.getElementById('editContactBtnResponsiv').classList.add('d-none'); 
+    document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
+    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex'); 
     
 
 
