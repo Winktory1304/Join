@@ -109,7 +109,7 @@ let contactstopush = [
 
 
 async function init() {
-    await readServerData();
+    // await readServerData();
     await getUsersintoContacts();
     renderContacts();
 }
@@ -121,9 +121,7 @@ async function init() {
  * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
  */
 async function getUsersintoContacts() {
-
-
-
+await readServerData();
     try {
         users = [];
         readJSON('users', users); // Warte auf das Laden der Daten
@@ -139,12 +137,11 @@ async function getUsersintoContacts() {
                     "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
                     "color": getRandomColor()
                 });
-
             }
         });
         removeDuplicateContacts();
         await setItem('contacts', contacts);
-        await readServerData();
+        
     } catch (error) {
         console.error('Loading error:', error);
     }
@@ -173,7 +170,7 @@ function resetContacts() {
  */
 async function readServerData() {
     try {
-        readJSON('contacts', contacts); // Warte auf das Laden der Daten
+        await readJSON('contacts', contacts); // Warte auf das Laden der Daten
         console.log('Daten geladen:', contacts);
         removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
