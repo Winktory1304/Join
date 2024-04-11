@@ -126,7 +126,7 @@ async function getUsersintoContacts() {
 
     try {
         users = [];
-        await readJSON('users', users); // Warte auf das Laden der Daten
+        readJSON('users', users); // Warte auf das Laden der Daten
         users.forEach(user => {
 
             if (!contacts.some(contact => contact.email === user.email)) {
@@ -173,7 +173,7 @@ function resetContacts() {
  */
 async function readServerData() {
     try {
-        await readJSON('contacts', contacts); // Warte auf das Laden der Daten
+        readJSON('contacts', contacts); // Warte auf das Laden der Daten
         console.log('Daten geladen:', contacts);
         removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
@@ -449,8 +449,7 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
-    hideModal(modalId);
-    // createContactPopup();
+    hideModal(modalId);    
     clearInputFields()
 }
 
