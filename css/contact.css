@@ -816,12 +816,12 @@ body {
 }
 
 .responisv-contacts-overview {
-    display: none;
+    
     height: calc(100vh - 160px);
     align-items: flex-start;
     flex-direction: column;
     background-color: #F6F7F8;
-    display: flex;
+    
     padding-left: 16px;
 
 }

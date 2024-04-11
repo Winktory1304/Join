@@ -260,9 +260,9 @@ function openDetailedContactsView(contactId) {
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
-    if (width < 1220) {
-        content.classList.add('detail-view-content-responsiv'); 
-        content.classList.add('dispplay-flex'); 
+    if (width < 1220) {               
+        document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview'); 
+        document.getElementById('responsivContactsOverview').classList.add('dispplay-flex'); 
         document.getElementById('contactsContent').classList.add('contacts-content-dnone'); 
         document.getElementById('addContactBtnResponsiv').classList.add('d-none'); 
         document.getElementById('editContactBtnResponsiv').classList.remove('d-none'); 
