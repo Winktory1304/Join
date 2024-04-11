@@ -33,7 +33,6 @@ function showName() {
     }
 }
 
-
 function getInitials(user) {
 
     let fullName = user[0].name;

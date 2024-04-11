@@ -17,4 +17,3 @@ function registerWindow() {
 }
 
 document.getElementById('header_container').addEventListener('click', registerWindow);
-
