@@ -66,6 +66,14 @@ function addContactModalResponiv(){
         setupModalListeners(modalId);
     };
 }
+function burgerContactModalResponiv(){
+    let modalId = 'burgerResponiv';
+    let btn = document.getElementById('burgerContactBtnResponsiv');
+    btn.onclick = function () {
+        showModal(modalId);
+        setupModalListeners(modalId);
+    };
+}
 
 /**
  * Edits a contact.
