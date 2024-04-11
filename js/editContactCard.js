@@ -45,20 +45,32 @@ function setupModalListeners(modalId) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    /**
-     * The button element for adding a contact.
-     * @type {HTMLButtonElement}
-     */
+    // Setup für den bestehenden Add Contact Button
     let btn = document.getElementById('addContactBtn');
     let modalId = 'contactModal';
     btn.onclick = function () {
         showModal(modalId);
         setupModalListeners(modalId);
     };
+
+
+    let addContactBtnResponsiv = document.getElementById('addContactBtnResponsiv');
+    addContactBtnResponsiv.onclick = function () {
+        showModal('responsivAddContact');
+        setupModalListeners('responsivAddContact');
+    };
+
+
+    let burgerContactBtnResponsiv = document.getElementById('burgerContactBtnResponsiv');
+    burgerContactBtnResponsiv.onclick = function () {
+        showModal('burgerResponiv');
+        setupModalListeners('burgerResponiv');
+    };
 });
 
 
-function addContactModalResponiv(){
+
+function addContactModalResponiv() {
     let modalId = 'responsivAddContact';
     let btn = document.getElementById('addContactBtnResponsiv');
     btn.onclick = function () {
@@ -66,7 +78,7 @@ function addContactModalResponiv(){
         setupModalListeners(modalId);
     };
 }
-function burgerContactModalResponiv(){
+function burgerContactModalResponiv() {
     let modalId = 'burgerResponiv';
     let btn = document.getElementById('burgerContactBtnResponsiv');
     btn.onclick = function () {
@@ -195,9 +207,9 @@ function saveContact(contactId) {
     const email = document.getElementById('edit-contact-email-input').value;
     const phoneNumber = document.getElementById('edit-contact-phone-input').value;
 
-    
+
     if (detailViewContacts[contactId]) {
-        
+
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;
         detailViewContacts[contactId].email = email;
@@ -205,7 +217,7 @@ function saveContact(contactId) {
         init();
         console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('editContactCard');
-        content.innerHTML = '';        
+        content.innerHTML = '';
     } else {
         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
     }
@@ -218,8 +230,8 @@ function saveContact(contactId) {
  * @function updateServer
  * @returns {Promise<void>} A promise that resolves when the server update is complete.
  */
-async function updateServer() {   
-    try {       
+async function updateServer() {
+    try {
         await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
         console.log('Kontaktinformationen erfolgreich aktualisiert');
     } catch (error) {
