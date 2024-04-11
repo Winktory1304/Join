@@ -151,9 +151,25 @@ body {
     margin-left: 58px;
 }
 
+.contacts-placeholder-responsiv {
+    display: flex;
+    
+    gap: 8px;
+    margin-top: 32px;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
 .contacts-placeholder-font1 {
     font-weight: 700;
     font-size: 61px;
+
+}
+
+.contacts-placeholder-font1-responsiv {
+    font-weight: 700;
+    font-size: 47px;
 
 }
 
@@ -165,8 +181,35 @@ body {
 
 }
 
+.contacts-placeholder-seperator-responsiv {
+    background-color: #29ABE2;
+    width: 90px;
+    height: 3px;
+    border-radius: 3px;
+    margin-top: 16px;
+
+}
+
+.contacts-placholder-svg-responsiv {
+    align-items: center;
+    margin-top: 32px;
+    display: flex;
+   
+    justify-content: space-between;
+
+
+}
+.svg-responsiv{
+    position: fixed;
+    top: 150px;
+    right:16px
+}
 .contacts-placeholder-text {
     font-size: 27px;
+}
+
+.contacts-placeholder-text-responsiv {
+    font-size: 20px;
 }
 
 .scroll-area-and-button {
@@ -482,8 +525,15 @@ body {
     flex-direction: column;
     height: 364px;
 
+}
 
-
+.detail-view-responsiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 364px;
+    gap: 20px;
+    margin-top: 48px;
 }
 
 .detail-view-contact-information-text {
@@ -499,17 +549,30 @@ body {
     display: flex;
     width: 100%;
     height: 120px;
+    gap: 54px;
 }
 
-.detail-view-box {
-    margin-left: 54px;
+.detail-view-child1-responsiv {
+    display: flex;
+    width: 100%;
+    height: 120px;
+    gap: 20px;
 }
+
+
 
 .detail-view-name {
     margin-top: 16px;
     font-size: 47px;
     gap: 5px;
-    font-weight: 500px;
+    font-weight: 700px;
+}
+
+.detail-view-name-responsiv {
+    margin-top: 16px;
+    font-size: 36px;
+    gap: 5px;
+    font-weight: 700px;
 }
 
 .detail-view-symbols {
@@ -623,6 +686,7 @@ body {
         flex-direction: column;
         width: 100%;
     }
+
     .contacts-overview {
         display: none;
     }
@@ -654,9 +718,10 @@ body {
     .responiv-modal {
         display: none !important;
     }
-   .responisv-contacts-overview {
-    display: none !important;
-   }
+
+    .responisv-contacts-overview {
+        display: none !important;
+    }
 
 }
 
@@ -752,16 +817,18 @@ body {
 
 .responisv-contacts-overview {
     height: calc(100vh - 160px);
-    align-items: center;    
+    align-items: flex-start;
     flex-direction: column;
-    width: 100%;
     background-color: #F6F7F8;
     display: flex;
-    
+    padding-left: 16px;
+
 }
+
 .contacts-content-dnone {
     display: none;
 }
+
 .dispplay-flex {
     display: flex;
 }
