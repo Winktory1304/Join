@@ -679,6 +679,7 @@ body {
     .main {
         margin-left: 0px;
         max-width: 100%;
+        height: calc(100vh - 160px);
 
 
     }
