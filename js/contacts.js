@@ -244,6 +244,8 @@ function removeResponivContactsOverview(){
     content.classList.remove('detail-view-content-responsiv');
     content.classList.remove('dispplay-flex'); 
     document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
+    document.getElementById('editContactBtnResponsiv').classList.add('d-none'); 
     
     // document.getElementById('contactsContent').classList.remove('contacts-content-dnone'); 
 
@@ -262,6 +264,8 @@ function openDetailedContactsView(contactId) {
         content.classList.add('detail-view-content-responsiv'); 
         content.classList.add('dispplay-flex'); 
         document.getElementById('contactsContent').classList.add('contacts-content-dnone'); 
+        document.getElementById('addContactBtnResponsiv').classList.add('d-none'); 
+        document.getElementById('editContactBtnResponsiv').classList.remove('d-none'); 
         responsivContent.innerHTML = /*html*/`
                     <div class="detail-view-child1-responsiv">
                         <svg width="80" height="80" viewBox="0 0 42 42" fill="none"

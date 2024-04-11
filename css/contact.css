@@ -816,6 +816,7 @@ body {
 }
 
 .responisv-contacts-overview {
+    display: none;
     height: calc(100vh - 160px);
     align-items: flex-start;
     flex-direction: column;
