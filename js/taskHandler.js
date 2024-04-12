@@ -190,6 +190,9 @@ function fillSubtasks() {
   });
 }
 
+/**
+ * Adds a subtask to the task list.
+ */
 function addSubtask() {
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
@@ -231,9 +234,7 @@ function deleteTask(title) {
  */
 function deleteSubtask(titel, id) {
   var subtaskToDelete = subtask.filter((item => item !== titel));
-  console.log(subtaskToDelete);
   subtask.splice(subtaskToDelete, 1);
-  console.log(subtask.length - 1);
 
   var subtaskElement = document.getElementById(id);
 
@@ -264,6 +265,3 @@ function updateSubtask(updatedSubtask, id) {
  `;
   subtask[id.split('-')[1]] = updatedSubtask;
 }
-
-// var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div  >${subtaskText}</div><div class="subtaskIcons">
-// <img onclick="editSubtask('${subtaskText}','${text}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;

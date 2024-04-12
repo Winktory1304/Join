@@ -188,3 +188,55 @@ function setPriority(element) {
         return '';
     }
 }
+
+function generateEditTaskHTML(element) {
+    return `
+    <div class="board_taskcard" id ="taskcardedit">
+      <div id="board_editframe" class="board_editframe max-width-525">
+        <div class="board_taskedit">
+        <h1>Edit Task</h1>
+        <p class="board_cardexit" onclick="closeDialog()">X</p>
+        </div>
+        <p>Task Title</p>
+        <input class="max-width-500" type="text" id="addtask-input-title" value="${element.title}" required>
+        <p>Task Description</p>
+        <input class="max-width-500"  type="text" id="addtask-input-description" value="${element.task}" required>
+        <p>Task Date</p>
+        <input class="max-width-500"  type="date" id="addtask-input-date" value="${element.date}" required>
+        <p>Task Category</p>
+        <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
+            <option default value="${element.tag}" disabled>${element.tag}</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+        </select>
+        <p>Task Category</p>
+            <div class="addtask-prio-buttons max-width-500">
+                <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
+                  <img src="../assets/img/addtaskurgent.svg">
+                </button>
+                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
+                  <img src="../assets/img/addtaskmedium.svg">
+                </button>
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
+            </div>
+        <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+            <div style="position: relative;">
+
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
+            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
+        
+        <p>Assigned Contacts</p>
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
+                onfocus="getReady(), getarray()">
+                
+        <div class="addtask-gap16" id="test">
+        </div>
+        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
+        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${element.id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
+      </div>
+      </div>
+    `;
+}
