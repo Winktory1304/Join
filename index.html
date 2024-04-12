@@ -7,11 +7,13 @@
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/mobile_index.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
   <script src="js/storage.js"></script>
   <script src="js/register.js"></script>
   <script src="js/summary.js"></script>
-  <script src="/js/template.js"></script>
-  <script src="/js/index.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/index.js"></script>
   <title>Join</title>
 </head>
 
@@ -129,8 +131,8 @@
             </svg>
           </div>
           <div class="input-area">
-            <input placeholder="Password" id="sign_up_password" type="password" required minlength="5"
-              onkeyup="checkPassword()" />
+            <input onkeyup="checkPassword()" placeholder="Password" id="sign_up_password" type="password" required minlength="5" 
+               />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -145,8 +147,8 @@
           </div>
 
           <div class="input-area" id="input_area_red">
-            <input id="sign_up_confirm_password" type="password" required minlength="5" placeholder="Confirm Password"
-              onkeyup="checkPassword()" />
+            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" required minlength="5"
+              placeholder="Confirm Password"  />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">

@@ -87,14 +87,7 @@ function getReady() {
    }
 // getReady(), getarray();
   }
-
-
-
-
-
-
-
-
+  
 /**
  * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
  */

@@ -3,6 +3,8 @@ let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
 
+let contactsaveid = 0;
+
 //Array zum pushen into the storage with the key 'contacts'
 let contactstopush = [
     {
@@ -108,8 +110,7 @@ let contactstopush = [
 
 
 async function init() {
-    getName();
-    await readServerData();
+    // await readServerData();
     await getUsersintoContacts();
     renderContacts();
 }
@@ -121,12 +122,10 @@ async function init() {
  * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
  */
 async function getUsersintoContacts() {
-
-
-
+await readServerData();
     try {
         users = [];
-        await readJSON('users', users); // Warte auf das Laden der Daten
+        readJSON('users', users); // Warte auf das Laden der Daten
         users.forEach(user => {
             if (!contacts.some(contact => contact.email === user.email)) {
                 contacts.push({
@@ -142,7 +141,7 @@ async function getUsersintoContacts() {
         });
         removeDuplicateContacts();
         await setItem('contacts', contacts);
-        await readServerData();
+        
     } catch (error) {
         console.error('Loading error:', error);
     }
@@ -237,13 +236,32 @@ function groupContactsByInitial() {
     return groupedContacts;
 }
 
+
+/**
+ * Shows the responsive detail view for contacts.
+ */
+function showResponsivDetail() {
+    document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview');
+    document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
+    document.getElementById('contactsContent').classList.add('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.add('d-none');
+    document.getElementById('burgerContactBtnResponsiv').classList.remove('d-none');
+}
+
+
+/**
+ * Removes the responsive behavior from the contacts overview.
+ */
 function removeResponivContactsOverview(){
     let content = document.getElementById('detailViewContent');
     content.classList.remove('detail-view-content-responsiv');
     content.classList.remove('dispplay-flex'); 
     document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
+    document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
+    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex'); 
     
-    // document.getElementById('contactsContent').classList.remove('contacts-content-dnone'); 
+
 
 }
 /**
@@ -256,36 +274,20 @@ function openDetailedContactsView(contactId) {
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
-    if (width < 1220) {
-        content.classList.add('detail-view-content-responsiv'); 
-        content.classList.add('dispplay-flex'); 
-        document.getElementById('contactsContent').classList.add('contacts-content-dnone'); 
+    if (width < 1220) {               
+        showResponsivDetail(); 
         responsivContent.innerHTML = /*html*/`
-        <div class="detail-view-child1">
-                        <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
+                    <div class="detail-view-child1-responsiv">
+                        <svg width="80" height="80" viewBox="0 0 42 42" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="42" height="42" rx="21" fill="white" />
                             <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
                             <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
                         </svg>
                         <div class="detail-view-box">
-                            <div class="detail-view-name">
+                            <div class="detail-view-name-responsiv">
                             ${contact.firstName} ${contact.lastName}
-                            </div>
-                            <div class="detail-view-symbols">
-                                <p class="edit-contact-symbols" onclick="editContact(${contactId})">
-                                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 19H6.4L15.025 10.375L13.625 8.975L5 17.6V19ZM19.3 8.925L15.05 4.725L16.45 3.325C16.8333 2.94167 17.3042 2.75 17.8625 2.75C18.4208 2.75 18.8917 2.94167 19.275 3.325L20.675 4.725C21.0583 5.10833 21.2583 5.57083 21.275 6.1125C21.2917 6.65417 21.1083 7.11667 20.725 7.5L19.3 8.925ZM17.85 10.4L7.25 21H3V16.75L13.6 6.15L17.85 10.4Z" />
-                                </svg>
-                                    Edit
-                                </p> 
-                                <p class="edit-contact-symbols" onclick="deleteContactById(${contactId})">
-                                    <svg width="24" height="24" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">                                   
-                                        <path d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z" />
-                                    </svg>
-                                    Delete
-                                </p>
-                            </div>
+                            </div>                           
                         </div>
                     </div>
                     <div class="detail-view-contact-information-text">Contact Information</div>
@@ -328,8 +330,15 @@ function openDetailedContactsView(contactId) {
                 <div class="detail-view-contact-phone">Phone</div>
                 <div>${contact.phoneNumber}</div>`
 }
+
+contactsaveid = contactId;
 }
-// Popup erstellen
+
+
+
+/**
+ * Displays a popup for creating contacts.
+ */
 function createContactPopup() {
     let popup = document.getElementById('createContactsPopup');
     popup.style.display = 'flex';
@@ -418,6 +427,9 @@ function addNewContact() {
     addContact('create-contact-email-input', 'create-contact-name-input', 'create-contact-phone-input', 'contactModal');
 }
 
+/**
+ * Adds a new contact in a responsive manner.
+ */
 function addNewContactResponsiv() {
     addContact('responsivCreateContactEmailInput', 'responsivCreateContactNameInput', 'responsivCreateContactPhoneInput', 'responsivAddContact');
 }
@@ -437,8 +449,7 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
-    hideModal(modalId);
-    // createContactPopup();
+    hideModal(modalId);    
     clearInputFields()
 }
 

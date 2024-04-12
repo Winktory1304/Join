@@ -80,30 +80,31 @@ function hoverPlusOut(id) {
 function createTask(statusInput) {
   if (statusInput === 'open') {
     status = 'open';
+    title = 'Test';
+    priority = 2;
     addTask();
     updateHTML();
-    status = 'open';
-    priority = 2;
   }
   else if (statusInput === 'progress') {
     status = 'progress';
+    title = 'Test';
+    priority = 2;
     addTask();
     updateHTML();
-    status = 'open';
-    priority = 2;
   }
   else if (statusInput === 'feedback') {
     status = 'feedback';
     addTask();
     updateHTML();
-    status = 'open';
+    title = 'Test';
     priority = 2;
   }
   else {
     status = 'open';
+    title = 'Test';
+    priority = 2;
     addTask();
     updateHTML();
-    priority = 2;
   }
 }
 
@@ -216,12 +217,12 @@ function addSubtask() {
 
 /**
 * Deletes a task from the todos array based on the given title.
-* @param {string} title - The title of the task to be deleted.
+* @param {string} id - The title of the task to be deleted.
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
-function deleteTask(title) {
+function deleteTask(id) {
 
-  updatedArray = todos.filter(item => item.title !== title);
+  updatedArray = todos.filter(item => item.id !== id);
   todos = [];
   setItem(keydome, updatedArray).then(() => { ; init(); });
 }

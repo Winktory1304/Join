@@ -29,9 +29,9 @@ body {
 /* addtask content */
 .legal-content {
     position: fixed;
-    top: 104px;
+    top: 110px;
     width: calc(100vw - 260px);
-    max-height: 90vh;
+    max-height: calc(100vh - 160px);
     margin-left: 260px;
     font-family: 'inter', sans-serif;
     scrollbar-width: none;
@@ -72,16 +72,14 @@ a {
     text-decoration: none;
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 1300px) {
     .sidebar {
         display: none !important;
     }
 
     .legal-content {
-        position: fixed;
-        top: 104px;
-        width: 97%;
-        max-height: 90vh;
+          width: 97%;
+        max-height: calc(100vh - 160px);
         margin-left: 30px;
         font-family: 'inter', sans-serif;
 
