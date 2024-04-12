@@ -135,7 +135,7 @@ function showUrgentToDo() {
     let urgent = document.getElementById('number_of_urgent');
     let dateDiv = document.getElementById('summary_urgent_date');
     
-    let todo = todos.filter(t => t['priority'] == 3 && t['status'] == 'open');
+    let todo = todos.filter(t => t['priority'] == 3 && (t['status'] == 'open' || t['status'] == 'feedback' || t['status'] == 'progress'));
     
     if (todo.length === 0) {
         urgent.innerHTML = 0;

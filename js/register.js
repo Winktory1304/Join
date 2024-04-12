@@ -18,7 +18,14 @@ function loadUsers() {
  * Registers a user if email doesn't already exists.
  */
 function registerUser() {
+    const password = document.getElementById('sign_up_password').value.trim();
 
+    // Überprüfen, ob das Passwortfeld ausgefüllt ist
+    if (password === '') {
+        return; // Beende die Funktion, wenn das Passwortfeld leer ist
+    }
+
+    // Wenn das Passwortfeld ausgefüllt ist, führe die weiteren Aktionen aus
     let email = document.getElementById('sign_up_email').value;
     checkPassword();
     checkPrivacyPolicy();
@@ -39,6 +46,7 @@ function registerUser() {
         }, 2000);
     }
 }
+
 
 /**
  * Checks if an email already exists in the users array.
@@ -79,31 +87,42 @@ async function pushTheUserToStorage() {
  * Resets input fields and disables registration button in the registration form.
  */
 function resetForm() {
-    document.getElementById('sign_up_name').innerHTML = '';
-    document.getElementById('sign_up_email').innerHTML = '';
-    document.getElementById('sign_up_password').innerHTML = '';
-    document.getElementById('sign_up_confirm_password').innerHTML = '';
+    document.getElementById('sign_up_name').value = '';
+    document.getElementById('sign_up_email').value = '';
+    document.getElementById('sign_up_password').value = '';
+    document.getElementById('sign_up_confirm_password').value = '';
     document.getElementById('sign_up_button').disabled = true;
-    document.getElementById('log_in_email').innerHTML = '';
-    document.getElementById('log_in_password').innerHTML = '';
+    document.getElementById('log_in_email').value = '';
+    document.getElementById('log_in_password').value = '';
 }
 
 /**
  * Checks whether the password is entered correctly twice and enables the register button.
  */
 function checkPassword() {
-    if (document.getElementById('sign_up_password').value == document.getElementById('sign_up_confirm_password').value) {
+    const password = document.getElementById('sign_up_password').value;
+    const confirmPassword = document.getElementById('sign_up_confirm_password').value;
+    const passwordMatch = document.getElementById('password_match');
+
+    if (password === '' && confirmPassword === '') {
+        passwordMatch.innerHTML = '';
+        document.getElementById('input_area_red').classList.remove('input_area_red');
+        return; // Beende die Funktion hier, wenn beide Felder leer sind
+    }
+
+    if (password === confirmPassword) {
         document.getElementById('sign_up_button').disabled = false;
-        document.getElementById('password_match').style.color = 'green';
-        document.getElementById('password_match').innerHTML = 'matching';
+        passwordMatch.style.color = 'green';
+        passwordMatch.innerHTML = 'matching';
         document.getElementById('input_area_red').classList.remove('input_area_red');
     } else {
         document.getElementById('sign_up_button').disabled = true;
-        document.getElementById('password_match').style.color = 'red';
-        document.getElementById('password_match').innerHTML = "Ups! your password don't match";
+        passwordMatch.style.color = 'red';
+        passwordMatch.innerHTML = "Ups! your password don't match";
         document.getElementById('input_area_red').classList.add('input_area_red');
     }
 }
+
 
 /**
  * Checks if the terms and conditions are confirmed to enable register button.
@@ -173,7 +192,7 @@ function indexOfUser(email) {
  */
 function logInGuest() {
     window.location.href = './html/summary.html';
-    localStorage.setItem('currentUserIndex', "Guest");
+    localStorage.setItem('currentUserIndex', "Guest");      
 }
 
 /**
@@ -181,10 +200,13 @@ function logInGuest() {
  */
 
 function goBackToLogIn() {
+    resetForm();
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
-    document.getElementById('log_container').classList.remove('height-sing-up');
+    document.getElementById('log_container').classList.remove('height-sing-up');    
+    showSignUpHeader();
 }
+
 
 /**
  * You go to a previous window.
@@ -192,3 +214,19 @@ function goBackToLogIn() {
 function goOneStepBack() {
     window.history.back();
 }
+
+function hideSignUpHeader() {
+    let width = document.documentElement.clientWidth;
+    if (width < 500) {
+      document.getElementById('mobile_header_container').classList.add('d-none');
+    }
+  }
+
+  function showSignUpHeader() {
+    let width = document.documentElement.clientWidth;
+    if (width < 500) {
+      document.getElementById('mobile_header_container').classList.remove('d-none');
+    }
+  }
+
+  
