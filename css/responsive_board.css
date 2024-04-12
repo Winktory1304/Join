@@ -68,7 +68,7 @@
     top: 80px;
     width: 100%;
     padding: 10px;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 180px);
 }
 
 .board_cardheadline{
@@ -281,6 +281,6 @@ progress{
         top: 80px;
         width: 100%;
         padding: 10px;
-        height: calc(100vh - 160px);
+        height: calc(100vh - 180px);
     }
 }

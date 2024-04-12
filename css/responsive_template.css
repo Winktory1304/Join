@@ -1,0 +1,86 @@
+@media (max-width: 1300px){
+    .header{
+        height: 80px !important;
+        margin-left: 0px !important;
+        width: 100% !important;
+    }
+    
+    .header-title{
+        display: none;
+    }
+
+    .help-link{
+        display: none;
+    }
+    .join-logo-mobile{
+        display: block;
+        margin-left: 10px;
+    }
+    
+    
+    .logged-user-icon{
+        margin-right: 10px;
+    }
+    
+    .sidebar{
+        display: none;
+    }
+    
+    .mobile_bottom{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 80px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        background-color: white;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+        background-color: #2A3647;
+    }
+
+    .mobile_menuitem{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgb(42, 54, 71);
+        font-size: 12px;
+        text-decoration: none;
+        box-shadow: 0px 0px 0px 1px #ffffff;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mobile_menuitem a{
+        color: white;
+        font-size: 15px;
+        text-decoration: none;
+    }
+
+    .mobile_menuitem img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .mobile_menuitem img.active{
+        width: 28px;
+        height: 28px;
+    }
+
+    .mobile_menuitem img:hover{
+        width: 28px;
+        height: 28px;
+    }
+
+
+    .mobile_link{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgb(42, 54, 71);
+        font-size: 12px;
+        text-decoration: none;
+    }
+}
