@@ -47,7 +47,6 @@ function showName2() {
 
 
 
-
 function showWayOfGreeting() {
     let greeting;
     if (hour >= 4 && hour < 12) {
