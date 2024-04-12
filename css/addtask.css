@@ -120,7 +120,7 @@
 
 .addtask-content-footer {
     display: flex;
-    width: 85vw;
+   
     justify-content: space-between;
     align-items: end;
     width: 100vw - 232px;
@@ -592,7 +592,8 @@
   
   
     .addtask-left-content {
-        margin: 0 !important;
+        margin-top: 50px;
+        margin-left: 0;
     }
 
     .addtask-right-content {
@@ -631,12 +632,11 @@
       
       
         .addtask-left-content {
-            margin: 0 !important;
+      
         }
     
         .addtask-right-content {
-            margin-top: 50px;
-            margin-left: 0;
+       
           }
       
           .width540 {
@@ -650,9 +650,8 @@
 }
 
 @media(max-width: 1000px) {
-
     .addtask_content {
-        margin-left: 0;
+        margin-left: 150px;
         margin-right: 0;
     display: flex;
     position: relative;
@@ -662,10 +661,10 @@
 }
 
 
-@media(max-width: 750px) {
+@media(max-width: 850px) {
 
     .addtask_content {
-        margin-left: 0;
+        margin-left: 50px;
         margin-right: 0;
     display: flex;
     position: relative;
@@ -677,5 +676,40 @@
 
     .width524 {
         width: 500px;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    .addtask_content {
+
+    display: flex;
+
+    }
+
+    .width540 {
+        width: 400px;
+    }
+
+    .width524 {
+        width: 400px;
+    }
+}
+
+@media(max-width: 600px) {
+
+    .addtask_content {
+    display: flex;
+
+
+    }
+
+    .width540 {
+        width: 70vw;
+    }
+
+    .width524 {
+        width: 70vw;
     }
 }
