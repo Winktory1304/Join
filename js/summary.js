@@ -3,7 +3,6 @@ let hour = today.getHours();
 
 let greetingname;
 
-let isShowMenu = false;
 
 function resetUsers() {
     users = [];
@@ -17,18 +16,6 @@ function getName() {
     });
 }
 
-
-function showHeaderMenu(headerID, hideHeaderClass) {
-    let showMenu = document.getElementById(headerID);
-
-    if (isShowMenu) {
-        showMenu.classList.add(hideHeaderClass);
-        isShowMenu = false;
-    } else {
-        showMenu.classList.remove(hideHeaderClass);
-        isShowMenu = true;
-    }
-}
 
 function showName2() {
     if (currentIndex === "Guest") {

@@ -3,6 +3,7 @@ let users = [];
 const currentIndex = localStorage.getItem('currentUserIndex');
 
 
+let isShowMenu = false;
 function showHeaderMenu(headerID, hideHeaderClass) {
     let showMenu = document.getElementById(headerID);
 
@@ -12,6 +13,21 @@ function showHeaderMenu(headerID, hideHeaderClass) {
     } else {
         showMenu.classList.remove(hideHeaderClass);
         isShowMenu = true;
+    }
+
+    if (window.innerWidth < 1300) {
+        showMenu.innerHTML = `
+        <a class="header-menu-button" href="./help.html">Help</a>
+        <a class="header-menu-button" href="./legalNotice.html">Legal Notice</a>
+	    <a class="header-menu-button" href="./privacyPolice.html">Privacy Policy</a>
+	    <a class="header-menu-button" href="/index.html">Log out</a>
+        `;
+    } else {
+        showMenu.innerHTML = `
+        <a class="header-menu-button" href="./legalNotice.html">Legal Notice</a>
+	    <a class="header-menu-button" href="./privacyPolice.html">Privacy Policy</a>
+	    <a class="header-menu-button" href="/index.html">Log out</a>
+        `;
     }
 }
 function getName() {
@@ -40,7 +56,7 @@ function getInitials2(user) {
     let firstName = nameParts[0].charAt(0);
     let secondName = nameParts[1].charAt(0);
 
-    initials = firstName+secondName;
+    initials = firstName + secondName;
     document.getElementById('initials').innerHTML = initials;
 
     console.log(firstName);

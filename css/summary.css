@@ -13,6 +13,9 @@
     font-family: 'inter', sans-serif !important;
     font-size: 16px;
 }
+.mobile_bottom {
+    display: none;
+}
 
 
 .unset-body {
