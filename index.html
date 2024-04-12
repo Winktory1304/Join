@@ -7,16 +7,17 @@
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/mobile_index.css">
-  <script src="js/index.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/register.js"></script>
   <script src="js/summary.js"></script>
+  <script src="/js/template.js"></script>
+  <script src="/js/index.js"></script>
   <title>Join</title>
 </head>
 
 <body onload="initRegister()">
 
- 
+
   <div class="mobile-start-screen">
     <svg class="mobile-logo" xmlns="http://www.w3.org/2000/svg" width="101" height="122" viewBox="0 0 101 122"
       fill="none">
@@ -73,18 +74,18 @@
           <input id="log_in_password" type="password" placeholder="Password" required /><img
             src="./assets/img/lock.svg" />
         </div>
-     
-      <span id='email_or_password_not_found' class="email-or-password-not-found"></span>
-      <div class="log-in-checkbox">
-        <input id="confirm" type="checkbox" checked required />
-        <label for="confirm">Remember me</label>
-      </div>
-      <div class="button-container">
-        <button class="log-button" onclick="logIn()">Log in</button>
-        <button class="guest-button" onclick="logInGuest()">Guest Log in</button>
-      </div>
 
-    </form>
+        <span id='email_or_password_not_found' class="email-or-password-not-found"></span>
+        <div class="log-in-checkbox">
+          <input id="confirm" type="checkbox" checked required />
+          <label for="confirm">Remember me</label>
+        </div>
+        <div class="button-container">
+          <button class="log-button" onclick="logIn()">Log in</button>
+          <button class="guest-button" onclick="logInGuest()">Guest Log in</button>
+        </div>
+
+      </form>
     </div>
 
 
@@ -128,8 +129,8 @@
             </svg>
           </div>
           <div class="input-area">
-            <input onkeyup="checkPassword()" placeholder="Password" id="sign_up_password" type="password" required minlength="5" 
-               />
+            <input placeholder="Password" id="sign_up_password" type="password" required minlength="5"
+              onkeyup="checkPassword()" />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -144,8 +145,8 @@
           </div>
 
           <div class="input-area" id="input_area_red">
-            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" required minlength="5"
-              placeholder="Confirm Password"  />
+            <input id="sign_up_confirm_password" type="password" required minlength="5" placeholder="Confirm Password"
+              onkeyup="checkPassword()" />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -159,27 +160,28 @@
             </svg>
           </div>
         </div>
-      
 
 
 
-      <span id='password_match' class="password-match"></span>
+
+        <span id='password_match' class="password-match"></span>
 
 
-      <div class="sing-up-check-box">
-        <input onclick="checkPrivacyPolicy()" style="margin-right: 8px; color: black" type="checkbox"
-          id="privacy_policy_check" name="privacy_policy_check" checked required />
-        <label style="font-size: 18px; color: #A8A8A8" for="privacy_policy_check" class="sing-up-check-box-label">I
-          accept the<a style="padding-left: 6px" class="sign-up-link" href="" target="_blank">Privacy policy</a></label>
-      </div>
+        <div class="sing-up-check-box">
+          <input onclick="checkPrivacyPolicy()" style="margin-right: 8px; color: black" type="checkbox"
+            id="privacy_policy_check" name="privacy_policy_check" checked required />
+          <label style="font-size: 18px; color: #A8A8A8" for="privacy_policy_check" class="sing-up-check-box-label">I
+            accept the<a style="padding-left: 6px" class="sign-up-link" href="" target="_blank">Privacy
+              policy</a></label>
+        </div>
 
 
-      <div class="sign-up-button-container">
-        <button disabled id="sign_up_button" class="sign-up-button disable-button" onclick="registerUser()">Sign
-          up</button>
-      </div>
+        <div class="sign-up-button-container">
+          <button disabled id="sign_up_button" class="sign-up-button disable-button" onclick="registerUser()">Sign
+            up</button>
+        </div>
 
-    </form>
+      </form>
     </div>
   </div>
 
@@ -196,6 +198,15 @@
       You logged in successfully
     </div>
   </div>
+
+  
+
+  <div id="mobile_header_container" class="header-mobile-container">
+    <h2>Not a Join user?</h2>
+    <button class="mobile-sign-up-header-button" onclick="registerWindow()">Sign up</button>
+  </div>
+
+
 
 
   <footer class="footer-container">

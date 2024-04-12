@@ -1,32 +1,18 @@
 /* style contend add task */
-
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
 .legal-html {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
-
 }
 
-/* Header and sidebar */
-.legal-sidebar {
-    position: fixed;
-
-    width: 232px;
-    height: 100vh;
-    background-color: #2A3647;
-    box-shadow: 0px 0px 4px 0px #0000001A;
-}
-
-.legal-header {
-    position: fixed;
-
-    width: 100vw !important;
-    height: 96px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-}
 
 /* addtask body */
 .legal-body {
@@ -35,26 +21,31 @@
     width: 100vw;
     height: 100vh;
     background-color: #F6F7F8;
-font-family: 'inter', sans-serif;
-margin: 0;
-
+    font-family: 'inter', sans-serif;
+    margin: 0;
 }
+
 
 /* addtask content */
 .legal-content {
     position: fixed;
     top: 104px;
-    width: 86vw;
-    height: 900px;
+    width: calc(100vw - 260px);
+    max-height: 90vh;
     margin-left: 260px;
     font-family: 'inter', sans-serif;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     scrollbar-color: #e0e0e0 #F6F7F8;
-    overflow-y: auto;
-    
-
+    overflow-y: scroll;
+    margin-bottom: 30px;
 }
 
+.legal-content p {
+    width: 98.5%;
+    text-wrap: balance;
+    margin-right: 10px;
+
+}
 
 /* addtask fonts */
 .legal-h1 {
@@ -73,4 +64,32 @@ margin: 0;
     font-size: 20px;
     font-weight: 400;
     padding-bottom: 8px;
+}
+
+
+a {
+    color: rgb(41, 171, 226);
+    text-decoration: none;
+}
+
+@media(max-width: 1000px) {
+    .sidebar {
+        display: none !important;
+    }
+
+    .legal-content {
+        position: fixed;
+        top: 104px;
+        width: 97%;
+        max-height: 90vh;
+        margin-left: 30px;
+        font-family: 'inter', sans-serif;
+
+    }
+
+    .legal-content p {
+        width: 90%;
+        text-wrap: balance;
+    }
+
 }

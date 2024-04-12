@@ -1,10 +1,8 @@
 let today = new Date();
 let hour = today.getHours();
-let users = [];
-
-const currentIndex = localStorage.getItem('currentUserIndex');
 
 let greetingname;
+
 
 function resetUsers() {
     users = [];
@@ -14,39 +12,26 @@ function resetUsers() {
 
 function getName() {
     readJSON('users', users).then(() => {
-        showName();
+        showName2();
     });
 }
 
-function showName() {
+
+function showName2() {
     if (currentIndex === "Guest") {
         greetingname = 'Guest';
-        showWayOfGreeting();
+        showWayOfGreeting()
     }
     else {
         let user = users.filter(u => u.email === currentIndex);
         console.log('current user', currentIndex);
         greetingname = user[0].name;
         console.log('current name', greetingname);
-        showWayOfGreeting();
-        getInitials(user);
+        showWayOfGreeting()
+        getInitials2(user);
     }
 }
 
-function getInitials(user) {
-
-    let fullName = user[0].name;
-    let nameParts = fullName.split(' ');
-    let firstName = nameParts[0].charAt(0);
-    let secondName = nameParts[1].charAt(0);
-
-    initials = firstName + secondName;
-    document.getElementById('initials').innerHTML = initials;
-
-    console.log(firstName);
-    console.log(secondName);
-    console.log(initials);
-}
 
 
 function showWayOfGreeting() {
@@ -150,7 +135,7 @@ function showUrgentToDo() {
     let urgent = document.getElementById('number_of_urgent');
     let dateDiv = document.getElementById('summary_urgent_date');
     
-    let todo = todos.filter(t => t['priority'] == 3 && t['status'] == 'open');
+    let todo = todos.filter(t => t['priority'] == 3 && (t['status'] == 'open' || t['status'] == 'feedback' || t['status'] == 'progress'));
     
     if (todo.length === 0) {
         urgent.innerHTML = 0;

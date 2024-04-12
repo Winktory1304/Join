@@ -1,4 +1,16 @@
 /**INDEX start*/
+.header-mobile-container {
+    display: none;
+}
+
+.join-logo-mobile {
+    display: none;
+}
+
+.summary-header-seperation-bar-mobile {
+    display: none;
+}
+
 
 .mobile-start-screen {
 
@@ -49,6 +61,15 @@
 }
 
 /**ab 569px*/
+
+@media(max-width: 1500px) {
+
+    .greeting-container {
+        margin-right: 360px;
+    }
+}
+
+
 
 @media(max-width: 569px) {
 
@@ -102,7 +123,10 @@
     }
 
     .log-in-checkbox {
+        width: 100%;
         padding-bottom: 20px;
+        padding-right: 0px;
+        transform: translateX(-25%);
     }
 
     .log-in-index-container {
@@ -140,32 +164,37 @@
     }
 
     .header-container {
+        display: none;
+    }
+
+    .header-mobile-container {
         position: fixed;
-        left: 15%;
-        transform: translateX(-47%);
-        transform: translateY(890px);
-        width: 292px;
+        transform: translateY(320px);
         height: 49px;
+        width: 100%;
         display: flex;
+        justify-content: center;
         align-items: center;
+        padding: 0px;
+        right: 0px;
     }
 
-    .sign-up-header-button {
-        width: 104px;
-        height: 49px;
-        color: white;
-        font-size: 16px;
-        font-weight: 700;
-        border-radius: 8px;
-    }
-
-
-    .header-container h2 {
+    .header-mobile-container h2 {
         font-size: 20px;
         font-weight: 400;
         padding-right: 20px;
     }
 
+
+    .mobile-sign-up-header-button {
+        width: 104px;
+        height: 49px;
+        color: white;
+        background-color: rgb(42, 54, 71);
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
+    }
 
     .height-sing-up {
         height: 595px !important;
@@ -239,6 +268,13 @@
         position: absolute;
     }
 
+    .sigend-up-successfuly-box {
+        width: 326px;
+    }
+
+    /** ab jetzt ist NAVBAR */
+     
+
 
     /**INDEX ende*/
     /** ab jetzt ist SUMMARY */
@@ -264,15 +300,18 @@
     }
 
     .join-logo-mobile {
+        display: unset;
         margin-left: 15px;
     }
 
+
+
     .logged-user-icon {
-        height: 40px;
-        width: 40px;
-        margin-right: 20px;
-        font-size: 20px;
-        border: 2px solid rgb(42, 54, 71);
+        height: 40px !important;
+        width: 40px !important;
+        margin-right: 20px !important;
+        font-size: 20px !important;
+        border: 2px solid rgb(42, 54, 71) !important;
     }
 
     .summary-content {
@@ -286,11 +325,13 @@
         align-items: normal;
         height: auto;
         width: 223px;
-        margin-top: 48px;
+        margin-top: 40px;
     }
 
     .summary-header-container h1 {
         font-size: 47px;
+        margin-bottom: 10px;
+        margin-top: 5px;
     }
 
     .summary-second-title {
@@ -298,14 +339,19 @@
     }
 
     .summary-header-seperation-bar {
-        height: 3px;
-        width: 90px;
-        margin-left: 0px;
+        display: none;
+    }
 
+    .summary-header-seperation-bar-mobile {    
+        display: block;    
+        height: 3px;
+        width: 95px;
+        margin-top: 10px;
+        background-color: #29ABE2;
     }
 
     .summary-main-container {
-        margin-top: 30px;
+        margin-top: 40px;
     }
 
     .summary-overview-container {
@@ -335,7 +381,7 @@
         scale: 1.05;
         box-shadow: 0px 4px 4px 0px #00000040;
     }
- 
+
 
     .summary-amount-of-to-do-number {
         font-size: 47px;
