@@ -11,15 +11,27 @@ function showModal(modalId) {
 
 
 /**
- * Hides the modal with the specified ID.
+ * Hides the modal with the specified ID. Applies an exit animation if it's the specific modal.
  * @param {string} modalId - The ID of the modal to hide.
  */
 function hideModal(modalId) {
     let modal = document.getElementById(modalId);
     if (modal) {
-        modal.style.display = "none";
+        if (modalId === 'burgerResponiv') { // Prüfe, ob das zu schließende Modal das spezifische Modal ist
+            let modalContent = document.getElementById(modalId + 'Content'); // Annahme: Das Content-Element hat ein 'Content' Suffix in der ID
+            modalContent.style.animationName = 'animaterightResponisvOut';  // Startet die Ausgangsanimation für das spezifische Modal
+
+            // Warte die Dauer der Animation (300ms), bevor das Modal ausgeblendet wird
+            setTimeout(() => {
+                modal.style.display = 'none';  // Verbirgt das Modal nach Ende der Animation
+                modalContent.style.animationName = '';  // Entfernt die Animation, um einen Neustart zu ermöglichen
+            }, 300);  // Stelle sicher, dass diese Zeit mit der Dauer der CSS-Animation übereinstimmt
+        } else {
+            modal.style.display = 'none';  // Verbirgt andere Modale sofort ohne Animation
+        }
     }
 }
+
 
 
 /**
@@ -63,9 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let burgerContactBtnResponsiv = document.getElementById('burgerContactBtnResponsiv');
     burgerContactBtnResponsiv.onclick = function () {
+        let modalContent = document.getElementById('burgerResponivContent');
+        modalContent.style.animationName = 'animaterightResponisvIn'; // Setzt die Eingangsanimation
         showModal('burgerResponiv');
         setupModalListeners('burgerResponiv');
     };
+
 });
 
 
@@ -78,14 +93,8 @@ function addContactModalResponiv() {
         setupModalListeners(modalId);
     };
 }
-function burgerContactModalResponiv() {
-    let modalId = 'burgerResponiv';
-    let btn = document.getElementById('burgerContactBtnResponsiv');
-    btn.onclick = function () {
-        showModal(modalId);
-        setupModalListeners(modalId);
-    };
-}
+
+
 
 /**
  * Edits a contact.
