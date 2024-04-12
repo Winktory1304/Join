@@ -27,6 +27,8 @@
     .help-content{
         margin: 0;
         align-self: start;
+        padding: 10px;
+        height: calc(100vh - 200px);
     }
     .logged-user-icon{
         margin-right: 10px;
