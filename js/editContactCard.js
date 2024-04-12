@@ -251,19 +251,3 @@ async function updateServer() {
         console.error('Fehler beim Aktualisieren der Kontaktinformationen', error);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
