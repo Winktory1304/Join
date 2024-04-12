@@ -141,11 +141,10 @@ function initTask() {
 
 // Popup erstellen
 function addTaskPopup() {
-  var popup = document.getElementById("popup");
-  popup.style.display = "block";
-
+  document.getElementById("popup").classList.remove("d-none");
+  
   setTimeout(function () {
-    popup.style.display = "none";
+    document.getElementById("popup").classList.add("d-none");
   }, 1000);
 }
 
@@ -155,9 +154,14 @@ function addTaskPopup() {
 function clearInputs() {
   switchCase('title').value = "";
   switchCase('description').value = "";
+  switchCase('date').value = "";
   switchCase('subtasks').value = "";
   switchCase('category').selectedIndex = 0;
   switchCase('category').disabled = false;
+  switchCase('assigned').value = "";
+  switchCase('subtasks').value = "";
+
+  
 }
 
 /**
