@@ -29,9 +29,9 @@ body {
 /* addtask content */
 .legal-content {
     position: fixed;
-    top: 80px;
+    top: 96px;
     width: calc(100vw - 260px);
-    max-height: calc(100vh - 160px);
+    max-height: calc(100vh - 96px);
     margin-left: 260px;
     font-family: 'inter', sans-serif;
     scrollbar-width: none;
