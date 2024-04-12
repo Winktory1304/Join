@@ -4,6 +4,8 @@ let contactupdated = [];
 let users = [];
 let detailViewContacts = [];
 
+let contactsaveid = 0;
+
 //Array zum pushen into the storage with the key 'contacts'
 let contactstopush = [
     {
@@ -330,6 +332,8 @@ function openDetailedContactsView(contactId) {
                 <div class="detail-view-contact-phone">Phone</div>
                 <div>${contact.phoneNumber}</div>`
 }
+
+contactsaveid = contactId;
 }
 
 

@@ -102,8 +102,12 @@ function addContactModalResponiv() {
  * @param {string} contactId - The ID of the contact to edit.
  * @returns {void}
  */
-function editContact(contactId) {
+function editContact() {
     let modalId = 'editContactCard';
+    let contactId
+    if (contactsaveid != 0)
+    contactId = contactsaveid;
+
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
     content.innerHTML = /*html*/`
