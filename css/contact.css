@@ -906,3 +906,6 @@ body {
 .responsiv-burger-delete-container:hover .edit-svg path {
     stroke: #29ABE2;
 }
+.responsiv-edit-buttons{
+    display: flex;
+}

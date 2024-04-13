@@ -110,10 +110,10 @@ function editContact() {
         contactId = contactsaveid;
 
     let contact = detailViewContacts[contactId];
-    let content = document.getElementById('responsivAddContact');
+    let content = document.getElementById('editModalContent');
     if (width < 1220) {
-        showModal('responsivAddContact');
-        setupModalListeners('responsivAddContact');
+        showModal('responsivEditContact');
+        setupModalListeners('responsivEditContact');     
         
     } else {
         content.innerHTML = /*html*/`
@@ -202,9 +202,9 @@ function editContact() {
         `;
     }
     if (width < 1220) {
-        document.getElementById('responsivCreateContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
-        document.getElementById('responsivCreateContactEmailInput').value = `${contact['email']}`;
-        document.getElementById('responsivCreateContactPhoneInput').value = `${contact['phoneNumber']}`;
+        document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
+        document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
+        document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
     } else {
         document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
         document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
@@ -213,10 +213,10 @@ function editContact() {
         saveButton.onclick = function () {
             saveContact(contactId);
         };
+        showModal(modalId);
     }
 
 
-    showModal(modalId);
     setupModalListeners(modalId);
 }
 
