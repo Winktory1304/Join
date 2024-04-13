@@ -372,6 +372,7 @@ function deleteContactById(contactId) {
         }
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
+        hideModal('burgerResponiv');
         removeResponivContactsOverview();
         try {
             setItem('contacts', contacts).then(() => {
