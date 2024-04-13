@@ -114,8 +114,8 @@ function editContact() {
     if (width < 1220) {
         hideModal('burgerResponiv')
         showModal('responsivEditContact');
-        setupModalListeners('responsivEditContact');     
-        
+        setupModalListeners('responsivEditContact');
+
     } else {
         content.innerHTML = /*html*/`
     <div class="modal-part-1">
@@ -206,6 +206,12 @@ function editContact() {
         document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
         document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
         document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
+        let saveButton = document.getElementById('saveContactButtonResponsiv');
+        saveButton.onclick = function () {
+            saveContactResponsiv(contactId);
+            openDetailedContactsView(contactId);
+        };
+
     } else {
         document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
         document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
@@ -230,6 +236,7 @@ function editContact() {
  * @param {number} contactId - The ID of the contact to be saved.
  */
 function saveContact(contactId) {
+
     let content = document.getElementById('detailViewContent');
     const firstName = document.getElementById('edit-contact-name-input').value.split(' ')[0];
     const lastName = document.getElementById('edit-contact-name-input').value.split(' ')[1] || ''; // Default zu leer, falls kein Nachname gegeben ist
@@ -246,6 +253,34 @@ function saveContact(contactId) {
         init();
         console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('editContactCard');
+        content.innerHTML = '';
+    } else {
+        console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
+    }
+}
+/**
+ * Saves the contact with the specified contactId.
+ *
+ * @param {number} contactId - The ID of the contact to be saved.
+ */
+function saveContactResponsiv(contactId) {
+
+    let content = document.getElementById('detailViewContent');
+    const firstName = document.getElementById('responsivEditContactNameInput').value.split(' ')[0];
+    const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || ''; // Default zu leer, falls kein Nachname gegeben ist
+    const email = document.getElementById('responsivEditContactEmailInput').value;
+    const phoneNumber = document.getElementById('responsivEditContactPhoneInput').value;
+
+
+    if (detailViewContacts[contactId]) {
+
+        detailViewContacts[contactId].firstName = firstName;
+        detailViewContacts[contactId].lastName = lastName;
+        detailViewContacts[contactId].email = email;
+        detailViewContacts[contactId].phoneNumber = phoneNumber;
+        init();
+        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
+        hideModal('responsivEditContact');
         content.innerHTML = '';
     } else {
         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
