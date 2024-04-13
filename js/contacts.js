@@ -358,6 +358,8 @@ function createContactPopup() {
  * @param {number} contactId - The ID of the contact to be deleted.
  */
 function deleteContactById(contactId) {
+    contactId = contactsaveid;
+
     // Prüfe, ob die contactId innerhalb der Länge des detailViewContacts Arrays liegt
     if (contactId >= 0 && contactId < detailViewContacts.length) {
         // Entferne den Kontakt aus dem detailViewContacts Array
@@ -369,6 +371,8 @@ function deleteContactById(contactId) {
             contacts.splice(contactIndex, 1);
         }
         document.getElementById('detailViewContent').innerHTML = '';
+        hideModal('responsivEditContact');
+        removeResponivContactsOverview();
         try {
             setItem('contacts', contacts).then(() => {
                 readServerData(); // Lese die Daten neu ein, 

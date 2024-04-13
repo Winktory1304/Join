@@ -112,6 +112,7 @@ function editContact() {
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
     if (width < 1220) {
+        hideModal('burgerResponiv')
         showModal('responsivEditContact');
         setupModalListeners('responsivEditContact');     
         
