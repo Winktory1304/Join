@@ -117,7 +117,24 @@ function editContact() {
         setupModalListeners('responsivEditContact');
 
     } else {
-        content.innerHTML = /*html*/`
+        editContactDesktopHtml(content, contact, contactId);
+    }
+    if (width < 1220) {
+        responsivSaveFunction(contact, contactId);
+
+    } else {
+        saveFunctionDesktop(contact, contactId, modalId);
+    }
+
+
+    setupModalListeners(modalId);
+}
+
+
+
+
+function editContactDesktopHtml(content, contact, contactId) {
+    content.innerHTML = /*html*/ `
     <div class="modal-part-1">
             <svg class="modalLogo" width="55px" height="66px" viewBox="0 0 102 122" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
@@ -201,34 +218,29 @@ function editContact() {
             </div>
         </div>
         `;
-    }
-    if (width < 1220) {
-        document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
-        document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
-        document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
-        let saveButton = document.getElementById('saveContactButtonResponsiv');
-        saveButton.onclick = function () {
-            saveContactResponsiv(contactId);
-            openDetailedContactsView(contactId);
-        };
-
-    } else {
-        document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
-        document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
-        document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
-        let saveButton = document.getElementById('saveContactButton');
-        saveButton.onclick = function () {
-            saveContact(contactId);
-        };
-        showModal(modalId);
-    }
-
-
-    setupModalListeners(modalId);
 }
 
+function saveFunctionDesktop(contact, contactId, modalId) {
+    document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
+    document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
+    document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
+    let saveButton = document.getElementById('saveContactButton');
+    saveButton.onclick = function () {
+        saveContact(contactId);
+    };
+    showModal(modalId);
+}
 
-
+function responsivSaveFunction(contact, contactId) {
+    document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
+    document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
+    document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
+    let saveButton = document.getElementById('saveContactButtonResponsiv');
+    saveButton.onclick = function () {
+        saveContactResponsiv(contactId);
+        openDetailedContactsView(contactId);
+    };
+}
 
 /**
  * Saves the contact with the specified contactId.
