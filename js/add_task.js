@@ -152,17 +152,63 @@ function addTaskPopup() {
  * Clears the input fields.
  */   
 function clearInputs() {
+  
   switchCase('title').value = "";
   switchCase('description').value = "";
   switchCase('date').value = "";
-  switchCase('subtasks').value = "";
+
   switchCase('category').selectedIndex = 0;
   switchCase('category').disabled = false;
-  switchCase('assigned').value = "";
-  switchCase('subtasks').value = "";
 
+
+  var container = document.getElementById("containerForSubtask"); // Container für Subtasks
   
-}
+    // Löscht alle Kinder des Containers
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+  
+    // Setzt das subtask Array auf ein leeres Array
+    subtask = [];
+    document.getElementById("containerForSubtask").classList.add("d-none");
+
+
+   
+      let checkboxes = document.getElementsByClassName("checkBox");
+      
+      // Deaktiviere alle Checkboxen
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+      }
+      
+      // Lösche alle ausgewählten Kontakte im selectedContacts Array
+      selectedContacts = [];
+      
+      // Leere den HTML-Inhalt des 'test' Elements
+      document.getElementById("test").innerHTML = "";
+      
+      // Setze die Kontakte im aktuellen Todo-Objekt auf ein leeres Array
+      if (todos.length > 0) {
+        todos[todos.length - 1].contacts = [];
+      }
+      
+
+      document.getElementById('addtask-input-assigned').classList.add("d-none");
+      document.getElementById('test').classList.add("d-none");
+      openassigned = false;
+
+
+      let containerUrgent = document.getElementById("addtaskButtonUrgent");
+      let containerMedium = document.getElementById("addtaskButtonMedium");
+      let containerLow = document.getElementById("addtaskButtonLow");
+
+      containerUrgent.classList.remove("selected");
+      containerMedium.classList.add("selected");
+      containerLow.classList.remove("selected");
+    }
+  
+  
+
 
 /**
  * Validates the input fields and enables/disables the create task button accordingly.
@@ -174,6 +220,7 @@ function validateInput() {
     button.disabled = false;
   } else {
     button.disabled = true;
+    document.getElementById("addtask-button-create-task").classList.add("grey");
   }
 }
 
