@@ -329,3 +329,16 @@
     font-size: 64px;
     font-weight: 700;
 }
+
+.mobile-greeting-container {
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    background-color: #F5F5F5;
+}
