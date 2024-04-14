@@ -20,16 +20,22 @@ function showHeaderMenu(headerID, hideHeaderClass) {
         <a class="header-menu-button" href="./help.html">Help</a>
         <a class="header-menu-button" href="./legalNotice.html">Legal Notice</a>
 	    <a class="header-menu-button" href="./privacyPolice.html">Privacy Policy</a>
-	    <a class="header-menu-button" href="/index.html">Log out</a>
+	    <a class="header-menu-button" onclick="logout()">Log out</a>
         `;
     } else {
         showMenu.innerHTML = `
         <a class="header-menu-button" href="./legalNotice.html">Legal Notice</a>
 	    <a class="header-menu-button" href="./privacyPolice.html">Privacy Policy</a>
-	    <a class="header-menu-button" href="/index.html">Log out</a>
+	    <a class="header-menu-button" onclick="logout()">Log out</a>
         `;
     }
 }
+
+function logout() {
+    localStorage.removeItem('currentUserIndex');
+    window.location.href = "/index.html";
+}
+
 function getName() {
     readJSON('users', users).then(() => {
         showName();
