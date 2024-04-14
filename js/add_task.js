@@ -285,6 +285,7 @@ function checkId() {
  * @returns {boolean} - The validation result.
  */
 function validateForm() {
+  debugger
   if (switchCase('titleValue')  !== "" && switchCase('dateValue')  !== "" && switchCase('categoryValue')  !== "") {
     return true;
   } else {
