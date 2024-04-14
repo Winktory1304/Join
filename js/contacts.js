@@ -266,6 +266,7 @@ function removeResponivContactsOverview(){
  * @param {string} contactId - The ID of the contact to open the detailed view for.
  */
 function openDetailedContactsView(contactId) {
+    contactsaveid = contactId;
     let width = window.innerWidth;
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
@@ -277,7 +278,6 @@ function openDetailedContactsView(contactId) {
     detailViewDesktop(content, contact, contactId);
 }
 
-contactsaveid = contactId;
 }
 
 

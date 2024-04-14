@@ -109,9 +109,7 @@ function addContactModalResponiv() {
 function editContact() {
     let width = window.innerWidth;
     let modalId = 'editContactCard';
-    let contactId
-    if (contactsaveid != 0)
-        contactId = contactsaveid;
+    let contactId = contactsaveid;
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
     if (width < 1220) {
