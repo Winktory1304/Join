@@ -2,7 +2,6 @@ let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255
 let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
-
 let contactsaveid = 0;
 
 //Array zum pushen into the storage with the key 'contacts'
@@ -109,11 +108,11 @@ let contactstopush = [
 ]
 
 
-async function init() {
-    // await readServerData();
+async function init() {    
     await getUsersintoContacts();
     renderContacts();
 }
+
 
 /**
  * Retrieves users from a JSON file and adds them to the contacts list.
@@ -178,7 +177,6 @@ async function readServerData() {
         console.error('Loading error:', error);
     }
 }
-
 
 
 /**
@@ -259,15 +257,13 @@ function removeResponivContactsOverview(){
     document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
     document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
     document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
-    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex'); 
-    
-
-
+    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
 }
+
+
 /**
- * Opens the detailed view of a contact.
- * 
- * @param {number} contactId - The ID of the contact.
+ * Opens the detailed contacts view for a specific contact.
+ * @param {string} contactId - The ID of the contact to open the detailed view for.
  */
 function openDetailedContactsView(contactId) {
     let width = window.innerWidth;
@@ -276,27 +272,25 @@ function openDetailedContactsView(contactId) {
     let responsivContent = document.getElementById('responsivDetailViewContent');
     if (width < 1220) {               
         showResponsivDetail(); 
-        responsivContent.innerHTML = /*html*/`
-                    <div class="detail-view-child1-responsiv">
-                        <svg width="80" height="80" viewBox="0 0 42 42" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect width="42" height="42" rx="21" fill="white" />
-                            <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
-                            <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
-                        </svg>
-                        <div class="detail-view-box">
-                            <div class="detail-view-name-responsiv">
-                            ${contact.firstName} ${contact.lastName}
-                            </div>                           
-                        </div>
-                    </div>
-                    <div class="detail-view-contact-information-text">Contact Information</div>
-                    <div class="detail-view-contact-email"> Email</div>
-                    <div  class="detail-view-email">${contact.email}</div>
-                    <div class="detail-view-contact-phone">Phone</div>
-                    <div >${contact.phoneNumber}</div>`   
+        detailViewResponsiv(responsivContent, contact);   
     }else{
-    content.innerHTML = /*html*/`
+    detailViewDesktop(content, contact, contactId);
+}
+
+contactsaveid = contactId;
+}
+
+
+/**
+ * Renders the detail view of a contact on a desktop device.
+ *
+ * @param {HTMLElement} content - The HTML element where the detail view will be rendered.
+ * @param {Object} contact - The contact object containing the contact details.
+ * @param {number} contactId - The ID of the contact.
+ * @returns {void}
+ */
+function detailViewDesktop(content, contact, contactId) {
+    content.innerHTML = /*html*/ `
                 <div class="detail-view-child1">
                     <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -328,12 +322,37 @@ function openDetailedContactsView(contactId) {
                 <div class="detail-view-contact-email"> Email</div>
                 <div class="detail-view-email">${contact.email}</div>
                 <div class="detail-view-contact-phone">Phone</div>
-                <div>${contact.phoneNumber}</div>`
+                <div>${contact.phoneNumber}</div>`;
 }
 
-contactsaveid = contactId;
-}
 
+/**
+ * Renders the detail view of a contact in a responsive manner.
+ *
+ * @param {HTMLElement} responsivContent - The HTML element where the detail view will be rendered.
+ * @param {Object} contact - The contact object containing the details to be displayed.
+ */
+function detailViewResponsiv(responsivContent, contact) {
+    responsivContent.innerHTML = /*html*/ `
+                    <div class="detail-view-child1-responsiv">
+                        <svg width="80" height="80" viewBox="0 0 42 42" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="42" height="42" rx="21" fill="white" />
+                            <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
+                            <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
+                        </svg>
+                        <div class="detail-view-box">
+                            <div class="detail-view-name-responsiv">
+                            ${contact.firstName} ${contact.lastName}
+                            </div>                           
+                        </div>
+                    </div>
+                    <div class="detail-view-contact-information-text">Contact Information</div>
+                    <div class="detail-view-contact-email"> Email</div>
+                    <div  class="detail-view-email">${contact.email}</div>
+                    <div class="detail-view-contact-phone">Phone</div>
+                    <div >${contact.phoneNumber}</div>`;
+}
 
 
 /**
@@ -342,12 +361,10 @@ contactsaveid = contactId;
 function createContactPopup() {
     let popup = document.getElementById('createContactsPopup');
     popup.style.display = 'flex';
-
     setTimeout(function () {
         popup.style.display = 'none';
     }, 3000);
 }
-
 
 
 /**
@@ -356,21 +373,23 @@ function createContactPopup() {
  * @param {number} contactId - The ID of the contact to be deleted.
  */
 function deleteContactById(contactId) {
-    // Prüfe, ob die contactId innerhalb der Länge des detailViewContacts Arrays liegt
+    contactId = contactsaveid;
+
     if (contactId >= 0 && contactId < detailViewContacts.length) {
-        // Entferne den Kontakt aus dem detailViewContacts Array
         const [removedContact] = detailViewContacts.splice(contactId, 1);
 
-        //  Kontakt muss auch aus dem Hauptkontaktarray `contacts` entfernt werden
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         if (contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
         }
         document.getElementById('detailViewContent').innerHTML = '';
+        hideModal('responsivEditContact');
+        hideModal('burgerResponiv');
+        removeResponivContactsOverview();
         try {
             setItem('contacts', contacts).then(() => {
-                readServerData(); // Lese die Daten neu ein, 
-                renderContacts(); // Aktualisiere die Ansicht
+                readServerData();
+                renderContacts();
             });
             console.log('Kontakt gelöscht und Daten aktualisiert');
         } catch (error) {
@@ -378,10 +397,6 @@ function deleteContactById(contactId) {
         }
     }
 }
-
-
-
-
 
 
 /**
@@ -400,8 +415,7 @@ function addContactOrWarn(emailIndex, newContact) {
             console.log('Daten aktualisiert');
         } catch (error) {
             console.error('Error adding contact', error);
-        }
-        // clearInputFields();
+        }        
         renderContacts();
     } else {
         alert("Dieser Kontakt ist schon vorhanden");
@@ -422,7 +436,9 @@ function clearInputFields() {
 }
 
 
-
+/**
+ * Adds a new contact.
+ */
 function addNewContact() {
     addContact('create-contact-email-input', 'create-contact-name-input', 'create-contact-phone-input', 'contactModal');
 }
@@ -564,7 +580,6 @@ function removeDuplicateContacts() {
         }
         return false;
     });
-
     contacts = uniqueContacts; // Update the contacts array with the unique contacts
 }
 
