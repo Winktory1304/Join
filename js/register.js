@@ -20,13 +20,11 @@ function loadUsers() {
 function registerUser() {
     const password = document.getElementById('sign_up_password').value.trim();
 
-    // Überprüfen, ob das Passwortfeld ausgefüllt ist
+   
     if (password === '') {
-        return; // Beende die Funktion, wenn das Passwortfeld leer ist
-    }
+        return;    }
 
-    // Wenn das Passwortfeld ausgefüllt ist, führe die weiteren Aktionen aus
-    let email = document.getElementById('sign_up_email').value;
+      let email = document.getElementById('sign_up_email').value;
     checkPassword();
     checkPrivacyPolicy();
 
@@ -208,6 +206,10 @@ function goOneStepBack() {
     window.history.back();
 }
 
+
+/**
+ * When responsive it hides the sign-up button.
+ */
 function hideSignUpHeader() {
     let width = document.documentElement.clientWidth;
     if (width < 500) {
@@ -215,10 +217,12 @@ function hideSignUpHeader() {
     }
 }
 
+/**
+ * When responsive it shows the sign-up button.
+ */
 function showSignUpHeader() {
     let width = document.documentElement.clientWidth;
     if (width < 500) {
         document.getElementById('mobile_header_container').classList.remove('d-none');
     }
 }
-
