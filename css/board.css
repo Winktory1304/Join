@@ -427,9 +427,16 @@ h4 {
     transform: translateX(0);
     animation-fill-mode: forwards;
     
+}
+
+.board_innertaskcard{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 
 .mobile_headline{
     display: none;
@@ -439,10 +446,15 @@ h4 {
 .board_taskcardedit {
     gap: 10px !important;
     
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
+.board_editframe {
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 24px;
+}
 .max-width-525{
     width: 525px !important;
 }

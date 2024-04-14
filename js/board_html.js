@@ -100,24 +100,49 @@ function generateTodoHTML(element) {
 }
 
 
-function generateContacts(contacts) {
+function generateContacts(element) {
     
-    if (contacts.length > 5) {
-        contacts = contacts.slice(0, 5);
+    if (element.length === 0) {
+        return 'No Contacts';
+    }
+
+    if (element.length > 5) {
+        element = element.slice(0, 5);
     }
     let contactHTML = '';
-    contacts.forEach((contact) => {
+    element.forEach((contact) => {
         let initials = contact.split(' ').map(name => name.charAt(0)).join('');
+        
+        let name = contact.split(" ");
+        let id = "contactcircle-" + name[1] + name[2];
         contactHTML +=`
         <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
+      <circle id=${id} cx="21" cy="21" r="20" fill="${colorPicker(id, name)}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
         </div>
         `;
+
     });
     return contactHTML;
+}
+
+/**
+ * Sets the fill color of an element based on the color associated with a contact.
+ * @param {string} id - The id of the element to set the fill color for.
+ * @param {Array} element - An array containing the contact's information.
+ */
+function colorPicker(id, element) {
+    setTimeout(() => {
+    contacts.filter((contact) => {
+        if (contact.firstName === element[1] && contact.lastName === element[2]) {
+          let color2 = contact.color;
+          document.getElementById(id).style.fill = color2;
+        }
+      });
+
+    }, 30);
 }
 
 /**

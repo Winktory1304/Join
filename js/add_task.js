@@ -24,7 +24,7 @@ let status = 'open';
 let resultValidation = false;
 const htmlfields = ['assinedPersons', 'task-list'];
 
-function switchCase(statusInput) {	
+function switchCase(statusInput) {
   switch (statusInput) {
     case "title":
       return document.getElementById("addtask-input-title")
@@ -68,26 +68,26 @@ function readServerData() {
  * Sets up the necessary event listeners and functionality when the page is ready.
  */
 function getReady() {
-  
+
   if (openassigned === false) {
     // Wenn openassigned falsch ist
     // Entferne d-none
     document.getElementById('addtask-input-assigned').classList.remove("d-none");
     document.getElementById('test').classList.add("d-none");
     openassigned = true;
-  setContacts(contacts);
+    setContacts(contacts);
 
-}
- else {
-  // Ansonsten
-  // Füge d-none hinzu
-  document.getElementById('addtask-input-assigned').classList.add("d-none");
-  document.getElementById('test').classList.remove("d-none");
-  openassigned = false;
-   }
-// getReady(), getarray();
   }
-  
+  else {
+    // Ansonsten
+    // Füge d-none hinzu
+    document.getElementById('addtask-input-assigned').classList.add("d-none");
+    document.getElementById('test').classList.remove("d-none");
+    openassigned = false;
+  }
+  // getReady(), getarray();
+}
+
 /**
  * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
  */
@@ -121,17 +121,31 @@ function writeContactsintonewArray() {
   selectedContacts.forEach((element) => {
     let contact = element.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
+    let id = "contactcircle-" + contact[1] + contact[2];
+
+
 
     document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
+      <circle id="${id}" cx="21" cy="21" r="20" fill="" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
+
+
+    contacts.filter((contacts) => {
+      if (contacts.firstName === contact[1] && contacts.lastName === contact[2]) {
+        let color2 = contacts.color;
+        document.getElementById(id).style.fill = color2;
+      }
+    });
 
     if (todos.length === 0) return;
     else todos[todos.length - 1].contacts = selectedContacts;
   });
+
 }
+
+
 
 function initTask() {
   readServerData();
@@ -151,7 +165,7 @@ function addTaskPopup() {
 
 /**
  * Clears the input fields.
- */   
+ */
 function clearInputs() {
   switchCase('title').value = "";
   switchCase('description').value = "";
@@ -215,7 +229,7 @@ function checkTitle(titleDefaultValue) {
       return titleDefaultValue;
     }
   });
- 
+
 }
 
 /**
@@ -234,7 +248,7 @@ function checkId() {
  * @returns {boolean} - The validation result.
  */
 function validateForm() {
-  if (switchCase('titleValue')  !== "" && switchCase('dateValue')  !== "" && switchCase('categoryValue')  !== "") {
+  if (switchCase('titleValue') !== "" && switchCase('dateValue') !== "" && switchCase('categoryValue') !== "") {
     return true;
   } else {
     return false;

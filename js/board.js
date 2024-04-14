@@ -26,7 +26,6 @@ function deleteALL() {
  */
 function writeServer() {
     setItem(keydome, todos).then(() => { ; readServer(); });
-    console.log('Daten aktualisiert!');
 }
 
 /**
@@ -141,7 +140,7 @@ function subTasks(element) {
     if (length > 0)
         return `<progress style="width: 120px;" max="${length}" min="0" value="${subTaskscomplete(element.id)}"></progress> ${subTaskscomplete(element.id)}/${length} Subtasks`;
     else
-        return 'Keine Subtasks';
+        return 'No Subtasks';
 }
 
 /**
@@ -194,6 +193,7 @@ function getDate(date) {
 function openCard(id) {
     document.getElementById('board_openCard').innerHTML = `
                     <div class="board_taskcard">
+                        <div class="board_innertaskcard">
                         <div class="board_cardnav">
                             <div class="board_opencardtag" ${setTag(todos[id])}>
                                 <p>${todos[id].tag}</p>
@@ -222,6 +222,7 @@ function openCard(id) {
                                 </svg>
                                 Delete</div>
                             </div>
+                            </div>
                     </div>
                     `;
     generateSubtasks(id);
@@ -233,20 +234,32 @@ function openCard(id) {
  * @param {string} id - The ID of the Task for contact.
  */
 function generatecontactsdome(id) {
-    todos[id].contacts.forEach(contact => {
-        if (contact === null) {
-            document.getElementById('board_cardcontactsdome').innerHTML += '<br>Keine Kontakte zugewiesen';
-        }
-        else
+    if (todos[id].contacts.length === 0) {
+        document.getElementById('board_cardcontactsdome').innerHTML += '<br>No Contacts Assigned';
+    }
+    else {
+        todos[id].contacts.forEach(contact => {
+            let test = 'contactcircle1-' + contact.split(' ')[1] + contact.split(' ')[2];
             document.getElementById('board_cardcontactsdome').innerHTML += `<li class="board_assigneditem">
             <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="21" cy="21" r="20" fill=${randomColor()} stroke="white" stroke-width="2"/>
+                <circle id="${test}" cx="21" cy="21" r="20" fill="" stroke="white" stroke-width="2"/>
                 <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${getInitials(contact)}</text>
             </svg>
             ${contact}
         </li>`;
-    });
 
+            let name = contact.split(" ");
+            contacts.filter((contacts) => {
+                if (contacts.firstName === name[1] && contacts.lastName === name[2]) {
+                    let color2 = contacts.color;
+                    document.getElementById(test).style.fill = color2;
+                }
+            });
+
+
+
+        });
+    }
 }
 
 /**
@@ -332,38 +345,34 @@ function getInitials(name) {
         return name.split(' ').map(n => n[0]).join('');
 }
 
-/**
- * Generates a random color from a predefined list of colors.
- * @returns {string} A randomly selected color in the format "rgb(r, g, b)".
- */
-function randomColor() {
-    const colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
 
 /**
  * Generates subtasks for a given task ID.
  * @param {number} id - The ID of the task.
  */
 function generateSubtasks(id) {
-    todos[id].subtasks.forEach((subtask, index) => {
-        const checkbox = document.createElement('input');
-        checkbox.className = 'checkbox';
-        checkbox.type = 'checkbox';
-        checkbox.id = `subtask${index}`;
-        checkbox.name = `subtask${index}`;
-        checkbox.checked = todos[id].subtasksdone[index] === 1;
+    if (todos[id].subtasks.length === 0) {
+        document.getElementById('board_cardsubtasks').innerHTML += '<br>No Subtasks';
+    }
+    else {
+        todos[id].subtasks.forEach((subtask, index) => {
+            const checkbox = document.createElement('input');
+            checkbox.className = 'checkbox';
+            checkbox.type = 'checkbox';
+            checkbox.id = `subtask${index}`;
+            checkbox.name = `subtask${index}`;
+            checkbox.checked = todos[id].subtasksdone[index] === 1;
 
-        checkbox.addEventListener('change', function () {
-            todos[id].subtasksdone[index] = this.checked ? 1 : 0;
+            checkbox.addEventListener('change', function () {
+                todos[id].subtasksdone[index] = this.checked ? 1 : 0;
+            });
+
+            const li = document.createElement('li');
+            li.className = 'board_subitem';
+            li.appendChild(checkbox);
+            li.appendChild(document.createTextNode(subtask));
+
+            document.getElementById('board_cardsubtasks').appendChild(li);
         });
-
-        const li = document.createElement('li');
-        li.className = 'board_subitem';
-        li.appendChild(checkbox);
-        li.appendChild(document.createTextNode(subtask));
-
-        document.getElementById('board_cardsubtasks').appendChild(li);
-    });
-
+    }
 }
