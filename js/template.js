@@ -37,6 +37,7 @@ function logout() {
 }
 
 function getName() {
+    users=[];
     readJSON('users', users).then(() => {
         showName();
     });
@@ -64,8 +65,4 @@ function getInitials2(user) {
 
     initials = firstName + secondName;
     document.getElementById('initials').innerHTML = initials;
-
-    console.log(firstName);
-    console.log(secondName);
-    console.log(initials);
 }

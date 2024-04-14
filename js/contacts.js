@@ -108,9 +108,10 @@ let contactstopush = [
 ]
 
 
-async function init() {    
+async function init() { 
     await getUsersintoContacts();
-    renderContacts();
+    renderContacts();   
+    getName();
 }
 
 
@@ -121,10 +122,10 @@ async function init() {
  * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
  */
 async function getUsersintoContacts() {
-await readServerData();
+await readServerData(); 
     try {
         users = [];
-        readJSON('users', users); // Warte auf das Laden der Daten
+        await readJSON('users', users) // Warte auf das Laden der Daten
         users.forEach(user => {
             if (!contacts.some(contact => contact.email === user.email)) {
                 contacts.push({
@@ -379,22 +380,47 @@ function deleteContactById(contactId) {
         const [removedContact] = detailViewContacts.splice(contactId, 1);
 
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
-        if (contactIndex !== -1) {
-            contacts.splice(contactIndex, 1);
-        }
+        const usersIndex = users.findIndex(user => user.email === removedContact.email);
+        
+      
+
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
-        try {
-            setItem('contacts', contacts).then(() => {
-                readServerData();
-                renderContacts();
+        
+
+        if (usersIndex !== -1 && contactIndex !== -1) {
+            contacts.splice(contactIndex, 1);
+            users.splice(usersIndex, 1);
+            try {
+            
+                setItem('contacts', contacts).then(() => {
+                    setItem('users', users).then(() => {
+                            localStorage.removeItem('currentUserIndex');
+                            window.location.href = "/index.html";
+                });
             });
-            console.log('Kontakt gelöscht und Daten aktualisiert');
-        } catch (error) {
-            console.error('Fehler beim Löschen des Kontakts', error);
+                console.log('Kontakt gelöscht und Daten aktualisiert');
+            } catch (error) {
+                console.error('Fehler beim Löschen des Kontakts', error);
+            }
         }
+        else if (contactIndex !== -1) {
+            contacts.splice(contactIndex, 1);
+            try {
+                setItem('contacts', contacts).then(() => {
+                    readServerData();
+                    renderContacts();
+            });
+                console.log('Kontakt gelöscht und Daten aktualisiert');
+            } catch (error) {
+                console.error('Fehler beim Löschen des Kontakts', error);
+            }
+        }
+
+    
+        
     }
 }
 
@@ -585,5 +611,5 @@ function removeDuplicateContacts() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    init();
+    
 });

@@ -74,8 +74,20 @@ async function pushTheUserToStorage() {
     let email = document.getElementById('sign_up_email');
     let password = document.getElementById('sign_up_password');
 
+    let names = name.value.split(' ');
+    let formattedName = '';
+    for (let i = 0; i < names.length; i++) {
+        formattedName += names[i].charAt(0).toUpperCase() + names[i].slice(1).toLowerCase();
+        if (i !== names.length - 1) {
+            formattedName += ' ';
+        }
+    }
+
+
+
+
     users.push({
-        name: name.value,
+        name: formattedName,
         email: email.value,
         password: password.value,
     });
