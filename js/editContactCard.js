@@ -17,38 +17,38 @@ function showModal(modalId) {
 function hideModal(modalId) {
     let modal = document.getElementById(modalId);
     if (modal) {
-        if (modalId === 'burgerResponiv') { // Prüfe, ob das zu schließende Modal das spezifische Modal ist
-            let modalContent = document.getElementById(modalId + 'Content'); // Annahme: Das Content-Element hat ein 'Content' Suffix in der ID
-            modalContent.style.animationName = 'animaterightResponisvOut';  // Startet die Ausgangsanimation für das spezifische Modal
-
-            // Warte die Dauer der Animation (300ms), bevor das Modal ausgeblendet wird
+        if (modalId === 'burgerResponiv') { 
+            let modalContent = document.getElementById(modalId + 'Content'); 
+            modalContent.style.animationName = 'animaterightResponisvOut';
             setTimeout(() => {
-                modal.style.display = 'none';  // Verbirgt das Modal nach Ende der Animation
-                modalContent.style.animationName = '';  // Entfernt die Animation, um einen Neustart zu ermöglichen
-            }, 300);  // Stelle sicher, dass diese Zeit mit der Dauer der CSS-Animation übereinstimmt
+                modal.style.display = 'none';
+                modalContent.style.animationName = '';
+            }, 300);
         } else {
-            modal.style.display = 'none';  // Verbirgt andere Modale sofort ohne Animation
+            modal.style.display = 'none';
         }
     }
 }
 
 
 
+/**
+ * Sets up event listeners for a modal.
+ * @param {string} modalId - The ID of the modal element.
+ */
 function setupModalListeners(modalId) {    
     let modal = document.getElementById(modalId);
-    if (!modal) return; // Sicherstellen, dass das Modal existiert
+    if (!modal) return;
 
-    let modalContent = modal.querySelector('.modal-content'); // Stelle sicher, dass du eine Klasse `.modal-content` hast
-    if (!modalContent) modalContent = modal; // Fallback, falls kein spezifischer Content-Bereich definiert ist
+    let modalContent = modal.querySelector('.modal-content');
+    if (!modalContent) modalContent = modal;
 
-    // Schließen des Modals, wenn außerhalb des Inhalts geklickt wird
     window.onclick = function (event) {
         if (event.target == modal) {
             hideModal(modalId);
         }
     };
 
-    // Setze Listener für Schließ-Buttons, falls vorhanden
     let closeButtons = modal.querySelectorAll('.close');
     closeButtons.forEach(btn => {
         btn.onclick = function () {
@@ -59,8 +59,7 @@ function setupModalListeners(modalId) {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Setup für den bestehenden Add Contact Button
+document.addEventListener('DOMContentLoaded', function () {    
     let btn = document.getElementById('addContactBtn');
     let modalId = 'contactModal';
     btn.onclick = function () {
@@ -76,6 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
 
+    /**
+     * Represents the burger contact button in the responsive view.
+     * @type {HTMLElement}
+     */
     let burgerContactBtnResponsiv = document.getElementById('burgerContactBtnResponsiv');
     burgerContactBtnResponsiv.onclick = function () {
         let modalContent = document.getElementById('burgerResponivContent');
@@ -99,11 +102,9 @@ function addContactModalResponiv() {
 
 
 
+
 /**
- * Edits a contact.
- * 
- * @param {string} contactId - The ID of the contact to edit.
- * @returns {void}
+ * Edits a contact based on the current window width and contact information.
  */
 function editContact() {
     let width = window.innerWidth;
@@ -111,32 +112,34 @@ function editContact() {
     let contactId
     if (contactsaveid != 0)
         contactId = contactsaveid;
-
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
     if (width < 1220) {
         hideModal('burgerResponiv')
         showModal('responsivEditContact');
         setupModalListeners('responsivEditContact');
-
     } else {
         editContactDesktopHtml(content, contact, contactId);
         setupModalListeners(modalId);
     }
     if (width < 1220) {
         responsivSaveFunction(contact, contactId);
-
     } else {
         saveFunctionDesktop(contact, contactId, modalId);
-    }
-
-
-    
+    }    
 }
 
 
 
 
+/**
+ * Renders the HTML content for editing a contact card in a desktop view.
+ *
+ * @param {HTMLElement} content - The container element where the HTML content will be rendered.
+ * @param {Object} contact - The contact object containing information about the contact.
+ * @param {string} contactId - The ID of the contact.
+ * @returns {void}
+ */
 function editContactDesktopHtml(content, contact, contactId) {
     content.innerHTML = /*html*/ `
     <div class="modal-part-1">
@@ -224,6 +227,14 @@ function editContactDesktopHtml(content, contact, contactId) {
         `;
 }
 
+
+/**
+ * Saves the contact information and displays a modal.
+ * 
+ * @param {object} contact - The contact object containing the contact information.
+ * @param {string} contactId - The ID of the contact.
+ * @param {string} modalId - The ID of the modal to be displayed.
+ */
 function saveFunctionDesktop(contact, contactId, modalId) {
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
@@ -235,6 +246,12 @@ function saveFunctionDesktop(contact, contactId, modalId) {
     showModal(modalId);
 }
 
+
+/**
+ * Sets the values of the input fields with the contact information and attaches an onclick event to the save button.
+ * @param {Object} contact - The contact object containing the contact information.
+ * @param {string} contactId - The ID of the contact.
+ */
 function responsivSaveFunction(contact, contactId) {
     document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
@@ -246,6 +263,7 @@ function responsivSaveFunction(contact, contactId) {
     };
 }
 
+
 /**
  * Saves the contact with the specified contactId.
  *
@@ -255,13 +273,10 @@ function saveContact(contactId) {
 
     let content = document.getElementById('detailViewContent');
     const firstName = document.getElementById('edit-contact-name-input').value.split(' ')[0];
-    const lastName = document.getElementById('edit-contact-name-input').value.split(' ')[1] || ''; // Default zu leer, falls kein Nachname gegeben ist
+    const lastName = document.getElementById('edit-contact-name-input').value.split(' ')[1] || ''; 
     const email = document.getElementById('edit-contact-email-input').value;
     const phoneNumber = document.getElementById('edit-contact-phone-input').value;
-
-
     if (detailViewContacts[contactId]) {
-
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;
         detailViewContacts[contactId].email = email;
@@ -274,6 +289,8 @@ function saveContact(contactId) {
         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
     }
 }
+
+
 /**
  * Saves the contact with the specified contactId.
  *
@@ -283,7 +300,7 @@ function saveContactResponsiv(contactId) {
 
     let content = document.getElementById('detailViewContent');
     const firstName = document.getElementById('responsivEditContactNameInput').value.split(' ')[0];
-    const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || ''; // Default zu leer, falls kein Nachname gegeben ist
+    const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || ''; 
     const email = document.getElementById('responsivEditContactEmailInput').value;
     const phoneNumber = document.getElementById('responsivEditContactPhoneInput').value;
 
