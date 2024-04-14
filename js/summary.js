@@ -46,10 +46,16 @@ function showWayOfGreeting() {
 
     let greetBox = document.getElementById('greet_box');
     let greetName = document.getElementById('user_name');
+    let mobileGreetBox = document.getElementById('mobile_greet_box');
+    let mobileGreetName = document.getElementById('mobile_user_name');
     greetBox.innerHTML = '';
     greetName.innerHTML = '';
-    greetName.innerHTML = greetingname;
+    mobileGreetBox.innerHTML = '';
+    mobileGreetName.innerHTML = '';
     greetBox.textContent = greeting;
+    greetName.innerHTML = greetingname;
+    mobileGreetBox.textContent = greeting;
+    mobileGreetName.innerHTML = greetingname;
 }
 
 
@@ -121,7 +127,7 @@ function showNumberOfAwaitingFeedback() {
 }
 
 function UpcomingDeadline() {
-   
+
     const filteredDates = todos.filter(todo => todo['priority'] === 3)
         .map(todo => todo.date);
 
@@ -134,9 +140,9 @@ function UpcomingDeadline() {
 function showUrgentToDo() {
     let urgent = document.getElementById('number_of_urgent');
     let dateDiv = document.getElementById('summary_urgent_date');
-    
+
     let todo = todos.filter(t => t['priority'] == 3 && (t['status'] == 'open' || t['status'] == 'feedback' || t['status'] == 'progress'));
-    
+
     if (todo.length === 0) {
         urgent.innerHTML = 0;
         dateDiv.innerHTML = "No urgent tasks"; //*** Display if no urgent tasks are found*/

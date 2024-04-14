@@ -94,6 +94,7 @@ function resetForm() {
     document.getElementById('sign_up_button').disabled = true;
     document.getElementById('log_in_email').value = '';
     document.getElementById('log_in_password').value = '';
+    document.getElementById('password_match').innerHTML = '';
 }
 
 /**
@@ -149,17 +150,7 @@ function logIn() {
     let user = userValidation(email, password);
     if (user) {
         indexOfUser(email);
-
-        document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
-
-        setTimeout(function () {
-            document.getElementById(`logged_in_successfuly_container`).classList.add('d-none');
-        }, 2000);
-
-        setTimeout(function () {
-            window.location.href = './html/summary.html';
-        }, 2000);
-
+        window.location.href = './html/summary.html';
     }
     else {
         message.innerText = 'Ups! Email or password not found !';
@@ -192,8 +183,10 @@ function indexOfUser(email) {
  */
 function logInGuest() {
     window.location.href = './html/summary.html';
-    localStorage.setItem('currentUserIndex', "Guest");      
+    localStorage.setItem('currentUserIndex', "Guest");
 }
+
+
 
 /**
  * Redistricts to the login window.
@@ -203,7 +196,7 @@ function goBackToLogIn() {
     resetForm();
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
-    document.getElementById('log_container').classList.remove('height-sing-up');    
+    document.getElementById('log_container').classList.remove('height-sing-up');
     showSignUpHeader();
 }
 
@@ -218,15 +211,14 @@ function goOneStepBack() {
 function hideSignUpHeader() {
     let width = document.documentElement.clientWidth;
     if (width < 500) {
-      document.getElementById('mobile_header_container').classList.add('d-none');
+        document.getElementById('mobile_header_container').classList.add('d-none');
     }
-  }
+}
 
-  function showSignUpHeader() {
+function showSignUpHeader() {
     let width = document.documentElement.clientWidth;
     if (width < 500) {
-      document.getElementById('mobile_header_container').classList.remove('d-none');
+        document.getElementById('mobile_header_container').classList.remove('d-none');
     }
-  }
+}
 
-  

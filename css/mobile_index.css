@@ -48,13 +48,48 @@
     }
 }
 
+
+
+
+
+@media(max-width: 1100px) {
+
+    .greeting-container {
+        padding-left: 20px;
+    }
+
+
+    .summary-header-container h1 {
+        font-size: 58px;
+        width: auto;
+    }
+
+    .summary-header-seperation-bar {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .summary-second-title {
+        font-size: 25px;
+    }
+
+}
+
+@media(max-width: 870px) {
+
+
+    .greeting-container {
+        display: none;
+    }
+
+}
+
+
+
 /**ab 569px*/
 
 @media(max-width: 569px) {
 
-    html {
-        font-size: 0.360em;
-    }
 
     .intro-join-logo {
         position: absolute;
@@ -95,14 +130,17 @@
     }
 
     .email-or-password-not-found {
-        width: 265px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        width: 100%;
+        height: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 14px;
         color: red;
     }
 
     .log-in-checkbox {
         padding-bottom: 20px;
+        padding-right: 0px;
     }
 
     .log-in-index-container {
@@ -140,32 +178,8 @@
     }
 
     .header-container {
-        position: fixed;
-        left: 15%;
-        transform: translateX(-47%);
-        transform: translateY(890px);
-        width: 292px;
-        height: 49px;
-        display: flex;
-        align-items: center;
+        display: none;
     }
-
-    .sign-up-header-button {
-        width: 104px;
-        height: 49px;
-        color: white;
-        font-size: 16px;
-        font-weight: 700;
-        border-radius: 8px;
-    }
-
-
-    .header-container h2 {
-        font-size: 20px;
-        font-weight: 400;
-        padding-right: 20px;
-    }
-
 
     .height-sing-up {
         height: 595px !important;
@@ -214,6 +228,9 @@
 
     input[type="checkbox"]+label {
         font-size: 16px;
+        width: unset;
+        height: unset;
+        padding-left: 20px;
     }
 
     input[type="checkbox"]+label::before {
@@ -237,6 +254,33 @@
         animation: moveAndResizeMobile 1s ease-in-out forwards;
         animation-delay: 250ms;
         position: absolute;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+
+    .header-mobile-container {
+        position: fixed;
+        transform: translateY(330px);
+        display: flex;
+        align-items: center;
+    }
+
+    .header-mobile-container h2 {
+        font-size: 20px;
+        font-weight: 400;
+        padding-right: 20px;
+    }
+
+    .mobile-sign-up-header-button {
+        width: 104px;
+        height: 49px;
+        color: white;
+        background-color: rgb(42, 54, 71);
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
     }
 
 
@@ -274,7 +318,7 @@
 
     .summary-content {
         margin-left: 0px;
-        padding-left: 16px;
+        padding-left: 0px;
     }
 
     .summary-header-container {
@@ -282,12 +326,14 @@
         flex-direction: column;
         align-items: normal;
         height: auto;
-        width: 223px;
-        margin-top: 48px;
+        width: 100%;
+        margin-top: 0px;
     }
 
     .summary-header-container h1 {
+        width: auto;
         font-size: 47px;
+        margin-bottom: 10px;
     }
 
     .summary-second-title {
@@ -295,15 +341,21 @@
     }
 
     .summary-header-seperation-bar {
-        height: 3px;
-        width: 90px;
-        margin-left: 0px;
+        display: none;
+    }
 
+    .summary-header-seperation-bar-mobile {
+        height: 3px;
+        width: 95px;
+        margin-top: 10px;
+        background-color: rgb(41, 171, 226);
     }
 
     .summary-main-container {
         margin-top: 30px;
+        width: min-content;
     }
+
 
     .summary-overview-container {
         width: 396px;
@@ -437,4 +489,72 @@
     .summ-overlay-numb {
         font-size: 47px;
     }
+
+    .greeting-container {
+        display: none;
+    }
+
+}
+
+
+
+
+@media(max-width: 420px) {
+
+    .summary-content {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .summary-overview-container {
+        width: 285px;
+        height: 325px;
+        gap: 10px;
+        padding: 0px
+    }
+
+    .summary-to-do-and-done-cont {
+        gap: 10px
+    }
+
+    .summary-urgent-cont {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .summary-amount-of-to-do-number {
+        font-size: 38px;
+    }
+
+    .summary-to-do-cont {
+        width: 145px;
+        height: 100px;
+    }
+
+    .summary-done-cont {
+        width: 145px;
+        height: 100px;
+    }
+
+    .summary-amount-of-done-number {
+        font-size: 38px;
+    }
+
+    .summary-urgent-left-box {
+        gap: 0px;
+    }
+
+
+    .summary-overview-box {
+        width: 92px;
+        height: 92px;
+    }
+
+    .summ-overlay-numb {
+        font-size: 38px;
+    }
+    .summary-overview {
+        gap: 5px;
+    }
+
 }
