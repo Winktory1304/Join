@@ -5,28 +5,29 @@
     <div class="addtask-left-content">
         <div class="addtask-gap16 width540">
             <div class="addtask-h2">Title<span>*</span></div>
-            <input onkeyup="validateInput()" type="text" class="addtask-input-title width540"
-                id="addtask-input-title" placeholder="Enter a title" required>
+            <input onkeyup="validateInput()" type="text" class="addtask-input-title width540" id="addtask-input-title"
+                placeholder="Enter a title" required>
             <div class="messagedatevalidation d-none" id="messagedatevalidationTitel">This field is required
             </div>
         </div>
         <div class="addtask-gap16">
             <div class="addtask-h2">Description</div>
-            <textarea class="addtask-input-description width540" id="addtask-input-description" placeholder="Enter a Description"
-                rows="4"></textarea>
+            <textarea class="addtask-input-description width540" id="addtask-input-description"
+                placeholder="Enter a Description" rows="4"></textarea>
         </div>
 
         <div class="addtask-gap16">
-            <div class="addtask-h2" >Assigned to</div>
+            <div class="addtask-h2">Assigned to</div>
             <div style="position: relative;">
-                <input class="addtask-input-subtasks width540" placeholder="Contacts" id="changeAssigned" >
-                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick = "getReady(), getarray()"style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+                <input class="addtask-input-subtasks width540" placeholder="Contacts" id="changeAssigned">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getReady(), getarray()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
             <div class="inputfield d-none width540" id="addtask-input-assigned" onchange="validateInput()"></div>
         </div>
         <div class="addtask-gap16" id="test">
         </div>
-
+      
     </div>
     <div class="addtask-middle-content">
     </div>
@@ -34,8 +35,9 @@
     <div class="addtask-right-content">
         <div class="addtask-gap16">
             <div class="addtask-h2">Due date<span>*</span></div>
-            <input style="color: black;" onchange="validateInput()" type="date" name="begin" class="addtask-input-date width524"
-                id="addtask-input-date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" >
+            <input style="color: black;" onchange="validateInput()" type="date" name="begin"
+                class="addtask-input-date width524" id="addtask-input-date" placeholder="dd-mm-yyyy" min="1997-01-01"
+                max="2030-12-31">
             <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required
             </div>
 
@@ -57,46 +59,50 @@
 
                 </button>
 
+              
+            </div>
+            <div class="addtask-gap16">
+                <div class="addtask-h2">Category<span>*</span></div>
+                <select onchange="validateInput()" class="addtask-input-category width540" id="addtask-input-category">
+                    <option value="" disabled selected>Select task category</option>
+                    <option value="Technical Task">Technical Task</option>
+                    <option value="User Story">User Story</option>
+                </select>
+                <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required
+                </div>
+            </div>
+
+
+
+
+            <div class="addtask-gap16">
+                <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+                <div style="position: relative;">
+
+                    <input class="addtask-input-subtasks width524" id="addtask-input-subtasks"
+                        placeholder="Add new subtask">
+                    <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
+                        style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+                </div>
+                <div class="containerForSubtask d-none" id="containerForSubtask"></div>
             </div>
         </div>
-        <div class="addtask-gap16">
-            <div class="addtask-h2">Category<span>*</span></div>
-            <select onchange="validateInput()" class="addtask-input-category width540" id="addtask-input-category">
-                <option value="" disabled selected>Select task category</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="User Story">User Story</option>
-            </select>
-            <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required
-            </div>
+        <div class="addtaskbutton">
+            <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
+                x</Button>
+            <Button class="addtask-button-create-task" id="addtask-button-create-task"
+                onclick="addTask()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
+                </image></Button>
+
         </div>
-
-
-
-
-        <div class="addtask-gap16">
-            <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
-            <div style="position: relative;">
-
-                <input class="addtask-input-subtasks width524" id="addtask-input-subtasks" placeholder="Add new subtask">
-                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
-                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
-            </div>
-            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
-        </div>
-    </div>
-</div>
-<div class="addtask-content-footer">
-    <div class="addtask-footer">
+        <div class="addtask-h2">
         <span>*</span>This field is required
     </div>
-    <div class="addtaskbutton">
-        <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
-            x</Button>
-        <Button class="addtask-button-create-task" id="addtask-button-create-task" onclick="addTask()">Create Task<image
-                src="../assets/img/addtaskcreatetaske.svg">
-            </image></Button>
+    </div>
+  
+
 
         <div id="popup" class="popup d-none">Task added to Board</div>
 
-    </div>
+   
 </div>

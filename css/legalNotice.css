@@ -82,6 +82,7 @@ a {
         max-height: calc(100vh - 160px);
         margin-left: 30px;
         font-family: 'inter', sans-serif;
+        bottom: 80px;
 
     }
 

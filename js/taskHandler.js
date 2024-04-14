@@ -119,6 +119,7 @@ function addTask() {
   } catch (error) {
     console.error('Error adding task', error);
   }
+  clearInputs() 
 }
 
 /**
