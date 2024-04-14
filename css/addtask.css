@@ -5,6 +5,7 @@
     align-items: center;
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
+    
 }
 
 /* Header and sidebar */
@@ -80,6 +81,7 @@
     font-size: 20px;
     font-weight: 400;
     padding-bottom: 8px;
+    padding-top: 8px;
 }
 
 .addtask-h2 span {
@@ -576,7 +578,7 @@
     }
 
     .addtask_inner_content {
-        min-height: 100vh;
+        min-height: 1440px;
     }
 
     .addtask-content-footer {
