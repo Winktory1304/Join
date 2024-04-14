@@ -34,26 +34,29 @@ function hideModal(modalId) {
 
 
 
-/**
- * Sets up event listeners for a modal with the given ID.
- * @param {string} modalId - The ID of the modal element.
- */
-function setupModalListeners(modalId) {
+function setupModalListeners(modalId) {    
     let modal = document.getElementById(modalId);
-    let spans = modal.querySelectorAll('.close'); // Annahme: alle Schließ-Buttons verwenden die Klasse 'close'
+    if (!modal) return; // Sicherstellen, dass das Modal existiert
 
-    spans.forEach(span => {
-        span.onclick = function () {
-            hideModal(modalId);
-        };
-    });
+    let modalContent = modal.querySelector('.modal-content'); // Stelle sicher, dass du eine Klasse `.modal-content` hast
+    if (!modalContent) modalContent = modal; // Fallback, falls kein spezifischer Content-Bereich definiert ist
 
+    // Schließen des Modals, wenn außerhalb des Inhalts geklickt wird
     window.onclick = function (event) {
         if (event.target == modal) {
             hideModal(modalId);
         }
     };
+
+    // Setze Listener für Schließ-Buttons, falls vorhanden
+    let closeButtons = modal.querySelectorAll('.close');
+    closeButtons.forEach(btn => {
+        btn.onclick = function () {
+            hideModal(modalId);
+        };
+    });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -118,6 +121,7 @@ function editContact() {
 
     } else {
         editContactDesktopHtml(content, contact, contactId);
+        setupModalListeners(modalId);
     }
     if (width < 1220) {
         responsivSaveFunction(contact, contactId);
@@ -127,7 +131,7 @@ function editContact() {
     }
 
 
-    setupModalListeners(modalId);
+    
 }
 
 
@@ -196,7 +200,7 @@ function editContactDesktopHtml(content, contact, contactId) {
             <div class="modal-part-3-buttons-container">
                 <button class="modal-part-3-cancel-button" onclick="hideModal('editContactCard'); deleteContactById(${contactId})">
                     Delete
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="edit-svg" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z"
                             stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

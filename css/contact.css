@@ -155,7 +155,7 @@ body {
 
 .contacts-placeholder-responsiv {
     display: flex;
-    
+
     gap: 8px;
     margin-top: 32px;
     justify-content: flex-start;
@@ -196,16 +196,18 @@ body {
     align-items: center;
     margin-top: 32px;
     display: flex;
-   
+
     justify-content: space-between;
 
 
 }
-.svg-responsiv{
+
+.svg-responsiv {
     position: fixed;
     top: 150px;
-    right:16px
+    right: 16px
 }
+
 .contacts-placeholder-text {
     font-size: 27px;
 }
@@ -281,10 +283,11 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
 
 }
+
 .modal-burger {
     display: none;
     position: fixed;
-    z-index: 1;    
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
@@ -441,7 +444,7 @@ body {
     display: flex;
     align-items: center;
     height: 100%;
-    width: 120px;
+    padding: 18px 10px 18px 10px; 
     margin-right: 24px;
     border-radius: 10px;
     font-size: 20px;
@@ -451,6 +454,7 @@ body {
     justify-content: center;
 
 }
+
 
 .modal-part-3-create-button {
     display: flex;
@@ -469,11 +473,33 @@ body {
 
 }
 
+.modal-part-3-create-button-responsiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 18px 10px 18px 10px; 
+    border-radius: 10px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border: 1px;
+    margin-bottom: 135px;
+
+
+}
+
 .dispplay-flex {
     display: flex;
 }
 
 .modal-part-3-create-button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
+.modal-part-3-create-button-responsiv:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
     cursor: pointer;
@@ -667,10 +693,12 @@ body {
         /* Fly out to the right */
     }
 }
+
 @keyframes animaterightResponisvIn {
     0% {
         transform: translateX(100%);
     }
+
     100% {
         transform: translateX(0);
     }
@@ -680,6 +708,7 @@ body {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(100%);
     }
@@ -836,12 +865,12 @@ body {
 }
 
 .responisv-contacts-overview {
-    
+
     height: calc(100vh - 160px);
     align-items: flex-start;
     flex-direction: column;
     background-color: #F6F7F8;
-    
+
     padding-left: 16px;
 
 }
@@ -853,13 +882,14 @@ body {
 .dispplay-flex {
     display: flex;
 }
-.responsiv-burger{
+
+.responsiv-burger {
     position: fixed;
     right: 16px;
     bottom: 100px;
     width: 116px;
-    height: 100px; 
-    border-radius:20px 20px 0px 20px;
+    height: 100px;
+    border-radius: 20px 20px 0px 20px;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -871,18 +901,20 @@ body {
     animation-duration: 300ms;
     /* Gesamtdauer der Animation */
     animation-fill-mode: both;
-    
+
 }
-.responsiv-burger-delete-container{
+
+.responsiv-burger-delete-container {
     display: flex;
     padding: 8px;
-    gap:8px;
+    gap: 8px;
     margin-left: 10px;
 }
-.responsiv-burger-edit-container{
+
+.responsiv-burger-edit-container {
     display: flex;
     padding: 8px;
-    gap:8px;
+    gap: 8px;
     margin-left: 10px;
 }
 
@@ -893,6 +925,7 @@ body {
     font-weight: 700;
 
 }
+
 .responsiv-burger-delete-container:hover {
     fill: #29ABE2;
     cursor: pointer;
@@ -900,12 +933,17 @@ body {
     font-weight: 700;
 
 }
+
 .responsiv-burger-delete-container:hover .edit-svg path {
     stroke: #29ABE2;
 }
+
 .responsiv-burger-delete-container:hover .edit-svg path {
     stroke: #29ABE2;
 }
-.responsiv-edit-buttons{
+
+.responsiv-edit-buttons {
     display: flex;
+    height: 51px;
+    margin-top: 32px;
 }
