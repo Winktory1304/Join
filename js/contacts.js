@@ -114,7 +114,13 @@ async function init() {
     getName();
 }
 
-
+function ensureAllContactsHaveIds(contacts) {
+    contacts.forEach((contact, index) => {
+        if (!contact.idContact) {
+            contact.idContact = generateUniqueId(); // Stelle sicher, dass eine ID zugewiesen wird
+        }
+    });
+}
 /**
  * Retrieves users from a JSON file and adds them to the contacts list.
  * @async
@@ -139,6 +145,7 @@ await readServerData();
                 });
             }
         });
+        ensureAllContactsHaveIds(contacts);
         removeDuplicateContacts();
         await setItem('contacts', contacts);
         
