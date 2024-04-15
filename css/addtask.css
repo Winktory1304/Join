@@ -5,7 +5,7 @@
     align-items: center;
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
-    }
+}
 
 /* Header and sidebar */
 .addtask_sidebar {
@@ -35,9 +35,7 @@
     overflow-x: hidden;
     margin: 0;
     margin-top: 0 !important;
-  
 }
-
 
 /* addtask content */
 .addtask_content {
@@ -48,7 +46,6 @@
     margin-left: 232px;
     scrollbar-width: thin;
     overflow-y: auto;
-   
 }
 
 /* addtask fonts */
@@ -64,19 +61,6 @@
     padding-left: 96px;
 }
 
-.width540 {
-    width: 540px;
-}
-
-.width524 {
-    width: 524px;
-}
-
-.width552{
-    width: 552px;
-}
-
-
 .addtask-h2 {
     font-size: 20px;
     font-weight: 400;
@@ -88,7 +72,20 @@
     color: #FFA800;
 }
 
-/* addtask content main, left, middle, right, footer */
+/* widt inputfields */
+.width540 {
+    width: 540px;
+}
+
+.width524 {
+    width: 524px;
+}
+
+.width552 {
+    width: 552px;
+}
+
+/* addtask content main, left, middle, right */
 .addtask-content-main {
     display: flex;
     padding-top: 43px;
@@ -97,12 +94,9 @@
 }
 
 .addtask-left-content {
- 
     margin-left: 48px;
     margin-right: 48.25px;
     left: 328px;
-   
-
 }
 
 .addtask-middle-content {
@@ -111,20 +105,18 @@
     top: 327px;
     left: 816.25px;
     background-color: #D1D1D1;
-  
 }
 
 .addtask-right-content {
     top: 327px;
     left: 864.25px;
     margin-left: 48px;
-
 }
 
+/* diabled button color hover */
 .grey {
     background-color: rgb(236, 7, 7);
 }
-
 
 /* style inputfields */
 .addtask-input-title {
@@ -316,8 +308,6 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
- 
-    
 }
 
 .addtask-button {
@@ -358,7 +348,6 @@
     width: 20px;
     height: 20px;
 }
-
 
 .addtask-button-create-task {
     width: 183px;
@@ -406,16 +395,13 @@
 .addtask-button-cancel:hover {
     cursor: pointer;
     color: #29ABE2;
-   
 }
-
 
 .addtask-button-create-task:hover {
     cursor: pointer;
     background-color: #29ABE2;
     border: 1px solid #29ABE2;
 }
-
 
 .addtask-button-create-task:hover:disabled {
     cursor: pointer;
@@ -467,9 +453,7 @@
     background-color: #ffffff;
     padding: 10px;
     position: relative;
-    /*Position relativ setzen; */
     z-index: 1;
-    /* Z-Index erhöhen, um sicherzustellen, dass das Inputfeld über dem darunter liegenden Text liegt */
 }
 
 .containerSubtask {
@@ -490,7 +474,6 @@
 .subtaskIcons {
     display: flex;
     gap: 5px;
-    /* Abstand zwischen den beiden Icons */
 }
 
 .containerForSubtask {
@@ -512,7 +495,6 @@
     font-weight: 400;
     font-family: "Inter";
 }
-
 
 .inputnew {
     display: flex;
@@ -567,20 +549,17 @@
 }
 
 @media(max-width: 1300px) {
-
     .sidebar {
         display: none !important;
     }
 
     .addtask_content {
-       
         margin-left: 16px;
-       
     }
 
     .addtask-content-main {
-     
-        margin-right: 16px;}
+        margin-right: 16px;
+    }
 
     .addtask_inner_content {
         min-height: 1440px;
@@ -601,7 +580,6 @@
         gap: 1px;
         padding-top: 10px;
         padding-left: 0;
-
     }
 
     .addtask-middle-content {
@@ -614,9 +592,6 @@
         align-items: center;
         padding-top: 0;
     }
-
-
-
 
     .width540 {
         width: 540px;
@@ -632,44 +607,39 @@
 }
 
 @media(max-width: 600px) {
+    .width540 {
+        width: 85vw;
+    }
 
-.width540 {
-    width: 85vw;
-}
+    .width524 {
+        width: 85vw;
+    }
 
-.width524 {
-    width: 85vw;
-}
+    .width552 {
+        width: 90vw;
+    }
 
-.width552{
-    width: 90vw;
-}
-.addtask-button-cancel {
-    display: none;
-}
-
-
+    .addtask-button-cancel {
+        display: none;
+    }
 }
 
 @media(max-width: 440px) {
-
     .addtask_h1 {
         width: 320px;
         font-size: 40px;
     }
-
-
-
 
     .addtask-button {
         max-width: 90vw;
         height: 56px;
         border-radius: 10px;
         padding: 0;
-      display: flex;
-      flex-direction: column;
-        
+        display: flex;
+        flex-direction: column;
     }
+
     .addtask-right-content {
-    width: 90vw;
-}}
+        width: 90vw;
+    }
+}
