@@ -50,10 +50,9 @@ function searchTask() {
     if (search === '') {
       updateHTML();
     }
-
   });
-
 }
+
 
 /**
  * Changes the source of the image element with the class 'board_plus' at the specified index to a blue plus image.
@@ -64,6 +63,7 @@ function hoverPlus(id) {
   plus[id].setAttribute('src', '../assets/img/board-plus_blue.svg');
 }
 
+
 /**
  * Changes the source attribute of the plus image element to '../assets/img/board-plus.svg'.
  * @param {number} id - The index of the plus image element in the document.getElementsByClassName('board_plus') collection.
@@ -72,6 +72,7 @@ function hoverPlusOut(id) {
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus.svg');
 }
+
 
 /**
  * Creates a new task based on the provided status input.
@@ -108,6 +109,7 @@ function createTask(statusInput) {
   }
 }
 
+
 /**
  * Adds a task to the todo list.
  */
@@ -121,6 +123,7 @@ function addTask() {
   }
   clearInputs() 
 }
+
 
 /**
  * Edits a task with the given ID.
@@ -182,6 +185,7 @@ function editTask(id) {
   fillSubtasks();
 }
 
+
 /**
  * Fills the subtask array with subtasks from the todos array.
  */
@@ -192,6 +196,7 @@ function fillSubtasks() {
   });
 }
 
+
 /**
  * Adds a subtask to the task list.
  */
@@ -200,19 +205,13 @@ function addSubtask() {
   var text2 = 'div-' + (subtask.length);
   var input = document.getElementById("addtask-input-subtasks");
   document.getElementById("containerForSubtask").classList.remove('d-none');
-  var container = document.getElementById("containerForSubtask"); // Container für Subtasks
-
+  var container = document.getElementById("containerForSubtask"); 
   var subtaskText = input.value;
-  subtask.push(subtaskText); // Fügt den Subtask dem Array hinzu
-
-  // Erstellen des HTML-Inhalts für den Subtask
+  subtask.push(subtaskText); 
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
   <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
-
-  // Fügt den HTML-Inhalt zum Container hinzu
   container.innerHTML += subtaskHTML;
-
-  input.value = ""; // Optional: Clear the input field after adding the subtask
+  input.value = ""; 
 }
 
 
@@ -222,7 +221,6 @@ function addSubtask() {
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
 function deleteTask(id) {
-
   updatedArray = todos.filter(item => item.id !== id);
   todos = [];
   setItem(keydome, updatedArray).then(() => { ; init(); });
@@ -243,6 +241,7 @@ function deleteSubtask(titel, id) {
   subtaskElement.remove();
 }
 
+
 /**
  * Edits a subtask element by replacing its content with an input field.
  * @param {string} titel - The title of the subtask.
@@ -255,6 +254,7 @@ function editSubtask(titel, id) {
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtask(this.value, '${id}')">
   `;
 }
+
 
 /**
  * Updates the content of a subtask element and updates the corresponding subtask in the subtask array.
