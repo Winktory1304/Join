@@ -33,7 +33,6 @@ function showName2() {
 }
 
 
-
 function showWayOfGreeting() {
     let greeting;
     if (hour >= 4 && hour < 12) {
@@ -46,16 +45,12 @@ function showWayOfGreeting() {
 
     let greetBox = document.getElementById('greet_box');
     let greetName = document.getElementById('user_name');
-    let mobileGreetBox = document.getElementById('mobile_greet_box');
-    let mobileGreetName = document.getElementById('mobile_user_name');
+  
     greetBox.innerHTML = '';
     greetName.innerHTML = '';
-    mobileGreetBox.innerHTML = '';
-    mobileGreetName.innerHTML = '';
+ 
     greetBox.textContent = greeting;
     greetName.innerHTML = greetingname;
-    mobileGreetBox.textContent = greeting;
-    mobileGreetName.innerHTML = greetingname;
 }
 
 
