@@ -31,7 +31,6 @@ function hideModal(modalId) {
 }
 
 
-
 /**
  * Sets up event listeners for a modal.
  * @param {string} modalId - The ID of the modal element.
@@ -39,16 +38,13 @@ function hideModal(modalId) {
 function setupModalListeners(modalId) {    
     let modal = document.getElementById(modalId);
     if (!modal) return;
-
     let modalContent = modal.querySelector('.modal-content');
     if (!modalContent) modalContent = modal;
-
     window.onclick = function (event) {
         if (event.target == modal) {
             hideModal(modalId);
         }
     };
-
     let closeButtons = modal.querySelectorAll('.close');
     closeButtons.forEach(btn => {
         btn.onclick = function () {
@@ -58,7 +54,6 @@ function setupModalListeners(modalId) {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', function () {    
     let btn = document.getElementById('addContactBtn');
     let modalId = 'contactModal';
@@ -66,15 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
         showModal(modalId);
         setupModalListeners(modalId);
     };
-
-
     let addContactBtnResponsiv = document.getElementById('addContactBtnResponsiv');
     addContactBtnResponsiv.onclick = function () {
         showModal('responsivAddContact');
         setupModalListeners('responsivAddContact');
     };
-
-
     /**
      * Represents the burger contact button in the responsive view.
      * @type {HTMLElement}
@@ -86,11 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
         showModal('burgerResponiv');
         setupModalListeners('burgerResponiv');
     };
-
 });
 
 
-
+/**
+ * Adds a contact modal for the responsive view.
+ */
 function addContactModalResponiv() {
     let modalId = 'responsivAddContact';
     let btn = document.getElementById('addContactBtnResponsiv');
@@ -99,8 +91,6 @@ function addContactModalResponiv() {
         setupModalListeners(modalId);
     };
 }
-
-
 
 
 /**
@@ -126,8 +116,6 @@ function editContact() {
         saveFunctionDesktop(contact, contactId, modalId);
     }    
 }
-
-
 
 
 /**
@@ -295,16 +283,12 @@ function saveContact(contactId) {
  * @param {number} contactId - The ID of the contact to be saved.
  */
 function saveContactResponsiv(contactId) {
-
     let content = document.getElementById('detailViewContent');
     const firstName = document.getElementById('responsivEditContactNameInput').value.split(' ')[0];
     const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || ''; 
     const email = document.getElementById('responsivEditContactEmailInput').value;
     const phoneNumber = document.getElementById('responsivEditContactPhoneInput').value;
-
-
     if (detailViewContacts[contactId]) {
-
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;
         detailViewContacts[contactId].email = email;
