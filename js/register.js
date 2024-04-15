@@ -187,7 +187,6 @@ function userValidation(email, password) {
 function indexOfUser(email) {
     let userIndex = users.filter(user => user.email === email);
     localStorage.setItem('currentUserIndex', userIndex[0].email); // <- hier wird die User Email in den LocalStorage gespeichert
-    console.log('zeig mir den aktuellen User', userIndex[0].email);
 }
 
 /**

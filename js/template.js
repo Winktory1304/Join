@@ -48,9 +48,7 @@ function showName() {
     }
     else {
         let user = users.filter(u => u.email === currentIndex);
-        console.log('current user', currentIndex);
         greetingname = user[0].name;
-        console.log('current name', greetingname);
         getInitials2(user);
     }
 }

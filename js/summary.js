@@ -24,10 +24,8 @@ function showName2() {
     }
     else {
         let user = users.filter(u => u.email === currentIndex);
-        console.log('current user', currentIndex);
         greetingname = user[0].name;
-        console.log('current name', greetingname);
-        showWayOfGreeting()
+            showWayOfGreeting()
         getInitials2(user);
     }
 }
@@ -130,8 +128,6 @@ function UpcomingDeadline() {
 
     const filteredDates = todos.filter(todo => todo['priority'] === 3)
         .map(todo => todo.date);
-
-    console.log(filteredDates);
 }
 
 /**

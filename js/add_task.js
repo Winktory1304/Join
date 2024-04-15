@@ -196,7 +196,6 @@ function clearInputs() {
 */
 function validateInput() {
   resultValidation = validateForm();
-  console.log("Validate input:", resultValidation);
   const button = document.getElementById("addtask-button-create-task");
   if (resultValidation) {
     button.disabled = false;
