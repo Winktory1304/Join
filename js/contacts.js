@@ -114,13 +114,13 @@ async function init() {
     getName();
 }
 
-function ensureAllContactsHaveIds(contacts) {
-    contacts.forEach((contact, index) => {
-        if (!contact.idContact) {
-            contact.idContact = generateUniqueId(); // Stelle sicher, dass eine ID zugewiesen wird
-        }
-    });
-}
+// function ensureAllContactsHaveIds(contacts) {
+//     contacts.forEach((contact, index) => {
+//         if (!contact.idContact) {
+//             contact.idContact = generateUniqueId(); // Stelle sicher, dass eine ID zugewiesen wird
+//         }
+//     });
+// }
 /**
  * Retrieves users from a JSON file and adds them to the contacts list.
  * @async
@@ -128,14 +128,14 @@ function ensureAllContactsHaveIds(contacts) {
  * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
  */
 async function getUsersintoContacts() {
-await readServerData(); 
+    await readServerData(); 
     try {
         users = [];
         await readJSON('users', users) // Warte auf das Laden der Daten
         users.forEach(user => {
-            if (!contacts.some(contact => contact.email === user.email)) {
+            if (!contacts.some(contact => contact.idContact === user.idContact)) {
                 contacts.push({
-                    "idContact": generateUniqueId(),
+                    "idContact": user.idContact,
                     "firstName": user.name.split(' ')[0],
                     "lastName": user.name.split(' ')[1],
                     "email": user.email,
@@ -145,7 +145,7 @@ await readServerData();
                 });
             }
         });
-        ensureAllContactsHaveIds(contacts);
+        // ensureAllContactsHaveIds(contacts);
         removeDuplicateContacts();
         await setItem('contacts', contacts);
         
@@ -389,14 +389,11 @@ function deleteContactById(contactId) {
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         const usersIndex = users.findIndex(user => user.email === removedContact.email);
         
-      
-
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
         
-
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
@@ -424,9 +421,7 @@ function deleteContactById(contactId) {
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }
-
-    
+        }   
         
     }
 }

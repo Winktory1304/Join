@@ -73,7 +73,7 @@ async function pushTheUserToStorage() {
     let name = document.getElementById('sign_up_name');
     let email = document.getElementById('sign_up_email');
     let password = document.getElementById('sign_up_password');
-
+    const id = generateUniqueId();
     let names = name.value.split(' ');
     let formattedName = '';
     for (let i = 0; i < names.length; i++) {
@@ -87,12 +87,20 @@ async function pushTheUserToStorage() {
 
 
     users.push({
+        idContact : id,
         name: formattedName,
         email: email.value,
         password: password.value,
     });
     await setItem('users', users);
     resetForm();
+}
+
+function generateUniqueId() {
+    // Generate a unique ID using a timestamp and a random number
+    const timestamp = Date.now().toString(36);
+    const randomNumber = Math.random().toString(36).substring(2);
+    return timestamp + randomNumber;
 }
 
 /**
