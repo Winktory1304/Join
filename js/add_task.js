@@ -146,6 +146,7 @@ function writeContactsintonewArray() {
 function initTask() {
   validateInput();
   readServerData();
+  validateInput();
 }
 
 
