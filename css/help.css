@@ -7,6 +7,9 @@
     overflow: hidden;
 }
 
+.mobile_bottom{
+    display: none;
+}
 .unset-body {
     display: unset;
 }

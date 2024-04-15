@@ -1,176 +1,32 @@
 let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
 let contacts = [];
 let contactupdated = [];
-let users = [];
 let detailViewContacts = [];
+let contactsaveid = 0;
 
-//Array zum pushen into the storage with the key 'contacts'
-let contactstopush =
-    [
-        {
-            "firstName": "Anna",
-            "lastName": "Schmidt",
-            "email": "annaschmidt@test123.de",
-            "phoneNumber": "01731305001",
-            "firstLetterofNames": "AS",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Bernd",
-            "lastName": "Müller",
-            "email": "berndmueller@test123.de",
-            "phoneNumber": "01731305002",
-            "firstLetterofNames": "BM",
-            "color": "rgb(110,82,255)"
-        },
-        {
-            "firstName": "Claudia",
-            "lastName": "Schneider",
-            "email": "claudiaschneider@test123.de",
-            "phoneNumber": "01731305003",
-            "firstLetterofNames": "CS",
-            "color": "rgb(252,113,255)"
-        },
-        {
-            "firstName": "David",
-            "lastName": "Fischer",
-            "email": "davidfischer@test123.de",
-            "phoneNumber": "01731305004",
-            "firstLetterofNames": "DF",
-            "color": "rgb(255,195,69)"
-        },
-        {
-            "firstName": "Elena",
-            "lastName": "Weber",
-            "email": "elenaweber@test123.de",
-            "phoneNumber": "01731305005",
-            "firstLetterofNames": "EW",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Felix",
-            "lastName": "Meyer",
-            "email": "felixmeyer@test123.de",
-            "phoneNumber": "01731305006",
-            "firstLetterofNames": "FM",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Greta",
-            "lastName": "Wagner",
-            "email": "gretawagner@test123.de",
-            "phoneNumber": "01731305007",
-            "firstLetterofNames": "GW",
-            "color": "rgb(255,122,0)"
-        },
-        {
-            "firstName": "Hans",
-            "lastName": "Becker",
-            "email": "hansbecker@test123.de",
-            "phoneNumber": "01731305008",
-            "firstLetterofNames": "HB",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Ingrid",
-            "lastName": "Schulz",
-            "email": "ingridschulz@test123.de",
-            "phoneNumber": "01731305009",
-            "firstLetterofNames": "IS",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Johannes",
-            "lastName": "Hoffmann",
-            "email": "johanneshoffmann@test123.de",
-            "phoneNumber": "01731305010",
-            "firstLetterofNames": "JH",
-            "color": "rgb(255,122,0)"
-        },
-        {
-            "firstName": "Karin",
-            "lastName": "Krause",
-            "email": "karinkrause@test123.de",
-            "phoneNumber": "01731305011",
-            "firstLetterofNames": "KK",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Lukas",
-            "lastName": "Lehmann",
-            "email": "lukaslehmann@test123.de",
-            "phoneNumber": "01731305012",
-            "firstLetterofNames": "LL",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Maria",
-            "lastName": "Schäfer",
-            "email": "mariaschäfer@test123.de",
-            "phoneNumber": "01731305013",
-            "firstLetterofNames": "MS",
-            "color": "rgb(31,215,193)"
-        },
-        {
-            "firstName": "Niklas",
-            "lastName": "Köhler",
-            "email": "niklasköhler@test123.de",
-            "phoneNumber": "01731305014",
-            "firstLetterofNames": "NK",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "firstName": "Olivia",
-            "lastName": "Klein",
-            "email": "oliviaklein@test123.de",
-            "phoneNumber": "01731305015",
-            "firstLetterofNames": "OK",
-            "color": "rgb(31,215,193)"
-        }
-    ]
 
-async function init() {
-    await readServerData();
-    removeDuplicateContacts()
+async function init() { 
     await getUsersintoContacts();
-    renderContacts();
-}
-
-/**
-
- * Deletes a contact from the contacts list based on the provided email.
- *
- * @param {string} email - The email of the contact to be deleted.
- * @returns {void}
- */
-function deleteContact(email) {
-    contactupdated = contacts.filter(item => item.email !== email);
-    contacts = [];
-    try {
-        setItem('contacts', contactupdated).then(() => { ; readServerData();; renderContacts(); });
-        console.log('Daten aktualisiert');
-    } catch (error) {
-        console.error('Error deleting contact', error);
-    }
+    renderContacts();   
+    getName();
 }
 
 
 /**
-
  * Retrieves users from a JSON file and adds them to the contacts list.
  * @async
  * @function getUsersintoContacts
  * @returns {Promise<void>} A promise that resolves when the users are added to the contacts list.
  */
 async function getUsersintoContacts() {
-
+    await readServerData(); 
     try {
-        let users = [];
-        await readJSON('users', users);
-        console.log(users);
+        users = [];
+        await readJSON('users', users) // Warte auf das Laden der Daten
         users.forEach(user => {
-            if (!contacts.some(contact => contact.email === user.email)) {
+            if (!contacts.some(contact => contact.idContact === user.idContact)) {
                 contacts.push({
+                    "idContact": user.idContact,
                     "firstName": user.name.split(' ')[0],
                     "lastName": user.name.split(' ')[1],
                     "email": user.email,
@@ -180,9 +36,10 @@ async function getUsersintoContacts() {
                 });
             }
         });
+        // ensureAllContactsHaveIds(contacts);
+        removeDuplicateContacts();
         await setItem('contacts', contacts);
-        readServerData();
-
+        
     } catch (error) {
         console.error('Loading error:', error);
     }
@@ -213,12 +70,12 @@ async function readServerData() {
     try {
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
         console.log('Daten geladen:', contacts);
+        removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
         console.error('Loading error:', error);
     }
 }
-
 
 
 /**
@@ -278,15 +135,60 @@ function groupContactsByInitial() {
 
 
 /**
- * Opens the detailed view of a contact.
- * 
- * @param {number} contactId - The ID of the contact.
+ * Shows the responsive detail view for contacts.
+ */
+function showResponsivDetail() {
+    document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview');
+    document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
+    document.getElementById('contactsContent').classList.add('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.add('d-none');
+    document.getElementById('burgerContactBtnResponsiv').classList.remove('d-none');
+}
+
+
+/**
+ * Removes the responsive behavior from the contacts overview.
+ */
+function removeResponivContactsOverview(){
+    let content = document.getElementById('detailViewContent');
+    content.classList.remove('detail-view-content-responsiv');
+    content.classList.remove('dispplay-flex'); 
+    document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
+    document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
+    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
+}
+
+
+/**
+ * Opens the detailed contacts view for a specific contact.
+ * @param {string} contactId - The ID of the contact to open the detailed view for.
  */
 function openDetailedContactsView(contactId) {
-
+    contactsaveid = contactId;
+    let width = window.innerWidth;
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
-    content.innerHTML = /*html*/`
+    let responsivContent = document.getElementById('responsivDetailViewContent');
+    if (width < 1220) {               
+        showResponsivDetail(); 
+        detailViewResponsiv(responsivContent, contact);   
+    }else{
+    detailViewDesktop(content, contact, contactId);
+}
+}
+
+
+/**
+ * Renders the detail view of a contact on a desktop device.
+ *
+ * @param {HTMLElement} content - The HTML element where the detail view will be rendered.
+ * @param {Object} contact - The contact object containing the contact details.
+ * @param {number} contactId - The ID of the contact.
+ * @returns {void}
+ */
+function detailViewDesktop(content, contact, contactId) {
+    content.innerHTML = /*html*/ `
                 <div class="detail-view-child1">
                     <svg width="120" height="120" viewBox="0 0 42 42" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -316,23 +218,206 @@ function openDetailedContactsView(contactId) {
                 </div>
                 <div class="detail-view-contact-information-text">Contact Information</div>
                 <div class="detail-view-contact-email"> Email</div>
-                <div id="detailViewEmail" class="detail-view-email">${contact.email}</div>
+                <div class="detail-view-email">${contact.email}</div>
                 <div class="detail-view-contact-phone">Phone</div>
-                <div id="detailViewPhone">${contact.phoneNumber}</div>`
+                <div>${contact.phoneNumber}</div>`;
+}
 
+
+/**
+ * Renders the detail view of a contact in a responsive manner.
+ *
+ * @param {HTMLElement} responsivContent - The HTML element where the detail view will be rendered.
+ * @param {Object} contact - The contact object containing the details to be displayed.
+ */
+function detailViewResponsiv(responsivContent, contact) {
+    responsivContent.innerHTML = /*html*/ `
+                    <div class="detail-view-child1-responsiv">
+                        <svg width="80" height="80" viewBox="0 0 42 42" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="42" height="42" rx="21" fill="white" />
+                            <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
+                            <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
+                        </svg>
+                        <div class="detail-view-box">
+                            <div class="detail-view-name-responsiv">
+                            ${contact.firstName} ${contact.lastName}
+                            </div>                           
+                        </div>
+                    </div>
+                    <div class="detail-view-contact-information-text">Contact Information</div>
+                    <div class="detail-view-contact-email"> Email</div>
+                    <div  class="detail-view-email">${contact.email}</div>
+                    <div class="detail-view-contact-phone">Phone</div>
+                    <div >${contact.phoneNumber}</div>`;
+}
+
+
+/**
+ * Displays a popup for creating contacts.
+ */
+function createContactPopup() {
+    let popup = document.getElementById('createContactsPopup');
+    popup.style.display = 'flex';
+    setTimeout(function () {
+        popup.style.display = 'none';
+    }, 3000);
+}
+
+
+/**
+ * Deletes a contact by its ID.
+ *
+ * @param {number} contactId - The ID of the contact to be deleted.
+ */
+function deleteContactById(contactId) {
+    contactId = contactsaveid;
+
+    if (contactId >= 0 && contactId < detailViewContacts.length) {
+        const [removedContact] = detailViewContacts.splice(contactId, 1);
+
+        const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
+        const usersIndex = users.findIndex(user => user.email === removedContact.email);
+        
+        document.getElementById('detailViewContent').innerHTML = '';
+        hideModal('responsivEditContact');
+        hideModal('burgerResponiv');
+        removeResponivContactsOverview();
+        
+        if (usersIndex !== -1 && contactIndex !== -1) {
+            contacts.splice(contactIndex, 1);
+            users.splice(usersIndex, 1);
+            try {
+            
+                setItem('contacts', contacts).then(() => {
+                    setItem('users', users).then(() => {
+                            localStorage.removeItem('currentUserIndex');
+                            window.location.href = "/index.html";
+                });
+            });
+                console.log('Kontakt gelöscht und Daten aktualisiert');
+            } catch (error) {
+                console.error('Fehler beim Löschen des Kontakts', error);
+            }
+        }
+        else if (contactIndex !== -1) {
+            contacts.splice(contactIndex, 1);
+            try {
+                setItem('contacts', contacts).then(() => {
+                    readServerData();
+                    renderContacts();
+            });
+                console.log('Kontakt gelöscht und Daten aktualisiert');
+            } catch (error) {
+                console.error('Fehler beim Löschen des Kontakts', error);
+            }
+        }   
+        
+    }
+}
+
+
+/**
+ * Adds a new contact to the contacts array or displays a warning if the contact already exists.
+*
+* @param {number} emailIndex - The index of the contact's email in the contacts array.
+* @param {object} newContact - The new contact object to be added.
+* @returns {void}
+*/
+function addContactOrWarn(emailIndex, newContact) {
+    if (emailIndex === -1) {
+        contacts.push(newContact);
+        createContactPopup();
+        try {
+            setItem('contacts', contacts);
+            console.log('Daten aktualisiert');
+        } catch (error) {
+            console.error('Error adding contact', error);
+        }        
+        renderContacts();
+    } else {
+        alert("Dieser Kontakt ist schon vorhanden");
+    }
+}
+
+
+/**
+ * Clears the input fields for creating a contact.
+*/
+function clearInputFields() {
+    document.getElementById('create-contact-name-input').value = '';
+    document.getElementById('create-contact-email-input').value = '';
+    document.getElementById('create-contact-phone-input').value = '';
+    document.getElementById('responsivCreateContactNameInput').value = '';
+    document.getElementById('responsivCreateContactEmailInput').value = '';
+    document.getElementById('responsivCreateContactPhoneInput').value = '';
+}
+
+
+/**
+ * Adds a new contact.
+ */
+function addNewContact() {
+    addContact('create-contact-email-input', 'create-contact-name-input', 'create-contact-phone-input', 'contactModal');
+}
+
+
+/**
+ * Adds a new contact in a responsive manner.
+ */
+function addNewContactResponsiv() {
+    addContact('responsivCreateContactEmailInput', 'responsivCreateContactNameInput', 'responsivCreateContactPhoneInput', 'responsivAddContact');
+}
+
+
+/**
+ * Adds a new contact to the contact list.
+ * 
+ * @param {string} emailInputId - The ID of the email input element.
+ * @param {string} nameInputId - The ID of the name input element.
+ * @param {string} phoneInputId - The ID of the phone input element.
+ */
+function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
+    let email = document.getElementById(emailInputId).value;
+    let emailIndex = findEmailIndex(email);
+    if (!validateEmail(email)) {
+        alert("Invalid email address");
+        return;
+    }
+    let fullName = document.getElementById(nameInputId).value;
+    let names = validateFullName(fullName);
+    if (!names) return;
+    let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
+    addContactOrWarn(emailIndex, newContact);
+    hideModal(modalId);    
+    clearInputFields();
+}
+
+
+/**
+ * Validates an email address.
+ * @param {string} email - The email address to be validated.
+ * @returns {boolean} - True if the email address is valid, otherwise false.
+ */
+function validateEmail(email) {
+    // Use a regular expression to validate the email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
 
 /**
  * Creates a new contact object.
- *
- * @param {string[]} names - An array of names.
- * @param {string} email - The email address of the contact.
- * @param {string} phone - The phone number of the contact.
- * @returns {object} - The newly created contact object.
- */
+*
+* @param {string[]} names - An array of names.
+* @param {string} email - The email address of the contact.
+* @param {string} phone - The phone number of the contact.
+* @returns {object} - The newly created contact object.
+*/
 function createNewContact(names, email, phone) {
+    const id = generateUniqueId();
     return {
+        "idContact": id,
         "firstName": names[0],
         "lastName": names.slice(1).join(' '),
         "email": email,
@@ -344,61 +429,23 @@ function createNewContact(names, email, phone) {
 
 
 /**
- * Adds a new contact to the contacts array or displays a warning if the contact already exists.
- *
- * @param {number} emailIndex - The index of the contact's email in the contacts array.
- * @param {object} newContact - The new contact object to be added.
- * @returns {void}
+ * Generates a unique ID using a timestamp and a random number.
+ * @returns {string} The generated unique ID.
  */
-function addContactOrWarn(emailIndex, newContact) {
-    if (emailIndex === -1) {
-        contacts.push(newContact);
-        try {
-            setItem('contacts', contacts);
-            console.log('Daten aktualisiert');
-        } catch (error) {
-            console.error('Error adding contact', error);
-        }
-        clearInputFields();
-        renderContacts();
-    } else {
-        alert("Dieser Kontakt ist schon vorhanden");
-    }
-}
-
-
-/**
- * Clears the input fields for creating a contact.
- */
-function clearInputFields() {
-    document.getElementById('create-contact-name-input').value = '';
-    document.getElementById('create-contact-email-input').value = '';
-    document.getElementById('create-contact-phone-input').value = '';
-}
-
-
-/**
- * Adds a new contact to the contact list.
- */
-function addNewContact() {
-    let email = document.getElementById('create-contact-email-input').value;
-    let emailIndex = findEmailIndex(email);
-    let fullName = document.getElementById('create-contact-name-input').value;
-    let names = validateFullName(fullName);
-    if (!names) return; //"Wenn nicht names wahr ist" (also, wenn names leer oder null ist), dann mache, was danach kommt (in diesem Fall, stoppe die Funktion mit return;).
-    let newContact = createNewContact(names, email, document.getElementById('create-contact-phone-input').value);
-    addContactOrWarn(emailIndex, newContact);
-    hideModal('contactModal');
-    createContactPopup();
+function generateUniqueId() {
+    // Generate a unique ID using a timestamp and a random number
+    const timestamp = Date.now().toString(36);
+    const randomNumber = Math.random().toString(36).substring(2);
+    return timestamp + randomNumber;
 }
 
 
 /**
  * Sorts the contacts array by the initial of their first name.
  * If the initials are the same, sorts by the whole first name.
- *
- * @returns {void}
- */
+*
+* @returns {void}
+*/
 function sortContactsByInitial() {
     detailViewContacts = contacts.sort((a, b) => {
         // Vergleiche die ersten Buchstaben der Vornamen
@@ -411,7 +458,6 @@ function sortContactsByInitial() {
         if (initialA > initialB) {
             return 1;
         }
-
         // Wenn die ersten Buchstaben gleich sind, sortiere nach dem ganzen Vornamen
         return a.firstName.toUpperCase().localeCompare(b.firstName.toUpperCase());
     });
@@ -458,22 +504,21 @@ function getRandomColor() {
 
 
 /**
- * Removes duplicate contacts from the contacts array based on email uniqueness.
+ * Removes duplicate contacts from the contacts array based on id uniqueness.
  */
 function removeDuplicateContacts() {
-    const uniqueEmails = new Set();
+    const uniqueIds = new Set();
     const uniqueContacts = contacts.filter(contact => {
-        if (!uniqueEmails.has(contact.email)) {
-            uniqueEmails.add(contact.email);
+        if (!uniqueIds.has(contact.idContact)) {
+            uniqueIds.add(contact.idContact);
             return true;
         }
         return false;
     });
-
-    contacts = uniqueContacts; // Aktualisiere das contacts Array mit den einzigartigen Kontakten
+    contacts = uniqueContacts; // Update the contacts array with the unique contacts
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    init();
+    
 });

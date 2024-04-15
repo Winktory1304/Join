@@ -1,0 +1,597 @@
+/**INDEX start*/
+
+.mobile-start-screen {
+
+
+    display: none;
+    background-color: rgb(42, 54, 71);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+}
+
+@keyframes moveAndResizeMobile {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 313px;
+        height: 404px;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        top: 10px;
+        left: 10px;
+        transform: translate(0, 0);
+        width: 64px;
+        height: 78px;
+    }
+}
+
+@keyframes screenremove {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes greetingDisplay {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+
+
+@media(max-width: 1100px) {
+
+    .greeting-container {
+        padding-left: 20px;
+    }
+
+
+    .summary-header-container h1 {
+        font-size: 58px;
+        width: auto;
+    }
+
+    .summary-header-seperation-bar {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .summary-second-title {
+        font-size: 25px;
+    }
+
+}
+
+@media(max-width: 870px) {
+
+    .greeting-box {
+        font-size: 42px;
+    }
+
+    .unser-name {
+        font-size: 55px;
+    }
+
+    .greeting-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #F6F7F8;
+        z-index: 999;
+        padding: 0px;
+        text-align: center;
+        animation: greetingDisplay 2s ease-in forwards;
+        animation-delay: 2s;
+    }
+
+    @keyframes greetingDisplay {
+
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            display: none;
+        }
+    }
+
+}
+
+
+
+/**ab 569px*/
+
+@media(max-width: 569px) {
+
+
+    .intro-join-logo {
+        position: absolute;
+        width: 313px;
+        height: 404px;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: resizeJoinLogo 1s ease-in-out forwards;
+        animation-delay: 250ms;
+    }
+
+    @keyframes resizeJoinLogo {
+        0% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 313px;
+            height: 404px;
+        }
+
+        100% {
+            top: 37px;
+            left: 38px;
+            transform: translate(0, 0);
+            width: 64px;
+            height: 78px;
+        }
+    }
+
+    .log-container {
+        margin: 30px 10px;
+        min-width: 320px;
+        width: 90%;
+        height: 515px;
+        transform: translateX(-52%);
+    }
+
+    .email-or-password-not-found {
+        width: 100%;
+        height: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 14px;
+        color: red;
+    }
+
+    .log-in-checkbox {
+        padding-bottom: 20px;
+        padding-right: 0px;
+    }
+
+    .log-in-index-container {
+        display: flex;
+        flex-direction: column;
+        width: 93%;
+    }
+
+    .log-in-container h1 {
+        margin-top: 30px;
+        margin-bottom: 16px;
+        font-size: 47px;
+        font-weight: 700;
+    }
+
+
+    .button-container {
+        display: table-column;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0px;
+    }
+
+    .log-button {
+        width: 177px;
+        height: 48px;
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    .guest-button {
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    .header-container {
+        display: none;
+    }
+
+    .height-sing-up {
+        height: 595px !important;
+    }
+
+    .sing-up-container h1 {
+        font-size: 47px;
+        font-weight: 700;
+        margin-top: 24px;
+        margin-bottom: 18px;
+    }
+
+    .arrow-left-line {
+        top: 38px;
+        left: 40px;
+    }
+
+    .input-area {
+        width: 93%;
+        margin: 10px;
+
+    }
+
+
+    .sing-up-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+
+    .sign-up-button {
+        width: 180px;
+        height: 51px;
+        font-size: 16px;
+    }
+
+    .sing-up-check-box-label {
+        font-size: 16px !important;
+    }
+
+    .password-match {
+        width: 265px;
+    }
+
+
+    input[type="checkbox"]+label {
+        font-size: 16px;
+        width: unset;
+        height: unset;
+        padding-left: 20px;
+    }
+
+    input[type="checkbox"]+label::before {
+        width: 20px;
+        height: 20px;
+        font-size: 16px;
+    }
+
+
+    .mobile-start-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: screenremove 700ms ease-in-out forwards;
+        animation-delay: 250ms;
+    }
+
+    .mobile-logo {
+        width: 313px;
+        height: 404px;
+        animation: moveAndResizeMobile 1s ease-in-out forwards;
+        animation-delay: 250ms;
+        position: absolute;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+
+    .header-mobile-container {
+        position: fixed;
+        transform: translateY(330px);
+        display: flex;
+        align-items: center;
+    }
+
+    .header-mobile-container h2 {
+        font-size: 20px;
+        font-weight: 400;
+        padding-right: 20px;
+    }
+
+    .mobile-sign-up-header-button {
+        width: 104px;
+        height: 49px;
+        color: white;
+        background-color: rgb(42, 54, 71);
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
+    }
+
+
+    /**INDEX ende*/
+    /** ab jetzt ist SUMMARY */
+
+
+    .sidebar-container {
+        display: none !important;
+    }
+
+    .header-title {
+        display: none !important;
+    }
+
+
+    .header {
+        height: 80px !important;
+        width: 100% !important;
+        margin: 0px !important;
+    }
+
+
+    .join-logo-mobile {
+        margin-left: 15px;
+    }
+
+    .logged-user-icon {
+        height: 40px;
+        width: 40px;
+        margin-right: 20px;
+        font-size: 20px;
+        border: 2px solid rgb(42, 54, 71);
+    }
+
+    .summary-content {
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    .summary-header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        height: auto;
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .summary-header-container h1 {
+        width: auto;
+        font-size: 47px;
+        margin-bottom: 10px;
+    }
+
+    .summary-second-title {
+        font-size: 20px;
+    }
+
+    .summary-header-seperation-bar {
+        display: none;
+    }
+
+    .summary-header-seperation-bar-mobile {
+        height: 3px;
+        width: 95px;
+        margin-top: 10px;
+        background-color: rgb(41, 171, 226);
+    }
+
+    .summary-main-container {
+        margin-top: 30px;
+        width: min-content;
+    }
+
+
+    .summary-overview-container {
+        width: 396px;
+        height: 384px;
+        gap: 20px;
+    }
+
+
+
+
+    .summary-to-do-cont {
+        width: 186px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .summary-to-do-cont svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .summary-to-do-cont:hover {
+        cursor: pointer;
+        background-color: rgb(42, 54, 71);
+        color: white;
+        scale: 1.05;
+        box-shadow: 0px 4px 4px 0px #00000040;
+    }
+
+
+    .summary-amount-of-to-do-number {
+        font-size: 47px;
+    }
+
+    .summary-done-cont {
+        width: 186px;
+        height: 110px;
+        border-radius: 20px;
+    }
+
+    .summary-done-cont:hover {
+        cursor: pointer;
+        background-color: rgb(42, 54, 71);
+        color: white;
+        scale: 1.05;
+        box-shadow: 0px 4px 4px 0px #00000040;
+    }
+
+    .summary-done-cont svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .summary-text {
+        font-size: 14px;
+    }
+
+    .summary-amount-of-done-number {
+        font-size: 47px;
+    }
+
+    .summary-done-text {
+        font-size: 14px;
+    }
+
+    .summary-urgent-date {
+        font-size: 16px;
+    }
+
+    .summary-urgent-info {
+        font-size: 14px;
+    }
+
+    .summary-urgent-cont {
+        width: 396px;
+        height: 100%;
+        border-radius: 20px;
+        gap: 20px;
+    }
+
+    .summary-urgent-cont:hover {
+        cursor: pointer;
+        background-color: rgb(42, 54, 71);
+        color: white;
+        scale: 1.05;
+        box-shadow: 0px 4px 4px 0px #00000040;
+    }
+
+
+    .summary-urgent-left-box {
+        gap: 14px;
+    }
+
+    .summary-urgent-separation-bar {
+        height: 68px;
+    }
+
+    .urgent-icon-background {
+        width: 40px;
+        height: 40px;
+    }
+
+    .urgent-icon-top {
+        width: 23px;
+        height: 17px;
+    }
+
+
+    .summary-overview-box {
+        width: 116px;
+        height: 116px;
+        border-radius: 20px;
+    }
+
+    .summary-overview-box:hover {
+        cursor: pointer;
+        background-color: rgb(42, 54, 71);
+        color: white;
+        scale: 1.05;
+        box-shadow: 0px 4px 4px 0px #00000040;
+    }
+
+    .summary-overview {
+        justify-content: unset;
+        align-items: unset;
+        width: 396px;
+        height: 116px;
+        gap: 20px;
+    }
+
+    .summ-overlay-numb {
+        font-size: 47px;
+    }
+
+}
+
+
+
+
+@media(max-width: 420px) {
+
+    .summary-content {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .summary-overview-container {
+        width: 285px;
+        height: 325px;
+        gap: 10px;
+        padding: 0px
+    }
+
+    .summary-to-do-and-done-cont {
+        gap: 10px
+    }
+
+    .summary-urgent-cont {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .summary-amount-of-to-do-number {
+        font-size: 38px;
+    }
+
+    .summary-to-do-cont {
+        width: 145px;
+        height: 100px;
+    }
+
+    .summary-done-cont {
+        width: 145px;
+        height: 100px;
+    }
+
+    .summary-amount-of-done-number {
+        font-size: 38px;
+    }
+
+    .summary-urgent-left-box {
+        gap: 0px;
+    }
+
+
+    .summary-overview-box {
+        width: 92px;
+        height: 92px;
+    }
+
+    .summ-overlay-numb {
+        font-size: 38px;
+    }
+
+    .summary-overview {
+        gap: 5px;
+    }
+}

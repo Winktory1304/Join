@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary</title>
 
-    
-    <script src="../js/template.js"></script>
+
     <script src="../js/storage.js"></script>
-    <script src="../js/serverfunction-class.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/summary.js"></script>
+
+    <script src="../js/include.js"></script>
+    <script src="../js/template.js"></script>
     <script src="../js/register.js"></script>
     <link rel="stylesheet" href="../css/summary.css">
     <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/mobile_index.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
 
     <!-- Template -->
     <link rel="stylesheet" href="../css/navbar_sidebar.css">
-    <script src="../js/include.js"></script>
     <script src="../js/taskHandler.js"></script>
     <script src="../js/add_task.js"></script>
+    <script src="../js/summary.js"></script>
     
 
     
@@ -29,9 +32,9 @@
 
 <body onload="init()" class="unset-body summary-body">
 
-    <div w3-include-html="./template/sidebar.html"></div>
-    <div w3-include-html="./template/navbar.html"></div>
-
+    <div w3-include-html="template/sidebar.html"></div>
+    <div w3-include-html="template/navbar.html"></div>
+    <div w3-include-html="template/mobile_bottombar.html"></div>
 
     <main class="main-content-summary">
 
@@ -41,6 +44,7 @@
                 <h1>Join 360</h1>
                 <div class="summary-header-seperation-bar"></div>
                 <div class="summary-second-title">Key Metrics at a Glance</div>
+                <div class="summary-header-seperation-bar-mobile"></div>
             </div>
 
 
@@ -104,7 +108,7 @@
                         <div class="summary-urgent-separation-bar"></div>
                         <div>
                             <div class="summary-urgent-right-side">
-                                <span class="summary-urgent-date">October 16, 2022</span>
+                                <span id="summary_urgent_date" class="summary-urgent-date">October 16, 2022</span>
                                 <span class="summary-urgent-info"> Upcoming Deadline</span>
                             </div>
                         </div>
@@ -127,10 +131,12 @@
                 </a>
 
 
-                <div class="greeting-container">
-                    <h2 id="greet_box" class="greeting-box">Guten Tag</h2>
-                    <span id="user_name" class="user-name" >Artur</span>
+                <div id="greeting_container" class="greeting-container">
+                    <h2 id="greet_box" class="greeting-box"></h2>
+                    <span id="user_name" class="user-name"></span>
                 </div>
+
+
             </div>
         </div>
 

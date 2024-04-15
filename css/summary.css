@@ -1,4 +1,9 @@
+.d-none {
+    display: none !important;
+}
+
 .summary-body {
+    margin: 0;
     position: fixed;
     top: 0px;
     width: 100vw;
@@ -6,32 +11,16 @@
     background-color: #F5F5F5;
     overflow: hidden;
     font-family: 'inter', sans-serif !important;
-}
-
-body {
-    margin: 0;    
-    background-color: #F6F7F8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 16px;
-    overflow: hidden;
+}
+.mobile_bottom {
+    display: none;
 }
 
 .unset-body {
     display: unset;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0px;
-    font-family: "Inter";
-    border: unset;
-}
-
-*:focus {
-    outline: none;
-}
 
 .main-content-summary {
     display: flex;
@@ -94,6 +83,7 @@ body {
     justify-content: center;
     flex-direction: column;
     width: 560px;
+    height: 562px;
     gap: 28px;
 }
 
@@ -112,7 +102,7 @@ body {
     align-items: center;
     width: 264px;
     height: 168px;
-    padding: 38px 19px;
+
     gap: 18px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
@@ -151,6 +141,7 @@ body {
 }
 
 .summary-text {
+    margin: 0px;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
@@ -162,7 +153,6 @@ body {
     align-items: center;
     width: 264px;
     height: 168px;
-    padding: 38px 58px;
     gap: 18px;
     border-radius: 30px;
     background-color: white;
@@ -198,7 +188,7 @@ body {
     align-items: center;
     width: 560px;
     height: 168px;
-    padding: 28px 48px;
+
     gap: 61px;
     border-radius: 30px;
     background-color: white;
@@ -297,8 +287,6 @@ body {
     text-align: center;
     width: 168px;
     height: 168px;
-    padding: 25px 0px;
-    gap: 13px;
     flex-shrink: 0;
     background-color: white;
     border-radius: 30px;
@@ -316,29 +304,28 @@ body {
 .summ-overlay-numb {
     font-style: normal;
     text-align: center;
-    font-size: 64px;    
+    font-size: 64px;
     font-weight: 600;
 }
 
 .greeting-container {
     display: inline-flex;
     justify-content: center;
-    flex-direction: column;    
-    align-items: center;
-    gap: 3px;
-    padding-left: 80px;
-    margin-left: 200px;
+    flex-direction: column;     
+    padding-left: 100px;    
 }
 
 .greeting-box {
     font-style: normal;
-    font-size: 47px;    
+    font-size: 47px;
     font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .user-name {
     font-style: normal;
     color: rgb(41, 171, 226);
-    font-size: 64px;    
+    font-size: 64px;
     font-weight: 700;
 }

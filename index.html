@@ -6,14 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/fonts.css">
-  <script src="js/index.js"></script>
+  <link rel="stylesheet" href="css/mobile_index.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
   <script src="js/storage.js"></script>
   <script src="js/register.js"></script>
   <script src="js/summary.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/index.js"></script>
   <title>Join</title>
 </head>
 
 <body onload="initRegister()">
+
+
+  <div class="mobile-start-screen">
+    <svg class="mobile-logo" xmlns="http://www.w3.org/2000/svg" width="101" height="122" viewBox="0 0 101 122"
+      fill="none">
+      <path d="M71.6725 0H49.5146V25.4923H71.6725V0Z" fill="white" />
+      <path
+        d="M49.5142 46.2251H71.6721V82.1779C71.7733 90.8292 69.3112 99.3153 64.5986 106.557C59.9455 113.594 50.963 121.966 34.3446 121.966C16.2434 121.966 5.69286 113.406 0 108.715L13.9765 91.4743C19.533 96.0112 24.885 99.7435 34.4299 99.7435C41.6567 99.7435 44.5372 96.7988 46.2247 94.2307C48.5186 90.6637 49.7052 86.4923 49.6335 82.2464L49.5142 46.2251Z"
+        fill="white" />
+      <path d="M38.2135 30.1318H16.0557V52.3884H38.2135V30.1318Z" fill="#29ABE2" />
+      <path
+        d="M83.2795 111.522C83.2795 116.265 80.8762 118.815 77.5184 118.815C74.1607 118.815 71.9619 115.785 71.9619 111.762C71.9619 107.739 74.2288 104.554 77.7059 104.554C81.183 104.554 83.2795 107.687 83.2795 111.522ZM74.5356 111.711C74.5356 114.57 75.6776 116.675 77.6377 116.675C79.5978 116.675 80.7057 114.45 80.7057 111.539C80.7057 108.988 79.6831 106.592 77.6377 106.592C75.5924 106.592 74.5356 108.903 74.5356 111.711Z"
+        fill="white" />
+      <path d="M87.6771 104.76V118.593H85.2227V104.76H87.6771Z" fill="white" />
+      <path
+        d="M90.3359 118.593V104.76H93.0631L95.9947 110.461C96.7494 111.952 97.4209 113.483 98.006 115.049C97.8526 113.337 97.7844 111.368 97.7844 109.177V104.76H100.034V118.593H97.4946L94.5289 112.772C93.7437 111.243 93.0438 109.671 92.4324 108.064C92.4324 109.776 92.5517 111.711 92.5517 114.09V118.576L90.3359 118.593Z"
+        fill="white" />
+    </svg>
+  </div>
+
   <div class="join-logo-container">
     <svg class="intro-join-logo" width="274" height="335" viewBox="0 0 274 335" fill="none"
       xmlns="http://www.w3.org/2000/svg">
@@ -34,9 +58,9 @@
 
 
 
-  <div class="header-container">
+  <div id="header_container" class="header-container">
     <h2>Not a Join user?</h2>
-    <button class="log-button" onclick="registerWindow()">Sign up</button>
+    <button class="sign-up-header-button" onclick="registerWindow()">Sign up</button>
   </div>
 
   <div id="log_container" class="log-container">
@@ -46,13 +70,13 @@
       <div class="log-in-underline"></div>
       <form class="log-in-index-container" onsubmit="logIn(); return false">
         <div class="input-area">
-          <input id="log_in_email" type="email" placeholder="Email" required /><img src="./assets/img/mail.svg" />
+          <input id="log_in_email" type="email" required placeholder="Email" /><img src="./assets/img/mail.svg" />
         </div>
         <div class="input-area">
           <input id="log_in_password" type="password" placeholder="Password" required /><img
             src="./assets/img/lock.svg" />
         </div>
-      </form>
+
         <span id='email_or_password_not_found' class="email-or-password-not-found"></span>
         <div class="log-in-checkbox">
           <input id="confirm" type="checkbox" checked required />
@@ -62,10 +86,9 @@
           <button class="log-button" onclick="logIn()">Log in</button>
           <button class="guest-button" onclick="logInGuest()">Guest Log in</button>
         </div>
-      
+
+      </form>
     </div>
-
-
 
 
     <div id="sing_up_container" class="sing-up-container d-none">
@@ -74,12 +97,13 @@
       </div>
       <h1>Sign up</h1>
       <div class="log-in-underline"> </div>
+
       <form class="sing-up-content" onsubmit="registerUser(); return false">
 
-        <form class="sing-up-index-container">
+        <div class="sing-up-index-container">
 
           <div class="input-area">
-            <input id="sign_up_name" type="text" placeholder="Name" required />
+            <input id="sign_up_name" required type="text" placeholder="Name" minlength="5" />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6058" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -107,8 +131,8 @@
             </svg>
           </div>
           <div class="input-area">
-            <input onkeyup="checkPassword()" id="sign_up_password" type="password" minlength="5" placeholder="Password"
-              required />
+            <input onkeyup="checkPassword()" placeholder="Password" id="sign_up_password" type="password" required minlength="5" 
+               />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -123,8 +147,8 @@
           </div>
 
           <div class="input-area" id="input_area_red">
-            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" minlength="5"
-              placeholder="Confirm Password" required />
+            <input onkeyup="checkPassword()" id="sign_up_confirm_password" type="password" required minlength="5"
+              placeholder="Confirm Password"  />
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_100427_6072" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -137,8 +161,9 @@
               </g>
             </svg>
           </div>
+        </div>
 
-        </form>
+
 
 
         <span id='password_match' class="password-match"></span>
@@ -147,8 +172,9 @@
         <div class="sing-up-check-box">
           <input onclick="checkPrivacyPolicy()" style="margin-right: 8px; color: black" type="checkbox"
             id="privacy_policy_check" name="privacy_policy_check" checked required />
-          <label style="font-size: 18px; color: #A8A8A8" for="privacy_policy_check">I accept the<a
-              style="padding-left: 6px" class="sign-up-link" href="" target="_blank">Privacy policy</a></label>
+          <label style="font-size: 18px; color: #A8A8A8" for="privacy_policy_check" class="sing-up-check-box-label">I
+            accept the<a style="padding-left: 6px" class="sign-up-link" href="" target="_blank">Privacy
+              policy</a></label>
         </div>
 
 
@@ -157,27 +183,31 @@
             up</button>
         </div>
 
-
+      </form>
     </div>
   </div>
 
-  <div class="footer-container">
-    <a target="_blank" class="footer-text" href="">Privacy Policy</a>
-    <a target="_blank" class="footer-text" href="">Legal notice</a>
-  </div>
+
 
   <div id="sigend-up-successfuly-container" class="sigend-up-successfuly-container d-none">
     <div class="sigend-up-successfuly-box">
       Your Signed Up successfully
     </div>
   </div>
+  
 
-  <div id="logged_in_successfuly_container" class="sigend-up-successfuly-container d-none">
-    <div class="sigend-up-successfuly-box">
-      You logged in successfully
-    </div>
+  <div id="mobile_header_container" class="header-mobile-container">
+    <h2>Not a Join user?</h2>
+    <button class="mobile-sign-up-header-button" onclick="registerWindow()">Sign up</button>
   </div>
 
+
+
+
+  <footer class="footer-container">
+    <a class="footer-text" href="./html/privacyPolice.html">Privacy Policy</a>
+    <a class="footer-text" href="./html/legalNotice.html">Legal notice</a>
+  </footer>
 
 </body>
 

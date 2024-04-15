@@ -10,7 +10,6 @@
 /* Header and sidebar */
 .addtask_sidebar {
     position: fixed;
-    top: 8px;
     width: 232px;
     height: 1024px;
     background-color: #2A3647;
@@ -19,7 +18,6 @@
 
 .addtask_header {
     position: fixed;
-    top: 8px;
     width: 1440px !important;
     height: 96px;
     background-color: #ffffff;
@@ -35,14 +33,16 @@
     height: 100vh;
     background-color: #F5F5F5;
     overflow-x: hidden;
+    margin: 0;
+    margin-top: 0 !important;
 }
 
 /* addtask content */
 .addtask_content {
     position: fixed;
-    top: 104px;
+    top: 96px;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin-left: 232px;
     scrollbar-width: thin;
     overflow-y: auto;
@@ -54,10 +54,10 @@
     font-weight: 700;
     width: 466px;
     height: 78px;
-    top: 64px;
+    top: 0px;
     left: 74px;
     gap: 1px;
-    padding-top: 110px;
+    padding-top: 10px;
     padding-left: 96px;
 }
 
@@ -65,31 +65,36 @@
     font-size: 20px;
     font-weight: 400;
     padding-bottom: 8px;
+    padding-top: 8px;
 }
 
 .addtask-h2 span {
     color: #FFA800;
 }
 
-.addtask-footer span {
-    color: #FFA800;
-    padding-left: 20px;
-    z-index: -1 !important;
+/* widt inputfields */
+.width540 {
+    width: 540px;
 }
 
-/* addtask content main, left, middle, right, footer */
+.width524 {
+    width: 524px;
+}
+
+.width552 {
+    width: 552px;
+}
+
+/* addtask content main, left, middle, right */
 .addtask-content-main {
     display: flex;
     padding-top: 43px;
     width: 100vw - 232px;
-    margin-left: 5px;
     margin-right: 237px;
 }
 
 .addtask-left-content {
-    height: 376px;
-    width: 540px;
-    margin-left: 96px;
+    margin-left: 48px;
     margin-right: 48.25px;
     left: 328px;
 }
@@ -100,33 +105,21 @@
     top: 327px;
     left: 816.25px;
     background-color: #D1D1D1;
-
 }
 
 .addtask-right-content {
-    height: 416px;
-    width: 540px;
     top: 327px;
     left: 864.25px;
-
     margin-left: 48px;
 }
 
-.addtask-content-footer {
-    display: flex;
-    width: 85vw;
-    justify-content: space-between;
-    align-items: end;
-    width: 100vw - 232px;
-    margin-left: 5px;
-    margin-right: 250px;
-    /* margin-left: 96px;
-    margin-right: 96px; */
+/* diabled button color hover */
+.grey {
+    background-color: rgb(236, 7, 7);
 }
 
 /* style inputfields */
 .addtask-input-title {
-    width: 540px;
     height: 48px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
@@ -149,14 +142,13 @@
 
 .addtask-input-title::placeholder {
     color: #d1d1d1;
-  }
-  
+}
+
 .addtask-input-title[value="Black"] {
     color: black;
-  }
+}
 
 .addtask-input-description {
-    width: 524px;
     min-height: 130px;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
@@ -176,19 +168,32 @@
 
 .addtask-input-description::placeholder {
     color: #d1d1d1;
-  }
-  
+}
+
 .addtask-input-description[value="Black"] {
     color: black;
-  }
+}
 
 .addtask-input-assigned {
-    width: 540px;
     height: 48px;
+    padding-left: 12px;
+    gap: 0;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
     padding-left: 12px;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+    display: flex;
+    background-color: white;
+}
+
+.addtask-input-assigned-input {
+    border: none;
     font-style: normal;
     font-size: 20px;
     font-weight: 400;
@@ -202,14 +207,13 @@
 
 .addtask-input-description::placeholder {
     color: #d1d1d1;
-  }
-  
+}
+
 .addtask-input-description[value="Black"] {
     color: black;
-  }
+}
 
 .addtask-input-date {
-    width: 540px;
     height: 48px;
     gap: 0;
     border-radius: 10px;
@@ -231,18 +235,17 @@
 
 .addtask-input-date::placeholder {
     color: #d1d1d1;
-  }
+}
 
-  .addtaskBlack {
-color: black !important;
-  }
-  
+.addtaskBlack {
+    color: black !important;
+}
+
 .addtask-input-date[value="Black"] {
     color: black;
-  }
+}
 
 .addtask-input-category {
-    width: 540px;
     height: 48px;
     padding-left: 12px;
     gap: 0;
@@ -254,35 +257,33 @@ color: black !important;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-
 }
 
 .addtask-input-category:hover {
     cursor: pointer;
     border: 1px solid #29ABE2;
-   }
+}
 
 .addtask-input-category::placeholder {
     color: #d1d1d1;
-  }
-  
+}
+
 .addtask-input-category[value="Black"] {
     color: black;
-  }
+}
 
 .addtask-input-subtasks {
-    width: 540px;
     height: 48px;
     padding-left: 12px;
     gap: 0;
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     justify-content: space-between;
-       font-style: normal;
+    font-style: normal;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-   }
+}
 
 .addtask-input-subtasks:hover {
     cursor: pointer;
@@ -291,15 +292,14 @@ color: black !important;
 
 .addtask-input-subtasks::placeholder {
     color: #d1d1d1;
-  }
-  
+}
+
 .addtask-input-subtasks[value="Black"] {
     color: black;
-  }
+}
 
 /* style buttons */
 .addtask-prio-buttons {
-    width: 540px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -308,12 +308,10 @@ color: black !important;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-    padding: 0;
-    
 }
 
 .addtask-button {
-    width: 136px;
+    max-width: 136px;
     height: 56px;
     border-radius: 10px;
     padding: 16px 10px 16px 10px;
@@ -326,11 +324,12 @@ color: black !important;
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    align-items: center;
 }
 
 .addtask-button:hover {
     cursor: pointer;
-       border: 1px solid #29ABE2;
+    border: 1px solid #29ABE2;
 }
 
 .addtaskbutton {
@@ -345,7 +344,12 @@ color: black !important;
     padding-right: 20px;
 }
 
-.addtask-button-create-task{
+.prioimg {
+    width: 20px;
+    height: 20px;
+}
+
+.addtask-button-create-task {
     width: 183px;
     height: 56px;
     border-radius: 10px;
@@ -361,25 +365,16 @@ color: black !important;
 }
 
 .urgent.selected {
-    background-color: #FF3D00;
+    background-color: rgb(255, 61, 0, 0.2);
 }
 
 .medium.selected {
-    background-color: #FFA800;
+    background-color: rgb(255, 168, 0, 0.2);
 }
 
 .low.selected {
-    background-color: #7AE229;
+    background-color: rgb(122, 226, 41, 0.2);
 }
-
-/* .addtask-button-create-task[disabled='false'] {
-    background-color: blue;
-  }
-  
-  .addtask-button-create-task[disabled="true"] {
-    background-color: rgb(255, 0, 0);
-  } */
-   
 
 .addtask-button-cancel {
     width: 110px;
@@ -400,13 +395,18 @@ color: black !important;
 .addtask-button-cancel:hover {
     cursor: pointer;
     color: #29ABE2;
-
 }
 
-.addtask-button-create-task:hover:enabled {
+.addtask-button-create-task:hover {
     cursor: pointer;
     background-color: #29ABE2;
-    border: 1px solid #29abe2;
+    border: 1px solid #29ABE2;
+}
+
+.addtask-button-create-task:hover:disabled {
+    cursor: pointer;
+    background-color: #e2292f;
+    border: 1px solid #e22929;
 }
 
 .messagedatevalidation {
@@ -415,9 +415,9 @@ color: black !important;
 }
 
 .d-none {
-display: none !important;
-
+    display: none !important;
 }
+
 /* Style Popup */
 .popup {
     position: fixed;
@@ -431,22 +431,19 @@ display: none !important;
     border-radius: 10px;
     border: 1px solid;
     color: white;
-  }
+    display: block;
+}
 
- .addsubtaskliste {
+.addsubtaskliste {
     font-size: 40px;
     font-style: normal;
     font-weight: 400;
     font-family: "Inter";
- }
+}
 
-
-
-
-
-.inputfield{
-    width: 540px;
-    max-height: 300px;
+.inputfield {
+    width: 520px;
+    max-height: 150px;
     display: flex;
     flex-direction: column;
     scrollbar-width: thin;
@@ -455,28 +452,204 @@ display: none !important;
     gap: 10px;
     background-color: #ffffff;
     padding: 10px;
+    position: relative;
+    z-index: 1;
 }
-  
 
-.inputnew{
+.containerSubtask {
     display: flex;
-    width: 500px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    gap: 5px;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+}
+
+.subtaskIcons {
+    display: flex;
+    gap: 5px;
+}
+
+.containerForSubtask {
+    width: 520px;
+    scrollbar-width: thin;
+    border-radius: 10px;
+    overflow: auto;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 150px;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+}
+
+.inputnew {
+    display: flex;
+    max-width: 500px;
     margin-left: 15px;
     height: 40px;
     flex-direction: row;
     font-size: 20px;
     text-align: right;
-    
     justify-content: space-between;
-    
 }
-
 
 .checkBox {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background-color: #FF3D00;
-    border: 1px solid #FF3D00;
     cursor: pointer;
 }
+
+.inputfieldEditSubtask {
+    width: 440px;
+    height: 40px;
+    font-size: 20px;
+    border-width: 0 0 2px;
+    border-color: #29ABE2;
+}
+
+.inputfieldEditSubtask:focus {
+    border-color: green;
+    outline: 1px dotted #000
+}
+
+
+@media(max-width: 1500px) {
+    .width540 {
+        width: 400px;
+    }
+
+    .width524 {
+        width: 384px;
+    }
+
+    .addtask-prio-buttons {
+        width: 400px;
+    }
+
+    .addtask-input-category {
+        width: 400px;
+    }}
+
+    @media(max-width: 1300px) {
+        .sidebar {
+            display: none !important;
+        }
+
+        .addtask_content {
+            margin-left: 16px;
+        }
+
+        .addtask-content-main {
+            margin-right: 16px;
+        }
+
+        .addtask_inner_content {
+            min-height: 1440px;
+        }
+
+        .addtask-content-footer {
+            margin-right: 0;
+        }
+
+        .addtask_h1 {
+            font-size: 61px;
+            font-weight: 700;
+            width: 466px;
+            height: 78px;
+            top: 0px;
+            margin: 0 !important;
+            text-align: center;
+            gap: 1px;
+            padding-top: 10px;
+            padding-left: 0;
+        }
+
+        .addtask-middle-content {
+            display: none;
+        }
+
+        .addtask-content-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 0;
+        }
+
+        .width540 {
+            width: 540px;
+        }
+
+        .width524 {
+            width: 540px;
+        }
+
+        .addtask-right-content {
+            margin-left: 0;
+        }
+
+        .addtask-prio-buttons {
+            width: 550px;
+        }
+    
+        .addtask-input-category {
+            width: 550px;
+        }
+    }
+
+    @media(max-width: 600px) {
+        .width540 {
+            width: 85vw;
+        }
+
+        .width524 {
+            width: 85vw;
+        }
+
+        .width552 {
+            width: 90vw;
+        }
+
+        .addtask-prio-buttons {
+            width: 88vw;
+        }
+
+        .addtask-button-cancel {
+            display: none;
+        }
+    }
+
+    @media(max-width: 440px) {
+        .addtask_h1 {
+            width: 320px;
+            font-size: 40px;
+        }
+
+        .addtask-button {
+            max-width: 90vw;
+            height: 56px;
+            border-radius: 10px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .addtask-right-content {
+            width: 90vw;
+        }
+    }

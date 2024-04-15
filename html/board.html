@@ -7,16 +7,21 @@
     <title>Board</title>
     <link rel="stylesheet" href="../css/addtask.css">
     <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/navbar_sidebar.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
+
 
     <script src="../js/board.js"></script>
     <script src="../js/storage.js"></script>
-    <link rel="stylesheet" href="../css/fonts.css">
-    <link rel="stylesheet" href="../css/addtask.css">
-
     <script src="../js/add_task.js"></script>
     <script src="../js/board_html.js"></script>
     <script src="../js/include.js"></script>
     <script src="../js/taskHandler.js"></script>
+    <script src="../js/template.js"></script>
+
+    <link rel="stylesheet" href="../css/responsive_board.css">
 
 
 </head>
@@ -34,10 +39,29 @@
 
     <div w3-include-html="./template/sidebar.html"></div>
     <div w3-include-html="./template/navbar.html"></div>
+    <div w3-include-html="template/mobile_bottombar.html"></div>
+
+
     <div class="board_content">
         <div class="board_top">
             <div class="board_head">
-                <h1 class="board_headline">Board</h1>
+
+                <h1 class="board_headline mobile_hidden">Board</h1>
+                <div class="mobile_headline">
+                    <h1 class="board_headline">Board</h1>
+                    <a class="plus" href="addtask.html"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <mask id="mask0_154243_3931" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                                width="32" height="32">
+                                <rect width="32" height="32" fill="#D9D9D9" />
+                            </mask>
+                            <g mask="url(#mask0_154243_3931)">
+                                <path
+                                    d="M14.666 17.3327H6.66602V14.666H14.666V6.66602H17.3327V14.666H25.3327V17.3327H17.3327V25.3327H14.666V17.3327Z"
+                                    fill="white" />
+                            </g>
+                        </svg></a>
+                </div>
                 <div class="board_findTask">
                     <input type="search" onkeypress="searchTask()" id="board_findTask_input"
                         class="board_findTask_input" placeholder="Find Task">
@@ -54,7 +78,7 @@
                             </g>
                         </svg>
                     </button>
-                    <button class="addTask" onclick="deleteALL()">Delete all</button>
+                    <!-- <button class="addTask" onclick="deleteALL()">Delete all</button> -->
                 </div>
             </div>
         </div>
@@ -62,9 +86,10 @@
         <div class="board_bottom">
             <div class="board_tasks">
                 <!-- ID: board_todo -->
-                <div>
+                <div class="spalte">
                     <div class="row">
-                        <h4>To do</h4><img onmouseenter="hoverPlus(0)" onmouseleave="hoverPlusOut(0)" class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""  onclick="createTask('open')">
+                        <h4>To do</h4><img onmouseenter="hoverPlus(0)" onmouseleave="hoverPlusOut(0)" class="board_plus"
+                            src="..//assets/img/board-plus.svg" alt="" srcset="" onclick="createTask('open')">
                     </div>
                     <div class="board_cardcolumn " id="board_open" ondrop="moveTo('open'),removeHighlight('board_open')"
                         ondragleave="removeHighlight('board_open')"
@@ -73,9 +98,11 @@
 
                 </div>
                 <!-- ID: board_progress -->
-                <div>
+                <div class="spalte">
                     <div class="row">
-                        <h4>In Progress</h4><img onmouseenter="hoverPlus(1)" onmouseleave="hoverPlusOut(1)" class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""  onclick="createTask('progress')">
+                        <h4>In Progress</h4><img onmouseenter="hoverPlus(1)" onmouseleave="hoverPlusOut(1)"
+                            class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""
+                            onclick="createTask('progress')">
                     </div>
                     <div class="board_cardcolumn" id="board_progress"
                         ondrop="moveTo('progress'), removeHighlight('board_progress')"
@@ -87,9 +114,11 @@
 
                 </div>
                 <!-- ID: board_feedback -->
-                <div>
+                <div class="spalte">
                     <div class="row">
-                        <h4>Feedback</h4><img onmouseenter="hoverPlus(2)" onmouseleave="hoverPlusOut(2)" class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""  onclick="createTask('feedback')">
+                        <h4>Feedback</h4><img onmouseenter="hoverPlus(2)" onmouseleave="hoverPlusOut(2)"
+                            class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""
+                            onclick="createTask('feedback')">
                     </div>
                     <div class="board_cardcolumn " id="board_feedback"
                         ondrop="moveTo('feedback'), removeHighlight('board_feedback')"
@@ -100,7 +129,7 @@
                 </div>
                 <!-- ID: board_done -->
 
-                <div>
+                <div class="spalte">
                     <div class="row">
                         <h4>Done</h4>
                     </div>

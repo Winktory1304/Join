@@ -2,9 +2,7 @@
  * Updates the HTML elements on the board based on the todos array.
  */
 function updateHTML() {
-
-    let open = todosdome.filter(t => t['status'] == 'open');
-
+    let open = todos.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
     if (open.length === 0) {
@@ -17,8 +15,7 @@ function updateHTML() {
 
     }
 
-    let inProgress = todosdome.filter(t => t['status'] == 'progress');
-
+    let inProgress = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
     if (inProgress.length === 0) {
@@ -30,9 +27,7 @@ function updateHTML() {
         document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
     }
 
-
-    let inFeedback = todosdome.filter(t => t['status'] == 'feedback');
-
+    let inFeedback = todos.filter(t => t['status'] == 'feedback');
 
     document.getElementById('board_feedback').innerHTML = '';
     if (inFeedback.length === 0) {
@@ -44,9 +39,7 @@ function updateHTML() {
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
     }
 
-
-    let closed = todosdome.filter(t => t['status'] == 'done');
-
+    let closed = todos.filter(t => t['status'] == 'done');
 
     document.getElementById('board_done').innerHTML = '';
     if (closed.length === 0) {
@@ -98,12 +91,58 @@ function generateTodoHTML(element) {
                         <p class="board_tasktext">${limitTaskText(element)}</p>
                         <div class="board_cardbar"> ${subTasks(element)}</div>
                         <div class="board_cardbottom">
-                            <div class="board_cardcontactsdome">Kontakte</div>
+                            <div class="board_cardcontactsdome">${generateContacts(element.contacts)}</div>
                             <div class="board prio">${prioritySelector(element)}</div>
                         </div>
                     </div>
                     </div>
                     `;
+}
+
+
+function generateContacts(element) {
+    
+    if (element.length === 0) {
+        return 'No Contacts';
+    }
+
+    if (element.length > 5) {
+        element = element.slice(0, 5);
+    }
+    let contactHTML = '';
+    element.forEach((contact) => {
+        let initials = contact.split(' ').map(name => name.charAt(0)).join('');
+        
+        let name = contact.split(" ");
+        let id = "contactcircle-" + name[1] + name[2];
+        contactHTML +=`
+        <div class="board_cardcontactsring">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle id=${id} cx="21" cy="21" r="20" fill="${colorPicker(id, name)}" stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>
+        </div>
+        `;
+
+    });
+    return contactHTML;
+}
+
+/**
+ * Sets the fill color of an element based on the color associated with a contact.
+ * @param {string} id - The id of the element to set the fill color for.
+ * @param {Array} element - An array containing the contact's information.
+ */
+function colorPicker(id, element) {
+    setTimeout(() => {
+    contacts.filter((contact) => {
+        if (contact.firstName === element[1] && contact.lastName === element[2]) {
+          let color2 = contact.color;
+          document.getElementById(id).style.fill = color2;
+        }
+      });
+
+    }, 30);
 }
 
 /**
@@ -145,6 +184,7 @@ function closeDialog() {
 function openTaskDialog() {
     document.getElementById('board_addTask').classList.remove('d-none');
     changeAddTask();
+    selectedContacts = [];
 }
 
 /**
@@ -152,20 +192,8 @@ function openTaskDialog() {
  */
 function closeTaskDialog() {
     document.getElementById('board_addTask').classList.add('d-none');
+    selectedContacts = [];
 }
-
-/**
- * Adds a task to the board.
- */
-// function addTask() {
-//     document.getElementById('board_addTask').innerHTML = `
-//     <div class="board_addtaskcard">
-//         <!-- Hier kommt der Code von Christina rein -->
-//         <p onclick="closeTaskDialog()">X</p>
-//     </div>
-//     `;
-
-// }
 
 /**
  * Returns the priority level of an element as a string.
@@ -184,4 +212,56 @@ function setPriority(element) {
     } else {
         return '';
     }
+}
+
+function generateEditTaskHTML(element) {
+    return `
+    <div class="board_taskcard" id ="taskcardedit">
+      <div id="board_editframe" class="board_editframe max-width-525">
+        <div class="board_taskedit">
+        <h1>Edit Task</h1>
+        <p class="board_cardexit" onclick="closeDialog()">X</p>
+        </div>
+        <p>Task Title</p>
+        <input class="max-width-500" type="text" id="addtask-input-title" value="${element.title}" required>
+        <p>Task Description</p>
+        <input class="max-width-500"  type="text" id="addtask-input-description" value="${element.task}" required>
+        <p>Task Date</p>
+        <input class="max-width-500"  type="date" id="addtask-input-date" value="${element.date}" required>
+        <p>Task Category</p>
+        <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
+            <option default value="${element.tag}" disabled>${element.tag}</option>
+            <option value="User Story">User Story</option>
+            <option value="Technical Task">Technical Task</option>
+        </select>
+        <p>Task Category</p>
+            <div class="addtask-prio-buttons max-width-500">
+                <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
+                  <img src="../assets/img/addtaskurgent.svg">
+                </button>
+                <button onclick="selectPrio('medium')" class="addtask-button medium selected" id="addtaskButtonMedium">Medium
+                  <img src="../assets/img/addtaskmedium.svg">
+                </button>
+                <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
+            </div>
+        <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
+            <div style="position: relative;">
+
+                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
+            <div class="containerForSubtask d-none" id="containerForSubtask"></div>
+        
+        <p>Assigned Contacts</p>
+        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
+                onfocus="getReady(), getarray()">
+                
+        <div class="addtask-gap16" id="test">
+        </div>
+        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
+        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${element.id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
+      </div>
+      </div>
+    `;
 }

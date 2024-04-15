@@ -18,8 +18,15 @@ function loadUsers() {
  * Registers a user if email doesn't already exists.
  */
 function registerUser() {
+    const password = document.getElementById('sign_up_password').value.trim();
+
+
+    if (password === '') {
+        return;
+    }
 
     let email = document.getElementById('sign_up_email').value;
+    checkPassword();
     checkPrivacyPolicy();
 
     if (checkIfEmailExists(email)) {
@@ -38,6 +45,7 @@ function registerUser() {
         }, 2000);
     }
 }
+
 
 /**
  * Checks if an email already exists in the users array.
@@ -64,14 +72,34 @@ async function pushTheUserToStorage() {
     let name = document.getElementById('sign_up_name');
     let email = document.getElementById('sign_up_email');
     let password = document.getElementById('sign_up_password');
+    const id = generateUniqueId();
+    let names = name.value.split(' ');
+    let formattedName = '';
+    for (let i = 0; i < names.length; i++) {
+        formattedName += names[i].charAt(0).toUpperCase() + names[i].slice(1).toLowerCase();
+        if (i !== names.length - 1) {
+            formattedName += ' ';
+        }
+    }
+
+
+
 
     users.push({
-        name: name.value,
+        idContact : id,
+        name: formattedName,
         email: email.value,
         password: password.value,
     });
     await setItem('users', users);
     resetForm();
+}
+
+function generateUniqueId() {
+    // Generate a unique ID using a timestamp and a random number
+    const timestamp = Date.now().toString(36);
+    const randomNumber = Math.random().toString(36).substring(2);
+    return timestamp + randomNumber;
 }
 
 /**
@@ -83,24 +111,38 @@ function resetForm() {
     document.getElementById('sign_up_password').value = '';
     document.getElementById('sign_up_confirm_password').value = '';
     document.getElementById('sign_up_button').disabled = true;
+    document.getElementById('log_in_email').value = '';
+    document.getElementById('log_in_password').value = '';
+    document.getElementById('password_match').innerHTML = '';
 }
 
 /**
  * Checks whether the password is entered correctly twice and enables the register button.
  */
 function checkPassword() {
-    if (document.getElementById('sign_up_password').value == document.getElementById('sign_up_confirm_password').value) {
+    const password = document.getElementById('sign_up_password').value;
+    const confirmPassword = document.getElementById('sign_up_confirm_password').value;
+    const passwordMatch = document.getElementById('password_match');
+
+    if (password === '' && confirmPassword === '') {
+        passwordMatch.innerHTML = '';
+        document.getElementById('input_area_red').classList.remove('input_area_red');
+        return; // Beende die Funktion hier, wenn beide Felder leer sind
+    }
+
+    if (password === confirmPassword) {
         document.getElementById('sign_up_button').disabled = false;
-        document.getElementById('password_match').style.color = 'green';
-        document.getElementById('password_match').innerHTML = 'matching';
+        passwordMatch.style.color = 'green';
+        passwordMatch.innerHTML = 'matching';
         document.getElementById('input_area_red').classList.remove('input_area_red');
     } else {
         document.getElementById('sign_up_button').disabled = true;
-        document.getElementById('password_match').style.color = 'red';
-        document.getElementById('password_match').innerHTML = "Ups! your password don't match";
+        passwordMatch.style.color = 'red';
+        passwordMatch.innerHTML = "Ups! your password don't match";
         document.getElementById('input_area_red').classList.add('input_area_red');
     }
 }
+
 
 /**
  * Checks if the terms and conditions are confirmed to enable register button.
@@ -127,22 +169,13 @@ function logIn() {
     let user = userValidation(email, password);
     if (user) {
         indexOfUser(email);
-
-        document.getElementById(`logged_in_successfuly_container`).classList.remove('d-none');
-
-        setTimeout(function () {
-            document.getElementById(`logged_in_successfuly_container`).classList.add('d-none');
-        }, 2000);
-
-        setTimeout(function () {
-            window.location.href = './html/summary.html';
-        }, 2000);
-
+        window.location.href = './html/summary.html';
     }
     else {
         message.innerText = 'Ups! Email or password not found !';
     }
 }
+
 
 /**
  * Validates user by checking email and password.
@@ -156,33 +189,59 @@ function userValidation(email, password) {
 }
 
 /**
- *    ===== funktioniert nicht !!!! <- Gefixxt!
+ * Filters the index of a user by email and stores it in local storage.
  */
 function indexOfUser(email) {
     let userIndex = users.filter(user => user.email === email);
     localStorage.setItem('currentUserIndex', userIndex[0].email); // <- hier wird die User Email in den LocalStorage gespeichert
-    console.log('zeig mir den aktuellen User', userIndex[0].email);
 }
 
 /**
- *   funktioniert nicht vollständig!!!! <- Gefixxt!
+ * Logs a guest in and redistricts him to the summary page.
  */
 function logInGuest() {
     window.location.href = './html/summary.html';
     localStorage.setItem('currentUserIndex', "Guest");
 }
 
+
 /**
  * Redistricts to the login window.
  */
 
 function goBackToLogIn() {
+    resetForm();
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
     document.getElementById('log_container').classList.remove('height-sing-up');
+    showSignUpHeader();
 }
 
 
+/**
+ * It takes you a step back.
+ */
 function goOneStepBack() {
     window.history.back();
+}
+
+
+/**
+ * If the setting is responsive, the button is hidden .
+ */
+function hideSignUpHeader() {
+    let width = document.documentElement.clientWidth;
+    if (width < 500) {
+        document.getElementById('mobile_header_container').classList.add('d-none');
+    }
+}
+
+/**
+ * If the setting is responsive, the button shows.
+ */
+function showSignUpHeader() {
+    let width = document.documentElement.clientWidth;
+    if (width < 500) {
+        document.getElementById('mobile_header_container').classList.remove('d-none');
+    }
 }
