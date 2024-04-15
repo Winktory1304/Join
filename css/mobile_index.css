@@ -48,6 +48,17 @@
     }
 }
 
+@keyframes greetingDisplay {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
 
 
 
@@ -77,9 +88,39 @@
 
 @media(max-width: 870px) {
 
+    .greeting-box {
+        font-size: 42px;
+    }
+
+    .unser-name {
+        font-size: 55px;
+    }
 
     .greeting-container {
-        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #F6F7F8;
+        z-index: 999;
+        padding: 0px;
+        text-align: center;
+        animation: greetingDisplay 2s ease-in forwards;
+        animation-delay: 2s;
+    }
+
+    @keyframes greetingDisplay {
+
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            display: none;
+        }
     }
 
 }
@@ -490,10 +531,6 @@
         font-size: 47px;
     }
 
-    .greeting-container {
-        display: none;
-    }
-
 }
 
 
@@ -553,8 +590,8 @@
     .summ-overlay-numb {
         font-size: 38px;
     }
+
     .summary-overview {
         gap: 5px;
     }
-
 }
