@@ -528,17 +528,8 @@
     outline: 1px dotted #000
 }
 
-@media(max-width: 1550px) {
-    .width540 {
-        width: 440px;
-    }
 
-    .width524 {
-        width: 424px;
-    }
-}
-
-@media(max-width: 1400px) {
+@media(max-width: 1500px) {
     .width540 {
         width: 400px;
     }
