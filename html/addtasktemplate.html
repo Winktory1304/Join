@@ -2,6 +2,7 @@
     Add Task
 </div>
 <div class="addtask-content-main">
+    <!-- left content -->
     <div class="addtask-left-content">
         <div class="addtask-gap16 width540">
             <div class="addtask-h2">Title<span>*</span></div>
@@ -15,7 +16,6 @@
             <textarea class="addtask-input-description width540" id="addtask-input-description"
                 placeholder="Enter a Description" rows="4"></textarea>
         </div>
-
         <div class="addtask-gap16">
             <div class="addtask-h2">Assigned to</div>
             <div style="position: relative;">
@@ -27,11 +27,11 @@
         </div>
         <div class="addtask-gap16" id="test">
         </div>
-      
     </div>
+     <!-- middle content -->
     <div class="addtask-middle-content">
     </div>
-
+     <!-- right content -->
     <div class="addtask-right-content">
         <div class="addtask-gap16">
             <div class="addtask-h2">Due date<span>*</span></div>
@@ -40,7 +40,6 @@
                 max="2030-12-31">
             <div class="messagedatevalidation d-none" id="messagedatevalidationDate">This field is required
             </div>
-
         </div>
         <div class="addtask-gap16">
             <div class="addtask-h2">Prio</div>
@@ -48,18 +47,13 @@
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent " id="addtaskButtonUrgent">Urgent
                     <img class="prioimg" src="../assets/img/addtaskurgent.svg" alt="Beschreibung des Bildes">
                 </button>
-
                 <button onclick="selectPrio('medium')" class="addtask-button medium selected"
                     id="addtaskButtonMedium">Medium
                     <img class="prioimg" src="../assets/img/addtaskmedium.svg" alt="Beschreibung des Bildes">
                 </button>
-
                 <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low
                     <img class="prioimg" src="../assets/img/addtasklow.svg" alt="Beschreibung des Bildes">
-
                 </button>
-
-              
             </div>
             <div class="addtask-gap16">
                 <div class="addtask-h2">Category<span>*</span></div>
@@ -71,14 +65,9 @@
                 <div class="messagedatevalidation d-none" id="messagedatevalidationCategory">This field is required
                 </div>
             </div>
-
-
-
-
             <div class="addtask-gap16">
                 <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
                 <div style="position: relative;">
-
                     <input class="addtask-input-subtasks width524" id="addtask-input-subtasks"
                         placeholder="Add new subtask">
                     <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
@@ -90,19 +79,14 @@
         <div class="addtaskbutton">
             <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
                 x</Button>
-            <Button class="addtask-button-create-task" id="addtask-button-create-task"
-                onclick="addTask()">Create Task<image src="../assets/img/addtaskcreatetaske.svg">
+            <Button class="addtask-button-create-task" id="addtask-button-create-task" onclick="addTask()">Create Task
+                <image src="../assets/img/addtaskcreatetaske.svg">
                 </image></Button>
-
         </div>
         <div class="addtask-h2">
-        <span>*</span>This field is required
+            <span>*</span>This field is required
+        </div>
     </div>
-    </div>
-  
-
-
-        <div id="popup" class="popup d-none">Task added to Board</div>
-
-   
+     <!-- popup task added to board -->
+    <div id="popup" class="popup d-none">Task added to Board</div>
 </div>
