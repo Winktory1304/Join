@@ -105,6 +105,7 @@ function editContact() {
     if (width < 1220) {
         hideModal('burgerResponiv')
         showModal('responsivEditContact');
+        updateSVG(contact);        
         setupModalListeners('responsivEditContact');
     } else {
         editContactDesktopHtml(content, contact, contactId);
@@ -115,6 +116,18 @@ function editContact() {
     } else {
         saveFunctionDesktop(contact, contactId, modalId);
     }    
+}
+
+
+function updateSVG(contact) {
+    const svgHTML = `
+        <svg class="responsiv-unkown-user" width="120" height="120" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="42" height="42" rx="21" fill="white" />
+            <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />
+            <text x="21" class="profile-badge" y="21" text-anchor="middle" dominant-baseline="middle" fill="white">${contact.firstLetterofNames}</text>
+        </svg>
+    `;
+    document.getElementById('svgContainer').innerHTML = svgHTML;
 }
 
 
