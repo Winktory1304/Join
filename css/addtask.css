@@ -35,6 +35,7 @@
     overflow-x: hidden;
     margin: 0;
     margin-top: 0 !important;
+  
 }
 
 
@@ -47,6 +48,7 @@
     margin-left: 232px;
     scrollbar-width: thin;
     overflow-y: auto;
+   
 }
 
 /* addtask fonts */
@@ -70,6 +72,11 @@
     width: 524px;
 }
 
+.width552{
+    width: 552px;
+}
+
+
 .addtask-h2 {
     font-size: 20px;
     font-weight: 400;
@@ -81,12 +88,6 @@
     color: #FFA800;
 }
 
-.addtask-footer span {
-    color: #FFA800;
-    padding-left: 20px;
-    z-index: -1 !important;
-}
-
 /* addtask content main, left, middle, right, footer */
 .addtask-content-main {
     display: flex;
@@ -96,10 +97,11 @@
 }
 
 .addtask-left-content {
-    height: 376px;
+ 
     margin-left: 48px;
     margin-right: 48.25px;
     left: 328px;
+   
 
 }
 
@@ -109,17 +111,18 @@
     top: 327px;
     left: 816.25px;
     background-color: #D1D1D1;
+  
 }
 
 .addtask-right-content {
-    height: 580px;
     top: 327px;
     left: 864.25px;
     margin-left: 48px;
+
 }
 
 .grey {
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(236, 7, 7);
 }
 
 
@@ -313,7 +316,8 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-    padding: 0;
+ 
+    
 }
 
 .addtask-button {
@@ -402,12 +406,21 @@
 .addtask-button-cancel:hover {
     cursor: pointer;
     color: #29ABE2;
+   
 }
 
-.addtask-button-create-task:hover:enabled {
+
+.addtask-button-create-task:hover {
     cursor: pointer;
     background-color: #29ABE2;
-    border: 1px solid #29abe2;
+    border: 1px solid #29ABE2;
+}
+
+
+.addtask-button-create-task:hover:disabled {
+    cursor: pointer;
+    background-color: #e2292f;
+    border: 1px solid #e22929;
 }
 
 .messagedatevalidation {
@@ -517,7 +530,6 @@
     height: 20px;
     border-radius: 50%;
     background-color: #FF3D00;
-    border: 1px solid #FF3D00;
     cursor: pointer;
 }
 
@@ -544,9 +556,6 @@
     }
 }
 
-
-
-
 @media(max-width: 1400px) {
     .width540 {
         width: 400px;
@@ -562,6 +571,16 @@
     .sidebar {
         display: none !important;
     }
+
+    .addtask_content {
+       
+        margin-left: 16px;
+       
+    }
+
+    .addtask-content-main {
+     
+        margin-right: 16px;}
 
     .addtask_inner_content {
         min-height: 1440px;
@@ -597,127 +616,39 @@
     }
 
 
-    .addtask-left-content {
-        margin-top: 50px;
 
+
+    .width540 {
+        width: 540px;
+    }
+
+    .width524 {
+        width: 540px;
     }
 
     .addtask-right-content {
-        margin-top: 50px;
-
-    }
-
-    .width540 {
-        width: 540px;
-    }
-
-    .width524 {
-        width: 540px;
+        margin-left: 0;
     }
 }
-
-@media(max-width: 1300px) {
-
-    .sidebar {
-        display: none !important;
-    }
-
-    .addtask-middle-content {
-        display: none;
-    }
-
-    .addtask-content-main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .addtask-right-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .width540 {
-        width: 540px;
-    }
-
-    .width524 {
-        width: 540px;
-    }
-}
-
-@media(max-width: 1000px) {
-
-    .addtask_content {
-        margin-left: 0 !important;
-        margin-right: 0;
-        display: flex;
-        position: relative;
-        top: 15px;
-    }
-
-    .addtask-left-content {
-        margin-right: 0;
-
-        top: 15px;
-    }
-}
-
-
-@media(max-width: 850px) {
-
-    .addtask_content {
-        margin-right: 0;
-        display: flex;
-        position: relative;
-    }
-
-    .width540 {
-        width: 500px;
-    }
-
-    .width524 {
-        width: 500px;
-    }
-}
-
-
 
 @media(max-width: 600px) {
 
-    .addtask_content {
-        display: flex;
-    }
+.width540 {
+    width: 85vw;
+}
 
-    .width540 {
-        width: 50vw;
-    }
+.width524 {
+    width: 85vw;
+}
 
-    .width524 {
-        width: 50vw;
-    }
+.width552{
+    width: 90vw;
+}
+.addtask-button-cancel {
+    display: none;
+}
 
-    .addtask-prio-buttons {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        border: 5px
-    }
 
-    .addtask-prio-buttons button {
-        margin: 5px;
-    }
-
-    .addtask-button {
-        width: 136px;
-        height: 56px;
-    }
-
-    .addtask-right-content {
-        padding-left: 0 !important;
-    }
 }
 
 @media(max-width: 440px) {
@@ -726,4 +657,19 @@
         width: 320px;
         font-size: 40px;
     }
-}
+
+
+
+
+    .addtask-button {
+        max-width: 90vw;
+        height: 56px;
+        border-radius: 10px;
+        padding: 0;
+      display: flex;
+      flex-direction: column;
+        
+    }
+    .addtask-right-content {
+    width: 90vw;
+}}
