@@ -32,7 +32,9 @@ function showName2() {
     }
 }
 
-
+/**
+ * shows the form of greeting depending on the time of day and the user name in the geeting field.
+ */
 function showWayOfGreeting() {
     let greeting;
     if (hour >= 4 && hour < 12) {
@@ -44,11 +46,9 @@ function showWayOfGreeting() {
     }
 
     let greetBox = document.getElementById('greet_box');
-    let greetName = document.getElementById('user_name');
-  
+    let greetName = document.getElementById('user_name');  
     greetBox.innerHTML = '';
-    greetName.innerHTML = '';
- 
+    greetName.innerHTML = ''; 
     greetBox.textContent = greeting;
     greetName.innerHTML = greetingname;
 }
@@ -73,7 +73,9 @@ function showAllNumbers() {
     showUrgentToDo();
 }
 
-
+/**
+ * Filters and displays the amout of open to-dos.
+ */
 function showNumberOfToDo() {
     let open = todos.filter(t => t['status'] == 'open');
     let progress = todos.filter(t => t['status'] == 'progress');
@@ -84,7 +86,9 @@ function showNumberOfToDo() {
     document.getElementById('number_of_to_do').innerHTML = amount;
 }
 
-
+/**
+ * Filters and displays the amout of tasks that haven been completed.
+ */
 function showNumberOfDone() {
     let amount = todos.filter(t => t['status'] == 'done');
 
@@ -92,6 +96,9 @@ function showNumberOfDone() {
     document.getElementById('number_of_done').innerHTML = amount.length;
 }
 
+/**
+ * Filters and displays the amout of urgent tasks.
+ */
 function showNumberOfUrgent() {
     let amount = todos.filter(t => t['priority'] == '3');
 
@@ -99,6 +106,10 @@ function showNumberOfUrgent() {
     document.getElementById('number_of_urgent').innerHTML = amount.length;
 }
 
+
+/**
+ * Filters and displays the amout of all tasks.
+ */
 function showNumberOfTasksInBoard() {
     let amount = todos.length;
 
@@ -106,7 +117,9 @@ function showNumberOfTasksInBoard() {
     document.getElementById('number_of_tasks_in_boards').innerHTML = amount;
 }
 
-
+/**
+ * Filters and displays the amout of tasks in progress.
+ */
 function showNumberOfTasksInProgress() {
     let amount = todos.filter(t => t['status'] == 'progress');
 
@@ -114,6 +127,9 @@ function showNumberOfTasksInProgress() {
     document.getElementById('number_of_tasks_in_progress').innerHTML = amount.length;
 }
 
+/**
+ * Filters and displays the amout of tasks for which we expect feedback.
+ */
 function showNumberOfAwaitingFeedback() {
     let amount = todos.filter(t => t['status'] == 'feedback');
 
@@ -121,13 +137,6 @@ function showNumberOfAwaitingFeedback() {
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
 }
 
-function UpcomingDeadline() {
-
-    const filteredDates = todos.filter(todo => todo['priority'] === 3)
-        .map(todo => todo.date);
-
-    console.log(filteredDates);
-}
 
 /**
  * Shows the amout of urgent todos and the nearest due date of an urgent todo.

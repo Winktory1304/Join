@@ -160,11 +160,8 @@
 .footer-sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 200px;
-    gap: 4px;
-    align-self: stretch;
+    position: absolute;
+    bottom: 40px;    
 }
 
 .footer-sidebar-link {

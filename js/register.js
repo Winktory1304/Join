@@ -20,11 +20,12 @@ function loadUsers() {
 function registerUser() {
     const password = document.getElementById('sign_up_password').value.trim();
 
-   
-    if (password === '') {
-        return;    }
 
-      let email = document.getElementById('sign_up_email').value;
+    if (password === '') {
+        return;
+    }
+
+    let email = document.getElementById('sign_up_email').value;
     checkPassword();
     checkPrivacyPolicy();
 
@@ -168,7 +169,7 @@ function userValidation(email, password) {
 }
 
 /**
- *    ===== funktioniert nicht !!!! <- Gefixxt!
+ * Filters the index of a user by email and stores it in local storage.
  */
 function indexOfUser(email) {
     let userIndex = users.filter(user => user.email === email);
@@ -177,13 +178,12 @@ function indexOfUser(email) {
 }
 
 /**
- *   funktioniert nicht vollständig!!!! <- Gefixxt!
+ * Logs a guest in and redistricts him to the summary page.
  */
 function logInGuest() {
     window.location.href = './html/summary.html';
     localStorage.setItem('currentUserIndex', "Guest");
 }
-
 
 
 /**
@@ -200,7 +200,7 @@ function goBackToLogIn() {
 
 
 /**
- * You go to a previous window.
+ * It takes you a step back.
  */
 function goOneStepBack() {
     window.history.back();
@@ -208,7 +208,7 @@ function goOneStepBack() {
 
 
 /**
- * When responsive it hides the sign-up button.
+ * If the setting is responsive, the button is hidden .
  */
 function hideSignUpHeader() {
     let width = document.documentElement.clientWidth;
@@ -218,7 +218,7 @@ function hideSignUpHeader() {
 }
 
 /**
- * When responsive it shows the sign-up button.
+ * If the setting is responsive, the button shows.
  */
 function showSignUpHeader() {
     let width = document.documentElement.clientWidth;

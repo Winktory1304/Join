@@ -48,6 +48,18 @@
     }
 }
 
+@keyframes greetingDisplay {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
 
 
 
@@ -110,7 +122,6 @@
             display: none;
         }
     }
-
 
 }
 
@@ -583,5 +594,4 @@
     .summary-overview {
         gap: 5px;
     }
-
 }
