@@ -486,13 +486,28 @@ function addNewContactResponsiv() {
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
     let emailIndex = findEmailIndex(email);
+    if (!validateEmail(email)) {
+        alert("Invalid email address");
+        return;
+    }
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
     hideModal(modalId);    
-    clearInputFields()
+    clearInputFields();
+}
+
+/**
+ * Validates an email address.
+ * @param {string} email - The email address to be validated.
+ * @returns {boolean} - True if the email address is valid, otherwise false.
+ */
+function validateEmail(email) {
+    // Use a regular expression to validate the email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
 
