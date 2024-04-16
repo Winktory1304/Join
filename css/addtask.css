@@ -614,19 +614,19 @@
 
     @media(max-width: 600px) {
         .width540 {
-            width: 85vw;
+            max-width: 85vw;
         }
 
         .width524 {
-            width: 85vw;
+            max-width: 85vw;
         }
 
         .width552 {
-            width: 85vw;
+            max-width: 85vw;
         }
 
         .addtask-prio-buttons {
-            width: 88vw;
+            max-width: 85vw;
         }
 
         .addtask-button-cancel {
