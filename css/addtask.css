@@ -622,7 +622,7 @@
         }
 
         .width552 {
-            width: 90vw;
+            width: 85vw;
         }
 
         .addtask-prio-buttons {
@@ -644,9 +644,10 @@
             max-width: 90vw;
             height: 56px;
             border-radius: 10px;
-            padding: 0;
+            padding: 2px;
             display: flex;
-            flex-direction: column;
+            font-size: 15px;
+   
         }
 
         .addtask-right-content {
