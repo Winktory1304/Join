@@ -322,6 +322,7 @@ function updateJSON(id) {
         }
     }
     )
+    selectedContacts = [];
 }
 
 
