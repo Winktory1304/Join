@@ -119,6 +119,30 @@ function editContact() {
 }
 
 
+/**
+ * Highlights the contact box with the specified contactId.
+ * Removes highlight from all other contact boxes.
+ *
+ * @param {string} contactId - The ID of the contact box to highlight.
+ */
+function highlightContactBox(contactId) {    
+    document.querySelectorAll('.contact-box').forEach(box => {
+        box.classList.remove('contact-box-highlight');
+    });
+
+    const selectedContactBox = document.getElementById(contactId);
+    if (selectedContactBox) {
+        selectedContactBox.classList.add('contact-box-highlight');
+    }
+}
+
+
+/**
+ * Updates the SVG container with a new SVG based on the provided contact information.
+ * @param {Object} contact - The contact object containing information for generating the SVG.
+ * @param {string} contact.color - The color of the circle in the SVG.
+ * @param {string} contact.firstLetterofNames - The first letter of the contact's names.
+ */
 function updateSVG(contact) {
     const svgHTML = `
         <svg class="responsiv-unkown-user" width="120" height="120" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -157,6 +157,9 @@ function removeResponivContactsOverview(){
     document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
     document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
     document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
+    document.querySelectorAll('.contact-box').forEach(box => {
+        box.classList.remove('contact-box-highlight');
+    });
 }
 
 
@@ -170,6 +173,7 @@ function openDetailedContactsView(contactId) {
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
+    highlightContactBox(contactId);
     if (width < 1220) {               
         showResponsivDetail(); 
         detailViewResponsiv(responsivContent, contact);   

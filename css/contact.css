@@ -211,6 +211,9 @@ body {
     top: 150px;
     right: 16px
 }
+.svg-responsiv:hover{
+    cursor: pointer;
+}
 
 .contacts-placeholder-text {
     font-size: 27px;
@@ -477,6 +480,11 @@ body {
 
 }
 
+.contact-box-highlight {
+    background-color: #2A3647; 
+    color: white;
+}
+
 .modal-part-3-create-button-responsiv {
     display: flex;
     align-items: center;
@@ -489,7 +497,7 @@ body {
     font-size: 21px;
     font-weight: 700;
     border: 1px;
-    margin-bottom: 135px;
+    margin-bottom: 16px;
 
 
 }
