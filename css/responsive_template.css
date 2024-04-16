@@ -63,9 +63,15 @@
         color: rgb(42, 54, 71);
         font-size: 12px;
         text-decoration: none;
-        box-shadow: 0px 0px 0px 1px #ffffff;
         width: 100%;
         height: 100%;
+    }
+    .mobile_menuitem:hover{
+        background-color: #19202b; 
+    }
+    .mobile_menuitem:hover img{
+        width: 28px;
+        height: 28px;
     }
 
     .mobile_menuitem a{
@@ -84,10 +90,7 @@
         height: 28px;
     }
 
-    .mobile_menuitem img:hover{
-        width: 28px;
-        height: 28px;
-    }
+   
 
 
     .mobile_link{

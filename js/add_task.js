@@ -71,6 +71,7 @@ function readServerData() {
   readJSON("contacts", contacts);
   readJSON(key, todos);
   getName();
+  validateInput();
 }
 
 
@@ -79,14 +80,15 @@ function readServerData() {
  */
 function getReady() {
   if (openassigned === false) {
-     document.getElementById("addtask-input-assigned").classList.remove("d-none");
+    document.getElementById("addtask-input-assigned").classList.remove("d-none");
     document.getElementById("test").classList.add("d-none");
     openassigned = true;
-    if (contacts.length === 0) {
-      readJSON("contacts", contacts);
-    }
+    
+   setTimeout(() => {
     setContacts(contacts);
-  } else {
+  }, 1000);
+  }
+  else {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
     document.getElementById("test").classList.remove("d-none");
     openassigned = false;
@@ -109,7 +111,7 @@ function setContacts(array) {
   switchCase("assigned").innerHTML = "";
   array.forEach((element) => {
     let id = "contactcircle-" + element.firstName + element.lastName;
-    let name = ['',element.firstName,element.lastName];
+    let name = ['', element.firstName, element.lastName];
     let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
     let color = colorPicker(name);
 
@@ -124,9 +126,6 @@ function setContacts(array) {
     <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}">
     </div>`;
   });
-  if (array.length === 0) {
-    switchCase("assigned").innerHTML = "<div>No contacts available</div>";
-  }
 }
 
 
@@ -136,19 +135,20 @@ function writeContactsintonewArray() {
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       selectedContacts.push(checkboxes[i].value);
-    }}
+    }
+  }
   document.getElementById("test").innerHTML = "";
   selectedContacts.forEach((element) => {
     let contact = element.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
     let id = "contactcircle-" + contact[1] + contact[2];
     let color = colorPicker(contact);
-        document.getElementById("test").innerHTML += `
+    document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
-   
+
     if (todos.length === 0) return;
     else todos[todos.length - 1].contacts = selectedContacts;
   });
@@ -180,15 +180,17 @@ function clearInputs() {
   switchCase("category").disabled = false;
   var container = document.getElementById("containerForSubtask"); // Container für Subtasks
   while (container.firstChild) {
-    container.removeChild(container.firstChild);}
+    container.removeChild(container.firstChild);
+  }
   subtask = [];
   document.getElementById("containerForSubtask").classList.add("d-none");
   let checkboxes = document.getElementsByClassName("checkBox");
-  for (let i = 0; i < checkboxes.length; i++) {checkboxes[i].checked = false;}
+  for (let i = 0; i < checkboxes.length; i++) { checkboxes[i].checked = false; }
   selectedContacts = [];
   document.getElementById("test").innerHTML = "";
   if (todos.length > 0) {
-    todos[todos.length - 1].contacts = [];}
+    todos[todos.length - 1].contacts = [];
+  }
   document.getElementById("addtask-input-assigned").classList.add("d-none");
   document.getElementById("test").classList.add("d-none");
   openassigned = false;
@@ -206,14 +208,16 @@ function clearInputs() {
  * Validates the input fields and enables/disables the create task button accordingly.
 */
 function validateInput() {
-  resultValidation = validateForm();
-  const button = document.getElementById("addtask-button-create-task");
-  if (resultValidation) {
-    button.disabled = false;
-  } else {
-    button.disabled = true;
-    document.getElementById("addtask-button-create-task").classList.add("grey");
-  }
+  setTimeout(() => {
+    resultValidation = validateForm();
+    const button = document.getElementById("addtask-button-create-task");
+    if (resultValidation) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+      document.getElementById("addtask-button-create-task").classList.add("grey");
+    }
+  }, 1000);
 }
 
 
@@ -225,7 +229,7 @@ function pushJSON() {
     subtask.push(switchCase("subtasksValue"));
     subtaskdone.push(0);
   }
-    todos.push({
+  todos.push({
     id: checkId(),
     title: document.getElementById("addtask-input-title").value,
     task: switchCase("descriptionValue"),
@@ -277,9 +281,11 @@ function checkId() {
  */
 function validateForm() {
   if (
-    switchCase("titleValue") !== "" &&
-    switchCase("dateValue") !== "" &&
-    switchCase("categoryValue") !== ""
+    setTimeout(() => {
+      switchCase("titleValue") !== "" &&
+        switchCase("dateValue") !== "" &&
+        switchCase("categoryValue") !== ""
+    }, 1000)
   ) {
     return true;
   } else {

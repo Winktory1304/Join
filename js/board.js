@@ -138,7 +138,7 @@ function subTasks(element) {
     let length = element.subtasks.length;
 
     if (length > 0)
-        return `<progress style="width: 120px;" max="${length}" min="0" value="${subTaskscomplete(element.id)}"></progress> ${subTaskscomplete(element.id)}/${length} Subtasks`;
+        return `<progress style="width: 80px;" max="${length}" min="0" value="${subTaskscomplete(element.id)}"></progress> ${subTaskscomplete(element.id)}/${length} Subtasks`;
     else
         return '';
 }
@@ -323,8 +323,7 @@ function updateJSON(id) {
 /**
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
-async function getarray() {
-    await setContacts(contacts);
+function getarray() {
 
     let checkboxes = document.getElementsByClassName('checkBox');
     for (let i = 0; i < checkboxes.length; i++) {
@@ -332,6 +331,9 @@ async function getarray() {
             checkboxes[i].checked = true;
         }
     }
+    getReady();
+    
+    setContacts(contacts);
 }
 
 /**

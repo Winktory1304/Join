@@ -186,7 +186,7 @@ function editTask(id) {
             <div class="addtask-h2">Assigned to</div>
             <div style="position: relative;">
                 <input class="addtask-input-subtasks max-width-500" placeholder="Contacts" id="changeAssigned">
-                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getReady(), getarray()"
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getarray()"
                     style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
             <div class="inputfield d-none max-width-500" id="addtask-input-assigned" onchange="validateInput()"></div>
