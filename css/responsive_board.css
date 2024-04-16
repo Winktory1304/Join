@@ -85,6 +85,9 @@
     padding: 10px;
     height: calc(100vh - 180px);
 }
+.board_addTask{
+    display: none;
+}
 
 .board_cardheadline{
     font-size: 35px;
