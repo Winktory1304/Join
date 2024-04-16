@@ -74,15 +74,15 @@
 
 /* widt inputfields */
 .width540 {
-    width: 540px;
+    width: 30vw;
 }
 
 .width524 {
-    width: 524px;
+    width: 30vw;
 }
 
 .width552 {
-    width: 552px;
+    width: 30vw;
 }
 
 /* addtask content main, left, middle, right */
@@ -542,20 +542,14 @@
 
 @media(max-width: 1500px) {
     .width540 {
-        width: 400px;
+        width: 30vw;
     }
 
     .width524 {
-        width: 384px;
+        width: 30vw;
     }
 
-    .addtask-prio-buttons {
-        width: 400px;
-    }
-
-    .addtask-input-category {
-        width: 400px;
-    }}
+   }
 
     @media(max-width: 1300px) {
         .sidebar {
