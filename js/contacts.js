@@ -24,14 +24,16 @@ async function getUsersintoContacts() {
         users = [];
         await readJSON('users', users) // Warte auf das Laden der Daten
         users.forEach(user => {
-            if (!contacts.some(contact => contact.idContact === user.idContact)) {
+            if (!contacts.some(contact => contact.idContact === user.idContact) && user.name) {
+                let firstInitial = user.name[0] ? user.name[0][0] : ''; 
+                let secondInitial = user.name.split(' ')[1] ? user.name.split(' ')[1][0] : ''; 
                 contacts.push({
                     "idContact": user.idContact,
                     "firstName": user.name.split(' ')[0],
-                    "lastName": user.name.split(' ')[1],
+                    "lastName": user.name.split(' ')[1] || '', 
                     "email": user.email,
                     "phoneNumber": "",
-                    "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
+                    "firstLetterofNames": firstInitial + secondInitial,
                     "color": getRandomColor()
                 });
             }
@@ -157,6 +159,9 @@ function removeResponivContactsOverview(){
     document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
     document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
     document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
+    document.querySelectorAll('.contact-box').forEach(box => {
+        box.classList.remove('contact-box-highlight');
+    });
 }
 
 
@@ -170,6 +175,7 @@ function openDetailedContactsView(contactId) {
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
+    highlightContactBox(contactId);
     if (width < 1220) {               
         showResponsivDetail(); 
         detailViewResponsiv(responsivContent, contact);   

@@ -211,6 +211,9 @@ body {
     top: 150px;
     right: 16px
 }
+.svg-responsiv:hover{
+    cursor: pointer;
+}
 
 .contacts-placeholder-text {
     font-size: 27px;
@@ -477,6 +480,11 @@ body {
 
 }
 
+.contact-box-highlight {
+    background-color: #2A3647; 
+    color: white;
+}
+
 .modal-part-3-create-button-responsiv {
     display: flex;
     align-items: center;
@@ -489,7 +497,7 @@ body {
     font-size: 21px;
     font-weight: 700;
     border: 1px;
-    margin-bottom: 135px;
+    margin-bottom: 16px;
 
 
 }
@@ -802,6 +810,7 @@ body {
     width: 90%;
     background-color: #F6F7F8;
     border-radius: 30px;
+    position: relative;
 
 
 }
@@ -812,22 +821,28 @@ body {
 }
 
 .responiv-modal-part1 {
-    display: flex;
+    display: flex;    
     flex-direction: column;
-    justify-content: center;
-    min-height: 351px;
+    justify-content: center;    
     background-color: #2A3647;
     width: 100%;
     border-radius: 30px 30px 0px 0px;
+    position: relative;
+    height: 240px;
 }
 
 .responsiv-unkown-user {
-    position: relative;
-    top: 178px;
-    margin: auto;
+    position: absolute;
+    top: calc(100% - 60px);  /* Verschiebe es so, dass die Hälfte des SVGs sichtbar ist */
+    left: 50%;               /* Zentriere es horizontal */
+    transform: translateX(-50%); /* Zentriere das SVG horizontal */
+    width: 120px;
+    height: 120px;
 }
 
 .responsiv-contact-modal-form {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -858,7 +873,7 @@ body {
     font-size: 21px;
     font-weight: 700;
     border: 1px;
-    margin-bottom: 80px;
+    margin-bottom: 16px;
     margin-top: 45px;
 }
 
