@@ -1,8 +1,15 @@
+
+.addtask-input-description{
+    padding: 18px;
+}
 @media (max-width: 1750px){
 .board_tasks {
     flex-wrap: wrap;
 }
 
+.addtask-input-description{
+    padding: 0px;
+}
 .containerForSubtask{
     width: 500px;
 }
@@ -49,15 +56,21 @@
     margin: 0;
 }
 .addtask-left-content{
-    width: 80%;
+    margin-right: 48px !important;
     margin: 0;
 }
-.addtask-input-description,
-.addtask-gap16,
-.addtask-input-subtasks,
-.addtask-input-date,.addtask-prio-buttons,.addtask-input-category,.addtask-content-footer,
-.addtask-input-title{
+.addtask-input-subtasks .addtask-prio-buttons, .addtask-content-footer, .addtask-input-title {
     margin: 0;
+    padding: 0;
+}
+.width540{
+    width: 450px !important;
+}
+.width524{
+    width: 450px !important;
+}
+.inputfield {
+    width: 430px !important;
 }
 }
 

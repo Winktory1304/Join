@@ -247,6 +247,7 @@
 
 .addtask-input-category {
     height: 48px;
+    width: 31vw;
     padding-left: 12px;
     gap: 0;
     border-radius: 10px;
@@ -549,6 +550,9 @@
         width: 30vw;
     }
 
+    .addtask-input-category {
+        width: 31vw;
+    }
    }
 
     @media(max-width: 1300px) {
@@ -613,7 +617,7 @@
         }
     
         .addtask-input-category {
-            width: 550px;
+            width: 31vw;
         }
     }
 
@@ -621,7 +625,6 @@
         .width540 {
             max-width: 85vw;
         }
-
         .width524 {
             max-width: 85vw;
         }
@@ -630,6 +633,9 @@
             max-width: 85vw;
         }
 
+        .addtask-input-category {
+            width: 31vw;
+        }
         .addtask-prio-buttons {
             max-width: 85vw;
         }
@@ -644,7 +650,11 @@
             width: 320px;
             font-size: 40px;
         }
-
+ 
+        .addtask-input-category {
+            width: 85vw;
+            padding-right: 20px;
+        }
         .addtask-button {
             max-width: 90vw;
             height: 56px;
