@@ -33,6 +33,7 @@ function showHeaderMenu(headerID, hideHeaderClass) {
 
 function isloggedin() {
     if (currentIndex != null) {
+
         document.getElementById('sidebar').innerHTML = `
 
 <div class="sidebar-container">
@@ -70,6 +71,7 @@ function isloggedin() {
         
         `;
     } else {
+        document.getElementById('mobileBottomBar').classList.add("d-none");
         document.getElementById('sidebar').innerHTML = `
 
 <div class="sidebar-container">
@@ -77,7 +79,7 @@ function isloggedin() {
         
     <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
     </nav>
-    <section class="footer-sidebar">
+    <section id="footerSideBar1300"class="footer-sidebar">
         <a class="footer-sidebar-link" href="privacyPolice.html">Privacy Policy</a>
         <a class="footer-sidebar-link" href="legalNotice.html">Legal notice</a>
     </section>
@@ -115,12 +117,26 @@ function showName() {
 
 
 function getInitials2(user) {
-
     let fullName = user[0].name;
     let nameParts = fullName.split(' ');
     let firstName = nameParts[0].charAt(0);
     let secondName = nameParts[1].charAt(0);
-
     initials = firstName + secondName;
     document.getElementById('initials').innerHTML = initials;
+}
+
+
+function navbarwithoutSign(){
+document.getElementById('help-user-container').innerHTML = '';
+}
+
+
+/**
+ * It takes you a step back.
+ */
+function goOneStepBack() {
+    if (currentIndex != null) 
+    window.location.href="/html/summary.html";
+    else
+    window.location.href="/index.html";
 }

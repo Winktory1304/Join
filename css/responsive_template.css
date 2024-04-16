@@ -2,12 +2,20 @@
     display: none;
 }
 
+.d-none {
+    display: none;
+}
 
 @media (max-width: 1300px){
         .header{
         height: 80px !important;
         margin-left: 0px !important;
         width: 100% !important;
+    }
+
+    .footer-sidebar {
+        display: none;
+
     }
     .index{
         z-index: 9999 !important;
