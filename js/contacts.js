@@ -24,14 +24,16 @@ async function getUsersintoContacts() {
         users = [];
         await readJSON('users', users) // Warte auf das Laden der Daten
         users.forEach(user => {
-            if (!contacts.some(contact => contact.idContact === user.idContact)) {
+            if (!contacts.some(contact => contact.idContact === user.idContact) && user.name) {
+                let firstInitial = user.name[0] ? user.name[0][0] : ''; 
+                let secondInitial = user.name.split(' ')[1] ? user.name.split(' ')[1][0] : ''; 
                 contacts.push({
                     "idContact": user.idContact,
                     "firstName": user.name.split(' ')[0],
-                    "lastName": user.name.split(' ')[1],
+                    "lastName": user.name.split(' ')[1] || '', 
                     "email": user.email,
                     "phoneNumber": "",
-                    "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
+                    "firstLetterofNames": firstInitial + secondInitial,
                     "color": getRandomColor()
                 });
             }
