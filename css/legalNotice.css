@@ -98,3 +98,9 @@ a {
     }
 
 }
+
+@media(max-width: 400px) {
+.legal-h1 {
+    font-size: 31px;
+}
+}
