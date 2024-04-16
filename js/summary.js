@@ -69,6 +69,8 @@ function showAllNumbers() {
     showWayOfGreeting()
     getName();
     showUrgentToDo();
+    
+  isloggedin();
 }
 
 /**

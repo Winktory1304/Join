@@ -364,6 +364,21 @@
     font-family: "Inter";
 }
 
+.addtask-button-create-task:disabled {
+    width: 183px;
+    height: 56px;
+    border-radius: 10px;
+    background-color: #5a5a5a;
+    color: #Ffffff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+}
+
 .urgent.selected {
     background-color: rgb(255, 61, 0, 0.2);
 }
@@ -397,17 +412,13 @@
     color: #29ABE2;
 }
 
-.addtask-button-create-task:hover {
+.addtask-button-create-task:hover:enabled {
     cursor: pointer;
     background-color: #29ABE2;
     border: 1px solid #29ABE2;
 }
 
-.addtask-button-create-task:hover:disabled {
-    cursor: pointer;
-    background-color: #e2292f;
-    border: 1px solid #e22929;
-}
+
 
 .messagedatevalidation {
     color: red;

@@ -23,7 +23,7 @@
                 <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getarray()"
                     style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
-            <div class="inputfield d-none width540" id="addtask-input-assigned" onchange="validateInput()"></div>
+            <div class="inputfield d-none width540" id="addtask-input-assigned"></div>
         </div>
         <div class="addtask-gap16" id="test">
         </div>
@@ -79,7 +79,7 @@
         <div class="addtaskbutton">
             <Button class="addtask-button-cancel" id="addtask-button-cancel" onclick="clearInputs()">Clear
                 x</Button>
-            <Button class="addtask-button-create-task" id="addtask-button-create-task" onclick="addTask()">Create Task
+            <Button class="addtask-button-create-task" id="addtask-button-create-task" disabled="true" onclick="addTask()">Create Task
                 <image src="../assets/img/addtaskcreatetaske.svg">
                 </image></Button>
         </div>

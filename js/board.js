@@ -32,6 +32,7 @@ function writeServer() {
  * Initializes the board by reading the todos from the server.
  */
 function init() {
+    isloggedin();
     getName();
     readServer();
 }

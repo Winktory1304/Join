@@ -6,6 +6,7 @@ let contactsaveid = 0;
 
 
 async function init() { 
+    isloggedin();
     await getUsersintoContacts();
     renderContacts();   
     getName();

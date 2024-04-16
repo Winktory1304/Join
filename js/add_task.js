@@ -156,6 +156,8 @@ function writeContactsintonewArray() {
 
 
 function initTask() {
+  
+  isloggedin();
   readServerData();
 }
 
@@ -210,7 +212,8 @@ function clearInputs() {
 function validateInput() {
   setTimeout(() => {
     resultValidation = validateForm();
-    const button = document.getElementById("addtask-button-create-task");
+    let button = document.getElementById("addtask-button-create-task");
+    debugger;
     if (resultValidation) {
       button.disabled = false;
     } else {
@@ -280,13 +283,7 @@ function checkId() {
  * @returns {boolean} - The validation result.
  */
 function validateForm() {
-  if (
-    setTimeout(() => {
-      switchCase("titleValue") !== "" &&
-        switchCase("dateValue") !== "" &&
-        switchCase("categoryValue") !== ""
-    }, 1000)
-  ) {
+  if (switchCase("titleValue") !== "" && switchCase("dateValue") !== "" && switchCase("categoryValue") !== "") {
     return true;
   } else {
     return false;
