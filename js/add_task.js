@@ -82,6 +82,9 @@ function getReady() {
      document.getElementById("addtask-input-assigned").classList.remove("d-none");
     document.getElementById("test").classList.add("d-none");
     openassigned = true;
+    if (contacts.length === 0) {
+      readJSON("contacts", contacts);
+    }
     setContacts(contacts);
   } else {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
@@ -104,10 +107,25 @@ function closeContactList() {
  */
 function setContacts(array) {
   switchCase("assigned").innerHTML = "";
-  array.forEach((element) => {switchCase("assigned").innerHTML += `<div class="inputnew"> ${element.firstName} ${element.lastName} <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}"></div>`;
+  array.forEach((element) => {
+    let id = "contactcircle-" + element.firstName + element.lastName;
+    let name = ['',element.firstName,element.lastName];
+    let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
+    let color = colorPicker(name);
+
+    switchCase("assigned").innerHTML += `<div class="inputnew"> 
+    <div class="board_cardcontactsring">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>
+        </div>
+    ${element.firstName} ${element.lastName} 
+    <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}">
+    </div>`;
   });
   if (array.length === 0) {
-    switchCase(assigned).innerHTML = "<option>No contacts available</option>";
+    switchCase("assigned").innerHTML = "<div>No contacts available</div>";
   }
 }
 
@@ -124,19 +142,13 @@ function writeContactsintonewArray() {
     let contact = element.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
     let id = "contactcircle-" + contact[1] + contact[2];
+    let color = colorPicker(contact);
         document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle id="${id}" cx="21" cy="21" r="20" fill="" stroke="white" stroke-width="2"/>
+      <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
-    contacts.filter((contacts) => {
-      if (
-        contacts.firstName === contact[1] &&
-        contacts.lastName === contact[2]
-      ) {
-        let color2 = contacts.color;
-        document.getElementById(id).style.fill = color2;
-      }});
+   
     if (todos.length === 0) return;
     else todos[todos.length - 1].contacts = selectedContacts;
   });
@@ -144,9 +156,7 @@ function writeContactsintonewArray() {
 
 
 function initTask() {
-  validateInput();
   readServerData();
-  validateInput();
 }
 
 
@@ -237,7 +247,6 @@ function pushJSON() {
  */
 function checkTitle(titleDefaultValue) {
   let count = 1;
-  debugger;
   todos.forEach((element) => {
     if (element.title === titleDefaultValue) {
       let titleValue = titleDefaultValue + count;

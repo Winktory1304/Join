@@ -3,10 +3,12 @@
     flex-wrap: wrap;
 }
 
+.containerForSubtask{
+    width: 500px;
+}
 .board_task{
     padding: 20px;
     width: 200px;
-    height: 150px;
 }
 
 .spalte{
@@ -54,7 +56,6 @@
 .addtask-input-subtasks,
 .addtask-input-date,.addtask-prio-buttons,.addtask-input-category,.addtask-content-footer,
 .addtask-input-title{
-    width: 90% !important;
     margin: 0;
 }
 }
@@ -82,6 +83,10 @@
     display: none !important;
 
 }
+.containerForSubtask{
+    width: 500px;
+}
+
 
 .mobile_headline{
     display: flex;
@@ -112,7 +117,6 @@
 .board_task{
     padding: 20px;
     width: 200px;
-    height: 150px;
 
 }
 .board_notask{

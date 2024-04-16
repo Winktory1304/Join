@@ -139,18 +139,27 @@ function editTask(id) {
         <h1>Edit Task</h1>
         <p class="board_cardexit" onclick="closeDialog()">X</p>
         </div>
+        <div class="gap-20">
         <p>Task Title</p>
         <input class="max-width-500" type="text" id="addtask-input-title" value="${todos[id].title}" required>
+        </div>
+        <div class="gap-20">
         <p>Task Description</p>
         <input class="max-width-500"  type="text" id="addtask-input-description" value="${todos[id].task}" required>
+        </div>
+        <div class="gap-20">
         <p>Task Date</p>
         <input class="max-width-500"  type="date" id="addtask-input-date" value="${todos[id].date}" required>
+        </div>
+        <div class="gap-20">
         <p>Task Category</p>
         <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
             <option default value="${todos[id].tag}" disabled>${todos[id].tag}</option>
             <option value="User Story">User Story</option>
             <option value="Technical Task">Technical Task</option>
         </select>
+        </div>
+        <div class="gap-20">
         <p>Task Category</p>
             <div class="addtask-prio-buttons max-width-500">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
@@ -161,23 +170,30 @@ function editTask(id) {
                 </button>
                 <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
             </div>
+            </div>
+            <div class="gap-20">
         <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
             <div style="position: relative;">
 
-                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <input class="addtask-input-subtasks max-width-500" id="addtask-input-subtasks" placeholder="Add new subtask">
                 <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
                     style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
             <div class="containerForSubtask d-none" id="containerForSubtask"></div>
         
-        <p>Assigned Contacts</p>
-        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
-                onfocus="getReady(), getarray()">
-                
-        <div class="addtask-gap16" id="test">
+            <div class="addtask-gap16">
+            <div class="gap-20">
+            <div class="addtask-h2">Assigned to</div>
+            <div style="position: relative;">
+                <input class="addtask-input-subtasks max-width-500" placeholder="Contacts" id="changeAssigned">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getReady(), getarray()"
+                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+            </div>
+            <div class="inputfield d-none max-width-500" id="addtask-input-assigned" onchange="validateInput()"></div>
         </div>
-        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
-        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
+        <div class="addtask-gap16 max-width-500" id="test">
+        </div>
+        </div><button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">OK</button>
       </div>
       </div>
     `;

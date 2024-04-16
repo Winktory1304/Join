@@ -140,7 +140,7 @@ function subTasks(element) {
     if (length > 0)
         return `<progress style="width: 120px;" max="${length}" min="0" value="${subTaskscomplete(element.id)}"></progress> ${subTaskscomplete(element.id)}/${length} Subtasks`;
     else
-        return 'No Subtasks';
+        return '';
 }
 
 /**
@@ -168,8 +168,10 @@ function subTaskscomplete(id) {
  * @returns {string} - The limited task text.
  */
 function limitTaskText(element) {
-    if (element.task.length > 50) {
-        return element.task.substring(0, 50) + '...';
+    if (element.task.length > 20) {
+
+        element.task = element.task.substring(0, 15) + '...';
+        return element.task;
     } else {
         return element.task;
     }
@@ -321,8 +323,8 @@ function updateJSON(id) {
 /**
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
-function getarray() {
-    setContacts(contacts);
+async function getarray() {
+    await setContacts(contacts);
 
     let checkboxes = document.getElementsByClassName('checkBox');
     for (let i = 0; i < checkboxes.length; i++) {

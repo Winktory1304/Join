@@ -290,9 +290,9 @@ h4 {
 
 
     /* white */
-    background: #747474;
+    background: #cacaca;
     border-radius: 24px;
-    border: #000000 5px dashed;
+    border: #949494 5px dashed;
     opacity: 0.5;
 
     /* Inside auto layout */
@@ -388,9 +388,8 @@ h4 {
     margin-bottom: 50px;
     display: flex;
     align-items: flex-start;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
-    padding-right: 80px !important;
 }
 
 .todo {
@@ -656,7 +655,7 @@ p {
 }
 
 .board_deledit:hover{
-    color: #FF0000;
+    color: #44AAE1;
 }
 
 .board_taskactions{
@@ -684,4 +683,13 @@ p {
     flex-direction: row;
     align-items: center;
     margin-left: -15px;
+}
+
+.gap-20{
+    margin-top: 20px;
+}
+.inputfield{
+    border: #000000 1px solid;
+    border-radius: 10px;
+    width: 480px !important;
 }
