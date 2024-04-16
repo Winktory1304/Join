@@ -70,8 +70,48 @@ function isloggedin() {
         
         
         `;
+
+
+
+        document.getElementById('mobile_footer').innerHTML = `
+        <div id="mobileBottomBar" class="index">
+    <div class="mobile_bottom">
+        <div class="mobile_menuitem">
+            <a class="mobile_link" href="summary.html">
+                <img src="../assets/img/summary.svg">
+                <div>Summary</div>
+            </a>
+        </div>
+        <div class="mobile_menuitem">
+            <a class="mobile_link" href="addtask.html">
+                <img src="../assets/img/addtask.svg">
+                <div>Add Task</div>
+            </a>
+        </div>
+        <div class="mobile_menuitem">
+            <a class="mobile_link" href="board.html">
+                <img src="../assets/img/board.svg">
+                <div>Board</div>
+            </a>
+        </div>
+
+
+
+        <div class="mobile_menuitem">
+            <a class="mobile_link" href="contacts.html">
+                <img src="../assets/img/contacts.svg">
+                <div>Contacts</div>
+            </a>
+        </div>
+    </div>
+</div>
+        `;
     } else {
-        document.getElementById('mobileBottomBar').classList.add("d-none");
+
+
+        document.getElementById('mobile_footer').innerHTML = ``;
+
+
         document.getElementById('sidebar').innerHTML = `
 
 <div class="sidebar-container">
@@ -87,7 +127,9 @@ function isloggedin() {
 
 
         `;
-
+        setTimeout(() => {
+        navbarwithoutSign()
+        }, 300);
     }
 }
 
@@ -126,8 +168,8 @@ function getInitials2(user) {
 }
 
 
-function navbarwithoutSign(){
-document.getElementById('help-user-container').innerHTML = '';
+function navbarwithoutSign() {
+    document.getElementById('help-user-container').innerHTML = '';
 }
 
 
@@ -135,8 +177,8 @@ document.getElementById('help-user-container').innerHTML = '';
  * It takes you a step back.
  */
 function goOneStepBack() {
-    if (currentIndex != null) 
-    window.location.href="/html/summary.html";
+    if (currentIndex != null)
+        window.location.href = "/html/summary.html";
     else
-    window.location.href="/index.html";
+        window.location.href = "/index.html";
 }
