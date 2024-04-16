@@ -71,7 +71,6 @@ function readServerData() {
   readJSON("contacts", contacts);
   readJSON(key, todos);
   getName();
-  validateInput();
 }
 
 
@@ -211,16 +210,13 @@ function clearInputs() {
  * Validates the input fields and enables/disables the create task button accordingly.
 */
 function validateInput() {
-  setTimeout(() => {
     resultValidation = validateForm();
     let button = document.getElementById("addtask-button-create-task");
     if (resultValidation) {
       button.disabled = false;
     } else {
       button.disabled = true;
-      document.getElementById("addtask-button-create-task").classList.add("grey");
     }
-  }, 1000);
 }
 
 
