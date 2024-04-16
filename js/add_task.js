@@ -213,7 +213,6 @@ function validateInput() {
   setTimeout(() => {
     resultValidation = validateForm();
     let button = document.getElementById("addtask-button-create-task");
-    debugger;
     if (resultValidation) {
       button.disabled = false;
     } else {
