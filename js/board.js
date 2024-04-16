@@ -300,7 +300,6 @@ function updateJSON(id) {
     let selectedCategory = document.getElementById('addtask-input-category').value;
     var subtasksValue = document.getElementById('addtask-input-subtasks').value;
 
-    debugger;
 
     if (subtasksValue !== '') {
         subtask.push(subtasksValue);
@@ -322,21 +321,37 @@ function updateJSON(id) {
         }
     }
     )
-    selectedContacts = [];
 }
 
 
 /**
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
-function getarray() {
+function getarray(id) {
+debugger;
+    if (id != null){
+        todos[id].contacts.forEach(contact => {
+            console.log(contact);
+            selectedContacts.push(contact);
+        });
 
-    let checkboxes = document.getElementsByClassName('checkBox');
+        let checkboxes = document.getElementsByClassName('checkBox');
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (selectedContacts.includes(checkboxes[i].value)) {
+                checkboxes[i].checked = true;
+                console.log(checkboxes[i].checked);
+                console.log(checkboxes[i].value);
+            }
+        }}
+    else{
+        let checkboxes = document.getElementsByClassName('checkBox');
     for (let i = 0; i < checkboxes.length; i++) {
         if (selectedContacts.includes(checkboxes[i].value)) {
             checkboxes[i].checked = true;
         }
     }
+    }
+    
     getReady();
     
     setContacts(contacts);
