@@ -300,13 +300,15 @@ function updateJSON(id) {
     let selectedCategory = document.getElementById('addtask-input-category').value;
     var subtasksValue = document.getElementById('addtask-input-subtasks').value;
 
+    debugger;
 
     if (subtasksValue !== '') {
         subtask.push(subtasksValue);
         subtaskdone.push(0);
     }
 
-    todos.map(object => {
+
+    todos.filter(object => {
         if (object.id === id) {
             object.title = titleValue;
             object.task = descriptionValue;
@@ -318,8 +320,10 @@ function updateJSON(id) {
             object.priority = priority;
             writeServer();
         }
-    })
+    }
+    )
 }
+
 
 /**
  * Retrieves an array of contacts and sets them using the setContacts function.

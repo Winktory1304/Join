@@ -193,7 +193,7 @@ function editTask(id) {
         </div>
         <div class="addtask-gap16 max-width-500" id="test">
         </div>
-        </div><button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">OK</button>
+        </div><button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), clearInputs() , closeDialog()">OK</button>
       </div>
       </div>
     `;
