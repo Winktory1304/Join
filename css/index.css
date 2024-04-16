@@ -178,8 +178,9 @@ body {
 .log-in-index-container {
     display: flex;
     flex-direction: column;
-    width: 422px;    
- }
+    width: 90%;
+    max-width: 422px;
+}
 
 .sing-up-container {
     display: flex;
@@ -218,7 +219,7 @@ body {
 .sing-up-content {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
     width: 422px;
 }
 
@@ -234,7 +235,7 @@ body {
 .sing-up-index-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -253,11 +254,11 @@ body {
 }
 
 .input-area input {
-    width: 84%;
-    height: 100%;
+    width: 85%;
+    height: 90%;
     border: none !important;
     cursor: pointer;
-    border-color: white;
+    outline-color: transparent;
     font-size: 20px;
 }
 
@@ -424,7 +425,7 @@ input[type="checkbox"]:checked+label::before {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-    .sigend-up-successfuly-box {
+.sigend-up-successfuly-box {
     display: flex;
     justify-content: center;
     align-items: center;

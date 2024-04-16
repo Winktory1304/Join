@@ -214,6 +214,8 @@ function goBackToLogIn() {
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
     document.getElementById('log_container').classList.remove('height-sing-up');
+    document.getElementById('header_container').classList.remove('d-none');
+    document.getElementById('email_or_password_not_found').innerHTML = '';
     showSignUpHeader();
 }
 
@@ -224,6 +226,7 @@ function goBackToLogIn() {
 function goOneStepBack() {
     window.history.back();
 }
+
 
 
 /**
