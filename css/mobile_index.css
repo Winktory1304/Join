@@ -256,7 +256,6 @@
     .input-area {
         width: 93%;
         margin: 10px;
-
     }
 
 
@@ -557,6 +556,10 @@
 
 @media(max-width: 420px) {
 
+    .arrow-left-line {
+        left: 30px;
+    }
+
     .summary-content {
         margin: 0px;
         padding: 0px;
@@ -615,17 +618,42 @@
     }
 }
 
+@media(max-width: 360px) {
+    .arrow-left-line {
+        left: 20px;
+    }
+
+}
+
 
 
 @media(max-height: 930px) {
 
+    .arrow-left-line {
+        top: 25px;
+    }
+
     .log-container {
-        height: 55%;
+        height: 55% !important;
+    }
+
+    .sing-up-container h1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .sing-up-check-box {
+        margin-bottom: 12px;
+    }
+
+    .log-in-underline {
+        margin-bottom: 10px;
     }
 
     .input-area {
         height: 100%;
         min-height: 40px;
+        margin: 8px;
     }
 
     .log-in-container h1 {
@@ -643,21 +671,45 @@
 
 @media(max-height: 830px) {
 
+    .log-container {
+        height: 55% !important;
+    }
+
     .log-in-container h1 {
         margin-bottom: 7px;
     }
 
     .log-in-underline {
-        margin-bottom: 14px;
+        margin-bottom: 8px;
     }
 
     .input-area {
-        margin: 8px;
+        margin: 6px;
     }
 
     .header-mobile-container {
         transform: translateY(275px);
     }
+
+    .sing-up-container h1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .password-match {
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .sing-up-check-box {
+        margin-top: 0px;
+        margin-bottom: 6px;
+    }
+
+    .sign-up-button-container {
+        padding-top: 10px;
+    }
+
 }
 
 @media(max-height: 770px) {
@@ -689,8 +741,28 @@
     .guest-button {
         margin: 5px;
     }
+}
+
+@media(max-height: 700px) {
+
+    .sing-up-container h1 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .log-in-underline {
+        margin-bottom: 5px;
+    }
+
+    .input-area {
+        margin: 4px;
+    }
 
 }
+
+
+
+
 
 @media(max-height: 665px) {
 
@@ -705,6 +777,7 @@
 
     .input-area {
         margin: 3px;
+        min-height: 30px;
     }
 
     .log-button {
@@ -714,4 +787,9 @@
     .guest-button {
         margin: 3px;
     }
+
+    .header-mobile-container {
+        transform: translateY(220px);
+    }
+
 }
