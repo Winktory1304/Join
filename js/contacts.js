@@ -410,6 +410,38 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     }
     
 }
+
+
+function fullNameErrorTextValidationEdit(message){
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+}
+
+function fullNameErrorTextValidationEditResponsiv(message){
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+}
+
+function emailErrorTextValidationEdit(message){
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+    }
+
+
+function emailErrorTextValidationResponsiv(message){
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+    }
+
+    
 function displayValidationError(message) {
     let messageElement = document.getElementById('validationErrorText');
     let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
@@ -420,20 +452,24 @@ function displayValidationError(message) {
     return;
 }
 
+
 function contactExistValidation() {
     displayValidationError("This contact already exists");
     return;
 }
+
 
 function emailErrorTextValidation() {
     displayValidationError("Invalid email address");
     return;
 }
 
+
 function fullNameErrorTextValidation() {
     displayValidationError("Please enter first and last name.");
     return null;
 }
+
 
 /**
  * Validates an email address.
@@ -517,8 +553,6 @@ function validateFullName(fullName) {
     }
     return names;
 }
-
-
 
 
 /**
