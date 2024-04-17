@@ -301,14 +301,8 @@ function updateJSON(id) {
     var subtasksValue = document.getElementById('addtask-input-subtasks').value;
 
 
-    if (subtasksValue !== '') {
-        subtask.push(subtasksValue);
-        subtaskdone.push(0);
-    }
-
 
     todos.forEach(object => {
-        debugger;
         if (object.id === id) {
             object.title = titleValue;
             object.task = descriptionValue;

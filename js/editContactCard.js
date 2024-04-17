@@ -324,7 +324,6 @@ function saveContact(contactId) {
         detailViewContacts[contactId].email = email;
         detailViewContacts[contactId].phoneNumber = phoneNumber;
         init();
-        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('editContactCard');
         content.innerHTML = '';
     } else {
@@ -365,7 +364,6 @@ function saveContactResponsiv(contactId) {
         detailViewContacts[contactId].email = email;
         detailViewContacts[contactId].phoneNumber = phoneNumber;
         init();
-        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('responsivEditContact');
         content.innerHTML = '';
     } else {
@@ -383,7 +381,6 @@ function saveContactResponsiv(contactId) {
 async function updateServer() {
     try {
         await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
-        console.log('Kontaktinformationen erfolgreich aktualisiert');
     } catch (error) {
         console.error('Fehler beim Aktualisieren der Kontaktinformationen', error);
     }
