@@ -343,10 +343,20 @@ function addContactOrWarn(emailIndex, newContact) {
         }        
         renderContacts();
     } else {
-        alert("Dieser Kontakt ist schon vorhanden");
+        return contactExistValidation();
     }
 }
 
+
+function contactExistValidation() {
+    let messageElement = document.getElementById('validationErrorText');
+    let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+    messageElementResponsiv.textContent = "This contact already exists";
+    messageElementResponsiv.style.color = "red";
+    messageElement.textContent = "This contact already exists";
+    messageElement.style.color = "red";
+    return;
+}
 
 /**
  * Clears the input fields for creating a contact.
@@ -388,16 +398,79 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
     let emailIndex = findEmailIndex(email);
     if (!validateEmail(email)) {
-        alert("Invalid email address");
-        return;
+        return emailErrorTextValidation();
     }
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
-    hideModal(modalId);    
-    clearInputFields();
+    if (emailIndex === -1 && addContactOrWarn(emailIndex, newContact)) {
+        hideModal(modalId);
+        clearInputFields();
+    }
+    
+}
+
+
+function fullNameErrorTextValidationEdit(message){
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+}
+
+
+function fullNameErrorTextValidationEditResponsiv(message){
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+}
+
+
+function emailErrorTextValidationEdit(message){
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+    }
+
+
+function emailErrorTextValidationResponsiv(message){
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+    }
+
+    
+function displayValidationError(message) {
+    let messageElement = document.getElementById('validationErrorText');
+    let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+    messageElement.textContent = message;
+    messageElement.style.color = "red";
+    messageElementResponsiv.textContent = message;
+    messageElementResponsiv.style.color = "red";
+    return;
+}
+
+
+function contactExistValidation() {
+    displayValidationError("This contact already exists");
+    return;
+}
+
+
+function emailErrorTextValidation() {
+    displayValidationError("Invalid email address");
+    return;
+}
+
+
+function fullNameErrorTextValidation() {
+    displayValidationError("Please enter first and last name.");
+    return null;
 }
 
 
@@ -479,8 +552,7 @@ function sortContactsByInitial() {
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
     if (names.length < 2) {
-        alert('Bitte geben Sie Vor- und Nachnamen ein.');
-        return null;
+        return fullNameErrorTextValidation();
     }
     return names;
 }

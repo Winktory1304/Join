@@ -246,6 +246,7 @@ function editContactDesktopHtml(content, contact, contactId) {
                     </svg>
                 </button>
             </div>
+            <span class="validation-error" id="validationErrorTextEdit"></span>
         </div>
         `;
 }
@@ -259,6 +260,8 @@ function editContactDesktopHtml(content, contact, contactId) {
  * @param {string} modalId - The ID of the modal to be displayed.
  */
 function saveFunctionDesktop(contact, contactId, modalId) {
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.innerHTML = '';
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
     document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
@@ -276,6 +279,8 @@ function saveFunctionDesktop(contact, contactId, modalId) {
  * @param {string} contactId - The ID of the contact.
  */
 function responsivSaveFunction(contact, contactId) {
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.innerHTML = '';
     document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
     document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
@@ -293,12 +298,26 @@ function responsivSaveFunction(contact, contactId) {
  * @param {number} contactId - The ID of the contact to be saved.
  */
 function saveContact(contactId) {
-
+    
     let content = document.getElementById('detailViewContent');
-    const firstName = document.getElementById('edit-contact-name-input').value.split(' ')[0];
-    const lastName = document.getElementById('edit-contact-name-input').value.split(' ')[1] || ''; 
+    const fullName = document.getElementById('edit-contact-name-input').value;
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[1] || ''; 
     const email = document.getElementById('edit-contact-email-input').value;
     const phoneNumber = document.getElementById('edit-contact-phone-input').value;
+
+    // Full name validation
+    if (!/^[a-zA-Z]+ [a-zA-Z]+$/.test(fullName)) {
+        fullNameErrorTextValidationEdit('Invalid full name. It should contain first and last name separated by a space.');
+        return;
+    }
+
+    // Email validation
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+        emailErrorTextValidationEdit('Invalid email address.');
+        return;
+    }
+
     if (detailViewContacts[contactId]) {
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;
@@ -321,10 +340,25 @@ function saveContact(contactId) {
  */
 function saveContactResponsiv(contactId) {
     let content = document.getElementById('detailViewContent');
-    const firstName = document.getElementById('responsivEditContactNameInput').value.split(' ')[0];
-    const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || ''; 
+    const fullName = document.getElementById('responsivEditContactNameInput').value;
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[1] || ''; 
     const email = document.getElementById('responsivEditContactEmailInput').value;
     const phoneNumber = document.getElementById('responsivEditContactPhoneInput').value;
+
+    // Validation for Full Name
+    if (!/^[a-zA-Z]+ [a-zA-Z]+$/.test(fullName)) {
+        fullNameErrorTextValidationEditResponsiv('Invalid full name. It should contain first and last name separated by a space.');
+        return;
+    }
+
+    // Validation for Email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        emailErrorTextValidationResponsiv('Invalid email address.');
+        return;
+    }
+
     if (detailViewContacts[contactId]) {
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;

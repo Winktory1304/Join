@@ -646,6 +646,11 @@ body {
     font-weight: 700;
 
 }
+.validation-error {
+    width: 416px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
 
 .detail-view-contact-email {
     font-size: 16px;
