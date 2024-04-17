@@ -2,6 +2,9 @@
 .addtask-input-description{
     padding: 18px;
 }
+.board_addtaskcard{
+    width: 70%;
+}
 @media (max-width: 1750px){
 .board_tasks {
     flex-wrap: wrap;

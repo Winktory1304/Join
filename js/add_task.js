@@ -167,7 +167,6 @@ function addTaskPopup() {
   setTimeout(function () {
     document.getElementById("popup").classList.add("d-none");
   }, 1000);
-  window.location.href = "/html/board.html";
 }
 
 

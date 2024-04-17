@@ -18,8 +18,14 @@ function loadUsers() {
  * Registers a user if email doesn't already exists.
  */
 function registerUser() {
+    
+    const name = document.getElementById('sign_up_name').value.trim();
     const password = document.getElementById('sign_up_password').value.trim();
+    const nameWords = name.split(' ');    
 
+    if (!checkAndSeperateName(nameWords)) {
+        return;
+    }    
 
     if (password === '') {
         return;
@@ -45,6 +51,21 @@ function registerUser() {
         }, 2000);
     }
 }
+
+
+/**
+ * Checks whether the name consists of two words, each of which is at least three characters long.
+ */
+function checkAndSeperateName(nameWords) {
+    let warning = document.getElementById('password_match');
+    if (nameWords.length !== 2 || nameWords.some(word => word.length < 3)) {
+        warning.innerHTML = 'Bitte geben Sie Vor- und Nachnamen ein.';
+        warning.style.color = 'red';
+        return false;
+    }
+    return true;
+}
+
 
 
 /**

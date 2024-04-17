@@ -307,21 +307,20 @@ function updateJSON(id) {
     }
 
 
-    todos.filter(object => {
+    todos.forEach(object => {
         if (object.id === id) {
             object.title = titleValue;
             object.task = descriptionValue;
             object.date = dateValue;
             object.tag = selectedCategory;
-            object.contacts = [];
-            object.contacts = selectedContacts;
             object.subtasks = subtask;
-            object.priority = priority;
+            object.subtasksdone = subtaskdone;
             writeServer();
         }
     }
     )
 }
+
 
 
 /**

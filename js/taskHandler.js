@@ -118,10 +118,13 @@ function addTask() {
   pushJSON();
   try {
     setItem(key, todos);
+
+    clearInputs()
+    window.location.href = "/html/board.html";
   } catch (error) {
     console.error('Error adding task', error);
   }
-  clearInputs() 
+  ;
 }
 
 
@@ -221,13 +224,13 @@ function addSubtask() {
   var text2 = 'div-' + (subtask.length);
   var input = document.getElementById("addtask-input-subtasks");
   document.getElementById("containerForSubtask").classList.remove('d-none');
-  var container = document.getElementById("containerForSubtask"); 
+  var container = document.getElementById("containerForSubtask");
   var subtaskText = input.value;
-  subtask.push(subtaskText); 
+  subtask.push(subtaskText);
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
   <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
   container.innerHTML += subtaskHTML;
-  input.value = ""; 
+  input.value = "";
 }
 
 
@@ -265,8 +268,8 @@ function deleteSubtask(titel, id) {
  */
 function editSubtask(titel, id) {
   var subtaskElement = document.getElementById(id);
-  subtaskElement.innerHTML = 
-  `
+  subtaskElement.innerHTML =
+    `
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtask(this.value, '${id}')">
   `;
 }
