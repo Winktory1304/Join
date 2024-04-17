@@ -160,6 +160,7 @@
                         placeholder="Name">
                     <input class="contact-modal-input input-email-img" id="create-contact-email-input" required
                         type="email" placeholder="Email">
+                        
                     <input class="contact-modal-input input-phone-img" id="create-contact-phone-input" required
                         type="number" placeholder="Phone">
                 </form>
@@ -187,6 +188,7 @@
                         </svg>
                     </button>
                 </div>
+                <span class="validation-error" id="validationErrorText"></span>
             </div>
         </div>
     </div>
@@ -235,6 +237,7 @@
                 <input class="responsiv-contact-modal-input input-phone-img" id="responsivCreateContactPhoneInput"
                     required type="number" placeholder="Phone">
             </form>
+            <span class="validation-error" id="validationErrorTextResponsiv"></span>
             <button id="responsivAddContactButton" class="responsiv-modal-part-3-create-button"
                 onclick="addNewContactResponsiv()">
                 Create contact
@@ -250,6 +253,7 @@
                     </g>
                 </svg>
             </button>
+            
         </div>
     </div>
     <!-- Responisv edit Modal -->

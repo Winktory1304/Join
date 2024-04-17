@@ -342,7 +342,13 @@ function addContactOrWarn(emailIndex, newContact) {
         }        
         renderContacts();
     } else {
-        alert("Dieser Kontakt ist schon vorhanden");
+        let messageElement = document.getElementById('validationErrorText');
+        let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+        messageElementResponsiv.textContent = "This contact already exists";
+        messageElementResponsiv.style.color = "red";
+        messageElement.textContent = "This contact already exists";
+        messageElement.style.color = "red";
+        return;
     }
 }
 
@@ -387,7 +393,12 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
     let emailIndex = findEmailIndex(email);
     if (!validateEmail(email)) {
-        alert("Invalid email address");
+        let messageElement = document.getElementById('validationErrorText');
+        let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+        messageElement.textContent = "Invalid email address";
+        messageElement.style.color = "red";
+        messageElementResponsiv.textContent = "Invalid email address";
+        messageElementResponsiv.style.color = "red";
         return;
     }
     let fullName = document.getElementById(nameInputId).value;
@@ -395,8 +406,11 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact);
-    hideModal(modalId);    
-    clearInputFields();
+    if (emailIndex === -1 && addContactOrWarn(emailIndex, newContact)) {
+        hideModal(modalId);
+        clearInputFields();
+    }
+    
 }
 
 
@@ -478,7 +492,12 @@ function sortContactsByInitial() {
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
     if (names.length < 2) {
-        alert('Bitte geben Sie Vor- und Nachnamen ein.');
+        let messageElement = document.getElementById('validationErrorText');
+        let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+        messageElement.textContent = "Please enter first and last name.";
+        messageElementResponsiv.textContent = "Please enter first and last name.";
+        messageElement.style.color = "red";
+        messageElementResponsiv.style.color = "red";
         return null;
     }
     return names;
