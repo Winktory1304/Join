@@ -77,7 +77,7 @@ function changeAddTask() {
     let button = document.getElementById('addtask-button-cancel');
     let create = document.getElementById('addtask-button-create-task');
 
-    create.setAttribute('onclick', 'addTask(), readServer(), closeTaskDialog()');
+    create.setAttribute('onclick', 'addTaskonBoard()');
 
     button.value = 'Close';
     button.setAttribute('onclick', 'closeTaskDialog()');
@@ -308,17 +308,22 @@ function updateJSON(id) {
 
 
     todos.forEach(object => {
+        debugger;
         if (object.id === id) {
             object.title = titleValue;
             object.task = descriptionValue;
             object.date = dateValue;
+            object.prorpity = priority;
+            object.contacts = selectedContacts;
             object.tag = selectedCategory;
+            object.priority = priority;
             object.subtasks = subtask;
             object.subtasksdone = subtaskdone;
-            writeServer();
         }
     }
+    
     )
+    writeServer();
 }
 
 
@@ -327,34 +332,13 @@ function updateJSON(id) {
  * Retrieves an array of contacts and sets them using the setContacts function.
  */
 function getarray(id) {
-debugger;
-    if (id != null){
-        todos[id].contacts.forEach(contact => {
-            console.log(contact);
-            selectedContacts.push(contact);
-        });
-
         let checkboxes = document.getElementsByClassName('checkBox');
         for (let i = 0; i < checkboxes.length; i++) {
             if (selectedContacts.includes(checkboxes[i].value)) {
                 checkboxes[i].checked = true;
-                console.log(checkboxes[i].checked);
-                console.log(checkboxes[i].value);
             }
-        }}
-    else{
-        let checkboxes = document.getElementsByClassName('checkBox');
-    for (let i = 0; i < checkboxes.length; i++) {
-        if (selectedContacts.includes(checkboxes[i].value)) {
-            checkboxes[i].checked = true;
         }
     }
-    }
-    
-    getReady();
-    
-    setContacts(contacts);
-}
 
 /**
  * Returns the initials of a given name.

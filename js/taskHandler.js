@@ -115,16 +115,38 @@ function createTask(statusInput) {
  */
 function addTask() {
   addTaskPopup()
-  pushJSON();
-  try {
-    setItem(key, todos);
+  setTimeout(() => {
+    pushJSON();
+    try {
+      setItem(key, todos);
+  
+      clearInputs()
+      window.location.href = "/html/board.html";
+    } catch (error) {
+      console.error('Error adding task', error);
+    }
+  }, 1000);
 
-    clearInputs()
-    window.location.href = "/html/board.html";
-  } catch (error) {
-    console.error('Error adding task', error);
-  }
-  ;
+}
+
+/**
+ * Adds a task to the todo list.
+ */
+function addTaskonBoard() {
+  addTaskPopup()
+  setTimeout(() => {
+    pushJSON();
+    try {
+      setItem(key, todos);
+  
+      clearInputs();
+      closeTaskDialog();
+      updateHTML();
+    } catch (error) {
+      console.error('Error adding task', error);
+    }
+  }, 1000);
+
 }
 
 
@@ -189,7 +211,7 @@ function editTask(id) {
             <div class="addtask-h2">Assigned to</div>
             <div style="position: relative;">
                 <input class="addtask-input-subtasks max-width-500" placeholder="Contacts" id="changeAssigned">
-                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getarray(${id})"
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getReady(),getarray(${id})"
                     style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
             </div>
             <div class="inputfield d-none max-width-500" id="addtask-input-assigned" onchange="validateInput()"></div>
@@ -214,6 +236,7 @@ function fillSubtasks() {
     subtask = element.subtasks;
   });
 }
+
 
 
 /**

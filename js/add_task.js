@@ -82,10 +82,8 @@ function getReady() {
     document.getElementById("addtask-input-assigned").classList.remove("d-none");
     document.getElementById("test").classList.add("d-none");
     openassigned = true;
-    
-   setTimeout(() => {
     setContacts(contacts);
-  }, 1000);
+    
   }
   else {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
@@ -131,6 +129,7 @@ function setContacts(array) {
 function writeContactsintonewArray() {
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
+
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       selectedContacts.push(checkboxes[i].value);
@@ -148,8 +147,8 @@ function writeContactsintonewArray() {
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
 
+
     if (todos.length === 0) return;
-    else todos[todos.length - 1].contacts = selectedContacts;
   });
 }
 

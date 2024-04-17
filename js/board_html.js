@@ -2,6 +2,20 @@
  * Updates the HTML elements on the board based on the todos array.
  */
 function updateHTML() {
+    
+
+    let inProgress = todos.filter(t => t['status'] == 'progress');
+
+    document.getElementById('board_progress').innerHTML = '';
+    if (inProgress.length === 0) {
+        document.getElementById('board_progress').innerHTML = noCard();
+    }
+
+    for (let index = 0; index < inProgress.length; index++) {
+        const element = inProgress[index];
+        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+    }
+
     let open = todos.filter(t => t['status'] == 'open');
 
     document.getElementById('board_open').innerHTML = '';
@@ -15,17 +29,6 @@ function updateHTML() {
 
     }
 
-    let inProgress = todos.filter(t => t['status'] == 'progress');
-
-    document.getElementById('board_progress').innerHTML = '';
-    if (inProgress.length === 0) {
-        document.getElementById('board_progress').innerHTML = noCard();
-    }
-
-    for (let index = 0; index < inProgress.length; index++) {
-        const element = inProgress[index];
-        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
-    }
 
     let inFeedback = todos.filter(t => t['status'] == 'feedback');
 
@@ -110,17 +113,17 @@ function setTitle(element) {
 let contactColors = {};
 
 
-function generateContacts(element) {
+function generateContacts(elementcontacts) {
     
-    if (element.length === 0) {
+    if (elementcontacts.length === 0) {
         return '';
     }
 
-    if (element.length > 5) {
-        element = element.slice(0, 5);
+    if (elementcontacts.length > 5) {
+        elementcontacts = elementcontacts.slice(0, 5);
     }
     let contactHTML = '';
-    element.forEach((contact) => {
+    elementcontacts.forEach((contact) => {
         let initials = contact.split(' ').map(name => name.charAt(0)).join('');
         
         let name = contact.split(" ");
@@ -198,6 +201,7 @@ function openTaskDialog() {
     document.getElementById('board_addTask').classList.remove('d-none');
     changeAddTask();
     selectedContacts = [];
+    document.getElementById('test').innerHTML = '';
     } else {
         window.location.href = 'addtask.html';
 }
