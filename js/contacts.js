@@ -419,12 +419,14 @@ function fullNameErrorTextValidationEdit(message){
     return;
 }
 
+
 function fullNameErrorTextValidationEditResponsiv(message){
     let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
     editMessageElement.textContent = message;
     editMessageElement.style.color = "red";
     return;
 }
+
 
 function emailErrorTextValidationEdit(message){
     let editMessageElement = document.getElementById('validationErrorTextEdit');
