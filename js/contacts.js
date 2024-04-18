@@ -342,7 +342,7 @@ function addContactOrWarn(emailIndex, newContact) {
         }        
         renderContacts();
     } else {
-        alert("Dieser Kontakt ist schon vorhanden");
+        
     }
 }
 
