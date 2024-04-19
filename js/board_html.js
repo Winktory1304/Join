@@ -94,7 +94,7 @@ function generateTodoHTML(element) {
                         <p class="board_tasktext">${limitTaskText(element)}</p>
                         <div class="board_cardbar"> ${subTasks(element)}</div>
                         <div class="board_cardbottom">
-                            <div class="board_cardcontactsdome">${generateContacts(element.contacts)}</div>
+                            <div class="board_cardcontactsdome">${generateContacts(element)}</div>
                             <div class="board prio">${prioritySelector(element)}</div>
                         </div>
                     </div>
@@ -114,22 +114,21 @@ let contactColors = {};
 
 
 function generateContacts(elementcontacts) {
-    
-    if (elementcontacts.length === 0) {
+    if (elementcontacts.contacts.length === 0) {
         return '';
     }
 
-    if (elementcontacts.length > 5) {
+    if (elementcontacts.contacts.length > 5) {
         elementcontacts = elementcontacts.slice(0, 5);
     }
     let contactHTML = '';
-    elementcontacts.forEach((contact) => {
-        let initials = contact.split(' ').map(name => name.charAt(0)).join('');
+    elementcontacts.contacts.forEach((contact) => {
+        let initials = contact.initials;
         
-        let name = contact.split(" ");
-        let id = "contactcircle-" + name[1] + name[2];
-        colorPicker(name);
-        let color = contactColors[id];
+        let name = contact.name;
+        let id = "contactcircle-" + name;
+
+        let color = contact.color;
         contactHTML +=`
         <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,8 +187,9 @@ function openDialog(id) {
 /**
  * Closes the dialog and updates the HTML.
  */
-function closeDialog() {
+async function closeDialog() {
     document.getElementById('board_openCard').classList.add('d-none');
+    await writeServer()
     updateHTML();
 }
 
@@ -197,6 +197,7 @@ function closeDialog() {
  * Opens the task dialog and calls the addTask function.
  */
 function openTaskDialog() {
+    subtask = [];
     if (innerWidth > 1300) {
     document.getElementById('board_addTask').classList.remove('d-none');
     changeAddTask();
@@ -213,6 +214,7 @@ function openTaskDialog() {
 function closeTaskDialog() {
     document.getElementById('board_addTask').classList.add('d-none');
     selectedContacts = [];
+    subtask = [];
 }
 
 /**

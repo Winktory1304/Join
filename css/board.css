@@ -693,3 +693,7 @@ p {
     border-radius: 10px;
     width: 480px !important;
 }
+.board_task:hover{
+    transform: rotate(2.5deg);
+    transition: transform 0.3s ease-in-out;
+}
