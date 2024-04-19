@@ -91,7 +91,24 @@
     }
 
     .addtask-prio-buttons{
-        flex-direction: column;
+        max-width: 25vw;
+        font-size: 10px;
+        
+    }
+
+    .addtask-button {
+height: 26px;
+font-size: 10px;
+
+    }
+
+    .addtask-button-create-task {
+
+        font-size: 15px;
+    }
+
+    .addtask-h2 {
+        font-size: 15px;
     }
   
 .width540{

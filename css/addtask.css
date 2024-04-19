@@ -319,7 +319,6 @@
 }
 
 .addtask-button {
- 
     height: 56px;
     border-radius: 10px;
     padding: 16px 10px 16px 10px;
@@ -373,17 +372,8 @@
 }
 
 .addtask-button-create-task:disabled {
-    height: 56px;
-    border-radius: 10px;
+
     background-color: #5a5a5a;
-    color: #Ffffff;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 400;
-    font-family: "Inter";
 }
 
 .urgent.selected {
