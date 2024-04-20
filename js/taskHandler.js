@@ -221,7 +221,7 @@ function fillContacts(id) {
   todos[id].contacts.forEach((element) => {
     let contact = element.name.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
-    let id = "contactcircle-" + element.id;
+    let id = "contactcircle-" + element.idContact;
     let color = element.color;
 
     document.getElementById("test").innerHTML += `
@@ -237,57 +237,53 @@ function fillContacts(id) {
 function setContactstoTodo(todoID) {
   switchCase("assigned").innerHTML = "";
   contacts.forEach((element) => {
-    let id = "contactcircle-" + element.firstName + element.lastName;
+    let id = "contactcircle-" + element.id;
     let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
     let color = element.color;
 
-    switchCase("assigned").innerHTML += `<div class="inputnew width540" id="setAssign-${element.id}" onclick="setAssign(${element.id}),writeContactsintoTodo('${todoID}')"> 
+    switchCase("assigned").innerHTML += `<div class="inputnew width540" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintoTodo('${todoID}', '${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}')"> 
     <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
         </div>${element.firstName} ${element.lastName} 
-    <input onchange="writeContactsintoTodo('${todoID}')" class="checkBox" type="checkbox" id="id-${element.id}" value="${element.firstName} ${element.lastName}">
+    <input class="checkBox" type="checkbox" id="${element.idContact}" value="${element.firstName} ${element.lastName}">
     </div>`;
   });
 }
 
 
 function setAssign(contactID) {
-  if (document.getElementById("id-"+contactID).checked) {
-    document.getElementById("id-"+contactID).checked = false;
+  if (document.getElementById(contactID).checked) {
+    document.getElementById(contactID).checked = false;
     document.getElementById("setAssign-"+contactID).style.backgroundColor = "white";
     return;
   }
   
   document.getElementById("setAssign-"+contactID).style.backgroundColor = "#828282";
-  document.getElementById("id-"+contactID).checked = true;
+  document.getElementById(contactID).checked = true;
 }
 
 
 
 
-function writeContactsintoTodo(todoID) {
-  let checkboxes = document.getElementsByClassName("checkBox");
+function writeContactsintoTodo(todoID, id, firstName, lastName, color, initials) {
+  let checkboxes = document.getElementsByClassName("checkBox ");
   todos[todoID].contacts = [];
 
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
-      let contact = checkboxes[i].value.trim().split(" ");
-      let firstName = contact[0];
-      let lastName = contact[1];
-      let initials = firstName.charAt(0) + lastName.charAt(0);
-      let color = checkboxes[i].parentNode.querySelector("circle").getAttribute("fill");
-      todos[todoID].contacts.push(new Contact(todos[todoID].contacts.length, firstName + " " + lastName, color, initials));
-    }
+      if (checkboxes[i].checked) {
+        todos[todoID].contacts.push(new Contact(id, firstName + " " + lastName, color, initials));
+      } }
   }
 
   document.getElementById("test").innerHTML = "";
   todos[todoID].contacts.forEach((element) => {
     let contact = element.name.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
-    let id = "contactcircle-" + element.id;
+    let id = "contactcircle-" + element.idContact;
     let color = element.color;
 
     document.getElementById("test").innerHTML += `

@@ -114,19 +114,28 @@ let contactColors = {};
 
 
 function generateContacts(elementcontacts) {
+    let kreise = [];
+
+
+   
     if (elementcontacts.contacts.length === 0) {
         return '';
     }
 
+
+
     if (elementcontacts.contacts.length > 5) {
-        elementcontacts = elementcontacts.slice(0, 5);
+        kreise = elementcontacts.contacts.slice(0, 5);
+    }
+    else {
+        kreise = elementcontacts.contacts;
     }
     let contactHTML = '';
-    elementcontacts.contacts.forEach((contact) => {
+    kreise.forEach((contact) => {
         let initials = contact.initials;
         
         let name = contact.name;
-        let id = "contactcircle-" + name;
+        let id = "contactcircle-" + contact.idContact;
 
         let color = contact.color;
         contactHTML +=`

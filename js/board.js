@@ -320,18 +320,19 @@ function getarray(id) {
 
         if (id === null) {
             selectedContacts.forEach(contact => {
-                if (contact.name.includes(checkboxes[i].value)) {
+                if (contact.id.includes(checkboxes[i].id.toString())) {
                     checkboxes[i].checked = true;
 
-                    document.getElementById("setAssign-" + i).style.backgroundColor = "#828282";
+                    document.getElementById("setAssign-" + contact.id).style.backgroundColor = "#828282";
                 }
             });
         }
         else {
             todos[id].contacts.forEach(contact => {
-                if (contact.name.includes(checkboxes[i].value)) {
+                if (contact.id.includes(checkboxes[i].id.toString())) {
                     checkboxes[i].checked = true;
-                    document.getElementById("setAssign-" + i).style.backgroundColor = "#828282";
+                    debugger;
+                    document.getElementById("setAssign-" + contact.id).style.backgroundColor = "#828282";
                 }
             });
         }
