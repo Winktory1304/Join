@@ -6,13 +6,10 @@ let contactsaveid = 0;
 
 
 async function init() {
-    try {
-        console.log("Lade Benutzerdaten...");
-        await getUsersintoContacts();
-        console.log("Benutzerdaten erfolgreich geladen.");
+    try {        
+        await getUsersintoContacts();        
         renderContacts();
-        getName();
-        console.log("Kontakte gerendert und Namen geholt.");
+        getName();       
     } catch (error) {
         console.error("Fehler in init:", error);
     }
