@@ -489,7 +489,7 @@
 }
 
 .containerForSubtask {
-    width: 520px;
+    width: 96%;
     scrollbar-width: thin;
     border-radius: 10px;
     overflow: auto;

@@ -401,6 +401,7 @@ h4 {
 }
 
 .board_taskcard {
+    font-size: 20px;
 
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -448,11 +449,13 @@ h4 {
 }
 
 .board_editframe {
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     overflow-y: auto;
     overflow-x: hidden;
     gap: 24px;
+    overflow-y: auto;
 }
 .max-width-525{
     width: 525px !important;
@@ -460,11 +463,25 @@ h4 {
 
 .max-width-500{
     width: 500px !important;
+    flex-direction: row !important;
 }
 
 .addtask-button-create-task{
+    display: flex;
+    width: 90px;
+    height: 80px;
+    align-self: flex-end;
     right: -10px !important;
 }
+.addtask-prio-buttons{
+    justify-content: center;
+    gap: 16%;
+}
+.addtask-gap16{
+    display: flex;
+    flex-direction: column;
+}
+
 .board_taskedit{
     display: flex;
     flex-direction: row;
@@ -588,8 +605,36 @@ h4 {
 }
 
 .board_cardexit{
-    font-size: 40px;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    margin-right: 20px;
     cursor: pointer;
+}
+.edittask{
+    width: 100px!important;
+    height: 80px !important;
+}
+
+
+#addtask-button-create-task{
+    display: flex;
+    width: 183px;
+    height: 56px;
+    align-self: flex-end;
+    right: -10px !important;
+}
+
+#test{
+    margin-top: 5px;
+    flex-direction: row;
+}
+
+
+.board_cardexit:hover{
+    background-color: #dddddd;
+    border-radius: 50%;
 }
 
 .board_subitem{
@@ -650,7 +695,10 @@ p {
 
 
 .board_deledit{
-
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -686,8 +734,14 @@ p {
 }
 
 .gap-20{
-    margin-top: 20px;
+    margin-top: 0px;
 }
+
+.gap-20 p {
+    margin-block-start: 0em;
+    margin-block-end: 0.5em;
+}
+
 .inputfield{
     border: #000000 1px solid;
     border-radius: 10px;
@@ -696,4 +750,8 @@ p {
 .board_task:hover{
     transform: rotate(2.5deg);
     transition: transform 0.3s ease-in-out;
+}
+.addtask-input-description{
+    width: 91% !important;
+    min-height: 60px;
 }
