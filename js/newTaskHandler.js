@@ -22,7 +22,13 @@ async function writeTasktoServer() {
         try {
             setItem('todos', todos).then(() => {
 
-                readServer(); clearInputs(); closeTaskDialog();
+                readServer(); clearInputs(); 
+                
+                if (taskdialog) {
+                closeTaskDialog()}
+                else {
+                    window.location.href = "/html/board.html";
+                };
             });
 
         } catch (error) {
