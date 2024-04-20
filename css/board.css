@@ -475,11 +475,12 @@ h4 {
 }
 .addtask-prio-buttons{
     justify-content: center;
-    gap: 16%;
+    gap: 20%;
 }
 .addtask-gap16{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .board_taskedit{
@@ -604,6 +605,10 @@ h4 {
     cursor: pointer;
 }
 
+.width540{
+    width: 540px !important;
+}
+
 .board_cardexit{
     text-align: center;
     width: 25px;
@@ -617,6 +622,9 @@ h4 {
     height: 80px !important;
 }
 
+.plusnew{
+    right: 15px !important;
+}
 
 #addtask-button-create-task{
     display: flex;
@@ -714,10 +722,6 @@ p {
     margin-top: 20px;
 }
 
-.addtask-input-description{
-    width: 95% !important;
-}
-
 
 .board_cardcontactsdome{
     display: flex;
@@ -752,6 +756,10 @@ p {
     transition: transform 0.3s ease-in-out;
 }
 .addtask-input-description{
+    padding: 23px !important;
     width: 91% !important;
     min-height: 60px;
+}
+.width524{
+    width: 100% !important;
 }

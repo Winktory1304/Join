@@ -10,9 +10,12 @@
 .board_tasks {
     flex-wrap: wrap;
 }
-
+.addtask-right-content
+{
+    width: 50%;
+}
 .addtask-input-description{
-    padding: 0px;
+    padding: 0px !important;
 }
 .containerForSubtask{
     width: 500px;
@@ -20,6 +23,10 @@
 .board_task{
     padding: 20px;
     width: 200px;
+}
+.addtask-prio-buttons{
+    justify-content: center;
+    gap: 13%;
 }
 
 .spalte{
@@ -62,16 +69,14 @@
 .addtask-left-content{
     margin-right: 48px !important;
     margin: 0;
+    width: 45%;
 }
 .addtask-input-subtasks .addtask-prio-buttons, .addtask-content-footer, .addtask-input-title {
     margin: 0;
     padding: 0;
 }
 .width540{
-    width: 93% !important;
-}
-.width524{
-    width: 450px !important;
+    width: 100% !important;
 }
 .inputfield {
     overflow-x: hidden;
@@ -100,7 +105,6 @@
 .addTask{
     display: none;
 }
-
 .mobile_hidden{
     display: none !important;
 
@@ -296,6 +300,8 @@ progress{
     height: 20px;
 
 }
+
+
 }
 
 

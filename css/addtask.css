@@ -350,6 +350,13 @@
     height: 20px;
 }
 
+.plusnew {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+}
+
 .addtask-button-create-task {
     width: 183px;
     height: 56px;
@@ -522,11 +529,13 @@
     cursor: pointer;
     border-radius: 10px;
 }
+
 .inputnew:hover {
     cursor: pointer;
     background-color: #5c5c5c;
     border-radius: 10px;
 }
+
 .checkBox {
     width: 20px;
     height: 20px;
@@ -561,119 +570,122 @@
     .addtask-input-category {
         width: 31vw;
     }
-   }
+}
 
-    @media(max-width: 1300px) {
-        .sidebar {
-            display: none !important;
-        }
-
-        .addtask_content {
-            margin-left: 16px;
-        }
-
-        .addtask-content-main {
-            margin-right: 16px;
-        }
-
-        .addtask_inner_content {
-            min-height: 1440px;
-        }
-
-        .addtask-content-footer {
-            margin-right: 0;
-        }
-
-        .addtask_h1 {
-            font-size: 61px;
-            font-weight: 700;
-            width: 466px;
-            height: 78px;
-            top: 0px;
-            margin: 0 !important;
-            text-align: center;
-            gap: 1px;
-            padding-top: 10px;
-            padding-left: 0;
-        }
-
-        .addtask-middle-content {
-            display: none;
-        }
-
-        .addtask-content-main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 0;
-        }
-
-        .width540 {
-            width: 540px;
-        }
-
-        .width524 {
-            width: 540px;
-        }
-
-        .addtask-right-content {
-            margin-left: 0;
-        }
-
-        .addtask-prio-buttons {
-            width: 550px;
-        }
-    
-        .addtask-input-category {
-            width: 540px;
-        }
+@media(max-width: 1300px) {
+    .sidebar {
+        display: none !important;
     }
 
-    @media(max-width: 600px) {
-        .width540 {
-            max-width: 85vw;
-        }
-        .width524 {
-            max-width: 85vw;
-        }
-
-        .width552 {
-            max-width: 85vw;
-        }
-
-        .addtask-input-category {
-            width: 31vw;
-        }
-        .addtask-prio-buttons {
-            max-width: 85vw;
-        }
-
-        .addtask-button-cancel {
-            display: none;
-        }
+    .addtask_content {
+        margin-left: 16px;
     }
 
-    @media(max-width: 440px) {
-        .addtask_h1 {
-            width: 320px;
-            font-size: 40px;
-        }
- 
-        .addtask-input-category {
-            width: 85vw;
-            padding-right: 20px;
-        }
-        .addtask-button {
-            max-width: 90vw;
-            height: 56px;
-            border-radius: 10px;
-            padding: 2px;
-            display: flex;
-            font-size: 15px;
-   
-        }
-
-        .addtask-right-content {
-            width: 90vw;
-        }
+    .addtask-content-main {
+        margin-right: 16px;
     }
+
+    .addtask_inner_content {
+        min-height: 1440px;
+    }
+
+    .addtask-content-footer {
+        margin-right: 0;
+    }
+
+    .addtask_h1 {
+        font-size: 61px;
+        font-weight: 700;
+        width: 466px;
+        height: 78px;
+        top: 0px;
+        margin: 0 !important;
+        text-align: center;
+        gap: 1px;
+        padding-top: 10px;
+        padding-left: 0;
+    }
+
+    .addtask-middle-content {
+        display: none;
+    }
+
+    .addtask-content-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0;
+    }
+
+    .width540 {
+        width: 540px;
+    }
+
+    .width524 {
+        width: 540px;
+    }
+
+    .addtask-right-content {
+        margin-left: 0;
+    }
+
+    .addtask-prio-buttons {
+        width: 550px;
+    }
+
+    .addtask-input-category {
+        width: 540px;
+    }
+}
+
+@media(max-width: 600px) {
+    .width540 {
+        max-width: 85vw;
+    }
+
+    .width524 {
+        max-width: 85vw;
+    }
+
+    .width552 {
+        max-width: 85vw;
+    }
+
+    .addtask-input-category {
+        width: 31vw;
+    }
+
+    .addtask-prio-buttons {
+        max-width: 85vw;
+    }
+
+    .addtask-button-cancel {
+        display: none;
+    }
+}
+
+@media(max-width: 440px) {
+    .addtask_h1 {
+        width: 320px;
+        font-size: 40px;
+    }
+
+    .addtask-input-category {
+        width: 85vw;
+        padding-right: 20px;
+    }
+
+    .addtask-button {
+        max-width: 90vw;
+        height: 56px;
+        border-radius: 10px;
+        padding: 2px;
+        display: flex;
+        font-size: 15px;
+
+    }
+
+    .addtask-right-content {
+        width: 90vw;
+    }
+}
