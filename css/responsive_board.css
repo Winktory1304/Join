@@ -6,16 +6,6 @@
     width: 70%;
 }
 
-.respnosiveTask{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 5px;
-    align-items: center;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
 
 
 .statusSwitcheroption{
@@ -170,6 +160,17 @@
     background-color: rgba(5, 73, 125, 0.501);
     cursor: pointer;
     z-index: 9999;
+}
+
+.respnosiveTask{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 .board_addTask{
     display: none;
