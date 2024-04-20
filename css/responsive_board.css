@@ -22,7 +22,7 @@
     width: 30px;
     height: 30px;
     border: none;
-    background-color: orange;
+    background-color: rgba(5, 73, 125, 0.501);
     cursor: pointer;
     z-index: 9999;
 }

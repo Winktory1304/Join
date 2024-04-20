@@ -778,8 +778,8 @@ p {
 }
 
 .board_task:hover{
-    transform: rotate(2.5deg);
-    transition: transform 0.3s ease-in-out;
+    transform: scale(1.03);
+    transition: transform 0.5s;
 }
 .addtask-input-description{
     padding: 23px !important;
