@@ -6,6 +6,73 @@
     width: 70%;
 }
 
+.respnosiveTask{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.statusSwitcher{
+    border-radius: 25%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: orange;
+    cursor: pointer;
+    z-index: 9999;
+}
+.statusSwitcheroption{
+    gap: 5px;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    border: #081371 1px solid;
+
+}
+.statusSwitcheroption:hover{
+    background-color: #081371;
+    color: white;
+}
+
+.goBackStatuschange:hover{
+    transition: zoom 0.3s;
+    transform: scale(1.1);
+
+}
+.changeTitle{
+    
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.changeStatus{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.changeTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+}
+
 @media (max-width: 1750px){
 .board_tasks {
     flex-wrap: wrap;

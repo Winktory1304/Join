@@ -173,8 +173,8 @@ function subTaskscomplete(todoID) {
 function limitTaskText(element) {
     if (element.task.length > 20) {
 
-        element.task = element.task.substring(0, 15) + '...';
-        return element.task;
+        let tasktext = element.task.substring(0, 20) + '...';
+        return tasktext;
     } else {
         return element.task;
     }

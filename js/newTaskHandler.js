@@ -22,10 +22,11 @@ async function writeTasktoServer() {
         try {
             setItem('todos', todos).then(() => {
 
-                readServer(); clearInputs(); 
-                
+                readServer(); clearInputs();
+
                 if (taskdialog) {
-                closeTaskDialog()}
+                    closeTaskDialog()
+                }
                 else {
                     window.location.href = "/html/board.html";
                 };
@@ -50,7 +51,7 @@ function deleteContactsfromTasks(contactID) {
     contactID = contacts[contactID].idContact;
     todos.forEach((task) => {
         task.contacts = task.contacts.filter((contact) => contact.id !== contactID);
-        
+
     }
     );
     setItem('todos', todos);

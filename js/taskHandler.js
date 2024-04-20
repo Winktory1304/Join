@@ -134,7 +134,7 @@ function editTask(id) {
         </div>
         <div class="gap-20">
         <p>Task Description</p>
-        <textarea class="addtask-input-description width540"  type="text" id="addtask-input-description" value="${todos[id].task}" required></textarea>
+        <textarea class="addtask-input-description width540 editDescript"  type="text" id="addtask-input-description">${todos[id].task}</textarea>
         </div>
         <div class="gap-20">
         <p>Task Date</p>
@@ -142,7 +142,7 @@ function editTask(id) {
         </div>
         <div class="gap-20">
         <p>Task Priority</p>
-            <div class="addtask-prio-buttons max-width-500">
+            <div class="addtask-prio-buttons max-width-500 responsiveEdit">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
                   <img src="../assets/img/addtaskurgent.svg">
                 </button>
@@ -238,7 +238,7 @@ function setContactstoTodo(todoID) {
     let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
     let color = element.color;
 
-    switchCase("assigned").innerHTML += `<div class="inputnew width540" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintoTodo('${todoID}', '${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}')"> 
+    switchCase("assigned").innerHTML += `<div class="inputnew witdhContactsTodo" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintoTodo('${todoID}', '${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}')"> 
     <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
