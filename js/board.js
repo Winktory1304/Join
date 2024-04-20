@@ -45,7 +45,7 @@ function readServer() {
     todos = [];
     try {
         readJSON('contacts', contacts);
-        readJSON(keydome, todos).then(() => { updateHTML();});
+        readJSON(keydome, todos).then(() => { updateHTML(); });
     } catch (error) {
         console.error('Error:', error);
     }
@@ -322,14 +322,16 @@ function getarray(id) {
             selectedContacts.forEach(contact => {
                 if (contact.name.includes(checkboxes[i].value)) {
                     checkboxes[i].checked = true;
+
+                    document.getElementById("setAssign-" + i).style.backgroundColor = "#828282";
                 }
             });
         }
         else {
             todos[id].contacts.forEach(contact => {
                 if (contact.name.includes(checkboxes[i].value)) {
-
                     checkboxes[i].checked = true;
+                    document.getElementById("setAssign-" + i).style.backgroundColor = "#828282";
                 }
             });
         }

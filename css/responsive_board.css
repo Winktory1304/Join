@@ -67,13 +67,14 @@
     padding: 0;
 }
 .width540{
-    width: 450px !important;
+    width: 93% !important;
 }
 .width524{
     width: 450px !important;
 }
 .inputfield {
-    width: 430px !important;
+    overflow-x: hidden;
+    width: 93% !important;
 }
 }
 
