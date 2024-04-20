@@ -353,7 +353,7 @@ body {
 }
 
 
-.modal-part-1 h1 {
+.contact-h1 {
     margin: 0px;
     color: white;
     font-weight: 700;
@@ -771,6 +771,9 @@ body {
         right: 16px;
 
     }
+    .close-responsiv:hover{
+        cursor: pointer;
+    }
 
     .modal-part-1 {
         display: flex;
@@ -795,9 +798,25 @@ body {
         align-items: center;
         width: 100%;
         border-radius: 0px 0px 30px 30px;
+        margin-top: 92px;
     }
     .contact-modal-form{
+        display: flex;
         margin: 0px;
+        height: 80%;
+        margin-left: 16px;
+        margin-right: 16px;
+        width: 100%;
+        align-items: center;
+    }
+    .contact-h1{
+        display: flex;
+        font-size: 47px;
+    }
+    .contact-modal-input{
+        width: 80%;
+        margin-left: 16px;
+        margin-right: 16px;
     }
     .modal-part-3-buttons-container{
         display: flex; 
@@ -808,19 +827,25 @@ body {
     }
     .modal-part-3-create-button{
         margin: 0px;
+        height:51px;
     }
 
     .close {
         display: none;
     }
+    .profil-picture-modal{
+        display: none;
+    }
 
-    .profil-picture-modal {
-        position: absolute;
-        top: calc(100% - 600px);
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        height: 120px;
+    .profil-picture-modal-responsiv {
+        display: flex;
+        position: absolute; /* Absolute Positionierung */
+        bottom: -60px; /* Am unteren Rand des Containers */
+        left: 50%; /* Zentriert das Element horizontal */
+        transform: translateX(-50%); /* Korrigiert die Zentrierung durch Verschiebung um die halbe Breite */
+        width: 120px; /* Breite des Profilbildes */
+        height: 120px; /* Höhe des Profilbildes */
+        border-radius: 50%; 
     }
 }
 
