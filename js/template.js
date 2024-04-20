@@ -40,7 +40,7 @@ function isloggedin() {
     <nav class="sidebar">
     <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
         <section class="menu-sidebar">
-            <a class="menu-sidebar-button" href="summary.html">
+            <a class="menu-sidebar-button" href="summary.html" onclick="removeWelcomeAnimation()">
                 <img src="../assets/img/summary.svg">
                 <div>Summary</div>
             </a>
@@ -128,7 +128,7 @@ function isloggedin() {
 
         `;
         setTimeout(() => {
-        navbarwithoutSign()
+            navbarwithoutSign()
         }, 300);
     }
 }

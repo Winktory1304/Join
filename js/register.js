@@ -18,14 +18,14 @@ function loadUsers() {
  * Registers a user if email doesn't already exists.
  */
 function registerUser() {
-    
+
     const name = document.getElementById('sign_up_name').value.trim();
     const password = document.getElementById('sign_up_password').value.trim();
-    const nameWords = name.split(' ');    
+    const nameWords = name.split(' ');
 
     if (!checkAndSeperateName(nameWords)) {
         return;
-    }    
+    }
 
     if (password === '') {
         return;
@@ -103,11 +103,8 @@ async function pushTheUserToStorage() {
         }
     }
 
-
-
-
     users.push({
-        idContact : id,
+        idContact: id,
         name: formattedName,
         email: email.value,
         password: password.value,
@@ -249,13 +246,12 @@ function goOneStepBack() {
 }
 
 
-
 /**
  * If the setting is responsive, the button is hidden .
  */
 function hideSignUpHeader() {
     let width = document.documentElement.clientWidth;
-    if (width < 500) {
+    if (width < 569) {
         document.getElementById('mobile_header_container').classList.add('d-none');
     }
 }
@@ -265,7 +261,7 @@ function hideSignUpHeader() {
  */
 function showSignUpHeader() {
     let width = document.documentElement.clientWidth;
-    if (width < 500) {
+    if (width < 569) {
         document.getElementById('mobile_header_container').classList.remove('d-none');
     }
 }
