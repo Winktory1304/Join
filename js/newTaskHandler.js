@@ -44,7 +44,8 @@ function deleteContactsfromTasks(contactID) {
     contactID = contacts[contactID].idContact;
     todos.forEach((task) => {
         task.contacts = task.contacts.filter((contact) => contact.id !== contactID);
-        setItem('todos', todos);
+        
     }
     );
+    setItem('todos', todos);
 }
