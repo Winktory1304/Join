@@ -92,25 +92,27 @@ document.addEventListener('DOMContentLoaded', function () {
  * Edits a contact based on the current window width and contact information.
  */
 function editContact() {
-    let width = window.innerWidth;
+    // let width = window.innerWidth;
     let modalId = 'editContactCard';
     let contactId = contactsaveid;
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
-    if (width < 1220) {
+    // if (width < 1220) {
+    //     hideModal('burgerResponiv')
+    //     showModal('responsivEditContact');
+    //     updateSVG(contact);
+    //     setupModalListeners('responsivEditContact');
+    // } else {
         hideModal('burgerResponiv')
-        showModal('responsivEditContact');
-        updateSVG(contact);
-        setupModalListeners('responsivEditContact');
-    } else {
         editContactDesktopHtml(content, contact, contactId);
         setupModalListeners(modalId);
-    }
-    if (width < 1220) {
-        responsivSaveFunction(contact, contactId);
-    } else {
+        removeResponivContactsOverview()
+    // }
+    // if (width < 1220) {
+    //     responsivSaveFunction(contact, contactId);
+    // } else {
         saveFunctionDesktop(contact, contactId, modalId);
-    }
+    // }
 }
 
 
@@ -158,10 +160,7 @@ function updateSVG(contact) {
  * @param {string} contactId - The ID of the contact.
  * @returns {void}
  */
-function editContactDesktopHtml() {
-    let content = document.getElementById('editModalContent');
-    let contactId = contactsaveid;
-    let contact = detailViewContacts[contactId];
+function editContactDesktopHtml(content, contact, contactId) {
     content.innerHTML = /*html*/ `
             <div class="modal-part-1">
                 <span onclick="closeModal()" class="close-responsiv">
