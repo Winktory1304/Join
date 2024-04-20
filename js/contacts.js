@@ -3,6 +3,7 @@ let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
 let contactsaveid = 0;
+let todos = [];
 
 let contactstopush = 
     [
@@ -176,6 +177,7 @@ function resetContacts() {
 async function readServerData() {
     try {
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
+        readJSON('todos', todos);
         removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
@@ -382,6 +384,7 @@ function createContactPopup() {
  */
 function deleteContactById(contactId) {
     contactId = contactsaveid;
+    debugger;
 
     if (contactId >= 0 && contactId < detailViewContacts.length) {
         const [removedContact] = detailViewContacts.splice(contactId, 1);
@@ -393,6 +396,8 @@ function deleteContactById(contactId) {
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
+
+        deleteContactsfromTasks(contactId)
         
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
@@ -420,6 +425,8 @@ function deleteContactById(contactId) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
         }   
+
+
         
     }
 }
