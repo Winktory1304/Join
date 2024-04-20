@@ -331,7 +331,6 @@ function getarray(id) {
             todos[id].contacts.forEach(contact => {
                 if (contact.id.includes(checkboxes[i].id.toString())) {
                     checkboxes[i].checked = true;
-                    debugger;
                     document.getElementById("setAssign-" + contact.id).style.backgroundColor = "#828282";
                 }
             });

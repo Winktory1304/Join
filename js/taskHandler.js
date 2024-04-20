@@ -82,7 +82,7 @@ function addTask() {
     pushJSON();
     try {
       setItem(key, todos);
-  
+
       clearInputs()
       window.location.href = "/html/board.html";
     } catch (error) {
@@ -101,7 +101,7 @@ function addTaskonBoard() {
     pushJSON();
     try {
       setItem(key, todos);
-  
+
       closeTaskDialog();
       clearInputs();
       updateHTML();
@@ -194,13 +194,13 @@ function editTask(id) {
  * Fills the subtask array with subtasks from the todos array.
  */
 function fillSubtasks(id) {
-    if (todos[id].subtasks.length !== 0) {
-      document.getElementById('containerForSubtask').classList.remove('d-none');
-      fillSubtaskHTML(id);
-    }
+  if (todos[id].subtasks.length !== 0) {
+    document.getElementById('containerForSubtask').classList.remove('d-none');
+    fillSubtaskHTML(id);
+  }
 
-  
-  
+
+
 }
 
 function fillSubtaskHTML(id) {
@@ -232,12 +232,12 @@ function fillContacts(id) {
 
 
 
-});
+  });
 }
 function setContactstoTodo(todoID) {
   switchCase("assigned").innerHTML = "";
   contacts.forEach((element) => {
-    let id = "contactcircle-" + element.id;
+    let id = "contactcircle-" + element.idContact;
     let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
     let color = element.color;
 
@@ -257,27 +257,32 @@ function setContactstoTodo(todoID) {
 function setAssign(contactID) {
   if (document.getElementById(contactID).checked) {
     document.getElementById(contactID).checked = false;
-    document.getElementById("setAssign-"+contactID).style.backgroundColor = "white";
+    document.getElementById("setAssign-" + contactID).style.backgroundColor = "white";
     return;
   }
-  
-  document.getElementById("setAssign-"+contactID).style.backgroundColor = "#828282";
+
+  document.getElementById("setAssign-" + contactID).style.backgroundColor = "#828282";
   document.getElementById(contactID).checked = true;
 }
 
 
 
 
-function writeContactsintoTodo(todoID, id, firstName, lastName, color, initials) {
+function writeContactsintoTodo(todoID, idContact, firstName, lastName, color, initials) {
   let checkboxes = document.getElementsByClassName("checkBox ");
   todos[todoID].contacts = [];
 
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
-      if (checkboxes[i].checked) {
-        todos[todoID].contacts.push(new Contact(id, firstName + " " + lastName, color, initials));
-      } }
+      let id = checkboxes[i].id;
+      let firstName = checkboxes[i].value.split(" ")[0];
+      let lastName = checkboxes[i].value.split(" ")[1];
+      let color = document.getElementById("contactcircle-" + id).getAttribute("fill");
+      let initials = checkboxes[i].value.split(" ").map((name) => name.charAt(0)).join("");
+      todos[todoID].contacts.push(new Contact(id, firstName + " " + lastName, color, initials));
+    }
   }
+
 
   document.getElementById("test").innerHTML = "";
   todos[todoID].contacts.forEach((element) => {

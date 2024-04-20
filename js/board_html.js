@@ -152,23 +152,6 @@ function generateContacts(elementcontacts) {
 }
 
 /**
- * Sets the fill color of an element based on the color associated with a contact.
- * @param {string} id - The id of the element to set the fill color for.
- * @param {Array} element - An array containing the contact's information.
- */
-function colorPicker(element) {
-    let color2 = '';
-    contacts.filter((contact) => {
-        if (contact.firstName === element[1] && contact.lastName === element[2]) {
-            color2 = contact.color;
-            let id = "contactcircle-" + element[1] + element[2];
-            contactColors[id] = color2; // Speichern der Farbe im contactColors-Objekt
-        }
-    });
-    return color2;
-}
-
-/**
  * Sets the tag style based on the element's tag.
  * @param {Object} element - The element containing the tag information.
  * @returns {string} - The style attribute for the tag.
