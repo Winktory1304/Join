@@ -5,11 +5,19 @@ let detailViewContacts = [];
 let contactsaveid = 0;
 
 
-async function init() { 
-    await getUsersintoContacts();
-    renderContacts();   
-    getName();
+async function init() {
+    try {
+        console.log("Lade Benutzerdaten...");
+        await getUsersintoContacts();
+        console.log("Benutzerdaten erfolgreich geladen.");
+        renderContacts();
+        getName();
+        console.log("Kontakte gerendert und Namen geholt.");
+    } catch (error) {
+        console.error("Fehler in init:", error);
+    }
 }
+
 
 
 /**
@@ -284,44 +292,143 @@ function deleteContactById(contactId) {
 
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         const usersIndex = users.findIndex(user => user.email === removedContact.email);
-        
+
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
-        
+
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
             try {
-            
+
                 setItem('contacts', contacts).then(() => {
                     setItem('users', users).then(() => {
-                            localStorage.removeItem('currentUserIndex');
-                            window.location.href = "/index.html";
+                        localStorage.removeItem('currentUserIndex');
+                        // window.location.href = "/index.html"; // Remove this line
+                    });
                 });
-            });
                 console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }
-        else if (contactIndex !== -1) {
+        } else if (contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             try {
                 setItem('contacts', contacts).then(() => {
                     readServerData();
                     renderContacts();
-            });
+                });
                 console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }   
-        
+        }
+
     }
 }
-
+contactstopush = [
+    {
+        "idContact": "2024040613175629395223868",
+        "firstName": "Anna",
+        "lastName": "Schmidt",
+        "email": "annaschmidt@test123.de",
+        "phoneNumber": "01731305001",
+        "firstLetterofNames": "AS",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629403443714",
+        "firstName": "Bernd",
+        "lastName": "Müller",
+        "email": "berndmueller@test123.de",
+        "phoneNumber": "01731305002",
+        "firstLetterofNames": "BM",
+        "color": "rgb(110,82,255)"
+    },
+    {
+        "idContact": "2024040613175629405476039",
+        "firstName": "Claudia",
+        "lastName": "Schneider",
+        "email": "claudiaschneider@test123.de",
+        "phoneNumber": "01731305003",
+        "firstLetterofNames": "CS",
+        "color": "rgb(252,113,255)"
+    },
+    {
+        "idContact": "2024040613175629407086375",
+        "firstName": "David",
+        "lastName": "Fischer",
+        "email": "davidfischer@test123.de",
+        "phoneNumber": "01731305004",
+        "firstLetterofNames": "DF",
+        "color": "rgb(255,195,69)"
+    },
+    {
+        "idContact": "2024040613175629408448702",
+        "firstName": "Elena",
+        "lastName": "Weber",
+        "email": "elenaweber@test123.de",
+        "phoneNumber": "01731305005",
+        "firstLetterofNames": "EW",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629409956874",
+        "firstName": "Felix",
+        "lastName": "Meyer",
+        "email": "felixmeyer@test123.de",
+        "phoneNumber": "01731305006",
+        "firstLetterofNames": "FM",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629411285357",
+        "firstName": "Greta",
+        "lastName": "Wagner",
+        "email": "gretawagner@test123.de",
+        "phoneNumber": "01731305007",
+        "firstLetterofNames": "GW",
+        "color": "rgb(255,122,0)"
+    },
+    {
+        "idContact": "2024040613175629412611935",
+        "firstName": "Hans",
+        "lastName": "Becker",
+        "email": "hansbecker@test123.de",
+        "phoneNumber": "01731305008",
+        "firstLetterofNames": "HB",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629414944486",
+        "firstName": "Ingrid",
+        "lastName": "Schulz",
+        "email": "ingridschulz@test123.de",
+        "phoneNumber": "01731305009",
+        "firstLetterofNames": "IS",
+        "color": "rgb(147,39,255)"
+    },
+    {
+        "idContact": "2024040613175629416622303",
+        "firstName": "Johannes",
+        "lastName": "Hoffmann",
+        "email": "johanneshoffmann@test123.de",
+        "phoneNumber": "01731305010",
+        "firstLetterofNames": "JH",
+        "color": "rgb(255,122,0)"
+    },
+    {
+        "idContact": "2024040613175629417964359",
+        "firstName": "Karin",
+        "lastName": "Krause",
+        "email": "karinkrause@test123.de",
+        "phoneNumber": "01731305011",
+        "firstLetterofNames": "KK",
+        "color": "rgb(147,39,255)"
+    }
+]
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
@@ -385,11 +492,7 @@ function addNewContactResponsiv() {
  */
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
-    let emailIndex = findEmailIndex(email);
-    if (!validateEmail(email)) {
-        alert("Invalid email address");
-        return;
-    }
+    let emailIndex = findEmailIndex(email);   
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
     if (!names) return;
@@ -400,16 +503,6 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
 }
 
 
-/**
- * Validates an email address.
- * @param {string} email - The email address to be validated.
- * @returns {boolean} - True if the email address is valid, otherwise false.
- */
-function validateEmail(email) {
-    // Use a regular expression to validate the email address
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
 
 
 /**
@@ -470,19 +563,19 @@ function sortContactsByInitial() {
 }
 
 
-/**
- * Validates a full name by checking if it contains at least two names.
- * @param {string} fullName - The full name to be validated.
- * @returns {string[]|null} - An array of names if the full name is valid, otherwise null.
- */
-function validateFullName(fullName) {
-    let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
-    if (names.length < 2) {
-        alert('Bitte geben Sie Vor- und Nachnamen ein.');
-        return null;
-    }
-    return names;
-}
+// /**
+//  * Validates a full name by checking if it contains at least two names.
+//  * @param {string} fullName - The full name to be validated.
+//  * @returns {string[]|null} - An array of names if the full name is valid, otherwise null.
+//  */
+// function validateFullName(fullName) {
+//     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
+//     if (names.length < 2) {
+//         alert('Bitte geben Sie Vor- und Nachnamen ein.');
+//         return null;
+//     }
+//     return names;
+// }
 
 
 /**
