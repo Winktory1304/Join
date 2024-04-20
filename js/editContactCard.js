@@ -61,36 +61,31 @@ document.addEventListener('DOMContentLoaded', function () {
         showModal(modalId);
         setupModalListeners(modalId);
     };
-    let addContactBtnResponsiv = document.getElementById('addContactBtnResponsiv');
-    addContactBtnResponsiv.onclick = function () {
-        showModal('responsivAddContact');
-        setupModalListeners('responsivAddContact');
-    };
+    
     /**
      * Represents the burger contact button in the responsive view.
      * @type {HTMLElement}
      */
     let burgerContactBtnResponsiv = document.getElementById('burgerContactBtnResponsiv');
     burgerContactBtnResponsiv.onclick = function () {
-        let modalContent = document.getElementById('burgerResponivContent');
-        modalContent.style.animationName = 'animaterightResponisvIn'; // Setzt die Eingangsanimation
         showModal('burgerResponiv');
         setupModalListeners('burgerResponiv');
     };
+
+    /**
+     * Adds a contact modal for the responsive view.
+     */
+    function addContactModalResponiv() {
+        let modalId = 'contactModal';
+        let btn = document.getElementById('addContactBtnResponsiv');
+        btn.onclick = function () {
+            showModal(modalId);
+            setupModalListeners(modalId);
+        };
+    }
+
+    addContactModalResponiv();
 });
-
-
-/**
- * Adds a contact modal for the responsive view.
- */
-function addContactModalResponiv() {
-    let modalId = 'responsivAddContact';
-    let btn = document.getElementById('addContactBtnResponsiv');
-    btn.onclick = function () {
-        showModal(modalId);
-        setupModalListeners(modalId);
-    };
-}
 
 
 /**
