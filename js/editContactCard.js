@@ -97,22 +97,12 @@ function editContact() {
     let contactId = contactsaveid;
     let contact = detailViewContacts[contactId];
     let content = document.getElementById('editModalContent');
-    // if (width < 1220) {
-    //     hideModal('burgerResponiv')
-    //     showModal('responsivEditContact');
-    //     updateSVG(contact);
-    //     setupModalListeners('responsivEditContact');
-    // } else {
         hideModal('burgerResponiv')
         editContactDesktopHtml(content, contact, contactId);
         setupModalListeners(modalId);
         removeResponivContactsOverview()
-    // }
-    // if (width < 1220) {
-    //     responsivSaveFunction(contact, contactId);
-    // } else {
         saveFunctionDesktop(contact, contactId, modalId);
-    // }
+    
 }
 
 
@@ -366,21 +356,21 @@ function saveFunctionDesktop(contact, contactId, modalId) {
     showModal(modalId);
 }
 
-/**
- * Sets the values of the input fields with the contact information and attaches an onclick event to the save button.
- * @param {Object} contact - The contact object containing the contact information.
- * @param {string} contactId - The ID of the contact.
- */
-function responsivSaveFunction(contact, contactId) {
-    document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
-    document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
-    document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
-    let form = document.getElementById('contactFormResponsiv');
-    form.onsubmit = function (event) {
-        event.preventDefault();  // Verhindert das Neuladen der Seite
-        saveContactResponsiv(contactId);
-    };
-}
+// /**
+//  * Sets the values of the input fields with the contact information and attaches an onclick event to the save button.
+//  * @param {Object} contact - The contact object containing the contact information.
+//  * @param {string} contactId - The ID of the contact.
+//  */
+// function responsivSaveFunction(contact, contactId) {
+//     document.getElementById('responsivEditContactNameInput').value = `${contact['firstName']} ${contact['lastName']}`;
+//     document.getElementById('responsivEditContactEmailInput').value = `${contact['email']}`;
+//     document.getElementById('responsivEditContactPhoneInput').value = `${contact['phoneNumber']}`;
+//     let form = document.getElementById('contactFormResponsiv');
+//     form.onsubmit = function (event) {
+//         event.preventDefault();  // Verhindert das Neuladen der Seite
+//         saveContactResponsiv(contactId);
+//     };
+// }
 
 /**
  * Saves the contact with the specified contactId.
@@ -410,33 +400,33 @@ function saveContact() {
 }
 
 
-/**
- * Saves the contact with the specified contactId.
- *
- * @param {number} contactId - The ID of the contact to be saved.
- */
-function saveContactResponsiv() {
+// /**
+//  * Saves the contact with the specified contactId.
+//  *
+//  * @param {number} contactId - The ID of the contact to be saved.
+//  */
+// function saveContactResponsiv() {
 
-    let contactId = contactsaveid;
-    let content = document.getElementById('detailViewContent');
-    const firstName = document.getElementById('responsivEditContactNameInput').value.split(' ')[0];
-    const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || '';
-    const email = document.getElementById('responsivEditContactEmailInput').value;
-    const phoneNumber = document.getElementById('responsivEditContactPhoneInput').value;
+//     let contactId = contactsaveid;
+//     let content = document.getElementById('detailViewContent');
+//     const firstName = document.getElementById('responsivEditContactNameInput').value.split(' ')[0];
+//     const lastName = document.getElementById('responsivEditContactNameInput').value.split(' ')[1] || '';
+//     const email = document.getElementById('responsivEditContactEmailInput').value;
+//     const phoneNumber = document.getElementById('responsivEditContactPhoneInput').value;
 
-    if (detailViewContacts[contactId]) {
-        detailViewContacts[contactId].firstName = firstName;
-        detailViewContacts[contactId].lastName = lastName;
-        detailViewContacts[contactId].email = email;
-        detailViewContacts[contactId].phoneNumber = phoneNumber;
-        init();  // Aktualisiere die Ansicht und alle relevanten Daten
-        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
-        hideModal('responsivEditContact');
-        content.innerHTML = '';
-    } else {
-        console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
-    }
-}
+//     if (detailViewContacts[contactId]) {
+//         detailViewContacts[contactId].firstName = firstName;
+//         detailViewContacts[contactId].lastName = lastName;
+//         detailViewContacts[contactId].email = email;
+//         detailViewContacts[contactId].phoneNumber = phoneNumber;
+//         init();  // Aktualisiere die Ansicht und alle relevanten Daten
+//         console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
+//         hideModal('responsivEditContact');
+//         content.innerHTML = '';
+//     } else {
+//         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
+//     }
+// }
 
 
 
