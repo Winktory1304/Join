@@ -45,7 +45,7 @@ function setupModalListeners(modalId) {
             hideModal(modalId);
         }
     };
-    let closeButtons = modal.querySelectorAll('.close');
+    let closeButtons = modal.querySelectorAll('.close, .close-responsiv');
     closeButtons.forEach(btn => {
         btn.onclick = function () {
             hideModal(modalId);
