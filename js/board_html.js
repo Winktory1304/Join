@@ -89,9 +89,6 @@ function prioritySelector(element) {
  * @returns {string} - The HTML markup for the todo task card.
  */
 function generateTodoHTML(element) {
-
-
-    if (innerWidth < 1300) {
         return `<div id="dragable" class="board_task" draggable="true"  ondragstart="startDragging(${element.id})" class="todo">
         <div id="bc-${element.id}" class="board_cardcontent">
         <div class="respnosiveTask">
@@ -109,22 +106,6 @@ function generateTodoHTML(element) {
         </div>
         `;
     }
-    else {
-        return `<div id="dragable" class="board_task" draggable="true"  ondragstart="startDragging(${element.id})" class="todo" onclick="">
-                    <div class="board_cardcontent">
-                        <div class="board_cardtag" ${setTag(element)}>${element.tag}</div>
-                        <h3 class="board_task_headline">${setTitle(element)}</h3>
-                        <p class="board_tasktext">${limitTaskText(element)}</p>
-                        <div class="board_cardbar"> ${subTasks(element)}</div>
-                        <div class="board_cardbottom">
-                            <div class="board_cardcontactsdome">${generateContacts(element)}</div>
-                            <div class="board prio">${prioritySelector(element)}</div>
-                        </div>
-                    </div>
-                    </div>
-                    `;
-    }
-}
 
 function openMinitaskMenu(id) {
     document.getElementById('bc-' + id).innerHTML = `

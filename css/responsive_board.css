@@ -17,15 +17,7 @@
     padding: 0;
 }
 
-.statusSwitcher{
-    border-radius: 25%;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: rgba(5, 73, 125, 0.501);
-    cursor: pointer;
-    z-index: 9999;
-}
+
 .statusSwitcheroption{
     gap: 5px;
     width: 100%;
@@ -46,6 +38,10 @@
     transform: scale(1.1);
 
 }
+.statusSwitcher{
+    display: none;
+}
+
 .changeTitle{
     
     font-size: 20px;
@@ -161,6 +157,19 @@
     width: 100%;
     padding: 10px;
     height: calc(100vh - 180px);
+}
+.statusSwitcher{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: rgba(5, 73, 125, 0.501);
+    cursor: pointer;
+    z-index: 9999;
 }
 .board_addTask{
     display: none;
