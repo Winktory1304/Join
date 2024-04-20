@@ -201,9 +201,8 @@ function editContactDesktopHtml(content, contact, contactId) {
                     </g>
                 </svg>
                 <div class="contact-h1"> 
-                    Add contact
-                </div>            
-                <div class="modalTaskteam">Task are better with a team!</div>
+                    Edit contact
+                </div>        
                 <div class="modal-seperator"></div>
                 <svg  class="profil-picture-modal-responsiv d-none" width="120" height="120" viewBox="0 0 42 42" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
