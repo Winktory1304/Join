@@ -3,7 +3,7 @@
     padding: 18px;
 }
 .board_addtaskcard{
-    width: 70%;
+    width: 55%;
 }
 
 
@@ -111,10 +111,6 @@
     gap: 1px;
 }
 
-.board_addtaskcard{
-    margin-left: 5%;
-    width: 80%;
-}
 .addtask-content-main{
     width: 100%;
     margin: 0;
@@ -130,6 +126,7 @@
 }
 .width540{
     width: 100% !important;
+    min-width: 90% !important;
 }
 .inputfield {
     overflow-x: hidden;
@@ -360,7 +357,10 @@
 }
 
 .board_opencardtag{
-    font-size: 15px;
+    font-size: 13px;
+}
+.board_cardtag{
+    font-size: 17px;
 }
 
 .board_cardexit{
