@@ -1,120 +1,18 @@
-let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
+let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)", "rgb(135, 206, 235)", "rgb(75, 0, 130)", "rgb(255, 165, 0)", "rgb(128, 0, 0)", "rgb(46, 139, 87)", "rgb(255, 192, 203)", "rgb(70, 130, 180)", "rgb(210, 105, 30)", "rgb(220, 220, 220)", "rgb(245, 245, 220)"];
 let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
 let contactsaveid = 0;
-let todos = [];
-
-let contactstopush = 
-    [
-        {
-            "idContact": "2024040613175629395223868",
-            "firstName": "Anna",
-            "lastName": "Schmidt",
-            "email": "annaschmidt@test123.de",
-            "phoneNumber": "01731305001",
-            "firstLetterofNames": "AS",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "idContact": "2024040613175629403443714",
-            "firstName": "Bernd",
-            "lastName": "Müller",
-            "email": "berndmueller@test123.de",
-            "phoneNumber": "01731305002",
-            "firstLetterofNames": "BM",
-            "color": "rgb(110,82,255)"
-        },
-        {
-            "idContact": "2024040613175629405476039",
-            "firstName": "Claudia",
-            "lastName": "Schneider",
-            "email": "claudiaschneider@test123.de",
-            "phoneNumber": "01731305003",
-            "firstLetterofNames": "CS",
-            "color": "rgb(252,113,255)"
-        },
-        {
-            "idContact": "2024040613175629407086375",
-            "firstName": "David",
-            "lastName": "Fischer",
-            "email": "davidfischer@test123.de",
-            "phoneNumber": "01731305004",
-            "firstLetterofNames": "DF",
-            "color": "rgb(255,195,69)"
-        },
-        {
-            "idContact": "2024040613175629408448702",
-            "firstName": "Elena",
-            "lastName": "Weber",
-            "email": "elenaweber@test123.de",
-            "phoneNumber": "01731305005",
-            "firstLetterofNames": "EW",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "idContact": "2024040613175629409956874",
-            "firstName": "Felix",
-            "lastName": "Meyer",
-            "email": "felixmeyer@test123.de",
-            "phoneNumber": "01731305006",
-            "firstLetterofNames": "FM",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "idContact": "2024040613175629411285357",
-            "firstName": "Greta",
-            "lastName": "Wagner",
-            "email": "gretawagner@test123.de",
-            "phoneNumber": "01731305007",
-            "firstLetterofNames": "GW",
-            "color": "rgb(255,122,0)"
-        },
-        {
-            "idContact": "2024040613175629412611935",
-            "firstName": "Hans",
-            "lastName": "Becker",
-            "email": "hansbecker@test123.de",
-            "phoneNumber": "01731305008",
-            "firstLetterofNames": "HB",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "idContact": "2024040613175629414944486",
-            "firstName": "Ingrid",
-            "lastName": "Schulz",
-            "email": "ingridschulz@test123.de",
-            "phoneNumber": "01731305009",
-            "firstLetterofNames": "IS",
-            "color": "rgb(147,39,255)"
-        },
-        {
-            "idContact": "2024040613175629416622303",
-            "firstName": "Johannes",
-            "lastName": "Hoffmann",
-            "email": "johanneshoffmann@test123.de",
-            "phoneNumber": "01731305010",
-            "firstLetterofNames": "JH",
-            "color": "rgb(255,122,0)"
-        },
-        {
-            "idContact": "2024040613175629417964359",
-            "firstName": "Karin",
-            "lastName": "Krause",
-            "email": "karinkrause@test123.de",
-            "phoneNumber": "01731305011",
-            "firstLetterofNames": "KK",
-            "color": "rgb(147,39,255)"
-        }
-    ]
-;
 
 
-async function init() { 
-    isloggedin();
-    await getUsersintoContacts();
-    renderContacts();   
-    getName();
+async function init() {
+    try {        
+        await getUsersintoContacts();        
+        renderContacts();
+        getName();       
+    } catch (error) {
+        console.error("Fehler in init:", error);
+    }
 }
 
 
@@ -177,7 +75,7 @@ function resetContacts() {
 async function readServerData() {
     try {
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
-        readJSON('todos', todos);
+        console.log('Daten geladen:', contacts);
         removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
@@ -384,86 +282,77 @@ function createContactPopup() {
  */
 function deleteContactById(contactId) {
     contactId = contactsaveid;
-    debugger;
 
     if (contactId >= 0 && contactId < detailViewContacts.length) {
         const [removedContact] = detailViewContacts.splice(contactId, 1);
 
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         const usersIndex = users.findIndex(user => user.email === removedContact.email);
-        
+
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
 
-        deleteContactsfromTasks(contactId)
-        
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
             try {
-            
+
                 setItem('contacts', contacts).then(() => {
                     setItem('users', users).then(() => {
-                            localStorage.removeItem('currentUserIndex');
-                            window.location.href = "/index.html";
+                        localStorage.removeItem('currentUserIndex');                        
+                    });
                 });
-            });
+                console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }
-        else if (contactIndex !== -1) {
+        } else if (contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             try {
                 setItem('contacts', contacts).then(() => {
                     readServerData();
                     renderContacts();
-            });
+                });
+                console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }   
+        }
 
-
-        
     }
 }
 
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
-*
-* @param {number} emailIndex - The index of the contact's email in the contacts array.
-* @param {object} newContact - The new contact object to be added.
-* @returns {void}
-*/
-function addContactOrWarn(emailIndex, newContact) {
+ * @param {number} emailIndex - The index of the contact's email in the contacts array.
+ * @param {object} newContact - The new contact object to be added.
+ * @returns {void}
+ */
+async function addContactOrWarn(emailIndex, newContact) {
+    console.log("addContactOrWarn aufgerufen mit emailIndex:", emailIndex);
     if (emailIndex === -1) {
         contacts.push(newContact);
-        createContactPopup();
+        console.log("Neuer Kontakt hinzugefügt:", newContact);
+        
         try {
-            setItem('contacts', contacts);
+            await setItem('contacts', contacts);
+            console.log('Daten aktualisiert');
+            
         } catch (error) {
             console.error('Error adding contact', error);
-        }        
+        }
         renderContacts();
+        createContactPopup();
     } else {
-        return contactExistValidation();
+        console.log("Kontakt existiert bereits mit diesem Email-Index:", emailIndex);
+        // Hier könntest du eine Warnung anzeigen, dass der Kontakt bereits existiert
     }
 }
 
 
-function contactExistValidation() {
-    let messageElement = document.getElementById('validationErrorText');
-    let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
-    messageElementResponsiv.textContent = "This contact already exists";
-    messageElementResponsiv.style.color = "red";
-    messageElement.textContent = "This contact already exists";
-    messageElement.style.color = "red";
-    return;
-}
 
 /**
  * Clears the input fields for creating a contact.
@@ -472,9 +361,6 @@ function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
     document.getElementById('create-contact-phone-input').value = '';
-    document.getElementById('responsivCreateContactNameInput').value = '';
-    document.getElementById('responsivCreateContactEmailInput').value = '';
-    document.getElementById('responsivCreateContactPhoneInput').value = '';
 }
 
 
@@ -503,94 +389,17 @@ function addNewContactResponsiv() {
  */
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
-    let emailIndex = findEmailIndex(email);
-    if (!validateEmail(email)) {
-        return emailErrorTextValidation();
-    }
+    let emailIndex = findEmailIndex(email);   
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
-    addContactOrWarn(emailIndex, newContact);
-    if (emailIndex === -1 && addContactOrWarn(emailIndex, newContact)) {
-        hideModal(modalId);
-        clearInputFields();
-    }
-    
+    addContactOrWarn(emailIndex, newContact, modalId);
+    hideModal(modalId);    
+    clearInputFields();
 }
 
 
-function fullNameErrorTextValidationEdit(message){
-    let editMessageElement = document.getElementById('validationErrorTextEdit');
-    editMessageElement.textContent = message;
-    editMessageElement.style.color = "red";
-    return;
-}
-
-
-function fullNameErrorTextValidationEditResponsiv(message){
-    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
-    editMessageElement.textContent = message;
-    editMessageElement.style.color = "red";
-    return;
-}
-
-
-function emailErrorTextValidationEdit(message){
-    let editMessageElement = document.getElementById('validationErrorTextEdit');
-    editMessageElement.textContent = message;
-    editMessageElement.style.color = "red";
-    return;
-    }
-
-
-function emailErrorTextValidationResponsiv(message){
-    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
-    editMessageElement.textContent = message;
-    editMessageElement.style.color = "red";
-    return;
-    }
-
-    
-function displayValidationError(message) {
-    let messageElement = document.getElementById('validationErrorText');
-    let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
-    messageElement.textContent = message;
-    messageElement.style.color = "red";
-    messageElementResponsiv.textContent = message;
-    messageElementResponsiv.style.color = "red";
-    return;
-}
-
-
-function contactExistValidation() {
-    displayValidationError("This contact already exists");
-    return;
-}
-
-
-function emailErrorTextValidation() {
-    displayValidationError("Invalid email address");
-    return;
-}
-
-
-function fullNameErrorTextValidation() {
-    displayValidationError("Please enter first and last name.");
-    return null;
-}
-
-
-/**
- * Validates an email address.
- * @param {string} email - The email address to be validated.
- * @returns {boolean} - True if the email address is valid, otherwise false.
- */
-function validateEmail(email) {
-    // Use a regular expression to validate the email address
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
 
 
 /**
@@ -658,8 +467,8 @@ function sortContactsByInitial() {
  */
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
-    if (names.length < 2) {
-        return fullNameErrorTextValidation();
+    if (names.length < 2) {       
+        return null;
     }
     return names;
 }
@@ -685,7 +494,7 @@ function findEmailIndex(email) {
  * @returns {string} A random color.
  */
 function getRandomColor() {
-    return colors[Math.floor(Math.random() * colors.length)];
+    return  colors[Math.floor(Math.random() * colors.length)];
 }
 
 

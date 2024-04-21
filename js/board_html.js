@@ -146,7 +146,6 @@ function setTitle(element) {
     }
 }
 
-let contactColors = {};
 
 
 function generateContacts(elementcontacts) {
