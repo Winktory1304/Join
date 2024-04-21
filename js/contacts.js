@@ -436,11 +436,12 @@ async function addContactOrWarn(emailIndex, newContact) {
         try {
             await setItem('contacts', contacts);
             console.log('Daten aktualisiert');
-            createContactPopup();
+            
         } catch (error) {
             console.error('Error adding contact', error);
         }
         renderContacts();
+        createContactPopup();
     } else {
         console.log("Kontakt existiert bereits mit diesem Email-Index:", emailIndex);
         // Hier könntest du eine Warnung anzeigen, dass der Kontakt bereits existiert
