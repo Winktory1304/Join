@@ -201,7 +201,7 @@
                         </g>
                     </svg>
                 </span>
-                <form onsubmit="addNewContact()" class="contact-modal-form">
+                <form onsubmit="event.preventDefault(); addNewContact()" class="contact-modal-form">
                     <input class="contact-modal-input input-name-img" id="create-contact-name-input" type="text"
                         placeholder="Name">
                     <input class="contact-modal-input input-email-img" id="create-contact-email-input" required

@@ -457,9 +457,9 @@ function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
     document.getElementById('create-contact-phone-input').value = '';
-    document.getElementById('responsivCreateContactNameInput').value = '';
-    document.getElementById('responsivCreateContactEmailInput').value = '';
-    document.getElementById('responsivCreateContactPhoneInput').value = '';
+//     document.getElementById('responsivCreateContactNameInput').value = '';
+//     document.getElementById('responsivCreateContactEmailInput').value = '';
+//     document.getElementById('responsivCreateContactPhoneInput').value = '';
 }
 
 
