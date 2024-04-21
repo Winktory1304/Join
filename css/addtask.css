@@ -5,6 +5,7 @@
     align-items: center;
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
+    background-color: blue;
 }
 
 /* Header and sidebar */
@@ -39,14 +40,28 @@
 
 /* addtask content */
 .addtask_content {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
     top: 96px;
     bottom: 0;
     right: 0;
-    left: 232px;
-    margin: 110px 0 0 96px;
+    margin-left: 20%;
     max-width: 1208px;
 }
+
+.addtaskbuttonresponsive {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 56px;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+    margin-right: 10%;
+}
+
 
 /* addtask fonts */
 .addtask_h1 {
@@ -73,7 +88,7 @@
 
 /* widt inputfields */
 .width540 {
-    width: 100%;
+    width: 103%;
 }
 
 .width524 {
@@ -291,6 +306,21 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+    width: 96%;
+}
+
+.addtask-input-assignedto{
+    height: 48px;
+    padding-left: 12px;
+    gap: 0;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    justify-content: space-between;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+    width: 103%;
 }
 
 .addtask-input-subtasks:hover {
@@ -316,10 +346,10 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+  
 }
 
 .addtask-button {
- 
     height: 56px;
     border-radius: 10px;
     padding: 16px 10px 16px 10px;
@@ -333,6 +363,7 @@
     font-weight: 400;
     font-family: "Inter";
     align-items: center;
+
 }
 
 .addtask-button:hover {
@@ -349,7 +380,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-
+    margin-right: 7%;
 }
 
 .prioimg {
@@ -380,17 +411,8 @@
 }
 
 .addtask-button-create-task:disabled {
-    height: 56px;
-    border-radius: 10px;
+
     background-color: #5a5a5a;
-    color: #Ffffff;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 400;
-    font-family: "Inter";
 }
 
 .urgent.selected {
