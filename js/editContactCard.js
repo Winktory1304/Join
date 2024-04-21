@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showModal(modalId);
         setupModalListeners(modalId);
     };
+    
 
     /**
      * Represents the burger contact button in the responsive view.
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showModal('burgerResponiv');
         setupModalListeners('burgerResponiv');
     };
+
 
     /**
      * Adds a contact modal for the responsive view.
@@ -83,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
             setupModalListeners(modalId);
         };
     }
-
     addContactModalResponiv();
 });
 
@@ -91,8 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /**
  * Edits a contact based on the current window width and contact information.
  */
-function editContact() {
-    // let width = window.innerWidth;
+function editContact() {    
     let modalId = 'editContactCard';
     let contactId = contactsaveid;
     let contact = detailViewContacts[contactId];
@@ -276,7 +276,7 @@ function saveFunctionDesktop(contact, contactId, modalId) {
 
 
 /**
- * Saves the contact with the specified contactId.
+ * Saves the contact information.
  */
 function saveContact() {
     let contactId = contactsaveid;
@@ -287,22 +287,20 @@ function saveContact() {
     const phoneNumber = document.getElementById('edit-contact-phone-input').value;
 
     if (detailViewContacts[contactId]) {
-        // Prüfen, ob sich Vorname oder Nachname geändert haben
+        
         let nameChanged = firstName !== detailViewContacts[contactId].firstName || lastName !== detailViewContacts[contactId].lastName;
-
         detailViewContacts[contactId].firstName = firstName;
         detailViewContacts[contactId].lastName = lastName;
         detailViewContacts[contactId].email = email;
         detailViewContacts[contactId].phoneNumber = phoneNumber;
 
         if (nameChanged) {
-            // Initialen und möglicherweise andere relevante Daten für das SVG-Bild aktualisieren
+            
             let newInitials = `${firstName[0]}${lastName[0]}`;
             detailViewContacts[contactId].firstLetterofNames = newInitials;
-            updateSVG(detailViewContacts[contactId]); // Diese Funktion generiert das SVG neu mit den aktualisierten Initialen
+            updateSVG(detailViewContacts[contactId]); 
         }
-
-        init();  // Ansicht aktualisieren
+        init();  
         console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('editContactCard');
         content.innerHTML = '';
@@ -310,6 +308,7 @@ function saveContact() {
         console.error('Kontakt mit der ID ' + contactId + ' wurde nicht gefunden.');
     }
 }
+
 
 /**
  * Updates the server with the new contact information.
