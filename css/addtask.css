@@ -5,6 +5,7 @@
     align-items: center;
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
+    background-color: blue;
 }
 
 /* Header and sidebar */
@@ -35,17 +36,26 @@
     overflow-x: hidden;
     margin: 0;
     margin-top: 0 !important;
+    background-color: green;
 }
 
 /* addtask content */
 .addtask_content {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow-y: auto;
     top: 96px;
     bottom: 0;
     right: 0;
     left: 232px;
-    margin: 110px 0 0 96px;
+    width: 90%;
     max-width: 1208px;
+    background-color: red;
+}
+
+.addtask_inner_content {
+    min-height: 1440px;
 }
 
 /* addtask fonts */

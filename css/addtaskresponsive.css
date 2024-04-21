@@ -5,9 +5,10 @@
 
     .addtask_content {
         margin-left: 16px;
-        left: 16px;
-        top: 26px;
+        left: 0;
+   
         overflow: auto;
+        position: fixed;
     }
 
     .task-container {
@@ -27,6 +28,7 @@
 
     .addtask_inner_content {
         min-height: 1440px;
+        overflow-y: auto;
     }
 
     .addtask-content-footer {
