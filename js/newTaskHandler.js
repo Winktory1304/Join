@@ -37,7 +37,7 @@ function goTo() {
     writeTasktoServer();
     setTimeout(() => {
         window.location.href = "/html/board.html";
-    }, 2000);
+    }, 1000);
     document.getElementById("addtask-button-create-task").disabled = true;
 
 }

@@ -88,6 +88,22 @@
 
 }
 
+@media (max-height: 950px) {
+    .addtask_inner_content{
+        height: calc(100% - 6%);
+    
+    }
+    
+}
+
+@media (max-height: 750px) {
+    .addtask_inner_content{
+        height: calc(100% - 12%);
+    
+    }
+    
+}
+
 @media(max-width: 700px) {
 
     .addtaskbutton {
