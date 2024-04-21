@@ -77,7 +77,7 @@ function changeAddTask() {
     let button = document.getElementById('addtask-button-cancel');
     let create = document.getElementById('addtask-button-create-task');
 
-    create.setAttribute('onclick', 'writeTasktoServer()');
+    create.setAttribute('onclick', 'writeTasktoServer();closeTaskDialog()');
 
     button.value = 'Close';
     button.setAttribute('onclick', 'closeTaskDialog()');

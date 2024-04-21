@@ -1,4 +1,4 @@
-let taskdialog = false;
+
 
 /**
  * Updates the HTML elements on the board based on the todos array.
@@ -224,7 +224,6 @@ async function closeDialog() {
  * Opens the task dialog and calls the addTask function.
  */
 function openTaskDialog() {
-    taskdialog = true;
     subtask = [];
     if (innerWidth > 1300) {
         document.getElementById('board_addTask').classList.remove('d-none');
@@ -240,8 +239,10 @@ function openTaskDialog() {
  * Closes the task dialog by adding the 'd-none' class to the 'board_addTask' element.
  */
 function closeTaskDialog() {
-    taskdialog = false;
-    document.getElementById('board_addTask').classList.add('d-none');
+    addTaskPopup();
+    setTimeout(() => {
+        document.getElementById('board_addTask').classList.add('d-none');
+    }, 1000);
     selectedContacts = [];
     subtask = [];
 }

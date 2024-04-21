@@ -21,21 +21,25 @@ async function writeTasktoServer() {
     setTimeout(() => {
         try {
             setItem('todos', todos).then(() => {
-
+                console.log('Task added successfully');
                 readServer(); clearInputs();
-
-                if (taskdialog) {
-                    closeTaskDialog()
-                }
-                else {
-                    window.location.href = "/html/board.html";
-                };
+                    
+                    
             });
 
         } catch (error) {
             console.error('Error adding task', error);
         }
     }, 1000);
+}
+
+function goTo() {
+    writeTasktoServer();
+    setTimeout(() => {
+        window.location.href = "/html/board.html";
+    }, 2000);
+    document.getElementById("addtask-button-create-task").disabled = true;
+
 }
 
 async function readfromServer() {
