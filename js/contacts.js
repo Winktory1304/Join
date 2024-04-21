@@ -3,10 +3,11 @@ let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
 let contactsaveid = 0;
-
+let todos = [];
 
 async function init() {
     try {        
+        isloggedin();
         await getUsersintoContacts();        
         renderContacts();
         getName();       
@@ -74,6 +75,7 @@ function resetContacts() {
  */
 async function readServerData() {
     try {
+        readJSON('todos', todos)
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
         console.log('Daten geladen:', contacts);
         removeDuplicateContacts();
@@ -293,6 +295,8 @@ function deleteContactById(contactId) {
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
+
+        deleteContactsfromTasks(contactId)
 
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
