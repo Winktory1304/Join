@@ -42,13 +42,12 @@
 /* addtask content */
 .addtask_content {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     overflow-y: auto;
     top: 96px;
     bottom: 0;
     right: 0;
-    left: 232px;
+    margin-left: 20%;
     width: 90%;
     max-width: 1208px;
     background-color: red;
@@ -56,6 +55,7 @@
 
 .addtask_inner_content {
     min-height: 1440px;
+    
 }
 
 /* addtask fonts */
@@ -326,6 +326,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
+  
 }
 
 .addtask-button {
@@ -342,6 +343,7 @@
     font-weight: 400;
     font-family: "Inter";
     align-items: center;
+
 }
 
 .addtask-button:hover {
@@ -358,7 +360,7 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-
+    margin-right: 7%;
 }
 
 .prioimg {

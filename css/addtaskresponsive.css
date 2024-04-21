@@ -6,10 +6,14 @@
     .addtask_content {
         margin-left: 16px;
         left: 0;
-   
-        overflow: auto;
-        position: fixed;
+    
+
     }
+
+.task-container{
+
+   
+}
 
     .task-container {
         display: flex;
@@ -24,11 +28,15 @@
 
     .addtask-content-main {
         margin-right: 16px;
+        min-height: 1440px;
+        scrollbar-width: none;
+        scrollbar-color: #e0e0e0 #F6F7F8;
+        overflow-y: scroll;
     }
 
     .addtask_inner_content {
-        min-height: 1440px;
-        overflow-y: auto;
+ 
+
     }
 
     .addtask-content-footer {
@@ -62,9 +70,18 @@
         margin-right: 0;
         width: 100%;
     }
+
 }
 
 @media(max-width: 700px) {
+
+    .addtaskbutton {
+
+        margin-right: 5px;
+
+
+    }
+
     .addtask-prio-buttons {
         max-width: 85vw;
     }
@@ -92,15 +109,15 @@
         font-size: 40px;
     }
 
-    .addtask-prio-buttons{
+    .addtask-prio-buttons {
         max-width: 25vw;
         font-size: 10px;
-        
+
     }
 
     .addtask-button {
-height: 26px;
-font-size: 10px;
+        height: 26px;
+        font-size: 10px;
 
     }
 
@@ -112,16 +129,17 @@ font-size: 10px;
     .addtask-h2 {
         font-size: 15px;
     }
-  
-.width540{
-    width: 90%;
-}
 
-.width524{
-    width: 90%;
-}
-.width552{
-    width: 90%
-}
+    .width540 {
+        width: 90%;
+    }
+
+    .width524 {
+        width: 90%;
+    }
+
+    .width552 {
+        width: 90%
+    }
 
 }
