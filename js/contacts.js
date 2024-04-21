@@ -427,28 +427,26 @@ contactstopush = [
     }
 ]
 
-/**
- * Adds a new contact to the contacts array or displays a warning if the contact already exists.
-*
-* @param {number} emailIndex - The index of the contact's email in the contacts array.
-* @param {object} newContact - The new contact object to be added.
-* @returns {void}
-*/
-function addContactOrWarn(emailIndex, newContact) {
+async function addContactOrWarn(emailIndex, newContact) {
+    console.log("addContactOrWarn aufgerufen mit emailIndex:", emailIndex);
     if (emailIndex === -1) {
         contacts.push(newContact);
-        createContactPopup();
+        console.log("Neuer Kontakt hinzugefügt:", newContact);
+        
         try {
-            setItem('contacts', contacts);
+            await setItem('contacts', contacts);
             console.log('Daten aktualisiert');
+            createContactPopup();
         } catch (error) {
             console.error('Error adding contact', error);
-        }        
+        }
         renderContacts();
     } else {
-        
+        console.log("Kontakt existiert bereits mit diesem Email-Index:", emailIndex);
+        // Hier könntest du eine Warnung anzeigen, dass der Kontakt bereits existiert
     }
 }
+
 
 
 /**
@@ -494,7 +492,7 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let names = validateFullName(fullName);
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
-    addContactOrWarn(emailIndex, newContact);
+    addContactOrWarn(emailIndex, newContact, modalId);
     hideModal(modalId);    
     clearInputFields();
 }
@@ -560,19 +558,18 @@ function sortContactsByInitial() {
 }
 
 
-// /**
-//  * Validates a full name by checking if it contains at least two names.
-//  * @param {string} fullName - The full name to be validated.
-//  * @returns {string[]|null} - An array of names if the full name is valid, otherwise null.
-//  */
-// function validateFullName(fullName) {
-//     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
-//     if (names.length < 2) {
-//         alert('Bitte geben Sie Vor- und Nachnamen ein.');
-//         return null;
-//     }
-//     return names;
-// }
+/**
+ * Validates a full name by checking if it contains at least two names.
+ * @param {string} fullName - The full name to be validated.
+ * @returns {string[]|null} - An array of names if the full name is valid, otherwise null.
+ */
+function validateFullName(fullName) {
+    let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
+    if (names.length < 2) {       
+        return null;
+    }
+    return names;
+}
 
 
 /**

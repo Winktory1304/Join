@@ -39,19 +39,19 @@ function logout() {
 function getName() {
     users=[];
     readJSON('users', users).then(() => {
-        showName();
+        // showName();
     });
 }
-function showName() {
-    if (currentIndex === "Guest") {
-        greetingname = 'Guest';
-    }
-    else {
-        let user = users.filter(u => u.email === currentIndex);
-        greetingname = user[0].name;
-        getInitials2(user);
-    }
-}
+// function showName() {
+//     if (currentIndex === "Guest") {
+//         greetingname = 'Guest';
+//     }
+//     else {
+//         let user = users.filter(u => u.email === currentIndex);
+//         greetingname = user[0].name;
+//         getInitials2(user);
+//     }
+// }
 
 
 function getInitials2(user) {
