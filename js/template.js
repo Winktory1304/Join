@@ -143,7 +143,7 @@ function getName() {
 
     users = [];
     readJSON('users', users).then(() => {
-        // showName();
+        showName();
     });
 }
 function showName() {

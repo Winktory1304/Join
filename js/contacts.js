@@ -1,4 +1,4 @@
-let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)", "rgb(135, 206, 235)", "rgb(75, 0, 130)", "rgb(255, 165, 0)", "rgb(128, 0, 0)", "rgb(46, 139, 87)", "rgb(255, 192, 203)", "rgb(70, 130, 180)", "rgb(210, 105, 30)", "rgb(220, 220, 220)", "rgb(245, 245, 220)"];
+let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
 let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
@@ -391,7 +391,7 @@ function deleteContactById(contactId) {
 
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         const usersIndex = users.findIndex(user => user.email === removedContact.email);
-
+        
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
@@ -403,17 +403,18 @@ function deleteContactById(contactId) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
             try {
-
+            
                 setItem('contacts', contacts).then(() => {
                     setItem('users', users).then(() => {
-                        localStorage.removeItem('currentUserIndex');                        
-                    });
+                            localStorage.removeItem('currentUserIndex');
+                            window.location.href = "/index.html";
                 });
-                console.log('Kontakt gelöscht und Daten aktualisiert');
+            });
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        } else if (contactIndex !== -1) {
+        }
+        else if (contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             try {
                 setItem('contacts', contacts).then(() => {
@@ -423,40 +424,46 @@ function deleteContactById(contactId) {
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }
+        }   
 
+
+        
     }
 }
 
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
- * @param {number} emailIndex - The index of the contact's email in the contacts array.
- * @param {object} newContact - The new contact object to be added.
- * @returns {void}
- */
-async function addContactOrWarn(emailIndex, newContact) {
-    console.log("addContactOrWarn aufgerufen mit emailIndex:", emailIndex);
+*
+* @param {number} emailIndex - The index of the contact's email in the contacts array.
+* @param {object} newContact - The new contact object to be added.
+* @returns {void}
+*/
+function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
-        console.log("Neuer Kontakt hinzugefügt:", newContact);
-        
+        createContactPopup();
         try {
-            await setItem('contacts', contacts);
-            console.log('Daten aktualisiert');
-            
+            setItem('contacts', contacts);
         } catch (error) {
             console.error('Error adding contact', error);
-        }
+        }        
         renderContacts();
-        createContactPopup();
     } else {
-        console.log("Kontakt existiert bereits mit diesem Email-Index:", emailIndex);
-        // Hier könntest du eine Warnung anzeigen, dass der Kontakt bereits existiert
+        return contactExistValidation();
     }
 }
 
 
+function contactExistValidation() {
+    let messageElement = document.getElementById('validationErrorText');
+    let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+    messageElementResponsiv.textContent = "This contact already exists";
+    messageElementResponsiv.style.color = "red";
+    messageElement.textContent = "This contact already exists";
+    messageElement.style.color = "red";
+    return;
+}
 
 /**
  * Clears the input fields for creating a contact.
@@ -465,6 +472,9 @@ function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
     document.getElementById('create-contact-phone-input').value = '';
+    document.getElementById('responsivCreateContactNameInput').value = '';
+    document.getElementById('responsivCreateContactEmailInput').value = '';
+    document.getElementById('responsivCreateContactPhoneInput').value = '';
 }
 
 
@@ -493,17 +503,94 @@ function addNewContactResponsiv() {
  */
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
-    let emailIndex = findEmailIndex(email);   
+    let emailIndex = findEmailIndex(email);
+    if (!validateEmail(email)) {
+        return emailErrorTextValidation();
+    }
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
-    addContactOrWarn(emailIndex, newContact, modalId);
-    hideModal(modalId);    
-    clearInputFields();
+    addContactOrWarn(emailIndex, newContact);
+    if (emailIndex === -1 && addContactOrWarn(emailIndex, newContact)) {
+        hideModal(modalId);
+        clearInputFields();
+    }
+    
 }
 
 
+function fullNameErrorTextValidationEdit(message){
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+}
+
+
+function fullNameErrorTextValidationEditResponsiv(message){
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+}
+
+
+function emailErrorTextValidationEdit(message){
+    let editMessageElement = document.getElementById('validationErrorTextEdit');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+    }
+
+
+function emailErrorTextValidationResponsiv(message){
+    let editMessageElement = document.getElementById('validationErrorTextEditResponsiv');
+    editMessageElement.textContent = message;
+    editMessageElement.style.color = "red";
+    return;
+    }
+
+    
+function displayValidationError(message) {
+    let messageElement = document.getElementById('validationErrorText');
+    let messageElementResponsiv = document.getElementById('validationErrorTextResponsiv');
+    messageElement.textContent = message;
+    messageElement.style.color = "red";
+    messageElementResponsiv.textContent = message;
+    messageElementResponsiv.style.color = "red";
+    return;
+}
+
+
+function contactExistValidation() {
+    displayValidationError("This contact already exists");
+    return;
+}
+
+
+function emailErrorTextValidation() {
+    displayValidationError("Invalid email address");
+    return;
+}
+
+
+function fullNameErrorTextValidation() {
+    displayValidationError("Please enter first and last name.");
+    return null;
+}
+
+
+/**
+ * Validates an email address.
+ * @param {string} email - The email address to be validated.
+ * @returns {boolean} - True if the email address is valid, otherwise false.
+ */
+function validateEmail(email) {
+    // Use a regular expression to validate the email address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
 
 /**
@@ -571,8 +658,8 @@ function sortContactsByInitial() {
  */
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
-    if (names.length < 2) {       
-        return null;
+    if (names.length < 2) {
+        return fullNameErrorTextValidation();
     }
     return names;
 }
