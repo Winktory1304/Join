@@ -281,6 +281,10 @@ function deleteSubtask(titel, id) {
   var subtaskElement = document.getElementById(id);
 
   subtaskElement.remove();
+
+  if (subtask.length === 0) {
+    document.getElementById("containerForSubtask").classList.add('d-none');
+  }
 }
 
 
