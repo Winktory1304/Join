@@ -180,7 +180,7 @@ function openDetailedContactsView(contactId) {
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
     highlightContactBox(contactId);
-    if (width < 1220) {               
+    if (width < 1300) {               
         showResponsivDetail(); 
         detailViewResponsiv(responsivContent, contact);   
     }else{
