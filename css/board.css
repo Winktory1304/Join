@@ -674,7 +674,7 @@ p {
     position: fixed;
 }
 .addtaskbutton{
-    margin-right: 45px;
+    margin-right: 5px;
 }
 
 .board_addtaskcard{
@@ -771,9 +771,7 @@ p {
     width: 100%;
 }
 .editDescript{
-    width: 80% !important;
-    height: 100px;
-    border: #000000 1px solid;
+    height: 100px; 
     border-radius: 10px;
     padding: 10px;
     overflow-x: hidden;
@@ -799,9 +797,14 @@ p {
     width: 100% !important;
 }
 .editDescript{
-    width: 93.5% !important;
+    width: 98% !important;
     padding: 10px !important;
     overflow-x: hidden;
 
 }
-
+.addtask-input-subtasks {
+    width: 100% !important;
+}
+.addtask-input-assignedto {
+    width: 100% !important;
+}

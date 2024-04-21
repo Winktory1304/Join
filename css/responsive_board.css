@@ -87,6 +87,9 @@
     max-width: 90%;
 
 }
+.addtaskbutton{
+    margin-right: -5px;
+}
 
 .row{
     width: 100%;
@@ -120,13 +123,8 @@
     margin: 0;
     width: 45%;
 }
-.addtask-input-subtasks .addtask-prio-buttons, .addtask-content-footer, .addtask-input-title {
-    margin: 0;
-    padding: 0;
-}
 .width540{
     width: 100% !important;
-    min-width: 90% !important;
 }
 .inputfield {
     overflow-x: hidden;
