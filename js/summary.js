@@ -34,6 +34,7 @@ function showName2() {
  * shows the form of greeting depending on the time of day and the user name in the geeting field.
  */
 function showWayOfGreeting() {
+
     let greeting;
     if (hour >= 4 && hour < 12) {
         greeting = 'Good morning';
@@ -49,6 +50,25 @@ function showWayOfGreeting() {
     greetName.innerHTML = '';
     greetBox.textContent = greeting;
     greetName.innerHTML = greetingname;
+
+    if (innerWidth < 569) {
+
+        if (localStorage.getItem('isFirstTimeinSummary') === "true") {
+
+            let greetBox = document.getElementById('greet_box2');
+            let greetName = document.getElementById('user_name2');
+            greetBox.innerHTML = '';
+            greetName.innerHTML = '';
+            greetBox.textContent = greeting;
+            greetName.innerHTML = greetingname;
+            document.getElementById('greeting_container2').classList.add('greeting-mobile');
+            setTimeout(() => {
+                document.getElementById('greeting_container2').classList.add('d-none');
+                localStorage.setItem('isFirstTimeinSummary', false);
+            }, 3000);
+
+        }
+    }
 }
 
 
@@ -66,8 +86,8 @@ function showAllNumbers() {
     showNumberOfTasksInBoard();
     showNumberOfTasksInProgress();
     showNumberOfAwaitingFeedback();
-    showWayOfGreeting()
     getName();
+    showWayOfGreeting();
     showUrgentToDo();
 
     isloggedin();

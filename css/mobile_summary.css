@@ -2,6 +2,7 @@
 
     .greeting-container {
         padding-left: 20px;
+        display: none;
     }
 
     .summary-header-container h1 {

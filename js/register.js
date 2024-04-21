@@ -181,6 +181,7 @@ function checkPrivacyPolicy() {
 }
 
 function logIn() {
+    localStorage.setItem('isFirstTimeinSummary', "true");
     let email = document.getElementById('log_in_email').value;
     let password = document.getElementById('log_in_password').value;
     let message = document.getElementById('email_or_password_not_found');
@@ -218,6 +219,7 @@ function indexOfUser(email) {
  * Logs a guest in and redistricts him to the summary page.
  */
 function logInGuest() {
+    localStorage.setItem('isFirstTimeinSummary', "true");
     window.location.href = './html/summary.html';
     localStorage.setItem('currentUserIndex', "Guest");
 }

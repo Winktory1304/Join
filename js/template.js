@@ -135,6 +135,7 @@ function isloggedin() {
 
 
 function logout() {
+    localStorage.removeItem('isFirstTimeinSummary');
     localStorage.removeItem('currentUserIndex');
     window.location.href = "/index.html";
 }
