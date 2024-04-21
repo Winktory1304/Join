@@ -25,7 +25,7 @@ function showName2() {
     else {
         let user = users.filter(u => u.email === currentIndex);
         greetingname = user[0].name;
-            showWayOfGreeting()
+        showWayOfGreeting()
         getInitials2(user);
     }
 }
@@ -44,9 +44,9 @@ function showWayOfGreeting() {
     }
 
     let greetBox = document.getElementById('greet_box');
-    let greetName = document.getElementById('user_name');  
+    let greetName = document.getElementById('user_name');
     greetBox.innerHTML = '';
-    greetName.innerHTML = ''; 
+    greetName.innerHTML = '';
     greetBox.textContent = greeting;
     greetName.innerHTML = greetingname;
 }
@@ -69,8 +69,8 @@ function showAllNumbers() {
     showWayOfGreeting()
     getName();
     showUrgentToDo();
-    
-  isloggedin();
+
+    isloggedin();
 }
 
 /**
@@ -137,11 +137,7 @@ function showNumberOfAwaitingFeedback() {
     document.getElementById('number_of_awaiting_feedback').innerHTML = amount.length;
 }
 
-function UpcomingDeadline() {
 
-    const filteredDates = todos.filter(todo => todo['priority'] === 3)
-        .map(todo => todo.date);
-}
 
 /**
  * Shows the amout of urgent todos and the nearest due date of an urgent todo.
@@ -180,4 +176,8 @@ function formatDate(date) {
     const year = date.getFullYear();
 
     return `${months[monthIndex]} ${day}, ${year}`;
+}
+
+function removeWelcomeAnimation() {
+    document.getElementById('greeting_container').classList.remove('greeting-mobile');
 }
