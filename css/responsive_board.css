@@ -393,4 +393,10 @@ progress{
         padding: 10px;
         height: calc(100vh - 180px);
     }
+    .responsiveEdit{
+        flex-direction: column !important;
+    }
+    .board_cardexit{
+        margin-right: 0;
+    }
 }
