@@ -51,7 +51,7 @@ function showWayOfGreeting() {
     greetBox.textContent = greeting;
     greetName.innerHTML = greetingname;
 
-    if (innerWidth < 569) {
+    if (innerWidth < 870) {
 
         if (localStorage.getItem('isFirstTimeinSummary') === "true") {
 

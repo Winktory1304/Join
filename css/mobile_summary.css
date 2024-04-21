@@ -2,7 +2,7 @@
 
     .greeting-container {
         padding-left: 20px;
-        display: none;
+        
     }
 
     .summary-header-container h1 {
@@ -21,6 +21,10 @@
 }
 
 @media(max-width: 870px) {
+
+    .greeting-container {
+        display: none;
+    }
 
     .summary-content {
         padding: 0px !important;
