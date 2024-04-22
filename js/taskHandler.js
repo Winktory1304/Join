@@ -74,46 +74,6 @@ function hoverPlusOut(id) {
 }
 
 /**
- * Adds a task to the todo list.
- */
-function addTask() {
-  addTaskPopup()
-  setTimeout(() => {
-    pushJSON();
-    try {
-      setItem(key, todos);
-
-      clearInputs()
-      window.location.href = "/html/board.html";
-    } catch (error) {
-      console.error('Error adding task', error);
-    }
-  }, 1000);
-
-}
-
-/**
- * Adds a task to the todo list.
- */
-function addTaskonBoard() {
-  addTaskPopup()
-  setTimeout(() => {
-    pushJSON();
-    try {
-      setItem(key, todos);
-
-      closeTaskDialog();
-      clearInputs();
-      updateHTML();
-    } catch (error) {
-      console.error('Error adding task', error);
-    }
-  }, 1000);
-
-}
-
-
-/**
  * Edits a task with the given ID.
  * @param {number} id - The ID of the task to be edited.
  */
@@ -203,9 +163,11 @@ function fillSubtasks(id) {
 function fillSubtaskHTML(id) {
   var container = document.getElementById("containerForSubtask");
   container.innerHTML = '';
-  todos[id].subtasks.forEach((element) => {
-    var text = 'label-' + (subtask.length);
-    var text2 = 'div-' + (subtask.length);
+  let count = 0;
+  count = todos[id].subtasks.length;
+  todos[id].subtasks.forEach((element, index) => { // Add 'index' parameter to the forEach loop
+    var text = 'label-' + index; // Use 'index' instead of 'todos[id].subtasks.length'
+    var text2 = 'div-' + index; // Use 'index' instead of 'todos[id].subtasks.length'
     var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${element.description}</div><div class="subtaskIcons">
     <img onclick="editSubtaskonTodo('${element.description}','${text2}','${id}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${element.description}','${text}',${id})" src="../assets/img/delete.svg"></div></label>`;
     container.innerHTML += subtaskHTML;
