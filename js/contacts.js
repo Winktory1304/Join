@@ -319,14 +319,14 @@ function deleteContactById(contactId) {
             try {
                 setItem('contacts', contacts).then(() => {
                     readServerData();
-                    renderContacts();
+                    // renderContacts();
                 });
                 console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
         }
-
+        renderContacts();
     }
 }
 
