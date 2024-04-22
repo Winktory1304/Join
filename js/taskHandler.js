@@ -408,13 +408,4 @@ function editSubtaskonTodo(titel, id, todoID) {
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtaskonTodo(this.value, '${id}', ${todoID})">
   `;
 }
-function keyPress(){
-  document.getElementById("addtask-input-subtasks").addEventListener("keypress", function(event) {
-  
-    console.log(event.key);
-  
-    if (event.key === "Enter") {
-        addSubtask();
-    }
-  });
-  }
+

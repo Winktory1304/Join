@@ -85,7 +85,7 @@ function openAndCloseAddTaskInputAssigned() {
   }
 
 
- 
+
 }
 
 function getReadyBoard(id) {
@@ -139,7 +139,7 @@ function setContacts(array) {
 
 
 function writeContactsintonewArray(id, firstName, lastName, color, initials) {
-  
+
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
 
@@ -179,8 +179,9 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
 }
 
 function initTask() {
-isloggedin();
-readServerData();
+  keyPress();
+  isloggedin();
+  readServerData();
 }
 
 // Popup
@@ -305,10 +306,9 @@ function selectPrio(prio) {
 }
 
 
-function checkEventInAssignedToAndClose (event){
+function checkEventInAssignedToAndClose(event) {
   var elementAddTask = document.getElementById("addtask-input-assigned");
-  if(event.target != elementAddTask && event.target.parentNode != elementAddTask && event.target.parentNode.parentNode != elementAddTask )
-  {closeListAssignedTo();}
+  if (event.target != elementAddTask && event.target.parentNode != elementAddTask && event.target.parentNode.parentNode != elementAddTask) { closeListAssignedTo(); }
 }
 
 
@@ -320,3 +320,11 @@ function closeListAssignedTo() {
   }
 }
 
+function keyPress(){
+  document.getElementById("addtask-input-subtasks").addEventListener("keypress", function(event) {
+  
+    if (event.key === "Enter") {
+        addSubtask();
+    }
+  });
+  }
