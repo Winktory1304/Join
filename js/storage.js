@@ -49,3 +49,8 @@ async function readJSON(key, array) {
 }
 
 
+function resetJOIN(){
+    resetContacts();
+    deleteALL();
+    resetUsers();
+}

@@ -313,6 +313,14 @@
     flex-direction: column;     
     padding-left: 100px;    
 }
+.greeting-mobile {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;     
+    padding-left: 100px;    
+}
+
+
 
 .greeting-box {
     font-style: normal;

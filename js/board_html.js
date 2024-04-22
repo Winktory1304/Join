@@ -1,8 +1,10 @@
+
+
 /**
  * Updates the HTML elements on the board based on the todos array.
  */
 function updateHTML() {
-    
+
 
     let inProgress = todos.filter(t => t['status'] == 'progress');
 
@@ -87,50 +89,91 @@ function prioritySelector(element) {
  * @returns {string} - The HTML markup for the todo task card.
  */
 function generateTodoHTML(element) {
-    return `<div class="board_task" draggable="true" ondragstart="startDragging(${element.id})" class="todo" onclick="openDialog(${element.id})">
-                    <div class="board_cardcontent">
-                        <div class="board_cardtag" ${setTag(element)}>${element.tag}</div>
-                        <h3 class="board_task_headline">${setTitle(element)}</h3>
-                        <p class="board_tasktext">${limitTaskText(element)}</p>
-                        <div class="board_cardbar"> ${subTasks(element)}</div>
-                        <div class="board_cardbottom">
-                            <div class="board_cardcontactsdome">${generateContacts(element.contacts)}</div>
-                            <div class="board prio">${prioritySelector(element)}</div>
-                        </div>
-                    </div>
-                    </div>
-                    `;
+        return `<div id="dragable" class="board_task" draggable="true"  ondragstart="startDragging(${element.id})" class="todo">
+        <div id="bc-${element.id}" class="board_cardcontent">
+        <div class="respnosiveTask">
+            <div class="board_cardtag" onclick="openDialog(${element.id})" ${setTag(element)}>${element.tag}</div>
+            <button class="statusSwitcher" id="minitask-menu" onclick="openMinitaskMenu('${element.id}')">...</button>
+        </div>
+            <h3 class="board_task_headline" onclick="openDialog(${element.id})">${setTitle(element)}</h3>
+            <p class="board_tasktext" onclick="openDialog(${element.id})">${limitTaskText(element)}</p>
+            <div class="board_cardbar" onclick="openDialog(${element.id})"> ${subTasks(element)}</div>
+            <div class="board_cardbottom">
+                <div class="board_cardcontactsdome" onclick="openDialog(${element.id})">${generateContacts(element)}</div>
+                <div class="board prio" onclick="openDialog(${element.id})">${prioritySelector(element)}</div>
+            </div>
+        </div>
+        </div>
+        `;
+    }
+
+function openMinitaskMenu(id) {
+    document.getElementById('bc-' + id).innerHTML = `
+                        <div class="changeStatus">
+                            <div class="changeTop">
+                                <p class="changeTitle">Change Status</p>
+                                <p class="goBackStatuschange" onclick="updateHTML()"><<<</p>
+                            </div>
+                            <button class="statusSwitcheroption" onclick="statusSwitcher('${id}', 'open')">Open</button>
+                            <button class="statusSwitcheroption" onclick="statusSwitcher('${id}', 'progress')">In Progress</button>
+                            <button class="statusSwitcheroption" onclick="statusSwitcher('${id}', 'feedback')">Feedback</button>
+                            <button class="statusSwitcheroption" onclick="statusSwitcher('${id}', 'done')">Done</button>
+                        </div>`;
 }
+
+
+
+
+
+function statusSwitcher(todoID, status) {
+
+    todos[todoID].status = status;
+    writeServer();
+}
+
 
 function setTitle(element) {
     if (element.title.length > 13) {
 
-        return element.title.slice(0, 13) + '<br>' + element.title.slice(10);
+        let newTitle = element.title.slice(0, 13) + '...';
+
+
+        return newTitle;
     }
-    return element.title;
+    else {
+
+        return element.title;
+    }
 }
 
-let contactColors = {};
 
 
 function generateContacts(elementcontacts) {
-    
-    if (elementcontacts.length === 0) {
+    let kreise = [];
+
+
+
+    if (elementcontacts.contacts.length === 0) {
         return '';
     }
 
-    if (elementcontacts.length > 5) {
-        elementcontacts = elementcontacts.slice(0, 5);
+
+
+    if (elementcontacts.contacts.length > 5) {
+        kreise = elementcontacts.contacts.slice(0, 5);
+    }
+    else {
+        kreise = elementcontacts.contacts;
     }
     let contactHTML = '';
-    elementcontacts.forEach((contact) => {
-        let initials = contact.split(' ').map(name => name.charAt(0)).join('');
-        
-        let name = contact.split(" ");
-        let id = "contactcircle-" + name[1] + name[2];
-        colorPicker(name);
-        let color = contactColors[id];
-        contactHTML +=`
+    kreise.forEach((contact) => {
+        let initials = contact.initials;
+
+        let name = contact.name;
+        let id = "contactcircle-" + contact.idContact;
+
+        let color = contact.color;
+        contactHTML += `
         <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
@@ -141,23 +184,6 @@ function generateContacts(elementcontacts) {
 
     });
     return contactHTML;
-}
-
-/**
- * Sets the fill color of an element based on the color associated with a contact.
- * @param {string} id - The id of the element to set the fill color for.
- * @param {Array} element - An array containing the contact's information.
- */
-function colorPicker(element) {
-    let color2 = '';
-    contacts.filter((contact) => {
-        if (contact.firstName === element[1] && contact.lastName === element[2]) {
-            color2 = contact.color;
-            let id = "contactcircle-" + element[1] + element[2];
-            contactColors[id] = color2; // Speichern der Farbe im contactColors-Objekt
-        }
-    });
-    return color2;
 }
 
 /**
@@ -188,8 +214,9 @@ function openDialog(id) {
 /**
  * Closes the dialog and updates the HTML.
  */
-function closeDialog() {
+async function closeDialog() {
     document.getElementById('board_openCard').classList.add('d-none');
+    await writeServer()
     updateHTML();
 }
 
@@ -197,22 +224,27 @@ function closeDialog() {
  * Opens the task dialog and calls the addTask function.
  */
 function openTaskDialog() {
+    subtask = [];
     if (innerWidth > 1300) {
-    document.getElementById('board_addTask').classList.remove('d-none');
-    changeAddTask();
-    selectedContacts = [];
-    document.getElementById('test').innerHTML = '';
+        document.getElementById('board_addTask').classList.remove('d-none');
+        changeAddTask();
+        selectedContacts = [];
+        document.getElementById('test').innerHTML = '';
     } else {
         window.location.href = 'addtask.html';
-}
+    }
 }
 
 /**
  * Closes the task dialog by adding the 'd-none' class to the 'board_addTask' element.
  */
 function closeTaskDialog() {
-    document.getElementById('board_addTask').classList.add('d-none');
+    addTaskPopup();
+    setTimeout(() => {
+        document.getElementById('board_addTask').classList.add('d-none');
+    }, 1000);
     selectedContacts = [];
+    subtask = [];
 }
 
 /**

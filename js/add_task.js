@@ -83,7 +83,22 @@ function getReady() {
     document.getElementById("test").classList.add("d-none");
     openassigned = true;
     setContacts(contacts);
-    
+
+  }
+  else {
+    document.getElementById("addtask-input-assigned").classList.add("d-none");
+    document.getElementById("test").classList.remove("d-none");
+    openassigned = false;
+  }
+}
+
+function getReadyBoard(id) {
+  if (openassigned === false) {
+    document.getElementById("addtask-input-assigned").classList.remove("d-none");
+    document.getElementById("test").classList.add("d-none");
+    openassigned = true;
+    setContactstoTodo(id);
+
   }
   else {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
@@ -107,40 +122,48 @@ function closeContactList() {
 function setContacts(array) {
   switchCase("assigned").innerHTML = "";
   array.forEach((element) => {
-    let id = "contactcircle-" + element.firstName + element.lastName;
-    let name = ['', element.firstName, element.lastName];
-    let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
-    let color = colorPicker(name);
+    let id = "contactcircle-" + element.idContact;
+    let initials = element.firstLetterofNames;
+    let color = element.color;
 
-    switchCase("assigned").innerHTML += `<div class="inputnew width540"> 
+    switchCase("assigned").innerHTML += `<div class="inputnew widthContacts" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintonewArray('${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}',)">  
     <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
-        </div>
-    ${element.firstName} ${element.lastName} 
-    <input onchange="writeContactsintonewArray()" class="checkBox" type="checkbox" id="id-${element.id}" value=" ${element.firstName} ${element.lastName}">
+        </div>${element.firstName} ${element.lastName} 
+    <input class="checkBox" type="checkbox" id="${element.idContact}" value="${element.firstName} ${element.lastName}">
     </div>`;
   });
 }
 
 
-function writeContactsintonewArray() {
+function writeContactsintonewArray(id, firstName, lastName, color, initials) {
+  console.log(id, firstName, lastName, color, initials);
+  
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
 
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
-      selectedContacts.push(checkboxes[i].value);
+      let idContact = checkboxes[i].id;
+      let firstName = checkboxes[i].value.split(" ")[0];
+      let lastName = checkboxes[i].value.split(" ")[1];
+      let color = document.getElementById("contactcircle-" + idContact).getAttribute("fill");
+      let initials = checkboxes[i].value.split(" ").map((name) => name.charAt(0)).join("");
+      selectedContacts.push(new Contact(idContact, firstName + " " + lastName, color, initials));
+
     }
   }
+
   document.getElementById("test").innerHTML = "";
   selectedContacts.forEach((element) => {
-    let contact = element.split(" ");
+    let contact = element.name.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
-    let id = "contactcircle-" + contact[1] + contact[2];
-    let color = colorPicker(contact);
+    let id = "contactcircle-" + element.idContact;
+    let color = element.color;
+
     document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
@@ -153,8 +176,9 @@ function writeContactsintonewArray() {
 }
 
 
+
 function initTask() {
-  
+
   isloggedin();
   readServerData();
 }
@@ -188,9 +212,6 @@ function clearInputs() {
   for (let i = 0; i < checkboxes.length; i++) { checkboxes[i].checked = false; }
   selectedContacts = [];
   document.getElementById("test").innerHTML = "";
-  if (todos.length > 0) {
-    todos[todos.length - 1].contacts = [];
-  }
   document.getElementById("addtask-input-assigned").classList.add("d-none");
   document.getElementById("test").classList.add("d-none");
   openassigned = false;
@@ -208,37 +229,13 @@ function clearInputs() {
  * Validates the input fields and enables/disables the create task button accordingly.
 */
 function validateInput() {
-    resultValidation = validateForm();
-    let button = document.getElementById("addtask-button-create-task");
-    if (resultValidation) {
-      button.disabled = false;
-    } else {
-      button.disabled = true;
-    }
-}
-
-
-/**
- * Logs the input values and adds a new task to the todo list.
- */
-function pushJSON() {
-  if (switchCase("subtasksValue") !== "") {
-    subtask.push(switchCase("subtasksValue"));
-    subtaskdone.push(0);
+  resultValidation = validateForm();
+  let button = document.getElementById("addtask-button-create-task");
+  if (resultValidation) {
+    button.disabled = false;
+  } else {
+    button.disabled = true;
   }
-  todos.push({
-    id: checkId(),
-    title: document.getElementById("addtask-input-title").value,
-    task: switchCase("descriptionValue"),
-    subtasks: subtask,
-    subtasksdone: subtaskdone,
-    date: switchCase("dateValue"),
-    tag: switchCase("categoryValue"),
-    priority: priority,
-    contacts: selectedContacts,
-    status: status,
-  });
-  setItem(key, todos);
 }
 
 

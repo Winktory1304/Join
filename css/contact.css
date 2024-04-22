@@ -211,7 +211,8 @@ body {
     top: 150px;
     right: 16px
 }
-.svg-responsiv:hover{
+
+.svg-responsiv:hover {
     cursor: pointer;
 }
 
@@ -243,7 +244,8 @@ body {
     padding: 12px 0px;
     margin-top: 24px;
     margin-bottom: 24px;
-
+    position: sticky;
+    top: 0;
 }
 
 .contacts-add-new-contact-button:hover {
@@ -351,7 +353,7 @@ body {
 }
 
 
-.modal-part-1 h1 {
+.contact-h1 {
     margin: 0px;
     color: white;
     font-weight: 700;
@@ -451,7 +453,7 @@ body {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 18px 10px 18px 10px; 
+    padding: 18px 10px 18px 10px;
     margin-right: 24px;
     border-radius: 10px;
     font-size: 20px;
@@ -468,7 +470,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 214px;
+    
     border-radius: 10px;
     background-color: #2A3647;
     color: white;
@@ -481,7 +483,7 @@ body {
 }
 
 .contact-box-highlight {
-    background-color: #2A3647; 
+    background-color: #2A3647;
     color: white;
 }
 
@@ -490,7 +492,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 18px 10px 18px 10px; 
+    padding: 18px 10px 18px 10px;
     border-radius: 10px;
     background-color: #2A3647;
     color: white;
@@ -511,6 +513,7 @@ body {
     box-shadow: 0px 4px 4px 0px #00000040;
     cursor: pointer;
 }
+
 .modal-part-3-create-button-responsiv:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -646,11 +649,6 @@ body {
     font-weight: 700;
 
 }
-.validation-error {
-    width: 416px;
-    padding-top: 10px;
-    padding-bottom: 5px;
-}
 
 .detail-view-contact-email {
     font-size: 16px;
@@ -665,10 +663,14 @@ body {
     margin-top: 22px;
 }
 
-.test-responisv-top {
+/* .test-responisv-top {
     width: 100%;
     height: 80px;
     background-color: #888;
+} */
+
+.close-responsiv {
+    display: none;
 }
 
 /* Add Animation */
@@ -734,6 +736,122 @@ body {
 
 /* responsive  */
 
+@media(max-width: 1230px) {
+    .modal-content {
+        position: relative;
+        width: 80%;
+        flex-direction: column;
+        height: calc(100% - 180px);
+        align-items: center;
+        display: flex;
+        background-color: #fefefe;
+        margin: auto;
+        border: 1px solid #888;
+        border-radius: 30px;
+        animation-name: animatetop;
+        animation-duration: 300ms;
+        animation-timing-function: ease-out;
+
+    }
+
+    .modalLogo {
+        display: none;
+    }
+
+    .responsiv-h1-close {
+        display: flex;
+    }
+
+    .close-responsiv {
+        display: flex;
+        justify-content: flex-end;
+        color: #aaa;
+        position: absolute;
+        top: 24px;
+        right: 16px;
+
+    }
+    .close-responsiv:hover{
+        cursor: pointer;
+    }
+
+    .modal-part-1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #2A3647;
+        width: 100%;
+        border-radius: 30px 30px 0px 0px;
+        position: relative;
+        height: 50%;
+    }
+
+    .modal-part-2 {
+        display: flex;
+        flex: none;
+    }
+    .modal-part-3{        
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+        border-radius: 0px 0px 30px 30px;
+        margin-top: 92px;
+    }
+    .contact-modal-form{
+        display: flex;
+        margin: 0px;
+        height: 80%;
+        margin-left: 16px;
+        margin-right: 16px;
+        width: 100%;
+        align-items: center;
+    }
+    .contact-h1{
+        display: flex;
+        font-size: 47px;
+    }
+    .contact-modal-input{
+        width: 80%;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    .modal-part-3-buttons-container{
+        display: flex; 
+        justify-content: center; 
+        gap: 20px;
+    }
+   
+    .modal-part-3-create-button{
+        margin: 0px;
+        height:51px;
+    }
+    .modal-part-3-cancel-button{
+        margin: 0px;
+        height:51px;
+    }
+
+    .close {
+        display: none;
+    }
+    .profil-picture-modal{
+        display: none;
+    }
+
+    .profil-picture-modal-responsiv {
+        display: flex;
+        position: absolute; /* Absolute Positionierung */
+        bottom: -60px; /* Am unteren Rand des Containers */
+        left: 50%; /* Zentriert das Element horizontal */
+        transform: translateX(-50%); /* Korrigiert die Zentrierung durch Verschiebung um die halbe Breite */
+        width: 120px; /* Breite des Profilbildes */
+        height: 120px; /* Höhe des Profilbildes */
+        border-radius: 50%; 
+    }
+}
+
 @media(max-width: 1300px) {
     .responisiv-display-none {
         display: none;
@@ -773,9 +891,9 @@ body {
 }
 
 @media(min-width: 1300px) {
-    .test-responisv-top {
+    /* .test-responisv-top {
         display: none;
-    }
+    } */
 
     .contacts-add-new-contact-button-responisv {
         display: none;
@@ -806,16 +924,19 @@ body {
 }
 
 .responsiv-add-contact-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    height: 80%;
-    width: 90%;
-    background-color: #F6F7F8;
-    border-radius: 30px;
     position: relative;
+    width: 80%;
+    flex-direction: column;
+    height: calc(100% - 180px);
+    align-items: center;
+    display: flex;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    border-radius: 30px;
+    animation-name: animatetop;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
 
 
 }
@@ -826,21 +947,24 @@ body {
 }
 
 .responiv-modal-part1 {
-    display: flex;    
+    display: flex;
     flex-direction: column;
-    justify-content: center;    
+    justify-content: center;
     background-color: #2A3647;
     width: 100%;
     border-radius: 30px 30px 0px 0px;
     position: relative;
-    height: 240px;
+    height: 50%;
 }
 
 .responsiv-unkown-user {
     position: absolute;
-    top: calc(100% - 60px);  /* Verschiebe es so, dass die Hälfte des SVGs sichtbar ist */
-    left: 50%;               /* Zentriere es horizontal */
-    transform: translateX(-50%); /* Zentriere das SVG horizontal */
+    top: calc(100% - 60px);
+    /* Verschiebe es so, dass die Hälfte des SVGs sichtbar ist */
+    left: 50%;
+    /* Zentriere es horizontal */
+    transform: translateX(-50%);
+    /* Zentriere das SVG horizontal */
     width: 120px;
     height: 120px;
 }
