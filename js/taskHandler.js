@@ -374,7 +374,8 @@ function updateSubtask(updatedSubtask, id) {
   var subtaskElement = document.getElementById(id);
   subtaskElement.innerHTML = `${updatedSubtask} 
  `;
-  subtask[id.split('-')[1]] = updatedSubtask;
+
+  subtask[id.split('-')[1]].description =  updatedSubtask;
 }
 
 
