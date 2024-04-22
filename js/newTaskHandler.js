@@ -22,10 +22,7 @@ async function writeTasktoServer() {
         try {
             setItem('todos', todos).then(() => {
                 readServer(); clearInputs();
-                    
-                    
             });
-
         } catch (error) {
             console.error('Error adding task', error);
         }
