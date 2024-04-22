@@ -56,7 +56,6 @@
     }
 }
 
-
 @media(max-width: 870px) {
 
     .log-container {
@@ -271,7 +270,6 @@
     }
 }
 
-
 @media(max-width: 420px) {
 
     .arrow-left-line {
@@ -345,10 +343,10 @@
     .intro-join-logo {
         transform: none;
         animation: none;
-        top: -124px;
-        left: 40px;
+        top: 37px;
+        left: 38px;
         width: 64px;
-
+        height: 78px;
     }
 }
 
@@ -413,7 +411,6 @@
         bottom: 20px;
     }
 }
-
 
 @media(max-height: 700px) {
 
