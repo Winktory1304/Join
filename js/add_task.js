@@ -140,7 +140,6 @@ function setContacts(array) {
 
 
 function writeContactsintonewArray(id, firstName, lastName, color, initials) {
-  console.log(id, firstName, lastName, color, initials);
   
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];

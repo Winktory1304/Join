@@ -301,7 +301,6 @@ function saveContact() {
             updateSVG(detailViewContacts[contactId]); 
         }
         init();  
-        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
         hideModal('editContactCard');
         content.innerHTML = '';
     } else {
@@ -319,7 +318,6 @@ function saveContact() {
 async function updateServer() {
     try {
         await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
-        console.log('Kontaktinformationen erfolgreich aktualisiert');
     } catch (error) {
         console.error('Fehler beim Aktualisieren der Kontaktinformationen', error);
     }
