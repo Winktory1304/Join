@@ -135,15 +135,10 @@ function setContacts(array) {
 }
 
 
-
-
-
 function writeContactsintonewArray(id, firstName, lastName, color, initials) {
   console.log(id, firstName, lastName, color, initials);
-
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
-
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       let idContact = checkboxes[i].id;
@@ -161,14 +156,12 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
       );
     }
   }
-
   document.getElementById("test").innerHTML = "";
   selectedContacts.forEach((element) => {
     let contact = element.name.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
     let id = "contactcircle-" + element.idContact;
     let color = element.color;
-
     document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
@@ -178,6 +171,7 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
     if (todos.length === 0) return;
   });
 }
+
 
 function initTask() {
   isloggedin();
