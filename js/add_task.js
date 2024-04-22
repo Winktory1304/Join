@@ -179,8 +179,8 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
 }
 
 function initTask() {
-  isloggedin();
-  readServerData();
+isloggedin();
+readServerData();
 }
 
 // Popup
@@ -319,3 +319,4 @@ function closeListAssignedTo() {
     openassigned = false;
   }
 }
+

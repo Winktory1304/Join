@@ -272,6 +272,7 @@ function addSubtask() {
   if (document.getElementById("addtask-input-subtasks").value === "") {
     return;
   }
+ 
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
   let id = todos.length;
@@ -285,6 +286,7 @@ function addSubtask() {
   container.innerHTML += subtaskHTML;
   input.value = "";
 }
+
 
 
 
@@ -406,3 +408,13 @@ function editSubtaskonTodo(titel, id, todoID) {
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtaskonTodo(this.value, '${id}', ${todoID})">
   `;
 }
+function keyPress(){
+  document.getElementById("addtask-input-subtasks").addEventListener("keypress", function(event) {
+  
+    console.log(event.key);
+  
+    if (event.key === "Enter") {
+        addSubtask();
+    }
+  });
+  }
