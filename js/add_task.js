@@ -129,7 +129,7 @@ function setContacts(array) {
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>
         </div>${element.firstName} ${element.lastName} 
-    <input class="checkBox" type="checkbox" id="${element.idContact}" value="${element.firstName} ${element.lastName}">
+    <input class="checkBox" type="checkbox" id="${element.idContact}" value="${element.firstName} ${element.lastName}" onclick="setAssign('${element.idContact}')">
     </div>`;
   });
 }
