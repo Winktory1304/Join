@@ -200,7 +200,7 @@ function setContactstoTodo(todoID) {
     let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
     let color = element.color;
 
-    switchCase("assigned").innerHTML += `<div class="inputnew witdhContactsTodo" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintoTodo('${todoID}', '${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}')"> 
+    switchCase("assigned").innerHTML += `<div class="fwitdhContactsTodo" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintoTodo('${todoID}', '${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}')"> 
     <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
@@ -272,6 +272,7 @@ function addSubtask() {
   if (document.getElementById("addtask-input-subtasks").value === "") {
     return;
   }
+ 
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
   let id = todos.length;
@@ -281,10 +282,11 @@ function addSubtask() {
   var subtaskText = input.value;
   subtask.push(new Subtask(subtask.length, subtaskText));
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
-  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${subtaskText}','${text}','${id}')" src="../assets/img/delete.svg"></div></label>`;
+  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
   container.innerHTML += subtaskHTML;
   input.value = "";
 }
+
 
 
 
@@ -372,7 +374,8 @@ function updateSubtask(updatedSubtask, id) {
   var subtaskElement = document.getElementById(id);
   subtaskElement.innerHTML = `${updatedSubtask} 
  `;
-  subtask[id.split('-')[1]] = updatedSubtask;
+
+  subtask[id.split('-')[1]].description =  updatedSubtask;
 }
 
 
@@ -406,3 +409,4 @@ function editSubtaskonTodo(titel, id, todoID) {
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtaskonTodo(this.value, '${id}', ${todoID})">
   `;
 }
+
