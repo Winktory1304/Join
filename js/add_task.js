@@ -134,6 +134,10 @@ function setContacts(array) {
   });
 }
 
+
+
+
+
 function writeContactsintonewArray(id, firstName, lastName, color, initials) {
   console.log(id, firstName, lastName, color, initials);
 
@@ -301,8 +305,16 @@ function selectPrio(prio) {
   }
 }
 
+
+
+function mouseup (event){
+  var pol = document.getElementById("addtask-input-assigned");
+  if(event.target != pol && event.target.parentNode.parentNode != pol && event.target.parentNode != pol)
+  {testonclickbody();}
+}
+
+
 function testonclickbody() {
-  console.log("testonclickbody");
   if (openassigned === true) {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
     document.getElementById("test").classList.remove("d-none");
