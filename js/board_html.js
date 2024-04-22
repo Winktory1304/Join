@@ -5,7 +5,6 @@
  */
 function updateHTML() {
 
-
     let inProgress = todos.filter(t => t['status'] == 'progress');
 
     document.getElementById('board_progress').innerHTML = '';
@@ -83,6 +82,7 @@ function prioritySelector(element) {
     }
 }
 
+
 /**
  * Generates HTML markup for a todo task card.
  * @param {Object} element - The todo task object.
@@ -107,6 +107,7 @@ function generateTodoHTML(element) {
         `;
     }
 
+
 function openMinitaskMenu(id) {
     document.getElementById('bc-' + id).innerHTML = `
                         <div class="changeStatus">
@@ -122,9 +123,6 @@ function openMinitaskMenu(id) {
 }
 
 
-
-
-
 function statusSwitcher(todoID, status) {
 
     todos[todoID].status = status;
@@ -134,31 +132,20 @@ function statusSwitcher(todoID, status) {
 
 function setTitle(element) {
     if (element.title.length > 13) {
-
         let newTitle = element.title.slice(0, 13) + '...';
-
-
         return newTitle;
     }
     else {
-
         return element.title;
     }
 }
 
 
-
 function generateContacts(elementcontacts) {
     let kreise = [];
-
-
-
     if (elementcontacts.contacts.length === 0) {
         return '';
     }
-
-
-
     if (elementcontacts.contacts.length > 5) {
         kreise = elementcontacts.contacts.slice(0, 5);
     }
@@ -186,6 +173,7 @@ function generateContacts(elementcontacts) {
     return contactHTML;
 }
 
+
 /**
  * Sets the tag style based on the element's tag.
  * @param {Object} element - The element containing the tag information.
@@ -201,6 +189,7 @@ function setTag(element) {
     }
 }
 
+
 /**
  * Opens a dialog with the specified ID and calls the openCard function.
  * @param {string} id - The ID of the dialog to open.
@@ -211,6 +200,7 @@ function openDialog(id) {
     openCard(id);
 }
 
+
 /**
  * Closes the dialog and updates the HTML.
  */
@@ -219,6 +209,7 @@ async function closeDialog() {
     await writeServer()
     updateHTML();
 }
+
 
 /**
  * Opens the task dialog and calls the addTask function.
@@ -235,6 +226,7 @@ function openTaskDialog() {
     }
 }
 
+
 /**
  * Closes the task dialog by adding the 'd-none' class to the 'board_addTask' element.
  */
@@ -246,6 +238,7 @@ function closeTaskDialog() {
     selectedContacts = [];
     subtask = [];
 }
+
 
 /**
  * Returns the priority level of an element as a string.

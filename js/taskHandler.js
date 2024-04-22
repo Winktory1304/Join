@@ -3,7 +3,6 @@
  * Searches for tasks based on user input and updates the board with matching tasks.
  */
 function searchTask() {
-
   document.getElementById('board_findTask_input').addEventListener('keyup', function () {
     var search = document.getElementById('board_findTask_input').value;
     var searchArray = todos.filter(t => t.title.includes(search));
@@ -72,6 +71,7 @@ function hoverPlusOut(id) {
   let plus = document.getElementsByClassName('board_plus');
   plus[id].setAttribute('src', '../assets/img/board-plus.svg');
 }
+
 
 /**
  * Adds a task to the todo list.
@@ -354,6 +354,7 @@ function deleteSubtask(titel, id) {
   }
 }
 
+
 function deleteSubtaskfromTodo(titel, id, todoID) {
   //Diese funktion wird so noch nicht funktionieren, 
 
@@ -365,7 +366,6 @@ function deleteSubtaskfromTodo(titel, id, todoID) {
   subtaskElement.remove();
   setItem(key, todos).then(() => { ; init(); });
 }
-
 
 
 /**
@@ -412,6 +412,7 @@ function updateSubtaskonTodo(updatedSubtask, id, todoID) {
  `;
   todos[todoID].subtasks[id.split('-')[1]].description = updatedSubtask;
 }
+
 
 /**
  * Edits a subtask element by replacing its content with an input field.
