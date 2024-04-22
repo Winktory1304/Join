@@ -73,86 +73,36 @@ function hoverPlusOut(id) {
   plus[id].setAttribute('src', '../assets/img/board-plus.svg');
 }
 
-
-/**
- * Creates a new task based on the provided status input.
- * @param {string} statusInput - The status of the task ('open', 'progress', 'feedback', or any other value).
- */
-function createTask(statusInput) {
-  if (statusInput === 'open') {
-    status = 'open';
-    title = 'Test';
-    priority = 2;
-    addTask();
-    updateHTML();
-  }
-  else if (statusInput === 'progress') {
-    status = 'progress';
-    title = 'Test';
-    priority = 2;
-    addTask();
-    updateHTML();
-  }
-  else if (statusInput === 'feedback') {
-    status = 'feedback';
-    addTask();
-    updateHTML();
-    title = 'Test';
-    priority = 2;
-  }
-  else {
-    status = 'open';
-    title = 'Test';
-    priority = 2;
-    addTask();
-    updateHTML();
-  }
-}
-
-
-/**
- * Adds a task to the todo list.
- */
-function addTask() {
-  addTaskPopup()
-  pushJSON();
-  try {
-    setItem(key, todos);
-  } catch (error) {
-    console.error('Error adding task', error);
-  }
-  clearInputs() 
-}
-
-
 /**
  * Edits a task with the given ID.
  * @param {number} id - The ID of the task to be edited.
  */
 function editTask(id) {
-  selectedContacts = todos[id].contacts;
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard" id ="taskcardedit">
-      <div id="board_editframe" class="board_editframe max-width-525">
-        <div class="board_taskedit">
+    <div class="framebutton board_editframe">
+    <div class="board_taskedit">
         <h1>Edit Task</h1>
         <p class="board_cardexit" onclick="closeDialog()">X</p>
         </div>
+      <div id="board_editframe" class="board_editframe max-width-525">
+        
+        <div class="gap-20">
         <p>Task Title</p>
         <input class="max-width-500" type="text" id="addtask-input-title" value="${todos[id].title}" required>
+        </div>
+        <div class="gap-20">
         <p>Task Description</p>
-        <input class="max-width-500"  type="text" id="addtask-input-description" value="${todos[id].task}" required>
+        <textarea class="addtask-input-description width540 editDescript"  type="text" id="addtask-input-description">${todos[id].task}</textarea>
+        </div>
+        <div class="gap-20">
         <p>Task Date</p>
         <input class="max-width-500"  type="date" id="addtask-input-date" value="${todos[id].date}" required>
-        <p>Task Category</p>
-        <select class="addtask-input-category max-width-500" id="addtask-input-category" required>
-            <option default value="${todos[id].tag}" disabled>${todos[id].tag}</option>
-            <option value="User Story">User Story</option>
-            <option value="Technical Task">Technical Task</option>
-        </select>
-        <p>Task Category</p>
-            <div class="addtask-prio-buttons max-width-500">
+        </div>
+        <div class="gap-20">
+        <p>Task Priority</p>
+            <div class="addtask-prio-buttons max-width-500 responsiveEdit">
                 <button onclick="selectPrio('urgent')" class="addtask-button urgent" id="addtaskButtonUrgent">Urgent
                   <img src="../assets/img/addtaskurgent.svg">
                 </button>
@@ -161,57 +111,195 @@ function editTask(id) {
                 </button>
                 <button onclick="selectPrio('low')" class="addtask-button low " id="addtaskButtonLow">Low <img src="../assets/img/addtasklow.svg"> </button>
             </div>
+            </div>
+            
+            <div class="addtask-gap16">
+            <div class="gap-20">
+            <div class="addtask-h2">Assigned to</div>
+            <div style="position: relative;">
+                <input class="addtask-input-subtasks max-width-500" placeholder="Contacts" id="changeAssigned">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getReadyBoard(${id}),getarray(${id})"
+                class="plusnew">
+            </div>
+            <div class="inputfield d-none max-width-500" id="addtask-input-assigned" onchange="validateInput()"></div>
+        </div>
+        <div class="addtask-gap16 max-width-500" id="test">
+        </div>
+        <div class="gap-20">
         <div class="addtask-h2" id="subtaskListContainer">Subtasks</div>
             <div style="position: relative;">
 
-                <input class="addtask-input-subtasks" id="addtask-input-subtasks" placeholder="Add new subtask">
-                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtask()"
-                    style="position: absolute; top: 50%; right: 5px; transform: translateY(-50%);">
+                <input class="addtask-input-subtasks max-width-500" id="addtask-input-subtasks" placeholder="Add new subtask">
+                <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="addSubtasktoTodo(${todos[id].id})"
+                    class="plusnew">
             </div>
             <div class="containerForSubtask d-none" id="containerForSubtask"></div>
         
-        <p>Assigned Contacts</p>
-        <input type="text" placeholder="Contacts" class="addtask-input-assigned max-width-500" id="changeAssigned"
-                onfocus="getReady(), getarray()">
-                
-        <div class="addtask-gap16" id="test">
         </div>
-        <div class="inputfield d-none"  id="addtask-input-assigned"  onchange="validateInput()"  aria-multiselectable="true"></div>
-        <button class="addtask-button-create-task" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), readServer(), clearInputs() , closeDialog()">Update Task</button>
       </div>
-      </div>
+</div>
+      <button class="addtask-button-create-task edittask" id="addtask-button-create-task" onclick="updateJSON(${todos[id].id}), clearInputs(), closeDialog()">OK</button>
+    </div>
     `;
   document.getElementById('taskcardedit').classList.add('board_taskcardedit');
-  fillSubtasks();
+  fillSubtasks(id);
+  fillContacts(id);
 }
 
 
 /**
  * Fills the subtask array with subtasks from the todos array.
  */
-function fillSubtasks() {
-  subtask = [];
-  todos.forEach((element) => {
-    subtask = element.subtasks;
+function fillSubtasks(id) {
+  if (todos[id].subtasks.length !== 0) {
+    document.getElementById('containerForSubtask').classList.remove('d-none');
+    fillSubtaskHTML(id);
+  }
+
+
+
+}
+
+function fillSubtaskHTML(id) {
+  var container = document.getElementById("containerForSubtask");
+  container.innerHTML = '';
+  let count = 0;
+  count = todos[id].subtasks.length;
+  todos[id].subtasks.forEach((element, index) => { // Add 'index' parameter to the forEach loop
+    var text = 'label-' + index; // Use 'index' instead of 'todos[id].subtasks.length'
+    var text2 = 'div-' + index; // Use 'index' instead of 'todos[id].subtasks.length'
+    var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${element.description}</div><div class="subtaskIcons">
+    <img onclick="editSubtaskonTodo('${element.description}','${text2}','${id}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${element.description}','${text}',${id})" src="../assets/img/delete.svg"></div></label>`;
+    container.innerHTML += subtaskHTML;
   });
 }
+
+
+function fillContacts(id) {
+  document.getElementById("test").innerHTML = "";
+  todos[id].contacts.forEach((element) => {
+    let contact = element.name.split(" ");
+    let initials = contact.map((name) => name.charAt(0)).join("");
+    let id = "contactcircle-" + element.idContact;
+    let color = element.color;
+
+    document.getElementById("test").innerHTML += `
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>`;
+
+
+
+  });
+}
+function setContactstoTodo(todoID) {
+  switchCase("assigned").innerHTML = "";
+  contacts.forEach((element) => {
+    let id = "contactcircle-" + element.idContact;
+    let initials = element.firstName.charAt(0) + element.lastName.charAt(0);
+    let color = element.color;
+
+    switchCase("assigned").innerHTML += `<div class="inputnew witdhContactsTodo" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintoTodo('${todoID}', '${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}')"> 
+    <div class="board_cardcontactsring">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>
+        </div>${element.firstName} ${element.lastName} 
+    <input class="checkBox" type="checkbox" id="${element.idContact}" value="${element.firstName} ${element.lastName}">
+    </div>`;
+  });
+}
+
+
+function setAssign(contactID) {
+  if (document.getElementById(contactID).checked) {
+    document.getElementById(contactID).checked = false;
+    document.getElementById("setAssign-" + contactID).style.backgroundColor = "white";
+    return;
+  }
+
+  document.getElementById("setAssign-" + contactID).style.backgroundColor = "#828282";
+  document.getElementById(contactID).checked = true;
+}
+
+
+
+
+function writeContactsintoTodo(todoID, idContact, firstName, lastName, color, initials) {
+  let checkboxes = document.getElementsByClassName("checkBox ");
+  todos[todoID].contacts = [];
+
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      let id = checkboxes[i].id;
+      let firstName = checkboxes[i].value.split(" ")[0];
+      let lastName = checkboxes[i].value.split(" ")[1];
+      let color = document.getElementById("contactcircle-" + id).getAttribute("fill");
+      let initials = checkboxes[i].value.split(" ").map((name) => name.charAt(0)).join("");
+      todos[todoID].contacts.push(new Contact(id, firstName + " " + lastName, color, initials));
+    }
+  }
+
+
+  document.getElementById("test").innerHTML = "";
+  todos[todoID].contacts.forEach((element) => {
+    let contact = element.name.split(" ");
+    let initials = contact.map((name) => name.charAt(0)).join("");
+    let id = "contactcircle-" + element.idContact;
+    let color = element.color;
+
+    document.getElementById("test").innerHTML += `
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
+    </svg>`;
+
+
+    if (todos.length === 0) return;
+  });
+}
+
+
+
 
 
 /**
  * Adds a subtask to the task list.
  */
 function addSubtask() {
+  if (document.getElementById("addtask-input-subtasks").value === "") {
+    return;
+  }
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
+  let id = todos.length;
   var input = document.getElementById("addtask-input-subtasks");
   document.getElementById("containerForSubtask").classList.remove('d-none');
-  var container = document.getElementById("containerForSubtask"); 
+  var container = document.getElementById("containerForSubtask");
   var subtaskText = input.value;
-  subtask.push(subtaskText); 
+  subtask.push(new Subtask(subtask.length, subtaskText));
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
-  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
+  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${subtaskText}','${text}','${id}')" src="../assets/img/delete.svg"></div></label>`;
   container.innerHTML += subtaskHTML;
-  input.value = ""; 
+  input.value = "";
+}
+
+
+
+function addSubtasktoTodo(id) {
+  var text = 'label-' + (todos[id].subtasks.length);
+  var text2 = 'div-' + (todos[id].subtasks.length);
+  var input = document.getElementById("addtask-input-subtasks");
+  document.getElementById("containerForSubtask").classList.remove('d-none');
+  var container = document.getElementById("containerForSubtask");
+  var subtaskText = input.value;
+  todos[id].subtasks.push(new Subtask(subtask.length, subtaskText));
+  var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
+  <img onclick="editSubtaskonTodo('${subtaskText}','${text2}','${id}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${subtaskText}','${text}','${id}')" src="../assets/img/delete.svg"></div></label>`;
+  container.innerHTML += subtaskHTML;
+  input.value = "";
 }
 
 
@@ -220,10 +308,10 @@ function addSubtask() {
 * @param {string} id - The title of the task to be deleted.
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
-function deleteTask(id) {
-  updatedArray = todos.filter(item => item.id !== id);
-  todos = [];
-  setItem(keydome, updatedArray).then(() => { ; init(); });
+async function deleteTask(id) {
+
+  todos = todos.filter(item => item.id !== id);
+  await setItem('todos', todos).then(() => { closeDialog(); updateHTML(); });
 }
 
 
@@ -239,7 +327,24 @@ function deleteSubtask(titel, id) {
   var subtaskElement = document.getElementById(id);
 
   subtaskElement.remove();
+
+  if (subtask.length === 0) {
+    document.getElementById("containerForSubtask").classList.add('d-none');
+  }
 }
+
+function deleteSubtaskfromTodo(titel, id, todoID) {
+  //Diese funktion wird so noch nicht funktionieren, 
+
+  var subtaskToDelete = todos[todoID].subtasks.filter((item => item.description == titel));
+  todos[todoID].subtasks.splice(subtaskToDelete, 1);
+
+  var subtaskElement = document.getElementById(id);
+
+  subtaskElement.remove();
+  setItem(key, todos).then(() => { ; init(); });
+}
+
 
 
 /**
@@ -249,11 +354,13 @@ function deleteSubtask(titel, id) {
  */
 function editSubtask(titel, id) {
   var subtaskElement = document.getElementById(id);
-  subtaskElement.innerHTML = 
-  `
+  subtaskElement.innerHTML =
+    `
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtask(this.value, '${id}')">
   `;
 }
+
+
 
 
 /**
@@ -266,4 +373,36 @@ function updateSubtask(updatedSubtask, id) {
   subtaskElement.innerHTML = `${updatedSubtask} 
  `;
   subtask[id.split('-')[1]] = updatedSubtask;
+}
+
+
+/**
+ * Updates the content of a subtask element and updates the corresponding subtask in the subtask array.
+ * @param {string} updatedSubtask - The updated content for the subtask element.
+ * @param {string} id - The id of the subtask element to be updated.
+ */
+/**
+ * Updates the content of a subtask element and updates the corresponding subtask in the todos array.
+ * @param {string} updatedSubtask - The updated content for the subtask element.
+ * @param {string} id - The id of the subtask element to be updated.
+ * @param {string} todoID - The id of the todo to which the subtask belongs.
+ */
+function updateSubtaskonTodo(updatedSubtask, id, todoID) {
+  var subtaskElement = document.getElementById(id);
+  subtaskElement.innerHTML = `${updatedSubtask} 
+ `;
+  todos[todoID].subtasks[id.split('-')[1]].description = updatedSubtask;
+}
+
+/**
+ * Edits a subtask element by replacing its content with an input field.
+ * @param {string} titel - The title of the subtask.
+ * @param {string} id - The ID of the subtask element.
+ */
+function editSubtaskonTodo(titel, id, todoID) {
+  var subtaskElement = document.getElementById(id);
+  subtaskElement.innerHTML =
+    `
+  <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtaskonTodo(this.value, '${id}', ${todoID})">
+  `;
 }

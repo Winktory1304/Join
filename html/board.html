@@ -13,6 +13,16 @@
     <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
 
 
+
+    <script src="../assets/classes/taskHandler-class.js"></script>
+    <script src="../assets/classes/subtaskHandler-class.js"></script>
+    <script src="../assets/classes/contactsHandler-class.js"></script>
+
+
+
+
+
+
     <script src="../js/board.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/add_task.js"></script>
@@ -20,6 +30,10 @@
     <script src="../js/include.js"></script>
     <script src="../js/taskHandler.js"></script>
     <script src="../js/template.js"></script>
+
+    
+    <script src="../js/newTaskHandler.js"></script>
+    
 
     <link rel="stylesheet" href="../css/responsive_board.css">
 
@@ -37,9 +51,9 @@
 
 
 
-    <div w3-include-html="./template/sidebar.html"></div>
+    <div id="sidebar"></div>
     <div w3-include-html="./template/navbar.html"></div>
-    <div w3-include-html="template/mobile_bottombar.html"></div>
+    <div id="mobile_footer"></div>
 
 
     <div class="board_content">
@@ -89,7 +103,7 @@
                 <div class="spalte">
                     <div class="row">
                         <h4>To do</h4><img onmouseenter="hoverPlus(0)" onmouseleave="hoverPlusOut(0)" class="board_plus"
-                            src="..//assets/img/board-plus.svg" alt="" srcset="" onclick="createTask('open')">
+                            src="..//assets/img/board-plus.svg" alt="" srcset="" onclick="openTaskDialog()">
                     </div>
                     <div class="board_cardcolumn " id="board_open" ondrop="moveTo('open'),removeHighlight('board_open')"
                         ondragleave="removeHighlight('board_open')"
@@ -102,7 +116,7 @@
                     <div class="row">
                         <h4>In Progress</h4><img onmouseenter="hoverPlus(1)" onmouseleave="hoverPlusOut(1)"
                             class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""
-                            onclick="createTask('progress')">
+                            onclick="openTaskDialog()">
                     </div>
                     <div class="board_cardcolumn" id="board_progress"
                         ondrop="moveTo('progress'), removeHighlight('board_progress')"
@@ -118,7 +132,7 @@
                     <div class="row">
                         <h4>Feedback</h4><img onmouseenter="hoverPlus(2)" onmouseleave="hoverPlusOut(2)"
                             class="board_plus" src="..//assets/img/board-plus.svg" alt="" srcset=""
-                            onclick="createTask('feedback')">
+                            onclick="openTaskDialog()">
                     </div>
                     <div class="board_cardcolumn " id="board_feedback"
                         ondrop="moveTo('feedback'), removeHighlight('board_feedback')"

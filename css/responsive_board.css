@@ -1,18 +1,94 @@
+
+.addtask-input-description{
+    padding: 18px;
+}
+.board_addtaskcard{
+    width: 55%;
+}
+
+
+
+.statusSwitcheroption{
+    gap: 5px;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    border: #081371 1px solid;
+
+}
+.statusSwitcheroption:hover{
+    background-color: #081371;
+    color: white;
+}
+
+.goBackStatuschange:hover{
+    transition: zoom 0.3s;
+    transform: scale(1.1);
+
+}
+.statusSwitcher{
+    display: none;
+}
+
+.changeTitle{
+    
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.changeStatus{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.changeTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+}
+
 @media (max-width: 1750px){
 .board_tasks {
     flex-wrap: wrap;
 }
-
+.addtask-right-content
+{
+    width: 50%;
+}
+.addtask-input-description{
+    padding: 0px !important;
+}
+.containerForSubtask{
+    width: 500px;
+}
 .board_task{
     padding: 20px;
     width: 200px;
-    height: 150px;
+}
+.addtask-prio-buttons{
+    justify-content: center;
+    gap: 13%;
 }
 
 .spalte{
     width: 20%;
     max-width: 90%;
 
+}
+.addtaskbutton{
+    margin-right: -5px;
 }
 
 .row{
@@ -24,6 +100,7 @@
     padding: 10px;
     width: 70%;
     height: 30px;
+    justify-self: center;
 }
 .board_nocardcontent{
     margin: 10px;
@@ -37,25 +114,21 @@
     gap: 1px;
 }
 
-.board_addtaskcard{
-    margin-left: 5%;
-    width: 80%;
-}
 .addtask-content-main{
     width: 100%;
     margin: 0;
 }
 .addtask-left-content{
-    width: 80%;
+    margin-right: 48px !important;
     margin: 0;
+    width: 45%;
 }
-.addtask-input-description,
-.addtask-gap16,
-.addtask-input-subtasks,
-.addtask-input-date,.addtask-prio-buttons,.addtask-input-category,.addtask-content-footer,
-.addtask-input-title{
-    width: 90% !important;
-    margin: 0;
+.width540{
+    width: 100% !important;
+}
+.inputfield {
+    overflow-x: hidden;
+    width: 93% !important;
 }
 }
 
@@ -70,6 +143,33 @@
     padding: 10px;
     height: calc(100vh - 180px);
 }
+.statusSwitcher{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: rgba(5, 73, 125, 0.501);
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.respnosiveTask{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.board_addTask{
+    display: none;
+}
 
 .board_cardheadline{
     font-size: 35px;
@@ -77,11 +177,14 @@
 .addTask{
     display: none;
 }
-
 .mobile_hidden{
     display: none !important;
 
 }
+.containerForSubtask{
+    width: 500px;
+}
+
 
 .mobile_headline{
     display: flex;
@@ -112,7 +215,6 @@
 .board_task{
     padding: 20px;
     width: 200px;
-    height: 150px;
 
 }
 .board_notask{
@@ -120,6 +222,7 @@
     padding: 10px;
     width: 80%;
     height: 30px;
+    justify-self: center;
 }
 .board_nocardcontent{
     margin: 10px;
@@ -252,7 +355,10 @@
 }
 
 .board_opencardtag{
-    font-size: 15px;
+    font-size: 13px;
+}
+.board_cardtag{
+    font-size: 17px;
 }
 
 .board_cardexit{
@@ -269,6 +375,8 @@ progress{
     height: 20px;
 
 }
+
+
 }
 
 
@@ -282,5 +390,11 @@ progress{
         width: 100%;
         padding: 10px;
         height: calc(100vh - 180px);
+    }
+    .responsiveEdit{
+        flex-direction: column !important;
+    }
+    .board_cardexit{
+        margin-right: 0;
     }
 }

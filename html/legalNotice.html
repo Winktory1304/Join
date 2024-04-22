@@ -14,12 +14,14 @@
     <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
 </head>
 
-<body class="legal-body">
-    <div w3-include-html="./template/sidebar.html"></div>
+<body class="legal-body" onload="isloggedin()">
+    <div id="sidebar"></div>
     <div w3-include-html="./template/navbar.html"></div>
-    <div w3-include-html="template/mobile_bottombar.html"></div>
+    <div id="mobile_footer"></div>
     <div class='legal-content'>
-        <h1>Impressum</h1>
+        
+        <div class="arrow"><h1>Impressum</h1>
+        <img src="../assets/img/arrow-left-line.svg" class="arrow-left-line" onclick="goOneStepBack()"></div>
         <p>Angaben gemäß § 5 TMG</p>
         <p>Christina Bernhardt <br>
             Fenngasse 18<br>

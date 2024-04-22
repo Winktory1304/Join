@@ -1,14 +1,19 @@
-let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)"]
+let colors = ["rgb(147,39,255)", "rgb(110,82,255)", "rgb(252,113,255)", "rgb(255,195,69)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(31,215,193)", "rgb(255,70,70)", "rgb(255,122,0)", "rgb(255,122,0)", "rgb(135, 206, 235)", "rgb(75, 0, 130)", "rgb(255, 165, 0)", "rgb(128, 0, 0)", "rgb(46, 139, 87)", "rgb(255, 192, 203)", "rgb(70, 130, 180)", "rgb(210, 105, 30)", "rgb(220, 220, 220)", "rgb(245, 245, 220)"];
 let contacts = [];
 let contactupdated = [];
 let detailViewContacts = [];
 let contactsaveid = 0;
+let todos = [];
 
-
-async function init() { 
-    await getUsersintoContacts();
-    renderContacts();   
-    getName();
+async function init() {
+    try {        
+        isloggedin();
+        await getUsersintoContacts();        
+        renderContacts();
+        getName();       
+    } catch (error) {
+        console.error("Fehler in init:", error);
+    }
 }
 
 
@@ -24,14 +29,16 @@ async function getUsersintoContacts() {
         users = [];
         await readJSON('users', users) // Warte auf das Laden der Daten
         users.forEach(user => {
-            if (!contacts.some(contact => contact.idContact === user.idContact)) {
+            if (!contacts.some(contact => contact.idContact === user.idContact) && user.name) {
+                let firstInitial = user.name[0] ? user.name[0][0] : ''; 
+                let secondInitial = user.name.split(' ')[1] ? user.name.split(' ')[1][0] : ''; 
                 contacts.push({
                     "idContact": user.idContact,
                     "firstName": user.name.split(' ')[0],
-                    "lastName": user.name.split(' ')[1],
+                    "lastName": user.name.split(' ')[1] || '', 
                     "email": user.email,
                     "phoneNumber": "",
-                    "firstLetterofNames": user.name[0][0] + user.name.split(' ')[1][0],
+                    "firstLetterofNames": firstInitial + secondInitial,
                     "color": getRandomColor()
                 });
             }
@@ -68,8 +75,8 @@ function resetContacts() {
  */
 async function readServerData() {
     try {
+        readJSON('todos', todos)
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
-        console.log('Daten geladen:', contacts);
         removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
@@ -139,6 +146,7 @@ function groupContactsByInitial() {
  */
 function showResponsivDetail() {
     document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview');
+    document.getElementById('responsivContactsOverview').classList.remove('d-none');
     document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
     document.getElementById('contactsContent').classList.add('contacts-content-dnone');
     document.getElementById('addContactBtnResponsiv').classList.add('d-none');
@@ -156,7 +164,11 @@ function removeResponivContactsOverview(){
     document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
     document.getElementById('addContactBtnResponsiv').classList.remove('d-none'); 
     document.getElementById('burgerContactBtnResponsiv').classList.add('d-none'); 
+    document.getElementById('responsivContactsOverview').classList.add('d-none');
     document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
+    document.querySelectorAll('.contact-box').forEach(box => {
+        box.classList.remove('contact-box-highlight');
+    });
 }
 
 
@@ -170,7 +182,8 @@ function openDetailedContactsView(contactId) {
     let contact = detailViewContacts[contactId]
     let content = document.getElementById('detailViewContent');
     let responsivContent = document.getElementById('responsivDetailViewContent');
-    if (width < 1220) {               
+    highlightContactBox(contactId);
+    if (width < 1300) {               
         showResponsivDetail(); 
         detailViewResponsiv(responsivContent, contact);   
     }else{
@@ -278,67 +291,64 @@ function deleteContactById(contactId) {
 
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
         const usersIndex = users.findIndex(user => user.email === removedContact.email);
-        
+
         document.getElementById('detailViewContent').innerHTML = '';
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
-        
+
+        deleteContactsfromTasks(contactId)
+
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
             try {
-            
+
                 setItem('contacts', contacts).then(() => {
                     setItem('users', users).then(() => {
-                            localStorage.removeItem('currentUserIndex');
-                            window.location.href = "/index.html";
+                        localStorage.removeItem('currentUserIndex');                        
+                    });
                 });
-            });
-                console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }
-        else if (contactIndex !== -1) {
+        } else if (contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             try {
                 setItem('contacts', contacts).then(() => {
                     readServerData();
                     renderContacts();
-            });
-                console.log('Kontakt gelöscht und Daten aktualisiert');
+                });
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
-        }   
-        
+        }
+
     }
 }
 
 
 /**
  * Adds a new contact to the contacts array or displays a warning if the contact already exists.
-*
-* @param {number} emailIndex - The index of the contact's email in the contacts array.
-* @param {object} newContact - The new contact object to be added.
-* @returns {void}
-*/
-function addContactOrWarn(emailIndex, newContact) {
+ * @param {number} emailIndex - The index of the contact's email in the contacts array.
+ * @param {object} newContact - The new contact object to be added.
+ * @returns {void}
+ */
+async function addContactOrWarn(emailIndex, newContact) {
     if (emailIndex === -1) {
         contacts.push(newContact);
-        createContactPopup();
+        
         try {
-            setItem('contacts', contacts);
-            console.log('Daten aktualisiert');
+            await setItem('contacts', contacts);
+            
         } catch (error) {
             console.error('Error adding contact', error);
-        }        
+        }
         renderContacts();
-    } else {
-        alert("Dieser Kontakt ist schon vorhanden");
+        createContactPopup();
     }
 }
+
 
 
 /**
@@ -348,9 +358,6 @@ function clearInputFields() {
     document.getElementById('create-contact-name-input').value = '';
     document.getElementById('create-contact-email-input').value = '';
     document.getElementById('create-contact-phone-input').value = '';
-    document.getElementById('responsivCreateContactNameInput').value = '';
-    document.getElementById('responsivCreateContactEmailInput').value = '';
-    document.getElementById('responsivCreateContactPhoneInput').value = '';
 }
 
 
@@ -379,31 +386,17 @@ function addNewContactResponsiv() {
  */
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     let email = document.getElementById(emailInputId).value;
-    let emailIndex = findEmailIndex(email);
-    if (!validateEmail(email)) {
-        alert("Invalid email address");
-        return;
-    }
+    let emailIndex = findEmailIndex(email);   
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
     if (!names) return;
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
-    addContactOrWarn(emailIndex, newContact);
+    addContactOrWarn(emailIndex, newContact, modalId);
     hideModal(modalId);    
     clearInputFields();
 }
 
 
-/**
- * Validates an email address.
- * @param {string} email - The email address to be validated.
- * @returns {boolean} - True if the email address is valid, otherwise false.
- */
-function validateEmail(email) {
-    // Use a regular expression to validate the email address
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
 
 
 /**
@@ -471,8 +464,7 @@ function sortContactsByInitial() {
  */
 function validateFullName(fullName) {
     let names = fullName.trim().split(/\s+/); // Teile den Namen bei einem oder mehreren Leerzeichen
-    if (names.length < 2) {
-        alert('Bitte geben Sie Vor- und Nachnamen ein.');
+    if (names.length < 2) {       
         return null;
     }
     return names;
@@ -499,7 +491,7 @@ function findEmailIndex(email) {
  * @returns {string} A random color.
  */
 function getRandomColor() {
-    return colors[Math.floor(Math.random() * colors.length)];
+    return  colors[Math.floor(Math.random() * colors.length)];
 }
 
 

@@ -2,6 +2,7 @@ let loggeduser = [];
 
 let currentUser;
 
+
 function initRegister() {
     loadUsers();
 }
@@ -18,8 +19,14 @@ function loadUsers() {
  * Registers a user if email doesn't already exists.
  */
 function registerUser() {
-    const password = document.getElementById('sign_up_password').value.trim();
 
+    const name = document.getElementById('sign_up_name').value.trim();
+    const password = document.getElementById('sign_up_password').value.trim();
+    const nameWords = name.split(' ');
+
+    if (!checkAndSeperateName(nameWords)) {
+        return;
+    }
 
     if (password === '') {
         return;
@@ -44,6 +51,20 @@ function registerUser() {
             goBackToLogIn();
         }, 2000);
     }
+}
+
+
+/**
+ * Checks whether the name consists of two words, each of which is at least three characters long.
+ */
+function checkAndSeperateName(nameWords) {
+    let warning = document.getElementById('password_match');
+    if (nameWords.length !== 2 || nameWords.some(word => word.length < 3)) {
+        warning.innerHTML = 'Bitte geben Sie Vor- und Nachnamen ein.';
+        warning.style.color = 'red';
+        return false;
+    }
+    return true;
 }
 
 
@@ -82,11 +103,8 @@ async function pushTheUserToStorage() {
         }
     }
 
-
-
-
     users.push({
-        idContact : id,
+        idContact: id,
         name: formattedName,
         email: email.value,
         password: password.value,
@@ -162,7 +180,12 @@ function checkPrivacyPolicy() {
     }
 }
 
+
+/**
+ * Logs the user in if the email and password match.
+ */
 function logIn() {
+    localStorage.setItem('isFirstTimeinSummary', "true");
     let email = document.getElementById('log_in_email').value;
     let password = document.getElementById('log_in_password').value;
     let message = document.getElementById('email_or_password_not_found');
@@ -200,20 +223,21 @@ function indexOfUser(email) {
  * Logs a guest in and redistricts him to the summary page.
  */
 function logInGuest() {
+    localStorage.setItem('isFirstTimeinSummary', "true");
     window.location.href = './html/summary.html';
-    localStorage.setItem('currentUserIndex', "Guest");
+    localStorage.setItem('currentUserIndex', "Guest");      
 }
-
 
 /**
  * Redistricts to the login window.
  */
-
 function goBackToLogIn() {
     resetForm();
     document.getElementById('log_in_container').classList.remove('d-none');
     document.getElementById('sing_up_container').classList.add('d-none');
     document.getElementById('log_container').classList.remove('height-sing-up');
+    document.getElementById('header_container').classList.remove('d-none');
+    document.getElementById('email_or_password_not_found').innerHTML = '';
     showSignUpHeader();
 }
 
@@ -231,7 +255,7 @@ function goOneStepBack() {
  */
 function hideSignUpHeader() {
     let width = document.documentElement.clientWidth;
-    if (width < 500) {
+    if (width < 569) {
         document.getElementById('mobile_header_container').classList.add('d-none');
     }
 }
@@ -241,7 +265,7 @@ function hideSignUpHeader() {
  */
 function showSignUpHeader() {
     let width = document.documentElement.clientWidth;
-    if (width < 500) {
+    if (width < 569) {
         document.getElementById('mobile_header_container').classList.remove('d-none');
     }
 }

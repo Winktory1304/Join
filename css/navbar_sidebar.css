@@ -107,6 +107,7 @@
 
 .header-menu-button:hover {
 	background-color: rgb(45, 61, 89);
+    cursor: pointer;
 }
 
 
