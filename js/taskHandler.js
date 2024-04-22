@@ -282,7 +282,7 @@ function addSubtask() {
   var subtaskText = input.value;
   subtask.push(new Subtask(subtask.length, subtaskText));
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
-  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${subtaskText}','${text}','${id}')" src="../assets/img/delete.svg"></div></label>`;
+  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
   container.innerHTML += subtaskHTML;
   input.value = "";
 }

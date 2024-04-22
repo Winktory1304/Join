@@ -179,9 +179,13 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
 }
 
 function initTask() {
-  keyPress();
   isloggedin();
   readServerData();
+
+  setTimeout(function () {
+    keyPress();
+  }, 1000);
+
 }
 
 // Popup
