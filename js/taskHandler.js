@@ -72,7 +72,6 @@ function hoverPlusOut(id) {
   plus[id].setAttribute('src', '../assets/img/board-plus.svg');
 }
 
-
 /**
  * Adds a task to the todo list.
  */
@@ -89,8 +88,8 @@ function addTask() {
       console.error('Error adding task', error);
     }
   }, 1000);
-}
 
+}
 
 /**
  * Adds a task to the todo list.
@@ -101,6 +100,7 @@ function addTaskonBoard() {
     pushJSON();
     try {
       setItem(key, todos);
+
       closeTaskDialog();
       clearInputs();
       updateHTML();
@@ -108,6 +108,7 @@ function addTaskonBoard() {
       console.error('Error adding task', error);
     }
   }, 1000);
+
 }
 
 
@@ -199,9 +200,11 @@ function fillSubtasks(id) {
 function fillSubtaskHTML(id) {
   var container = document.getElementById("containerForSubtask");
   container.innerHTML = '';
-  todos[id].subtasks.forEach((element) => {
-    var text = 'label-' + (subtask.length);
-    var text2 = 'div-' + (subtask.length);
+  let count = 0;
+  count = todos[id].subtasks.length;
+  todos[id].subtasks.forEach((element, index) => { // Add 'index' parameter to the forEach loop
+    var text = 'label-' + index; // Use 'index' instead of 'todos[id].subtasks.length'
+    var text2 = 'div-' + index; // Use 'index' instead of 'todos[id].subtasks.length'
     var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${element.description}</div><div class="subtaskIcons">
     <img onclick="editSubtaskonTodo('${element.description}','${text2}','${id}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${element.description}','${text}',${id})" src="../assets/img/delete.svg"></div></label>`;
     container.innerHTML += subtaskHTML;
@@ -294,6 +297,7 @@ function addSubtask() {
   if (document.getElementById("addtask-input-subtasks").value === "") {
     return;
   }
+ 
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
   let id = todos.length;
@@ -303,10 +307,11 @@ function addSubtask() {
   var subtaskText = input.value;
   subtask.push(new Subtask(subtask.length, subtaskText));
   var subtaskHTML = `<label id="${text}" class="containerSubtask" for="addsubtaskliste"><div id="${text2}" >${subtaskText}</div><div class="subtaskIcons">
-  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtaskfromTodo('${subtaskText}','${text}','${id}')" src="../assets/img/delete.svg"></div></label>`;
+  <img onclick="editSubtask('${subtaskText}','${text2}')"  src="../assets/img/edit.svg"><img onclick="deleteSubtask('${subtaskText}','${text}')" src="../assets/img/delete.svg"></div></label>`;
   container.innerHTML += subtaskHTML;
   input.value = "";
 }
+
 
 
 function addSubtasktoTodo(id) {
@@ -425,3 +430,4 @@ function editSubtaskonTodo(titel, id, todoID) {
   <input class="inputfieldEditSubtask" type="text" value="${titel}" onblur="updateSubtaskonTodo(this.value, '${id}', ${todoID})">
   `;
 }
+

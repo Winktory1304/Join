@@ -21,12 +21,8 @@ async function writeTasktoServer() {
     setTimeout(() => {
         try {
             setItem('todos', todos).then(() => {
-                console.log('Task added successfully');
                 readServer(); clearInputs();
-                    
-                    
             });
-
         } catch (error) {
             console.error('Error adding task', error);
         }
@@ -60,3 +56,5 @@ function deleteContactsfromTasks(contactID) {
     );
     setItem('todos', todos);
 }
+
+

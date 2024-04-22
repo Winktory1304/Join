@@ -77,7 +77,6 @@ async function readServerData() {
     try {
         readJSON('todos', todos)
         await readJSON('contacts', contacts); // Warte auf das Laden der Daten
-        console.log('Daten geladen:', contacts);
         removeDuplicateContacts();
         renderContacts(); // Rufe renderContacts auf, NACHDEM die Daten geladen wurden
     } catch (error) {
@@ -310,7 +309,6 @@ function deleteContactById(contactId) {
                         localStorage.removeItem('currentUserIndex');                        
                     });
                 });
-                console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
@@ -321,7 +319,6 @@ function deleteContactById(contactId) {
                     readServerData();
                     renderContacts();
                 });
-                console.log('Kontakt gelöscht und Daten aktualisiert');
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
@@ -338,23 +335,17 @@ function deleteContactById(contactId) {
  * @returns {void}
  */
 async function addContactOrWarn(emailIndex, newContact) {
-    console.log("addContactOrWarn aufgerufen mit emailIndex:", emailIndex);
     if (emailIndex === -1) {
         contacts.push(newContact);
-        console.log("Neuer Kontakt hinzugefügt:", newContact);
         
         try {
             await setItem('contacts', contacts);
-            console.log('Daten aktualisiert');
             
         } catch (error) {
             console.error('Error adding contact', error);
         }
         renderContacts();
         createContactPopup();
-    } else {
-        console.log("Kontakt existiert bereits mit diesem Email-Index:", emailIndex);
-        // Hier könntest du eine Warnung anzeigen, dass der Kontakt bereits existiert
     }
 }
 

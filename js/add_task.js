@@ -85,7 +85,7 @@ function openAndCloseAddTaskInputAssigned() {
   }
 
 
- 
+
 }
 
 function getReadyBoard(id) {
@@ -136,7 +136,7 @@ function setContacts(array) {
 
 
 function writeContactsintonewArray(id, firstName, lastName, color, initials) {
-  console.log(id, firstName, lastName, color, initials);
+
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
   for (let i = 0; i < checkboxes.length; i++) {
@@ -176,6 +176,11 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
 function initTask() {
   isloggedin();
   readServerData();
+
+  setTimeout(function () {
+    keyPress();
+  }, 1000);
+
 }
 
 // Popup
@@ -300,10 +305,9 @@ function selectPrio(prio) {
 }
 
 
-function checkEventInAssignedToAndClose (event){
+function checkEventInAssignedToAndClose(event) {
   var elementAddTask = document.getElementById("addtask-input-assigned");
-  if(event.target != elementAddTask && event.target.parentNode != elementAddTask && event.target.parentNode.parentNode != elementAddTask )
-  {closeListAssignedTo();}
+  if (event.target != elementAddTask && event.target.parentNode != elementAddTask && event.target.parentNode.parentNode != elementAddTask) { closeListAssignedTo(); }
 }
 
 
@@ -314,3 +318,12 @@ function closeListAssignedTo() {
     openassigned = false;
   }
 }
+
+function keyPress(){
+  document.getElementById("addtask-input-subtasks").addEventListener("keypress", function(event) {
+  
+    if (event.key === "Enter") {
+        addSubtask();
+    }
+  });
+  }
