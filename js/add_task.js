@@ -71,7 +71,7 @@ function readServerData() {
 /**
  * function for the assigned to
  */
-function getReady() {
+function openAndCloseAddTaskInputAssigned() {
   if (openassigned === false) {
     document.getElementById("addtask-input-assigned").classList.remove("d-none");
     document.getElementById("test").classList.add("d-none");
@@ -306,15 +306,14 @@ function selectPrio(prio) {
 }
 
 
-
-function mouseup (event){
-  var pol = document.getElementById("addtask-input-assigned");
-  if(event.target != pol && event.target.parentNode.parentNode != pol && event.target.parentNode != pol)
-  {testonclickbody();}
+function checkEventInAssignedToAndClose (event){
+  var elementAddTask = document.getElementById("addtask-input-assigned");
+  if(event.target != elementAddTask && event.target.parentNode != elementAddTask && event.target.parentNode.parentNode != elementAddTask )
+  {closeListAssignedTo();}
 }
 
 
-function testonclickbody() {
+function closeListAssignedTo() {
   if (openassigned === true) {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
     document.getElementById("test").classList.remove("d-none");
