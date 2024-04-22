@@ -356,7 +356,6 @@ function deleteSubtask(titel, id) {
 
 
 function deleteSubtaskfromTodo(titel, id, todoID) {
-  //Diese funktion wird so noch nicht funktionieren, 
 
   var subtaskToDelete = todos[todoID].subtasks.filter((item => item.description == titel));
   todos[todoID].subtasks.splice(subtaskToDelete, 1);
