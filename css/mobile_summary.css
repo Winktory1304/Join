@@ -21,6 +21,10 @@
 
 @media(max-width: 870px) {
 
+    .greeting-container {
+        display: none;
+    }
+
     .summary-content {
         padding: 0px !important;
     }
@@ -42,6 +46,7 @@
     }
 
     .greeting-mobile {
+        display: flex;
         position: absolute;
         top: 0;
         right: 0;
@@ -68,7 +73,6 @@
         }
     }
 }
-
 
 @media(max-width: 569px) {
 
@@ -282,7 +286,6 @@
     }
 
     .summary-content {
-
         padding: 0px !important;
     }
 
@@ -490,5 +493,4 @@
         height: 100%;
         width: 32.5%;
     }
-
 }

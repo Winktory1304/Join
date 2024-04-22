@@ -2,6 +2,7 @@ let loggeduser = [];
 
 let currentUser;
 
+
 function initRegister() {
     loadUsers();
 }
@@ -65,7 +66,6 @@ function checkAndSeperateName(nameWords) {
     }
     return true;
 }
-
 
 
 /**
@@ -180,6 +180,10 @@ function checkPrivacyPolicy() {
     }
 }
 
+
+/**
+ * Logs the user in if the email and password match.
+ */
 function logIn() {
     let email = document.getElementById('log_in_email').value;
     let password = document.getElementById('log_in_password').value;
@@ -219,14 +223,12 @@ function indexOfUser(email) {
  */
 function logInGuest() {
     window.location.href = './html/summary.html';
-    localStorage.setItem('currentUserIndex', "Guest");
+    localStorage.setItem('currentUserIndex', "Guest");      
 }
-
 
 /**
  * Redistricts to the login window.
  */
-
 function goBackToLogIn() {
     resetForm();
     document.getElementById('log_in_container').classList.remove('d-none');
