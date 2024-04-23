@@ -261,14 +261,20 @@ function editContactDesktopHtml(content, contact, contactId) {
 }
 
 
-// Desktop Save Funktion, angepasst für form submit
-function saveFunctionDesktop(contact, contactId, modalId) {
+    /**
+     * Saves the contact information and displays a modal.
+     * 
+     * @param {object} contact - The contact object containing the contact information.
+     * @param {string} contactId - The ID of the contact.
+     * @param {string} modalId - The ID of the modal to be displayed.
+     */
+    function saveFunctionDesktop(contact, contactId, modalId) {
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
     document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
     let form = document.getElementById('contactFormDesktop');
     form.onsubmit = function (event) {
-        event.preventDefault();  // Verhindert das Neuladen der Seite
+        event.preventDefault();  
         saveContact(contactId);
     };
     showModal(modalId);
@@ -300,8 +306,7 @@ function saveContact() {
             detailViewContacts[contactId].firstLetterofNames = newInitials;
             updateSVG(detailViewContacts[contactId]); 
         }
-        init();  
-        console.log("Kontakt wurde erfolgreich aktualisiert:", detailViewContacts[contactId]);
+        init();
         hideModal('editContactCard');
         content.innerHTML = '';
     } else {
@@ -318,8 +323,7 @@ function saveContact() {
  */
 async function updateServer() {
     try {
-        await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
-        console.log('Kontaktinformationen erfolgreich aktualisiert');
+        await setItem('contacts', detailViewContacts);         
     } catch (error) {
         console.error('Fehler beim Aktualisieren der Kontaktinformationen', error);
     }
