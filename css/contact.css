@@ -673,6 +673,11 @@ body {
     display: none;
 }
 
+.full-name-validation-span {
+    display: flex;       
+    color: red;
+}
+
 /* Add Animation */
 
 @keyframes animatetop {

@@ -394,11 +394,15 @@ function addNewContactResponsiv() {
  * @param {string} phoneInputId - The ID of the phone input element.
  */
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
+    document.getElementById('fullNameValidationText').textContent = '';
     let email = document.getElementById(emailInputId).value;
     let emailIndex = findEmailIndex(email);   
     let fullName = document.getElementById(nameInputId).value;
     let names = validateFullName(fullName);
-    if (!names) return;
+    if (!names) {
+        document.getElementById('fullNameValidationText').textContent = 'Please enter a first and last name.';
+        return;
+    }
     let newContact = createNewContact(names, email, document.getElementById(phoneInputId).value);
     addContactOrWarn(emailIndex, newContact, modalId);
     hideModal(modalId);    
