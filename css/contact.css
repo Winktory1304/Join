@@ -430,7 +430,7 @@ body {
     height: 50px;
     width: 422px;
     border: 1px solid rgba(209, 209, 209, 1);
-    padding: 13px 21px;  /* Kontrolliert den Abstand des Inhalts zum Rand */
+    padding: 13px 21px;  
     border-radius: 10px;
     box-sizing: border-box;
     width: 100%;
@@ -940,6 +940,10 @@ body {
     border: 0px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
+}
+.contacts-add-new-contact-button-responisv:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
 }
 
 .responsiv-add-contact-content {

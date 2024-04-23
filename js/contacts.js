@@ -297,14 +297,12 @@ function deleteContactById(contactId) {
         hideModal('responsivEditContact');
         hideModal('burgerResponiv');
         removeResponivContactsOverview();
-
         deleteContactsfromTasks(contactId)
 
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
             try {
-
                 setItem('contacts', contacts).then(() => {
                     setItem('users', users).then(() => {
                         localStorage.removeItem('currentUserIndex');                        
@@ -359,7 +357,6 @@ async function addContactOrWarn(emailIndex, newContact) {
 }
 
 
-
 /**
  * Clears the input fields for creating a contact.
 */
@@ -389,9 +386,10 @@ function addNewContactResponsiv() {
 /**
  * Adds a new contact to the contact list.
  * 
- * @param {string} emailInputId - The ID of the email input element.
- * @param {string} nameInputId - The ID of the name input element.
- * @param {string} phoneInputId - The ID of the phone input element.
+ * @param {string} emailInputId - The ID of the email input field.
+ * @param {string} nameInputId - The ID of the name input field.
+ * @param {string} phoneInputId - The ID of the phone input field.
+ * @param {string} modalId - The ID of the modal element.
  */
 function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     document.getElementById('fullNameValidationText').textContent = '';
@@ -408,8 +406,6 @@ function addContact(emailInputId, nameInputId, phoneInputId, modalId) {
     hideModal(modalId);    
     clearInputFields();
 }
-
-
 
 
 /**
