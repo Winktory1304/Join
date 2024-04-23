@@ -317,13 +317,13 @@ function deleteContactById(contactId) {
             try {
                 setItem('contacts', contacts).then(() => {
                     readServerData();
-                    renderContacts();
+                   
                 });
             } catch (error) {
                 console.error('Fehler beim Löschen des Kontakts', error);
             }
         }
-
+    renderContacts();
     }
 }
 
