@@ -427,7 +427,7 @@ body {
 }
 
 .contact-modal-input {
-    height: 50px;
+    min-height: 50px;
     width: 422px;
     border: 1px solid rgba(209, 209, 209, 1);
     padding: 13px 21px;  
