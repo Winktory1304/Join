@@ -429,11 +429,14 @@ body {
 .contact-modal-input {
     height: 50px;
     width: 422px;
-    gap: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
-    padding: 13px, 21px, 13px, 21px;
+    padding: 13px 21px;  /* Kontrolliert den Abstand des Inhalts zum Rand */
     border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    text-indent: 30px;
 }
+
 
 .modal-part-3-buttons-container {
     display: flex;
@@ -530,7 +533,7 @@ body {
     font-weight: 400;
     font-size: 20px;
     line-height: normal;
-    padding-left: 24px;
+    
 
 
 }
