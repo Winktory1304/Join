@@ -66,7 +66,7 @@ body {
     align-items: center;
     padding-top: 15px;
     padding-bottom: 15px;
-    /* padding-left: 15px; */
+    padding-left: 15px;
     border-radius: 20px;
     margin-top: 5px;
     justify-content: flex-start;
@@ -265,7 +265,7 @@ body {
 }
 
 .contact-box-email {
-    color: blue;
+    color: rgb(0,124,238)
 }
 
 .render-contacts-container {
