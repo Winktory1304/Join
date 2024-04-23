@@ -1,6 +1,9 @@
 let task = new Task();
 
-
+/**
+ * function create a new task
+ * 
+ */
 function createnewTask() {
   task.id = todos.length + 1;
   task.title = document.getElementById("addtask-input-title").value;
@@ -15,6 +18,10 @@ function createnewTask() {
 }
 
 
+/**
+ * async function write task to server
+ * 
+ */
 async function writeTasktoServer() {
   createnewTask();
   addTaskPopup();
@@ -31,6 +38,10 @@ async function writeTasktoServer() {
 }
 
 
+/**
+ * function write task to server
+ * 
+ */
 function writeTasktoServer() {
   writeTasktoServer();
   setTimeout(() => {
@@ -39,7 +50,10 @@ function writeTasktoServer() {
   document.getElementById("addtask-button-create-task").disabled = true;
 }
 
-
+/**
+ * async function read from server
+ * 
+ */
 async function readfromServer() {
   todos = [];
   readJSON("todos", todos);
@@ -47,6 +61,11 @@ async function readfromServer() {
 }
 
 
+/**
+ * function delete Contacts from Task
+ * @param {
+ * } contactID 
+ */
 function deleteContactsfromTasks(contactID) {
   contactID = contacts[contactID].idContact;
   todos.forEach((task) => {

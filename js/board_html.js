@@ -93,6 +93,10 @@ function generateTodoHTML(element) {
     }
 
 
+/** 
+ * function open mini task menu for the board
+ * 
+*/
 function openMinitaskMenu(id) {
     document.getElementById('bc-' + id).innerHTML = /*html*/`
                         <div class="changeStatus">
@@ -108,12 +112,24 @@ function openMinitaskMenu(id) {
 }
 
 
+/**
+ * function to switch the status
+ * @param {
+ * } todoID 
+ * @param {*} status 
+ */
 function statusSwitcher(todoID, status) {
     todos[todoID].status = status;
     writeServer();
 }
 
 
+/**
+ * function to set the title
+ * @param {
+ * } element 
+ * @returns 
+ */
 function setTitle(element) {
     if (element.title.length > 13) {
         let newTitle = element.title.slice(0, 13) + '...';
@@ -125,6 +141,12 @@ function setTitle(element) {
 }
 
 
+/**
+ * function to generate the contacts
+ * @param {
+ * } elementcontacts 
+ * @returns 
+ */
 function generateContacts(elementcontacts) {
     let kreise = [];
     if (elementcontacts.contacts.length === 0) {
