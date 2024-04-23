@@ -4,56 +4,29 @@
  */
 function searchTask() {
 
-document.getElementById('board_findTask_input').addEventListener('keyup', function () {
-  var search = document.getElementById('board_findTask_input').value;
-  var searchArray = todos.filter(t => t.title.toLowerCase().includes(search.toLowerCase())||t.task.toLowerCase().includes(search.toLowerCase()));
-  var statusopen = searchArray.filter(t => t.status === 'open');
-  var statusfeedback = searchArray.filter(t => t.status === 'feedback');
-  var statusprogress = searchArray.filter(t => t.status === 'progress');
-  var statusdone = searchArray.filter(t => t.status === 'done');
+  document.getElementById('board_findTask_input').addEventListener('keyup', function () {
+    let search = document.getElementById('board_findTask_input').value;
+    let searchArray = todos.filter(t => t.title.toLowerCase().includes(search.toLowerCase()) || t.task.toLowerCase().includes(search.toLowerCase()));
 
-    if (statusprogress.length !== 0) {
-      document.getElementById('board_progress').innerHTML = '';
-      statusprogress.forEach((element) => {
-        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
-      });
+    document.getElementById('board_done').innerHTML = '';
+    document.getElementById('board_feedback').innerHTML = '';
+    document.getElementById('board_open').innerHTML = '';
+    document.getElementById('board_progress').innerHTML = '';
 
-
-      
-      document.getElementById('board_open').innerHTML = '';
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_feedback').innerHTML = '';
-    } else if (statusopen.length !== 0) {
-      document.getElementById('board_open').innerHTML = '';
-      statusopen.forEach((element) => {
+    searchArray.forEach((element) => {
+      if(element.status === 'open') {
         document.getElementById('board_open').innerHTML += generateTodoHTML(element);
-      });
-      document.getElementById('board_progress').innerHTML = '';
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_feedback').innerHTML = '';
-    } else if (statusfeedback.length !== 0) {
-      document.getElementById('board_feedback').innerHTML = '';
-      statusfeedback.forEach((element) => {
+      }
+      if(element.status === 'feedback') {
         document.getElementById('board_feedback').innerHTML += generateTodoHTML(element);
-      });
-      document.getElementById('board_progress').innerHTML = '';
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_open').innerHTML = '';
-    } else if (statusdone.length !== 0) {
-      document.getElementById('board_done').innerHTML = '';
-      statusdone.forEach((element) => {
+      }
+      if(element.status === 'progress') {
+        document.getElementById('board_progress').innerHTML += generateTodoHTML(element);
+      }
+      if(element.status === 'done') {
         document.getElementById('board_done').innerHTML += generateTodoHTML(element);
-      });
-      document.getElementById('board_progress').innerHTML = '';
-      document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_open').innerHTML = '';
-    } else {
-      document.getElementById('board_done').innerHTML = '';
-      document.getElementById('board_feedback').innerHTML = '';
-      document.getElementById('board_open').innerHTML = '';
-      document.getElementById('board_progress').innerHTML = '';
-    }
-
+      }
+    });
     if (search === '') {
       updateHTML();
     }
