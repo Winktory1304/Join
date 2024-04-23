@@ -39,7 +39,7 @@ body {
     color: white;
     animation-name: animateright;
     animation-duration: 2s;
-    /* Gesamtdauer der Animation */
+
     animation-fill-mode: forwards;
 
 }
@@ -117,26 +117,22 @@ body {
 
 .contacts-content::-webkit-scrollbar {
     width: 8px;
-    /* width of the entire scrollbar */
+
+
 }
 
 .contacts-content::-webkit-scrollbar-track {
-    /* background: white;
-    margin-top: 50px;
-    margin-bottom: 720px; */
+
     border-radius: 8px;
 
-    /* color of the tracking area */
+
 }
 
 .contacts-content::-webkit-scrollbar-thumb {
     background-color: rgba(168, 168, 168, 1);
-    /* color of the scroll thumb */
+
     border-radius: 8px;
-    /* roundness of the scroll thumb */
-    /* border: 8px solid rgba(168, 168, 168, 1); */
-    /* creates padding around scroll thumb */
-    /* min-height: 1px; */
+    /
 }
 
 .contacts-overview {
@@ -265,13 +261,10 @@ body {
 }
 
 .contact-box-email {
-    color: rgb(0,124,238)
+    color: rgb(0, 124, 238)
 }
 
 .render-contacts-container {
-    /* margin: 0 28px; */
-
-    /* padding-right: 32px; */
     display: flex;
     flex-direction: column;
 
@@ -470,7 +463,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    
+
     border-radius: 10px;
     background-color: #2A3647;
     color: white;
@@ -674,7 +667,7 @@ body {
 }
 
 .full-name-validation-span {
-    display: flex;       
+    display: flex;
     color: red;
 }
 
@@ -776,7 +769,8 @@ body {
         right: 16px;
 
     }
-    .close-responsiv:hover{
+
+    .close-responsiv:hover {
         cursor: pointer;
     }
 
@@ -795,7 +789,8 @@ body {
         display: flex;
         flex: none;
     }
-    .modal-part-3{        
+
+    .modal-part-3 {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -805,7 +800,8 @@ body {
         border-radius: 0px 0px 30px 30px;
         margin-top: 92px;
     }
-    .contact-modal-form{
+
+    .contact-modal-form {
         display: flex;
         margin: 0px;
         height: 80%;
@@ -814,53 +810,58 @@ body {
         width: 100%;
         align-items: center;
     }
-    .contact-h1{
+
+    .contact-h1 {
         display: flex;
         font-size: 47px;
     }
-    .contact-modal-input{
+
+    .contact-modal-input {
         width: 80%;
         margin-left: 16px;
         margin-right: 16px;
     }
-    .modal-part-3-buttons-container{
-        display: flex; 
-        justify-content: center; 
+
+    .modal-part-3-buttons-container {
+        display: flex;
+        justify-content: center;
         gap: 20px;
     }
-   
-    .modal-part-3-create-button{
+
+    .modal-part-3-create-button {
         margin: 0px;
-        height:51px;
+        height: 51px;
     }
-    .modal-part-3-cancel-button{
+
+    .modal-part-3-cancel-button {
         margin: 0px;
-        height:51px;
+        height: 51px;
     }
 
     .close {
         display: none;
     }
-    .profil-picture-modal{
+
+    .profil-picture-modal {
         display: none;
     }
 
     .profil-picture-modal-responsiv {
         display: flex;
-        position: absolute; /* Absolute Positionierung */
-        bottom: -60px; /* Am unteren Rand des Containers */
-        left: 50%; /* Zentriert das Element horizontal */
-        transform: translateX(-50%); /* Korrigiert die Zentrierung durch Verschiebung um die halbe Breite */
-        width: 120px; /* Breite des Profilbildes */
-        height: 120px; /* Höhe des Profilbildes */
-        border-radius: 50%; 
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
     }
 }
 
 @media(max-width: 1300px) {
-    .responisiv-display-none {
+    /* .responisiv-display-none {
         display: none;
-    }
+    } */
 
     .main {
         margin-left: 0px;
@@ -870,6 +871,16 @@ body {
 
     }
 
+
+}
+
+@media(min-width: 1000px) {
+    .responisv-contacts-overview {
+        display: none !important;
+    }
+}
+
+@media(max-width: 1000px) {
     .content-container {
         display: flex;
         flex-direction: column;
