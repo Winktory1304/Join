@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
+
 .legal-html {
     display: flex;
     justify-content: center;
@@ -12,7 +12,6 @@ body {
     background-color: #3b3b3b;
     font-family: 'inter', sans-serif;
 }
-
 
 /* addtask body */
 .legal-body {
@@ -24,7 +23,6 @@ body {
     font-family: 'inter', sans-serif;
     margin: 0;
 }
-
 
 /* addtask content */
 .legal-content {
@@ -66,6 +64,9 @@ body {
     padding-bottom: 8px;
 }
 
+.cursorPointer:hover {
+    cursor: pointer;
+}
 
 a {
     color: rgb(41, 171, 226);
@@ -84,7 +85,7 @@ a {
     }
 
     .legal-content {
-          width: 97%;
+        width: 97%;
         max-height: calc(100vh - 160px);
         margin-left: 30px;
         font-family: 'inter', sans-serif;
@@ -96,11 +97,10 @@ a {
         width: 90%;
         text-wrap: balance;
     }
-
 }
 
 @media(max-width: 450px) {
-h1 {
-    font-size: 21px;
-}
+    h1 {
+        font-size: 21px;
+    }
 }

@@ -131,7 +131,7 @@ function highlightContactBox(contactId) {
  * @param {string} contact.firstLetterofNames - The first letter of the contact's names.
  */
 function updateSVG(contact) {
-    const svgHTML = `
+    const svgHTML = /*html*/`
         <svg class="responsiv-unkown-user" width="120" height="120" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="42" height="42" rx="21" fill="white" />
             <circle cx="21" cy="21" r="20" fill="${contact.color}" stroke="white" stroke-width="2" />

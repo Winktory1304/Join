@@ -4,10 +4,12 @@
  */
 let key = "todos";
 
+
 /**
  * status list assigned to
  */
 let openassigned = false;
+
 
 /**
  * arrays
@@ -20,6 +22,7 @@ let selectedContacts = [];
 let assignedPerson = [];
 let allAssigned = [];
 
+
 /**
  * variables
  */
@@ -28,6 +31,12 @@ let status = "open";
 let resultValidation = false;
 const htmlfields = ["assinedPersons", "task-list"];
 
+
+/**
+ * 
+ * @param {*} statusInput 
+ * @returns 
+ */
 function switchCase(statusInput) {
   switch (statusInput) {
     case "title":
@@ -59,6 +68,7 @@ function switchCase(statusInput) {
   }
 }
 
+
 /**
  * Reads the todo tasks from the server.
  */
@@ -67,6 +77,7 @@ function readServerData() {
   readJSON(key, todos);
   getName();
 }
+
 
 /**
  * function for the assigned to
@@ -77,16 +88,13 @@ function openAndCloseAddTaskInputAssigned() {
     document.getElementById("test").classList.add("d-none");
     openassigned = true;
     setContacts(contacts);
-
   } else {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
     document.getElementById("test").classList.remove("d-none");
     openassigned = false;
   }
-
-
-
 }
+
 
 function getReadyBoard(id) {
   if (openassigned === false) {
@@ -103,12 +111,14 @@ function getReadyBoard(id) {
   }
 }
 
+
 /**
  * Closes the contact list and removes the 'd-none' class from the 'addtask-input-assigned' element.
  */
 function closeContactList() {
   switchCase("assigned").classList.remove("d-none");
 }
+
 
 /**
  * contact list
@@ -119,10 +129,9 @@ function setContacts(array) {
     let id = "contactcircle-" + element.idContact;
     let initials = element.firstLetterofNames;
     let color = element.color;
-
     switchCase(
       "assigned"
-    ).innerHTML += `<div class="inputnew widthContacts" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintonewArray('${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}',)">  
+    ).innerHTML += /*html*/`<div class="inputnew widthContacts cursorPointer" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintonewArray('${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}',)">  
     <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
@@ -135,14 +144,9 @@ function setContacts(array) {
 }
 
 
-
-
-
 function writeContactsintonewArray(id, firstName, lastName, color, initials) {
-
   let checkboxes = document.getElementsByClassName("checkBox");
   selectedContacts = [];
-
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       let idContact = checkboxes[i].id;
@@ -158,43 +162,43 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
       selectedContacts.push(
         new Contact(idContact, firstName + " " + lastName, color, initials)
       );
-    }
-  }
-
+    }}
   document.getElementById("test").innerHTML = "";
   selectedContacts.forEach((element) => {
     let contact = element.name.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
     let id = "contactcircle-" + element.idContact;
     let color = element.color;
-
     document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
-
     if (todos.length === 0) return;
   });
 }
 
+
 function initTask() {
   isloggedin();
   readServerData();
-
   setTimeout(function () {
     keyPress();
   }, 1000);
-
 }
 
-// Popup
+
+/**
+ * add a popup
+ * 
+ */
 function addTaskPopup() {
   document.getElementById("popup").classList.remove("d-none");
   setTimeout(function () {
     document.getElementById("popup").classList.add("d-none");
   }, 1000);
 }
+
 
 /**
  * Clears the input fields, delete arrays
@@ -205,7 +209,7 @@ function clearInputs() {
   switchCase("date").value = "";
   switchCase("category").selectedIndex = 0;
   switchCase("category").disabled = false;
-  var container = document.getElementById("containerForSubtask"); // Container für Subtasks
+  var container = document.getElementById("containerForSubtask"); 
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
@@ -226,21 +230,8 @@ function clearInputs() {
   containerUrgent.classList.remove("selected");
   containerMedium.classList.add("selected");
   containerLow.classList.remove("selected");
-  validateInput();
 }
 
-/**
- * Validates the input fields and enables/disables the create task button accordingly.
- */
-function validateInput() {
-  resultValidation = validateForm();
-  let button = document.getElementById("addtask-button-create-task");
-  if (resultValidation) {
-    button.disabled = false;
-  } else {
-    button.disabled = true;
-  }
-}
 
 /**
  * Checks if the title of the task already exists in the todo list and appends a number if necessary.
@@ -259,6 +250,7 @@ function checkTitle(titleDefaultValue) {
   });
 }
 
+
 /**
  * Checks the id of the task to be added.
  * @returns {number} - The id of the task.
@@ -270,21 +262,6 @@ function checkId() {
   return todos.length;
 }
 
-/**
- * Validates the form and returns true if all required fields are filled, false otherwise.
- * @returns {boolean} - The validation result.
- */
-function validateForm() {
-  if (
-    switchCase("titleValue") !== "" &&
-    switchCase("dateValue") !== "" &&
-    switchCase("categoryValue") !== ""
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 /**
  * selects the priority buttons and change classes
@@ -324,10 +301,10 @@ function closeListAssignedTo() {
   }
 }
 
+
 function keyPress(){
   document.getElementById("addtask-input-subtasks").addEventListener("keypress", function(event) {
-  
-    if (event.key === "Enter") {
+      if (event.key === "Enter") {
         addSubtask();
     }
   });
