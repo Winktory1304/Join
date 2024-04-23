@@ -39,7 +39,7 @@ body {
     color: white;
     animation-name: animateright;
     animation-duration: 2s;
-    /* Gesamtdauer der Animation */
+
     animation-fill-mode: forwards;
 
 }
@@ -66,7 +66,7 @@ body {
     align-items: center;
     padding-top: 15px;
     padding-bottom: 15px;
-    /* padding-left: 15px; */
+    padding-left: 15px;
     border-radius: 20px;
     margin-top: 5px;
     justify-content: flex-start;
@@ -117,26 +117,22 @@ body {
 
 .contacts-content::-webkit-scrollbar {
     width: 8px;
-    /* width of the entire scrollbar */
+
+
 }
 
 .contacts-content::-webkit-scrollbar-track {
-    /* background: white;
-    margin-top: 50px;
-    margin-bottom: 720px; */
+
     border-radius: 8px;
 
-    /* color of the tracking area */
+
 }
 
 .contacts-content::-webkit-scrollbar-thumb {
     background-color: rgba(168, 168, 168, 1);
-    /* color of the scroll thumb */
+
     border-radius: 8px;
-    /* roundness of the scroll thumb */
-    /* border: 8px solid rgba(168, 168, 168, 1); */
-    /* creates padding around scroll thumb */
-    /* min-height: 1px; */
+    /
 }
 
 .contacts-overview {
@@ -265,13 +261,10 @@ body {
 }
 
 .contact-box-email {
-    color: blue;
+    color: rgb(0, 124, 238)
 }
 
 .render-contacts-container {
-    /* margin: 0 28px; */
-
-    /* padding-right: 32px; */
     display: flex;
     flex-direction: column;
 
@@ -434,13 +427,16 @@ body {
 }
 
 .contact-modal-input {
-    height: 50px;
+    min-height: 50px;
     width: 422px;
-    gap: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
-    padding: 13px, 21px, 13px, 21px;
+    padding: 13px 21px;  
     border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    text-indent: 30px;
 }
+
 
 .modal-part-3-buttons-container {
     display: flex;
@@ -470,7 +466,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    
+
     border-radius: 10px;
     background-color: #2A3647;
     color: white;
@@ -537,7 +533,7 @@ body {
     font-weight: 400;
     font-size: 20px;
     line-height: normal;
-    padding-left: 24px;
+    
 
 
 }
@@ -673,6 +669,11 @@ body {
     display: none;
 }
 
+.full-name-validation-span {
+    display: flex;
+    color: red;
+}
+
 /* Add Animation */
 
 @keyframes animatetop {
@@ -771,7 +772,8 @@ body {
         right: 16px;
 
     }
-    .close-responsiv:hover{
+
+    .close-responsiv:hover {
         cursor: pointer;
     }
 
@@ -790,7 +792,8 @@ body {
         display: flex;
         flex: none;
     }
-    .modal-part-3{        
+
+    .modal-part-3 {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -800,7 +803,8 @@ body {
         border-radius: 0px 0px 30px 30px;
         margin-top: 92px;
     }
-    .contact-modal-form{
+
+    .contact-modal-form {
         display: flex;
         margin: 0px;
         height: 80%;
@@ -809,53 +813,58 @@ body {
         width: 100%;
         align-items: center;
     }
-    .contact-h1{
+
+    .contact-h1 {
         display: flex;
         font-size: 47px;
     }
-    .contact-modal-input{
+
+    .contact-modal-input {
         width: 80%;
         margin-left: 16px;
         margin-right: 16px;
     }
-    .modal-part-3-buttons-container{
-        display: flex; 
-        justify-content: center; 
+
+    .modal-part-3-buttons-container {
+        display: flex;
+        justify-content: center;
         gap: 20px;
     }
-   
-    .modal-part-3-create-button{
+
+    .modal-part-3-create-button {
         margin: 0px;
-        height:51px;
+        height: 51px;
     }
-    .modal-part-3-cancel-button{
+
+    .modal-part-3-cancel-button {
         margin: 0px;
-        height:51px;
+        height: 51px;
     }
 
     .close {
         display: none;
     }
-    .profil-picture-modal{
+
+    .profil-picture-modal {
         display: none;
     }
 
     .profil-picture-modal-responsiv {
         display: flex;
-        position: absolute; /* Absolute Positionierung */
-        bottom: -60px; /* Am unteren Rand des Containers */
-        left: 50%; /* Zentriert das Element horizontal */
-        transform: translateX(-50%); /* Korrigiert die Zentrierung durch Verschiebung um die halbe Breite */
-        width: 120px; /* Breite des Profilbildes */
-        height: 120px; /* Höhe des Profilbildes */
-        border-radius: 50%; 
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
     }
 }
 
 @media(max-width: 1300px) {
-    .responisiv-display-none {
+    /* .responisiv-display-none {
         display: none;
-    }
+    } */
 
     .main {
         margin-left: 0px;
@@ -865,6 +874,16 @@ body {
 
     }
 
+
+}
+
+@media(min-width: 1000px) {
+    .responisv-contacts-overview {
+        display: none !important;
+    }
+}
+
+@media(max-width: 1000px) {
     .content-container {
         display: flex;
         flex-direction: column;
@@ -921,6 +940,10 @@ body {
     border: 0px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
+}
+.contacts-add-new-contact-button-responisv:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
 }
 
 .responsiv-add-contact-content {
