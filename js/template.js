@@ -36,40 +36,40 @@ function isloggedin() {
 
         document.getElementById('sidebar').innerHTML = `
 
-<div class="sidebar-container">
-    <nav class="sidebar">
-    <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
-        <section class="menu-sidebar">
-            <a class="menu-sidebar-button" href="summary.html" onclick="removeWelcomeAnimation()">
-                <img src="../assets/img/summary.svg">
-                <div>Summary</div>
-            </a>
-
-             <a class="menu-sidebar-button" href="addtask.html">
-                <img src="../assets/img/addtask.svg">
-                <div>Add Task</div>
-            </a>
-
-            <a class="menu-sidebar-button" href="board.html">
-                <img src="../assets/img/board.svg">
-                <div>Board</div>
-            </a>
-
-            <a class="menu-sidebar-button" href="contacts.html">
-                <img src="../assets/img/contacts.svg">
-                <div>Contacts</div>
-            </a>
+        <div class="sidebar-container">
+        <nav class="sidebar">
+        <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
+            <section class="menu-sidebar">
+                <a class="menu-sidebar-button" href="summary.html" onclick="removeWelcomeAnimation()">
+                    <img src="../assets/img/summary.svg">
+                    <div>Summary</div>
+                </a>
+    
+                 <a class="menu-sidebar-button" href="addtask.html">
+                    <img src="../assets/img/addtask.svg">
+                    <div>Add Task</div>
+                </a>
+    
+                <a class="menu-sidebar-button" href="board.html">
+                    <img src="../assets/img/board.svg">
+                    <div>Board</div>
+                </a>
+    
+                <a class="menu-sidebar-button" href="contacts.html">
+                    <img src="../assets/img/contacts.svg">
+                    <div>Contacts</div>
+                </a>
+            </section>
+        </nav>
+        <section class="footer-sidebar">
+            <a class="footer-sidebar-link" href="privacyPolice.html">Privacy Policy</a>
+            <a class="footer-sidebar-link" href="legalNotice.html">Legal notice</a>
         </section>
-    </nav>
-    <section class="footer-sidebar">
-        <a class="footer-sidebar-link" href="privacyPolice.html">Privacy Policy</a>
-        <a class="footer-sidebar-link" href="legalNotice.html">Legal notice</a>
-    </section>
-</div>
-
-        
+    </div>
         
         `;
+
+
 
 
 

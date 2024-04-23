@@ -19,34 +19,26 @@ function loadUsers() {
  * Registers a user if email doesn't already exists.
  */
 function registerUser() {
-
     const name = document.getElementById('sign_up_name').value.trim();
     const password = document.getElementById('sign_up_password').value.trim();
     const nameWords = name.split(' ');
-
     if (!checkAndSeperateName(nameWords)) {
         return;
     }
-
     if (password === '') {
         return;
     }
-
     let email = document.getElementById('sign_up_email').value;
     checkPassword();
     checkPrivacyPolicy();
-
     if (checkIfEmailExists(email)) {
         warningEmailExists();
     } else {
         pushTheUserToStorage();
-
         document.getElementById('sigend-up-successfuly-container').classList.remove('d-none');
-
         setTimeout(function () {
             document.getElementById(`sigend-up-successfuly-container`).classList.add('d-none');
         }, 2000);
-
         setTimeout(function () {
             goBackToLogIn();
         }, 2000);
@@ -102,7 +94,6 @@ async function pushTheUserToStorage() {
             formattedName += ' ';
         }
     }
-
     users.push({
         idContact: id,
         name: formattedName,
