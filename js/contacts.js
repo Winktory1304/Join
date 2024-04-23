@@ -6,14 +6,10 @@ let contactsaveid = 0;
 let todos = [];
 
 async function init() {
-    try {
-        isloggedin();
-        await getUsersintoContacts();
-        renderContacts();
-        getName();
-    } catch (error) {
-        console.error("Fehler in init:", error);
-    }
+    isloggedin();
+    await getUsersintoContacts();
+    renderContacts();
+    getName();
 }
 
 
@@ -25,30 +21,25 @@ async function init() {
  */
 async function getUsersintoContacts() {
     await readServerData();
-    try {
-        users = [];
-        await readJSON('users', users) 
-        users.forEach(user => {
-            if (!contacts.some(contact => contact.idContact === user.idContact) && user.name) {
-                let firstInitial = user.name[0] ? user.name[0][0] : '';
-                let secondInitial = user.name.split(' ')[1] ? user.name.split(' ')[1][0] : '';
-                contacts.push({
-                    "idContact": user.idContact,
-                    "firstName": user.name.split(' ')[0],
-                    "lastName": user.name.split(' ')[1] || '',
-                    "email": user.email,
-                    "phoneNumber": "",
-                    "firstLetterofNames": firstInitial + secondInitial,
-                    "color": getRandomColor()
-                });
-            }
-        });       
-        removeDuplicateContacts();
-        await setItem('contacts', contacts);
-
-    } catch (error) {
-        console.error('Loading error:', error);
-    }
+    users = [];
+    await readJSON('users', users) 
+    users.forEach(user => {
+        if (!contacts.some(contact => contact.idContact === user.idContact) && user.name) {
+            let firstInitial = user.name[0] ? user.name[0][0] : '';
+            let secondInitial = user.name.split(' ')[1] ? user.name.split(' ')[1][0] : '';
+            contacts.push({
+                "idContact": user.idContact,
+                "firstName": user.name.split(' ')[0],
+                "lastName": user.name.split(' ')[1] || '',
+                "email": user.email,
+                "phoneNumber": "",
+                "firstLetterofNames": firstInitial + secondInitial,
+                "color": getRandomColor()
+            });
+        }
+    });       
+    removeDuplicateContacts();
+    await setItem('contacts', contacts);
 }
 
 
@@ -58,11 +49,7 @@ async function getUsersintoContacts() {
  */
 function resetContacts() {
     contacts = [];
-    try {
-        setItem('contacts', contactstopush).then(() => { ; readServerData(); renderContacts(); });
-    } catch (error) {
-        console.error('Error deleting contacts', error);
-    }
+    setItem('contacts', contactstopush).then(() => { ; readServerData(); renderContacts(); });
 }
 
 
@@ -73,14 +60,10 @@ function resetContacts() {
  * @returns {Promise<void>} A promise that resolves when the server data is loaded and contacts are rendered.
  */
 async function readServerData() {
-    try {
-        readJSON('todos', todos)
-        await readJSON('contacts', contacts);        
-        removeDuplicateContacts();
-        renderContacts(); 
-    } catch (error) {
-        console.error('Loading error:', error);
-    }
+    readJSON('todos', todos)
+    await readJSON('contacts', contacts);        
+    removeDuplicateContacts();
+    renderContacts(); 
 }
 
 
@@ -137,37 +120,6 @@ function groupContactsByInitial() {
         groupedContacts[initial].push(contact);
     });
     return groupedContacts;
-}
-
-
-/**
- * Shows the responsive detail view for contacts.
- */
-function showResponsivDetail() {
-    document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview');
-    document.getElementById('responsivContactsOverview').classList.remove('d-none');
-    document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
-    document.getElementById('contactsContent').classList.add('contacts-content-dnone');
-    document.getElementById('addContactBtnResponsiv').classList.add('d-none');
-    document.getElementById('burgerContactBtnResponsiv').classList.remove('d-none');
-}
-
-
-/**
- * Removes the responsive behavior from the contacts overview.
- */
-function removeResponivContactsOverview() {
-    let content = document.getElementById('detailViewContent');
-    content.classList.remove('detail-view-content-responsiv');
-    content.classList.remove('dispplay-flex');
-    document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
-    document.getElementById('addContactBtnResponsiv').classList.remove('d-none');
-    document.getElementById('burgerContactBtnResponsiv').classList.add('d-none');
-    document.getElementById('responsivContactsOverview').classList.add('d-none');
-    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
-    document.querySelectorAll('.contact-box').forEach(box => {
-        box.classList.remove('contact-box-highlight');
-    });
 }
 
 
@@ -284,7 +236,6 @@ function createContactPopup() {
  */
 function deleteContactById(contactId) {
     contactId = contactsaveid;
-
     if (contactId >= 0 && contactId < detailViewContacts.length) {
         const [removedContact] = detailViewContacts.splice(contactId, 1);
         const contactIndex = contacts.findIndex(contact => contact.email === removedContact.email);
@@ -297,59 +248,19 @@ function deleteContactById(contactId) {
         if (usersIndex !== -1 && contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
             users.splice(usersIndex, 1);
-            try {
-                setItem('contacts', contacts).then(() => {
-                    setItem('users', users).then(() => {
-                        localStorage.removeItem('currentUserIndex');
-                    });
+            setItem('contacts', contacts).then(() => {
+                setItem('users', users).then(() => {
+                    localStorage.removeItem('currentUserIndex');
                 });
-            } catch (error) {
-                console.error('Fehler beim Löschen des Kontakts', error);
-            }
+            });
         } else if (contactIndex !== -1) {
             contacts.splice(contactIndex, 1);
-            try {
-                setItem('contacts', contacts).then(() => {
-                    readServerData();
-                });
-            } catch (error) {
-                console.error('Fehler beim Löschen des Kontakts', error);
-            }
+            setItem('contacts', contacts).then(() => {
+                readServerData();
+            });
         }
         renderContacts();
     }
-}
-
-
-/**
- * Adds a new contact to the contacts array or displays a warning if the contact already exists.
- * @param {number} emailIndex - The index of the contact's email in the contacts array.
- * @param {object} newContact - The new contact object to be added.
- * @returns {void}
- */
-async function addContactOrWarn(emailIndex, newContact) {    
-    if (emailIndex === -1) {
-        contacts.push(newContact);    
-        try {
-            await setItem('contacts', contacts);            
-        } catch (error) {
-            console.error('Error adding contact', error);
-        }
-        renderContacts();
-        createContactPopup();
-    } else {
-        console.log("Kontakt existiert bereits mit diesem Email-Index:", emailIndex);
-    }
-}
-
-
-/**
- * Clears the input fields for creating a contact.
-*/
-function clearInputFields() {
-    document.getElementById('create-contact-name-input').value = '';
-    document.getElementById('create-contact-email-input').value = '';
-    document.getElementById('create-contact-phone-input').value = '';
 }
 
 
@@ -435,7 +346,6 @@ function generateUniqueId() {
 */
 function sortContactsByInitial() {
     detailViewContacts = contacts.sort((a, b) => {
-
         const initialA = a.firstName[0].toUpperCase();
         const initialB = b.firstName[0].toUpperCase();
         if (initialA < initialB) {
