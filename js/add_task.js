@@ -32,6 +32,11 @@ let resultValidation = false;
 const htmlfields = ["assinedPersons", "task-list"];
 
 
+/**
+ * 
+ * @param {*} statusInput 
+ * @returns 
+ */
 function switchCase(statusInput) {
   switch (statusInput) {
     case "title":
@@ -83,7 +88,6 @@ function openAndCloseAddTaskInputAssigned() {
     document.getElementById("test").classList.add("d-none");
     openassigned = true;
     setContacts(contacts);
-
   } else {
     document.getElementById("addtask-input-assigned").classList.add("d-none");
     document.getElementById("test").classList.remove("d-none");
@@ -127,7 +131,7 @@ function setContacts(array) {
     let color = element.color;
     switchCase(
       "assigned"
-    ).innerHTML += `<div class="inputnew widthContacts cursorPointer" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintonewArray('${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}',)">  
+    ).innerHTML += /*html*/`<div class="inputnew widthContacts cursorPointer" id="setAssign-${element.idContact}" onclick="setAssign('${element.idContact}'),writeContactsintonewArray('${element.idContact}', '${element.firstName}','${element.lastName}','${color}','${initials}',)">  
     <div class="board_cardcontactsring">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id=${id} cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
@@ -178,7 +182,6 @@ function writeContactsintonewArray(id, firstName, lastName, color, initials) {
 function initTask() {
   isloggedin();
   readServerData();
-
   setTimeout(function () {
     keyPress();
   }, 1000);
@@ -206,7 +209,7 @@ function clearInputs() {
   switchCase("date").value = "";
   switchCase("category").selectedIndex = 0;
   switchCase("category").disabled = false;
-  var container = document.getElementById("containerForSubtask"); // Container für Subtasks
+  var container = document.getElementById("containerForSubtask"); 
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
@@ -227,21 +230,6 @@ function clearInputs() {
   containerUrgent.classList.remove("selected");
   containerMedium.classList.add("selected");
   containerLow.classList.remove("selected");
-  validateInput();
-}
-
-
-/**
- * Validates the input fields and enables/disables the create task button accordingly.
- */
-function validateInput() {
-  resultValidation = validateForm();
-  let button = document.getElementById("addtask-button-create-task");
-  if (resultValidation) {
-    button.disabled = false;
-  } else {
-    button.disabled = true;
-  }
 }
 
 
@@ -272,23 +260,6 @@ function checkId() {
     return 0;
   }
   return todos.length;
-}
-
-
-/**
- * Validates the form and returns true if all required fields are filled, false otherwise.
- * @returns {boolean} - The validation result.
- */
-function validateForm() {
-  if (
-    switchCase("titleValue") !== "" &&
-    switchCase("dateValue") !== "" &&
-    switchCase("categoryValue") !== ""
-  ) {
-    return true;
-  } else {
-    return false;
-  }
 }
 
 
@@ -333,8 +304,7 @@ function closeListAssignedTo() {
 
 function keyPress(){
   document.getElementById("addtask-input-subtasks").addEventListener("keypress", function(event) {
-  
-    if (event.key === "Enter") {
+      if (event.key === "Enter") {
         addSubtask();
     }
   });

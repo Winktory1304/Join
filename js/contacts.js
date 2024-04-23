@@ -96,7 +96,7 @@ function renderContacts() {
     content.innerHTML = '';
     let counter = 0;
     Object.keys(groupedContacts).sort().forEach(initial => {
-        content.innerHTML += `<div class="letter-group">
+        content.innerHTML += /*html*/`<div class="letter-group">
         <div class="letter-group-first-name">${initial}</div>
         <div>
         <div class="letter-seperator"></div>`;
@@ -119,7 +119,7 @@ function renderContacts() {
                 </div>
             `;
         });
-        content.innerHTML += `</div></div>`;
+        content.innerHTML += /*html*/`</div></div>`;
     });
 }
 

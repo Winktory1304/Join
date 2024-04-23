@@ -7,45 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
     <title>Add Task</title>
-    <!-- Css and js -->
-    <script src="../js/add_task.js"></script>
-    <link rel="stylesheet" href="../css/addtask.css">
-    <link rel="stylesheet" href="../css/addtaskresponsive.css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/img/join-logo.svg" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="../css/fonts.css">
     <!-- Template -->
     <link rel="stylesheet" href="../css/navbar_sidebar.css">
-
-
+    <!-- Css and js -->
+    <script src="../js/add_task.js"></script>
+    <link rel="stylesheet" href="../css/addtask.css">
+    <link rel="stylesheet" href="../css/addtaskresponsive.css">
     <script src="../assets/classes/taskHandler-class.js"></script>
     <script src="../assets/classes/subtaskHandler-class.js"></script>
     <script src="../assets/classes/contactsHandler-class.js"></script>
-
-
     <script src="../js/include.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/template.js"></script>
     <script src="../js/taskHandler.js"></script>
     <script src="../js/board_html.js"></script>
     <script src="../js/board.js"></script>
-
-
-
     <script src="../js/newTaskHandler.js"></script>
-
 </head>
 
 <body class="addtask_body" onload="initTask()" onmouseup="checkEventInAssignedToAndClose(event)" id="addtaskBody">
     <!-- Add template -->
     <div id="sidebar"></div>
     <div w3-include-html="./template/navbar.html"></div>
-    <div class="addtask_content" id="addtaskBody" >
+    <div class="addtask_content" id="addtaskBody">
         <!-- since here - content addtask -->
         <div class="addtask_inner_content" w3-include-html="addtasktemplate.html"></div>
     </div>
-
     <div id="mobile_footer"></div>
 
 </body>

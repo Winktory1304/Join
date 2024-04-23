@@ -121,7 +121,7 @@ function editTask(id) {
                 <img src="../assets/img/addtaskplus.svg" alt="Add Icon" onclick="getReadyBoard(${id}),getarray(${id})"
                 class="plusnew">
             </div>
-            <div class="inputfield d-none max-width-500" id="addtask-input-assigned" onchange="validateInput()"></div>
+            <div class="inputfield d-none max-width-500" id="addtask-input-assigned" ></div>
         </div>
         <div class="addtask-gap16 max-width-500" id="test">
         </div>

@@ -61,7 +61,6 @@
     margin-right: 10%;
 }
 
-
 /* addtask fonts */
 .addtask_h1 {
     font-size: 61px;
@@ -221,7 +220,6 @@
     font-family: "Inter";
 }
 
-
 .addtask-input-description::placeholder {
     color: #d1d1d1;
 }
@@ -293,7 +291,7 @@
     width: 96%;
 }
 
-.addtask-input-assignedto{
+.addtask-input-assignedto {
     height: 48px;
     padding-left: 12px;
     gap: 0;
@@ -325,7 +323,6 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-  
 }
 
 .addtask-button {
@@ -342,7 +339,6 @@
     font-weight: 400;
     font-family: "Inter";
     align-items: center;
-
 }
 
 .addtaskbutton {
@@ -416,15 +412,9 @@
     margin-right: 20px;
 }
 
-
 .addtask-button-create-task:hover:enabled {
     background-color: #29ABE2;
     border: 1px solid #29ABE2;
-}
-
-.messagedatevalidation {
-    color: red;
-    font-size: 12px;
 }
 
 .d-none {
