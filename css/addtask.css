@@ -71,7 +71,7 @@
     left: 74px;
     gap: 1px;
     padding-top: 10px;
-    padding-left: 96px;
+    padding-left: 0;
 }
 
 .addtask-h2 {
@@ -83,6 +83,15 @@
 
 .addtask-h2 span {
     color: #FFA800;
+}
+
+.cursorPointer:hover {
+    cursor: pointer;
+}
+
+.cursorPointerBlue:hover {
+    cursor: pointer;
+    border: 1px solid #29ABE2;
 }
 
 /* widt inputfields */
@@ -157,11 +166,6 @@
     padding-bottom: 16px;
 }
 
-.addtask-input-title:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
-}
-
 .addtask-input-title::placeholder {
     color: #d1d1d1;
 }
@@ -181,11 +185,6 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-}
-
-.addtask-input-description:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
 }
 
 .addtask-input-description::placeholder {
@@ -222,10 +221,6 @@
     font-family: "Inter";
 }
 
-.addtask-input-assigned:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
-}
 
 .addtask-input-description::placeholder {
     color: #d1d1d1;
@@ -248,11 +243,6 @@
     font-family: "Inter";
     padding-left: 12px;
     color: #d1d1d1;
-}
-
-.addtask-input-date:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
 }
 
 .addtask-input-date::placeholder {
@@ -279,11 +269,6 @@
     font-size: 20px;
     font-weight: 400;
     font-family: "Inter";
-}
-
-.addtask-input-category:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
 }
 
 .addtask-input-category::placeholder {
@@ -322,11 +307,6 @@
     width: 103%;
 }
 
-.addtask-input-subtasks:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
-}
-
 .addtask-input-subtasks::placeholder {
     color: #d1d1d1;
 }
@@ -363,11 +343,6 @@
     font-family: "Inter";
     align-items: center;
 
-}
-
-.addtask-button:hover {
-    cursor: pointer;
-    border: 1px solid #29ABE2;
 }
 
 .addtaskbutton {
@@ -410,7 +385,6 @@
 }
 
 .addtask-button-create-task:disabled {
-
     background-color: #5a5a5a;
 }
 
@@ -442,13 +416,8 @@
     margin-right: 20px;
 }
 
-.addtask-button-cancel:hover {
-    cursor: pointer;
-    color: #29ABE2;
-}
 
 .addtask-button-create-task:hover:enabled {
-    cursor: pointer;
     background-color: #29ABE2;
     border: 1px solid #29ABE2;
 }
@@ -550,12 +519,10 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    cursor: pointer;
     border-radius: 10px;
 }
 
 .inputnew:hover {
-    cursor: pointer;
     background-color: #5c5c5c;
     border-radius: 10px;
 }
