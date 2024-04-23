@@ -132,6 +132,10 @@
     overflow-x: hidden;
     width: 93% !important;
 }
+.boardDescription {
+    padding: 10px !important;
+    width: 420px !important;
+}
 }
 
 @media (max-width: 1300px){
