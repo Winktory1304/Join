@@ -261,14 +261,20 @@ function editContactDesktopHtml(content, contact, contactId) {
 }
 
 
-// Desktop Save Funktion, angepasst für form submit
-function saveFunctionDesktop(contact, contactId, modalId) {
+    /**
+     * Saves the contact information and displays a modal.
+     * 
+     * @param {object} contact - The contact object containing the contact information.
+     * @param {string} contactId - The ID of the contact.
+     * @param {string} modalId - The ID of the modal to be displayed.
+     */
+    function saveFunctionDesktop(contact, contactId, modalId) {
     document.getElementById('edit-contact-name-input').value = `${contact['firstName']} ${contact['lastName']}`;
     document.getElementById('edit-contact-email-input').value = `${contact['email']}`;
     document.getElementById('edit-contact-phone-input').value = `${contact['phoneNumber']}`;
     let form = document.getElementById('contactFormDesktop');
     form.onsubmit = function (event) {
-        event.preventDefault();  // Verhindert das Neuladen der Seite
+        event.preventDefault();  
         saveContact(contactId);
     };
     showModal(modalId);
@@ -300,7 +306,7 @@ function saveContact() {
             detailViewContacts[contactId].firstLetterofNames = newInitials;
             updateSVG(detailViewContacts[contactId]); 
         }
-        init();  
+        init();
         hideModal('editContactCard');
         content.innerHTML = '';
     } else {
@@ -316,9 +322,64 @@ function saveContact() {
  * @returns {Promise<void>} A promise that resolves when the server update is complete.
  */
 async function updateServer() {
-    try {
-        await setItem('contacts', detailViewContacts); // Aktualisiere den Speicher mit den neuen Daten
-    } catch (error) {
-        console.error('Fehler beim Aktualisieren der Kontaktinformationen', error);
+    await setItem('contacts', detailViewContacts);
+}
+
+
+/**
+ * Adds a new contact to the contacts array or displays a warning if the contact already exists.
+ * @param {number} emailIndex - The index of the contact's email in the contacts array.
+ * @param {object} newContact - The new contact object to be added.
+ * @returns {void}
+ */
+async function addContactOrWarn(emailIndex, newContact) {
+    if (emailIndex === -1) {
+        contacts.push(newContact);
+        await setItem('contacts', contacts);
+        renderContacts();
+        createContactPopup();
+    } else {
+        return;
     }
+}
+
+
+/**
+ * Clears the input fields for creating a contact.
+*/
+function clearInputFields() {
+    document.getElementById('create-contact-name-input').value = '';
+    document.getElementById('create-contact-email-input').value = '';
+    document.getElementById('create-contact-phone-input').value = '';
+}
+
+
+/**
+ * Shows the responsive detail view for contacts.
+ */
+function showResponsivDetail() {
+    document.getElementById('responsivContactsOverview').classList.add('responisv-contacts-overview');
+    document.getElementById('responsivContactsOverview').classList.remove('d-none');
+    document.getElementById('responsivContactsOverview').classList.add('dispplay-flex');
+    document.getElementById('contactsContent').classList.add('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.add('d-none');
+    document.getElementById('burgerContactBtnResponsiv').classList.remove('d-none');
+}
+
+
+/**
+ * Removes the responsive behavior from the contacts overview.
+ */
+function removeResponivContactsOverview() {
+    let content = document.getElementById('detailViewContent');
+    content.classList.remove('detail-view-content-responsiv');
+    content.classList.remove('dispplay-flex');
+    document.getElementById('contactsContent').classList.remove('contacts-content-dnone');
+    document.getElementById('addContactBtnResponsiv').classList.remove('d-none');
+    document.getElementById('burgerContactBtnResponsiv').classList.add('d-none');
+    document.getElementById('responsivContactsOverview').classList.add('d-none');
+    document.getElementById('responsivContactsOverview').classList.remove('dispplay-flex');
+    document.querySelectorAll('.contact-box').forEach(box => {
+        box.classList.remove('contact-box-highlight');
+    });
 }
