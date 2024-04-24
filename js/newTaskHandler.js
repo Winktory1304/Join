@@ -22,7 +22,7 @@ function createnewTask() {
  * async function write task to server
  * 
  */
-async function writeTasktoServer() {
+function writeTasktoServer() {
   createnewTask();
   addTaskPopup();
   setTimeout(() => {
@@ -42,12 +42,16 @@ async function writeTasktoServer() {
  * function write task to server
  * 
  */
-function writeTasktoServer() {
+function startWriteTasktoServer() {
+  debugger;
+  console.log('test');
   writeTasktoServer();
   setTimeout(() => {
     window.location.href = "/html/board.html";
-  }, 1000);
+  }, 5000);
+  console.log('test2');
   document.getElementById("addtask-button-create-task").disabled = true;
+  console.log('test3');
 }
 
 /**

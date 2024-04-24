@@ -198,7 +198,7 @@ function setTag(element) {
  * @param {string} id - The ID of the dialog to open.
  */
 function openDialog(id) {
-    document.getElementById('board_openCard').classList.remove('d-none')
+    document.getElementById('board_openCard').classList.remove('d-none');
     openCard(id);
 }
 
@@ -208,7 +208,7 @@ function openDialog(id) {
  */
 async function closeDialog() {
     document.getElementById('board_openCard').classList.add('d-none');
-    await writeServer()
+    await writeServer();
     updateHTML();
 }
 
