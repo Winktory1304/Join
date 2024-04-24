@@ -219,31 +219,25 @@ function setTag(element) {
  * @param {string} id - The ID of the dialog to open.
  */
 function openDialog(id) {
-  document.getElementById("board_openCard").classList.remove("d-none");
-  openCard(id);
+    document.getElementById("board_openCard").classList.remove("d-none");
+    openCard(id);
 }
 
 
 function closeByClick(event) {
-  if (isOpenCard) {
-    var boardOpenCard = document.getElementById("boardTaskCard");
-    var boardCardsubtasks = document.getElementsByClassName("checkbox");
-      debugger;
-    if (    
-      event.target != boardOpenCard &&
-      event.target.parentNode != boardOpenCard &&
-      event.target.parentNode.parentNode != boardOpenCard && 
-      event.target != boardCardsubtasks[0]
-    ) {
-        closeOutside();
-          }
-  }
+    if (isOpenCard) {
+        if (event.target.nodeName != "DIV" &&
+            event.target.id == "board_openCard"
+        ) {
+            closeOutside();
+        }
+    }
 }
 
 
-function closeOutside(){
+function closeOutside() {
     document.getElementById("board_openCard").classList.add("d-none");
-    setItem("todos",todos).then(()=>(updateHTML()));
+    setItem("todos", todos).then(() => updateHTML());
 }
 
 
