@@ -87,7 +87,7 @@ function noCard() {
 function changeAddTask() {
   let button = document.getElementById("addtask-button-cancel");
   let create = document.getElementById("addtask-button-create-task");
-  create.setAttribute("onclick", "writeTasktoServer();closeTaskDialog()");
+  create.setAttribute("onclick", "closeTaskDialog()");
   button.value = "Close";
   button.setAttribute("onclick", "closeTaskDialog()");
   button.innerHTML = "X Close";
@@ -209,7 +209,7 @@ function getDate(date) {
  */
 function openCard(id) {
   document.getElementById("board_openCard").innerHTML = /*html*/`
-                    <div class="board_taskcard">
+                    <div class="board_taskcard" id="boardTaskCard">
                         <div class="board_innertaskcard">
                         <div class="board_cardnav">
                             <div class="board_opencardtag" ${setTag(todos[id])}>
