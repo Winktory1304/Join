@@ -29,8 +29,6 @@ function startWriteTasktoServer() {
     setItem("todos", todos).then(() => {
     window.location.href = "/html/board.html";} );
   }, 3000);
-
-
 }
 
 /**

@@ -1,5 +1,8 @@
 let users = [];
 
+let link = "";
+
+
 const currentIndex = localStorage.getItem('currentUserIndex');
 
 
@@ -40,22 +43,22 @@ function isloggedin() {
     <nav class="sidebar">
     <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
         <section class="menu-sidebar">
-            <a class="menu-sidebar-button" href="summary.html" onclick="removeWelcomeAnimation()">
+            <a class="menu-sidebar-button" id="summarylink" href="summary.html" onclick="removeWelcomeAnimation()">
                 <img src="../assets/img/summary.svg">
                 <div>Summary</div>
             </a>
 
-             <a class="menu-sidebar-button" href="addtask.html">
+             <a class="menu-sidebar-button" id="addtasklink" href="addtask.html">
                 <img src="../assets/img/addtask.svg">
                 <div>Add Task</div>
             </a>
 
-            <a class="menu-sidebar-button" href="board.html">
+            <a class="menu-sidebar-button" id="boardlink" href="board.html">
                 <img src="../assets/img/board.svg">
                 <div>Board</div>
             </a>
 
-            <a class="menu-sidebar-button" href="contacts.html">
+            <a class="menu-sidebar-button" id="contactslink" href="contacts.html">
                 <img src="../assets/img/contacts.svg">
                 <div>Contacts</div>
             </a>
@@ -76,19 +79,19 @@ function isloggedin() {
         document.getElementById('mobile_footer').innerHTML = `
         <div id="mobileBottomBar" class="index">
     <div class="mobile_bottom">
-        <div class="mobile_menuitem">
-            <a class="mobile_link" href="summary.html">
+        <div class="mobile_menuitem" id="mobile_summarylink" >
+            <a class="mobile_link"  href="summary.html">
                 <img src="../assets/img/summary.svg">
                 <div>Summary</div>
             </a>
         </div>
-        <div class="mobile_menuitem">
-            <a class="mobile_link" href="addtask.html">
+        <div class="mobile_menuitem" id="mobile_addtasklink">
+            <a class="mobile_link"   href="addtask.html">
                 <img src="../assets/img/addtask.svg">
                 <div>Add Task</div>
             </a>
         </div>
-        <div class="mobile_menuitem">
+        <div class="mobile_menuitem"id="mobile_boardlink" >
             <a class="mobile_link" href="board.html">
                 <img src="../assets/img/board.svg">
                 <div>Board</div>
@@ -97,7 +100,7 @@ function isloggedin() {
 
 
 
-        <div class="mobile_menuitem">
+        <div class="mobile_menuitem" id="mobile_contactslink">
             <a class="mobile_link" href="contacts.html">
                 <img src="../assets/img/contacts.svg">
                 <div>Contacts</div>
@@ -130,6 +133,66 @@ function isloggedin() {
         setTimeout(() => {
             navbarwithoutSign()
         }, 300);
+    }
+
+    setLink();
+}
+
+
+function setLink() {
+
+    if (innerWidth > 1300) {
+        if (window.location.href.includes('/html/summary.html')) {
+            document.getElementById('summarylink').classList.add('blue');
+            document.getElementById('addtasklink').classList.remove('blue');
+            document.getElementById('boardlink').classList.remove('blue');
+            document.getElementById('contactslink').classList.remove('blue');
+        }
+        else if (window.location.href.includes('/html/addtask.html')) {
+            document.getElementById('summarylink').classList.remove('blue');
+            document.getElementById('addtasklink').classList.add('blue');
+            document.getElementById('boardlink').classList.remove('blue');
+            document.getElementById('contactslink').classList.remove('blue');
+        }
+        else if (window.location.href.includes('/html/board.html')) {
+            document.getElementById('summarylink').classList.remove('blue');
+            document.getElementById('addtasklink').classList.remove('blue');
+            document.getElementById('boardlink').classList.add('blue');
+            document.getElementById('contactslink').classList.remove('blue');
+        }
+        else if (window.location.href.includes('/html/contacts.html')) {
+            document.getElementById('summarylink').classList.remove('blue');
+            document.getElementById('addtasklink').classList.remove('blue');
+            document.getElementById('boardlink').classList.remove('blue');
+            document.getElementById('contactslink').classList.add('blue');
+        }
+    }
+    else {
+        if (window.location.href.includes('/html/summary.html')) {
+            document.getElementById('mobile_summarylink').classList.add('mobileBlue');
+            document.getElementById('mobile_addtasklink').classList.remove('mobileBlue');
+            document.getElementById('mobile_boardlink').classList.remove('mobileBlue');
+            document.getElementById('mobile_contactslink').classList.remove('mobileBlue');
+
+        }
+        else if (window.location.href.includes('/html/addtask.html')) {
+            document.getElementById('mobile_summarylink').classList.remove('mobileBlue');
+            document.getElementById('mobile_addtasklink').classList.add('mobileBlue');
+            document.getElementById('mobile_boardlink').classList.remove('mobileBlue');
+            document.getElementById('mobile_contactslink').classList.remove('mobileBlue');
+        }
+        else if (window.location.href.includes('/html/board.html')) {
+            document.getElementById('mobile_summarylink').classList.remove('mobileBlue');
+            document.getElementById('mobile_addtasklink').classList.remove('mobileBlue');
+            document.getElementById('mobile_boardlink').classList.add('mobileBlue');
+            document.getElementById('mobile_contactslink').classList.remove('mobileBlue');
+        }
+        else if (window.location.href.includes('/html/contacts.html')) {
+            document.getElementById('mobile_summarylink').classList.remove('mobileBlue');
+            document.getElementById('mobile_addtasklink').classList.remove('mobileBlue');
+            document.getElementById('mobile_boardlink').classList.remove('mobileBlue');
+            document.getElementById('mobile_contactslink').classList.add('mobileBlue');
+        }
     }
 }
 
