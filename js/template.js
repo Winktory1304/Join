@@ -37,7 +37,7 @@ function showHeaderMenu(headerID, hideHeaderClass) {
 function isloggedin() {
     if (currentIndex != null) {
 
-        document.getElementById('sidebar').innerHTML = `
+        document.getElementById('sidebar').innerHTML = /*html*/ `
 
 <div class="sidebar-container">
     <nav class="sidebar">
@@ -63,16 +63,10 @@ function isloggedin() {
                 <div>Contacts</div>
             </a>
         </section>
-    </nav>
-    <section class="footer-sidebar">
-        <a class="footer-sidebar-link" href="privacyPolice.html">Privacy Policy</a>
-        <a class="footer-sidebar-link" href="legalNotice.html">Legal notice</a>
-    </section>
-</div>
-
-        
-        
+    </div>        
         `;
+
+
 
 
 
@@ -195,6 +189,11 @@ function setLink() {
         }
     }
 }
+
+function highlightBlue() {
+    document.getElementById(`highlight4`).classList.remove('summary-button');
+}
+
 
 
 function logout() {
