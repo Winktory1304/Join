@@ -232,8 +232,7 @@ function closeByClick(event) {
   if (isOpenCard) {
     var boardOpenCard = document.getElementById("boardTaskCard");
     var boardCardsubtasks = document.getElementsByClassName("checkbox");
-      debugger;
-    if (    
+       if (    
       event.target != boardOpenCard &&
       event.target.parentNode != boardOpenCard &&
       event.target.parentNode.parentNode != boardOpenCard && 
