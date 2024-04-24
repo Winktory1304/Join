@@ -216,7 +216,7 @@ function indexOfUser(email) {
 function logInGuest() {
     localStorage.setItem('isFirstTimeinSummary', "true");
     window.location.href = './html/summary.html';
-    localStorage.setItem('currentUserIndex', "Guest");      
+    localStorage.setItem('currentUserIndex', "Guest");        
 }
 
 /**

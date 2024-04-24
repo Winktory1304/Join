@@ -34,39 +34,41 @@ function showHeaderMenu(headerID, hideHeaderClass) {
 function isloggedin() {
     if (currentIndex != null) {
 
-        document.getElementById('sidebar').innerHTML = `
+        document.getElementById('sidebar').innerHTML = /*html*/ `
 
         <div class="sidebar-container">
         <nav class="sidebar">
         <img class="join-logo-sidebar" src="../assets/img/join-logo.svg">
             <section class="menu-sidebar">
-                <a class="menu-sidebar-button" href="summary.html" onclick="removeWelcomeAnimation()">
+            
+                <a id="highlight1" class="menu-sidebar-button " href="summary.html" onclick="removeWelcomeAnimation()">
                     <img src="../assets/img/summary.svg">
                     <div>Summary</div>
                 </a>
-    
-                 <a class="menu-sidebar-button" href="addtask.html">
+            
+                 <a id="highlight2" class="menu-sidebar-button" href="addtask.html">
                     <img src="../assets/img/addtask.svg">
                     <div>Add Task</div>
                 </a>
-    
-                <a class="menu-sidebar-button" href="board.html">
+                         
+                <a id="highlight3" class="menu-sidebar-button" href="board.html">
                     <img src="../assets/img/board.svg">
                     <div>Board</div>
-                </a>
-    
-                <a class="menu-sidebar-button" href="contacts.html">
+                </a>  
+                          
+              
+                <a  id="highlight4" class="menu-sidebar-button" href="contacts.html" onclick="highlightBlue()" >
                     <img src="../assets/img/contacts.svg">
                     <div>Contacts</div>
                 </a>
+                
             </section>
         </nav>
         <section class="footer-sidebar">
             <a class="footer-sidebar-link" href="privacyPolice.html">Privacy Policy</a>
             <a class="footer-sidebar-link" href="legalNotice.html">Legal notice</a>
         </section>
-    </div>
-        
+    </div>        
         `;
 
 
@@ -132,6 +134,11 @@ function isloggedin() {
         }, 300);
     }
 }
+
+function highlightBlue() {
+    document.getElementById(`highlight4`).classList.remove('summary-button');
+}
+
 
 
 function logout() {

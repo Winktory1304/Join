@@ -75,7 +75,22 @@ a {
 .arrow {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-right: 20px;
+}
+
+.arrow-left-line {   
+    width: 32px;
+    height: 32px;
+}
+
+.arrow-left-line:hover {
+    cursor: pointer;
+    background-color: #f6f6f6;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    scale: 1.1;
 }
 
 @media(max-width: 1300px) {

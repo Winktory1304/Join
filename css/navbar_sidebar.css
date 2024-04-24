@@ -34,10 +34,9 @@
     padding: 8px 96px;
     align-items: center;
     gap: 8px;
-    
     cursor: pointer;
     color: rgb(205, 205, 205);
-    text-decoration: none;
+    text-decoration: none;  
 }
 
 .menu-sidebar-button img {
@@ -46,6 +45,15 @@
 }
 
 .menu-sidebar-button:hover {
+    background-color: #091931;
+}
+
+.highlight-blue {
+    background-color: #091931 !important;
+}
+
+
+.summary-button {
     background-color: #091931;
 }
 

@@ -264,11 +264,11 @@ body {
 
 .input-area input {
     width: 85%;
-    height: 90%;
+    height: 80%;
     border: none !important;
     cursor: pointer;
     outline-color: transparent;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .input-area input::placeholder {
@@ -291,11 +291,11 @@ body {
 
 .input-area-sign input {
     width: 85%;
-    height: 90%;
+    height: 80%;
     border: none !important;
     cursor: pointer;
     outline-color: transparent;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .input-area-sign input::placeholder {
