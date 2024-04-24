@@ -1,7 +1,7 @@
 <div class="addtask_h1">
     Add Task
 </div>
-<form onsubmit="writeTasktoServer()">
+<form onsubmit="startWriteTasktoServer()" action="/html/board.html">
     <div class="addtask-content-main">
         <div class="task-container">
             <!-- left content -->
@@ -13,7 +13,7 @@
                 </div>
                 <div class="addtask-gap16">
                     <div class="addtask-h2">Description</div>
-                    <textarea class="addtask-input-description width540 cursorPointerBlue"
+                    <textarea class="addtask-input-description width540 cursorPointerBlue boardDescription"
                         id="addtask-input-description" placeholder="Enter a Description" rows="4"></textarea>
                 </div>
                 <div class="addtask-gap16">

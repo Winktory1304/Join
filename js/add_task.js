@@ -196,7 +196,7 @@ function addTaskPopup() {
   document.getElementById("popup").classList.remove("d-none");
   setTimeout(function () {
     document.getElementById("popup").classList.add("d-none");
-  }, 1000);
+  }, 3000);
 }
 
 

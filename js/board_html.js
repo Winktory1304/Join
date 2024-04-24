@@ -93,6 +93,10 @@ function generateTodoHTML(element) {
     }
 
 
+/** 
+ * function open mini task menu for the board
+ * 
+*/
 function openMinitaskMenu(id) {
     document.getElementById('bc-' + id).innerHTML = /*html*/`
                         <div class="changeStatus">
@@ -108,12 +112,24 @@ function openMinitaskMenu(id) {
 }
 
 
+/**
+ * function to switch the status
+ * @param {
+ * } todoID 
+ * @param {*} status 
+ */
 function statusSwitcher(todoID, status) {
     todos[todoID].status = status;
     writeServer();
 }
 
 
+/**
+ * function to set the title
+ * @param {
+ * } element 
+ * @returns 
+ */
 function setTitle(element) {
     if (element.title.length > 13) {
         let newTitle = element.title.slice(0, 13) + '...';
@@ -125,6 +141,12 @@ function setTitle(element) {
 }
 
 
+/**
+ * function to generate the contacts
+ * @param {
+ * } elementcontacts 
+ * @returns 
+ */
 function generateContacts(elementcontacts) {
     let kreise = [];
     if (elementcontacts.contacts.length === 0) {
@@ -176,7 +198,7 @@ function setTag(element) {
  * @param {string} id - The ID of the dialog to open.
  */
 function openDialog(id) {
-    document.getElementById('board_openCard').classList.remove('d-none')
+    document.getElementById('board_openCard').classList.remove('d-none');
     openCard(id);
 }
 
@@ -186,7 +208,7 @@ function openDialog(id) {
  */
 async function closeDialog() {
     document.getElementById('board_openCard').classList.add('d-none');
-    await writeServer()
+    await writeServer();
     updateHTML();
 }
 

@@ -1,6 +1,9 @@
 let task = new Task();
 
-
+/**
+ * function create a new task
+ *
+ */
 function createnewTask() {
   task.id = todos.length + 1;
   task.title = document.getElementById("addtask-input-title").value;
@@ -14,39 +17,48 @@ function createnewTask() {
   todos.push(task);
 }
 
-
-async function writeTasktoServer() {
-  createnewTask();
-  addTaskPopup();
-  setTimeout(() => {
-    try {
-      setItem("todos", todos).then(() => {
-        readServer();
-        clearInputs();
-      });
-    } catch (error) {
-      console.error("Error adding task", error);
-    }
-  }, 1000);
-}
-
-
+/**
+ * async function write task to server
+ *
+ */
 function writeTasktoServer() {
-  writeTasktoServer();
-  setTimeout(() => {
-    window.location.href = "/html/board.html";
-  }, 1000);
-  document.getElementById("addtask-button-create-task").disabled = true;
+  createnewTask();
+  setItem("todos", todos).then(
+    function (value) {
+      addTaskPopup();
+    },
+    function (error) {
+      alert("Error", error);
+    }
+  );
 }
 
+/**
+ * function write task to server
+ *
+ */
+function startWriteTasktoServer() {
+  addTaskPopup();
+  
+  document.getElementById("addtask-button-create-task").disabled = true;
+  writeTasktoServer();
+}
 
+/**
+ * async function read from server
+ *
+ */
 async function readfromServer() {
   todos = [];
   readJSON("todos", todos);
   updateHTML();
 }
 
-
+/**
+ * function delete Contacts from Task
+ * @param {
+ * } contactID
+ */
 function deleteContactsfromTasks(contactID) {
   contactID = contacts[contactID].idContact;
   todos.forEach((task) => {
