@@ -58,6 +58,7 @@ function hoverPlusOut(id) {
  * @param {number} id - The ID of the task to be edited.
  */
 function editTask(id) {
+  isOpenCard = 0;
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard" id ="taskcardedit">
@@ -290,10 +291,9 @@ function addSubtasktoTodo(id) {
 * @param {string} id - The title of the task to be deleted.
 * @returns {Promise<void>} - A promise that resolves when the task is deleted.
 */
-async function deleteTask(id) {
-
+function deleteTask(id) {
   todos = todos.filter(item => item.id !== id);
-  await setItem('todos', todos).then(() => { closeDialog(); updateHTML(); });
+  setItem('todos', todos).then(() => { closeDialog(); updateHTML(); });
 }
 
 

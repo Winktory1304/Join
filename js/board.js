@@ -208,9 +208,10 @@ function getDate(date) {
  * @param {number} id - The ID of the card to be opened.
  */
 function openCard(id) {
+  isOpenCard = 1;
   document.getElementById("board_openCard").innerHTML = /*html*/`
-                    <div class="board_taskcard" id="boardTaskCard">
-                        <div class="board_innertaskcard">
+                    <div class="board_taskcard" id="boardTaskCard" >
+                        <div class="board_innertaskcard" id="boardInnerTask" >
                         <div class="board_cardnav">
                             <div class="board_opencardtag" ${setTag(todos[id])}>
                                 <p>${todos[id].tag}</p>

@@ -40,9 +40,9 @@
 
 </head>
 
-<body class="board_body" onload="init()">
+<body class="board_body" onload="init()" >
 
-    <div class="board_openCard d-none" id="board_openCard"></div>
+    <div class="board_openCard d-none" id="board_openCard" onmouseup="closeByClick(event)"></div>
     <div class="board_addTask d-none" id="board_addTask">
         <div class="board_addtaskcard">
             <div w3-include-html="addtasktemplate.html"></div>

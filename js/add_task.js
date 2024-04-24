@@ -289,7 +289,8 @@ function selectPrio(prio) {
 
 function checkEventInAssignedToAndClose(event) {
   var elementAddTask = document.getElementById("addtask-input-assigned");
-  if (event.target != elementAddTask && event.target.parentNode != elementAddTask && event.target.parentNode.parentNode != elementAddTask) { closeListAssignedTo(); }
+  if (event.target != elementAddTask && event.target.parentNode != elementAddTask 
+    && event.target.parentNode.parentNode != elementAddTask) { closeListAssignedTo(); }
 }
 
 
