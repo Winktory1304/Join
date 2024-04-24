@@ -46,7 +46,11 @@
 }
 
 .menu-sidebar-button:hover {
-    background-color: rgb(42, 61, 89);
+    background-color: #2484ad;
+}
+
+.blue {
+    background-color: #2484ad;
 }
 
 .header {
