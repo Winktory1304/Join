@@ -18,30 +18,19 @@ function createnewTask() {
 }
 
 /**
- * async function write task to server
- *
- */
-function writeTasktoServer() {
-  createnewTask();
-  setItem("todos", todos).then(
-    function (value) {
-      addTaskPopup();
-    },
-    function (error) {
-      alert("Error", error);
-    }
-  );
-}
-
-/**
  * function write task to server
  *
  */
-function startWriteTasktoServer() {
-  addTaskPopup();
-  
-  document.getElementById("addtask-button-create-task").disabled = true;
-  writeTasktoServer();
+function startWriteTasktoServer() {  
+  document.getElementById("addtask-button-create-task").disabled = false;
+  addTaskPopup();  
+  setTimeout(() => {
+    createnewTask();
+    setItem("todos", todos).then(() => {
+    window.location.href = "/html/board.html";} );
+  }, 3000);
+
+
 }
 
 /**
