@@ -223,7 +223,11 @@ function openDialog(id) {
     openCard(id);
 }
 
-
+/**
+ * function closebyclick
+ * @param {
+ * } event 
+ */
 function closeByClick(event) {
     if (isOpenCard) {
         if (event.target.nodeName != "DIV" &&

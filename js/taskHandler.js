@@ -53,6 +53,7 @@ function hoverPlusOut(id) {
   plus[id].setAttribute('src', '../assets/img/board-plus.svg');
 }
 
+
 /**
  * Edits a task with the given ID.
  * @param {number} id - The ID of the task to be edited.
@@ -136,11 +137,14 @@ function fillSubtasks(id) {
     document.getElementById('containerForSubtask').classList.remove('d-none');
     fillSubtaskHTML(id);
   }
-
-
-
 }
 
+
+/**
+ * function fill subtask HTML
+ * @param {
+ * } id 
+ */
 function fillSubtaskHTML(id) {
   var container = document.getElementById("containerForSubtask");
   container.innerHTML = '';
@@ -155,7 +159,10 @@ function fillSubtaskHTML(id) {
   });
 }
 
-
+/**
+ * function fill contacts
+ * @param {*} id 
+ */
 function fillContacts(id) {
   document.getElementById("test").innerHTML = "";
   todos[id].contacts.forEach((element) => {
@@ -169,11 +176,15 @@ function fillContacts(id) {
       <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
-
-
-
   });
 }
+
+
+/**
+ * function set contacts
+ * @param {
+ * } todoID 
+ */
 function setContactstoTodo(todoID) {
   switchCase("assigned").innerHTML = "";
   contacts.forEach((element) => {
@@ -194,24 +205,34 @@ function setContactstoTodo(todoID) {
 }
 
 
+/**
+ * function set assign
+ *  
+ */
 function setAssign(contactID) {
   if (document.getElementById(contactID).checked) {
     document.getElementById(contactID).checked = false;
     document.getElementById("setAssign-" + contactID).style.backgroundColor = "white";
     return;
   }
-
   document.getElementById("setAssign-" + contactID).style.backgroundColor = "#828282";
   document.getElementById(contactID).checked = true;
 }
 
 
-
-
+/**
+ * function write contacts
+ * @param {
+ * } todoID 
+ * @param {*} idContact 
+ * @param {*} firstName 
+ * @param {*} lastName 
+ * @param {*} color 
+ * @param {*} initials 
+ */
 function writeContactsintoTodo(todoID, idContact, firstName, lastName, color, initials) {
   let checkboxes = document.getElementsByClassName("checkBox ");
   todos[todoID].contacts = [];
-
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       let id = checkboxes[i].id;
@@ -222,28 +243,20 @@ function writeContactsintoTodo(todoID, idContact, firstName, lastName, color, in
       todos[todoID].contacts.push(new Contact(id, firstName + " " + lastName, color, initials));
     }
   }
-
-
   document.getElementById("test").innerHTML = "";
   todos[todoID].contacts.forEach((element) => {
     let contact = element.name.split(" ");
     let initials = contact.map((name) => name.charAt(0)).join("");
     let id = "contactcircle-" + element.idContact;
     let color = element.color;
-
     document.getElementById("test").innerHTML += `
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle id="${id}" cx="21" cy="21" r="20" fill="${color}" stroke="white" stroke-width="2"/>
       <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="16px" fill="white">${initials}</text>
     </svg>`;
-
-
     if (todos.length === 0) return;
   });
 }
-
-
-
 
 
 /**
@@ -252,8 +265,7 @@ function writeContactsintoTodo(todoID, idContact, firstName, lastName, color, in
 function addSubtask() {
   if (document.getElementById("addtask-input-subtasks").value === "") {
     return;
-  }
- 
+  } 
   var text = 'label-' + (subtask.length);
   var text2 = 'div-' + (subtask.length);
   let id = todos.length;
@@ -269,8 +281,10 @@ function addSubtask() {
 }
 
 
-
-
+/**
+ * function add Subtask
+ * @param {} id 
+ */
 function addSubtasktoTodo(id) {
   var text = 'label-' + (todos[id].subtasks.length);
   var text2 = 'div-' + (todos[id].subtasks.length);
@@ -305,28 +319,28 @@ function deleteTask(id) {
 function deleteSubtask(titel, id) {
   var subtaskToDelete = subtask.filter((item => item !== titel));
   subtask.splice(subtaskToDelete, 1);
-
   var subtaskElement = document.getElementById(id);
-
   subtaskElement.remove();
-
   if (subtask.length === 0) {
     document.getElementById("containerForSubtask").classList.add('d-none');
   }
 }
 
-function deleteSubtaskfromTodo(titel, id, todoID) {
-  //Diese funktion wird so noch nicht funktionieren, 
 
+/**
+ * function delete
+ * @param {
+ * } titel 
+ * @param {*} id 
+ * @param {*} todoID 
+ */
+function deleteSubtaskfromTodo(titel, id, todoID) {
   var subtaskToDelete = todos[todoID].subtasks.filter((item => item.description == titel));
   todos[todoID].subtasks.splice(subtaskToDelete, 1);
-
   var subtaskElement = document.getElementById(id);
-
   subtaskElement.remove();
   setItem(key, todos).then(() => { ; init(); });
 }
-
 
 
 /**
@@ -343,8 +357,6 @@ function editSubtask(titel, id) {
 }
 
 
-
-
 /**
  * Updates the content of a subtask element and updates the corresponding subtask in the subtask array.
  * @param {string} updatedSubtask - The updated content for the subtask element.
@@ -354,16 +366,10 @@ function updateSubtask(updatedSubtask, id) {
   var subtaskElement = document.getElementById(id);
   subtaskElement.innerHTML = `${updatedSubtask} 
  `;
-
   subtask[id.split('-')[1]].description =  updatedSubtask;
 }
 
 
-/**
- * Updates the content of a subtask element and updates the corresponding subtask in the subtask array.
- * @param {string} updatedSubtask - The updated content for the subtask element.
- * @param {string} id - The id of the subtask element to be updated.
- */
 /**
  * Updates the content of a subtask element and updates the corresponding subtask in the todos array.
  * @param {string} updatedSubtask - The updated content for the subtask element.
