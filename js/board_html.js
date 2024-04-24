@@ -223,7 +223,11 @@ function openDialog(id) {
   openCard(id);
 }
 
-
+/**
+ * function closebyclick
+ * @param {
+ * } event 
+ */
 function closeByClick(event) {
   if (isOpenCard) {
     var boardOpenCard = document.getElementById("boardTaskCard");
@@ -240,7 +244,10 @@ function closeByClick(event) {
   }
 }
 
-
+/**
+ * function close outside
+ * 
+ */
 function closeOutside(){
     document.getElementById("board_openCard").classList.add("d-none");
     setItem("todos",todos).then(()=>(updateHTML()));
