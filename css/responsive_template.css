@@ -75,8 +75,15 @@
         height: 100%;
     }
     .mobile_menuitem:hover{
-        background-color: #19202b; 
+        background-color: #2484ad; 
+
     }
+    .mobileBlue {
+        background-color: #2484ad;
+    }
+    
+   
+
     .mobile_menuitem:hover img{
         width: 28px;
         height: 28px;
