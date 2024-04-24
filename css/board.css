@@ -477,6 +477,7 @@ h4 {
 .addtask-prio-buttons{
     justify-content: center;
     gap: 13%;
+    padding-right: 12px;
 }
 .addtask-gap16{
     display: flex;
