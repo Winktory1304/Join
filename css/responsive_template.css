@@ -6,6 +6,11 @@
     display: none;
 }
 
+
+.mobileBlue {
+    background-color: #2484ad;
+}
+
 @media (max-width: 1300px){
         .header{
         height: 80px !important;
@@ -76,7 +81,7 @@
     }
     .mobile_menuitem:hover{
         background-color: #2484ad; 
-
+    
     }
     .mobileBlue {
         background-color: #2484ad;

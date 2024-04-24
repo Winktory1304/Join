@@ -22,15 +22,13 @@ function createnewTask() {
  *
  */
 function startWriteTasktoServer() {  
-  document.getElementById("addtask-button-create-task").disabled = false;
+  document.getElementById("addtask-button-create-task").disabled = true;
   addTaskPopup();  
   setTimeout(() => {
     createnewTask();
     setItem("todos", todos).then(() => {
     window.location.href = "/html/board.html";} );
   }, 3000);
-
-
 }
 
 /**
