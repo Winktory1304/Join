@@ -63,6 +63,11 @@ function isloggedin() {
                 <div>Contacts</div>
             </a>
         </section>
+        </nav>
+        <section class="footer-sidebar">
+            <a class="footer-sidebar-link" href="privacyPolice.html">Privacy Policy</a>
+            <a class="footer-sidebar-link" href="legalNotice.html">Legal notice</a>
+        </section>
     </div>        
         `;
 
