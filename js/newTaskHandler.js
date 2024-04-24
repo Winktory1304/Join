@@ -2,7 +2,7 @@ let task = new Task();
 
 /**
  * function create a new task
- * 
+ *
  */
 function createnewTask() {
   task.id = todos.length + 1;
@@ -17,46 +17,36 @@ function createnewTask() {
   todos.push(task);
 }
 
-
 /**
  * async function write task to server
- * 
+ *
  */
 function writeTasktoServer() {
   createnewTask();
-  addTaskPopup();
-  setTimeout(() => {
-    try {
-      setItem("todos", todos).then(() => {
-        readServer();
-        clearInputs();
-      });
-    } catch (error) {
-      console.error("Error adding task", error);
+  setItem("todos", todos).then(
+    function (value) {
+      addTaskPopup();
+    },
+    function (error) {
+      alert("Error", error);
     }
-  }, 1000);
+  );
 }
-
 
 /**
  * function write task to server
- * 
+ *
  */
 function startWriteTasktoServer() {
-  debugger;
-  console.log('test');
-  writeTasktoServer();
-  setTimeout(() => {
-    window.location.href = "/html/board.html";
-  }, 5000);
-  console.log('test2');
+  addTaskPopup();
+  
   document.getElementById("addtask-button-create-task").disabled = true;
-  console.log('test3');
+  writeTasktoServer();
 }
 
 /**
  * async function read from server
- * 
+ *
  */
 async function readfromServer() {
   todos = [];
@@ -64,11 +54,10 @@ async function readfromServer() {
   updateHTML();
 }
 
-
 /**
  * function delete Contacts from Task
  * @param {
- * } contactID 
+ * } contactID
  */
 function deleteContactsfromTasks(contactID) {
   contactID = contacts[contactID].idContact;
