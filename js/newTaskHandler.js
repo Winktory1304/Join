@@ -22,7 +22,7 @@ function createnewTask() {
  *
  */
 function startWriteTasktoServer() {  
-  document.getElementById("addtask-button-create-task").disabled = false;
+  document.getElementById("addtask-button-create-task").disabled = true;
   addTaskPopup();  
   setTimeout(() => {
     createnewTask();
