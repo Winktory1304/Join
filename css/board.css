@@ -802,8 +802,7 @@ p {
     transition: transform 0.5s;
 }
 .addtask-input-description{
-    padding: 23px !important;
-    width: 91% !important;
+      width: 91% !important;
     min-height: 60px;
 }
 .width524{

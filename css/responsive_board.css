@@ -1,7 +1,5 @@
 
-.addtask-input-description{
-    padding: 18px;
-}
+
 
 .board_addtaskcard{
     width: 55%;
@@ -83,6 +81,7 @@
 .addtask-prio-buttons{
     justify-content: center;
     gap: 13%;
+    padding: 12px;
 }
 
 .spalte{
@@ -140,7 +139,7 @@
 }
 
 .boardDescription {
-    padding: 10px !important;
+    padding: 8px !important;
     width: 420px !important;
 }
 }
