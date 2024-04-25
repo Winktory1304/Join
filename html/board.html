@@ -43,11 +43,11 @@
 <body class="board_body" onload="init()" >
 
     <section class="board_openCard d-none" id="board_openCard" onmouseup="closeByClick(event)"></section>
-    <div class="board_addTask d-none" id="board_addTask">
+    <section class="board_addTask d-none" id="board_addTask" onmouseup="closeTaskByClick(event)">
         <div class="board_addtaskcard">
-            <div w3-include-html="addtasktemplate.html"></div>
+            <div w3-include-html="addtasktemplate.html" ></div>
         </div>
-    </div>
+    </section>
 
 
 
