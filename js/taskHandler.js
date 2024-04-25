@@ -59,7 +59,6 @@ function hoverPlusOut(id) {
  * @param {number} id - The ID of the task to be edited.
  */
 function editTask(id) {
-  isOpenCard = 0;
   document.getElementById('board_openCard').classList.remove('d-none');
   document.getElementById('board_openCard').innerHTML = `
     <div class="board_taskcard" id ="taskcardedit">
