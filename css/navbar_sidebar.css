@@ -7,7 +7,7 @@
     position: fixed;
     height: 100vh;
     display: flex;
-    width: 232px;   
+    width: 232px;
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
@@ -34,10 +34,9 @@
     padding: 8px 96px;
     align-items: center;
     gap: 8px;
-    flex-shrink: 0;
     cursor: pointer;
     color: rgb(205, 205, 205);
-    text-decoration: none;
+    text-decoration: none;  
 }
 
 .menu-sidebar-button img {
@@ -66,9 +65,7 @@
 }
 
 .header-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
@@ -77,40 +74,40 @@
 
 
 .header-menu {
-	display: inline-flex;
-	position: absolute;
-	top: 100px;
-	right: 20px;
-	padding: 10px;
-	flex-direction: column;
-	align-items: flex-start;
-	border-radius: 20px 0px 20px 2px;
-	background-color: #2A3647;
-	box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
-	transform: translateY(0px);
-	z-index: 2;
-	transition: transform 125ms ease-in-out, z-index 125ms ease-in-out;
+    display: inline-flex;
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 20px 0px 20px 2px;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.2);
+    transform: translateY(0px);
+    z-index: 2;
+    transition: transform 125ms ease-in-out, z-index 125ms ease-in-out;
 }
 
 .hide-header-menu {
-	display: none;
+    display: none;
 }
 
 
 .header-menu-button {
-	text-decoration: none;
-	color: rgb(205,205,205);
-	display: flex;
-	width: 140px;
-	height: 46px;
-	padding: 8px 16px;
-	align-items: center;
-	gap: 8px;
-	border-radius: 8px;
+    text-decoration: none;
+    color: rgb(205, 205, 205);
+    display: flex;
+    width: 140px;
+    height: 46px;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
 }
 
 .header-menu-button:hover {
-	background-color: rgb(45, 61, 89);
+    background-color: rgb(45, 61, 89);
     cursor: pointer;
 }
 
@@ -166,7 +163,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    bottom: 40px;    
+    bottom: 40px;
 }
 
 .footer-sidebar-link {
